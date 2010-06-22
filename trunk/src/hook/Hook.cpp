@@ -1,12 +1,12 @@
 #include "Hook.h"
-using namespace TLMP;
+using namespace TLAPI;
 
 // ----------------------------------------------------------------------- //
 // Meat of the code originally developed by dengus
 // Cleaned up - drivehappy
 // ----------------------------------------------------------------------- //
 
-PVOID TLMP::HookGenerateEntry(PVOID address, PVOID out_ins, size_t* out_size)
+PVOID TLAPI::HookGenerateEntry(PVOID address, PVOID out_ins, size_t* out_size)
 {
   ud u;
   ud_init(&u);
@@ -111,7 +111,7 @@ PVOID TLMP::HookGenerateEntry(PVOID address, PVOID out_ins, size_t* out_size)
   return ret_addr;
 }
 
-HookFunctionDef* TLMP::HookNew(PVOID address, HookFunction pre, HookFunction post, u32 flags, u32 args)
+HookFunctionDef* TLAPI::HookNew(PVOID address, HookFunction pre, HookFunction post, u32 flags, u32 args)
 {
   HookFunctionDef *f = new HookFunctionDef;
   memset(f,0,sizeof(f));
@@ -128,14 +128,14 @@ HookFunctionDef* TLMP::HookNew(PVOID address, HookFunction pre, HookFunction pos
   return f;
 }
 
-HookFunctionDef* TLMP::Hook(PVOID address, HookFunction pre, HookFunction post, u32 flags, u32 args)
+HookFunctionDef* TLAPI::Hook(PVOID address, HookFunction pre, HookFunction post, u32 flags, u32 args)
 {
   HookFunctionDef*f = HookNew(address,pre,post,flags,args);
   HookActivate(f);
   return f;
 }
 
-size_t TLMP::HookGenerate(PVOID out, HookFunctionDef* f)
+size_t TLAPI::HookGenerate(PVOID out, HookFunctionDef* f)
 {
   out_buf_ptr code_buf((unsigned char*)out);
   codegen gen(&code_buf);
@@ -214,13 +214,13 @@ size_t TLMP::HookGenerate(PVOID out, HookFunctionDef* f)
   return code_buf.c - code_buf.oc;
 }
 
-void TLMP::HookDelete(HookFunctionDef* f)
+void TLAPI::HookDelete(HookFunctionDef* f)
 {
   if (f->hook_code) VirtualFree(f->hook_code,0,MEM_RELEASE);
   delete f;
 }
 
-void TLMP::HookActivate(HookFunctionDef* f)
+void TLAPI::HookActivate(HookFunctionDef* f)
 {
   // patch up patch_address to jump to entry
 
@@ -235,7 +235,7 @@ void TLMP::HookActivate(HookFunctionDef* f)
   out += 4;
 }
 
-void TLMP::HookDeactivate(HookFunctionDef* f)
+void TLAPI::HookDeactivate(HookFunctionDef* f)
 {
   if (f->hook_code) {
     VirtualFree(f->hook_code, 0, MEM_RELEASE);
@@ -244,7 +244,7 @@ void TLMP::HookDeactivate(HookFunctionDef* f)
   delete f;
 }
 
-void TLMP::PatchJMP(uint32_t addr, uint32_t to)
+void TLAPI::PatchJMP(uint32_t addr, uint32_t to)
 {
   //addr = EXEOFFSET(addr);
 

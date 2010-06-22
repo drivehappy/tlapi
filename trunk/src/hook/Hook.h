@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Common.h"
+#include "Helper.h"
 
 #include "udis86.h"
 #include "CodeGeneration.h"
@@ -9,7 +9,7 @@
 // Code developed by dengus.
 //
 
-namespace TLMP {
+namespace TLAPI {
 
   enum {
     HOOKFLAG_EAX =            0x0001,
@@ -24,8 +24,8 @@ namespace TLMP {
   };
 
   static const u32 HOOKFLAG_REG_ALL = (HOOKFLAG_EAX | HOOKFLAG_ECX | HOOKFLAG_EDX | 
-                                        HOOKFLAG_EBX | HOOKFLAG_ESP | HOOKFLAG_EBP |
-                                        HOOKFLAG_ESI | HOOKFLAG_EDI);
+                                       HOOKFLAG_EBX | HOOKFLAG_ESP | HOOKFLAG_EBP |
+                                       HOOKFLAG_ESI | HOOKFLAG_EDI);
   static const  u32 HOOK_CDECL =    0;
   static const  u32 HOOK_STDCALL =  HOOKFLAG_CALLEE_CLEANUP;
   static const  u32 HOOK_THISCALL = HOOKFLAG_ECX | HOOKFLAG_CALLEE_CLEANUP;
@@ -72,7 +72,7 @@ namespace TLMP {
     PVOID         entry;
     size_t        entry_size;
     PVOID         patch_address;
-	DWORD         user[16];
+	  DWORD         user[16];
   };
 
   //
@@ -89,6 +89,6 @@ namespace TLMP {
   void HookDeactivate(HookFunctionDef*);
 
   //
-  void PatchJMP(uint32_t addr,uint32_t to);
+  void PatchJMP(uint32_t addr, uint32_t to);
 
 };

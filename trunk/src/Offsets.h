@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DataTypes.h"
+#include "Hook.h"
 
 #include "CGameClient.h"
 #include "CResourceManager.h"
@@ -11,8 +11,10 @@
 #include "CBreakable.h"
 #include "CDamageShape.h"
 #include "CDieMenu.h"
+#include "CPlayer.h"
+#include "CMonster.h"
 
-namespace TLMP {
+namespace TLAPI {
 
   TLFUNC(SpiderSomeCreate,   CCharacter*, __thiscall, (CResourceManager*, u64, u32, bool));
   TLFUNC(EntityInitialize,   CCharacter*, __thiscall, (CLevel*, CCharacter*, Vector3*, u32));

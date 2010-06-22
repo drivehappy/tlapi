@@ -10,17 +10,6 @@
 
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "winmm.lib")
-/*
-#pragma comment(lib, "ws2_32.lib")
-#pragma comment(lib, "ExternalLibs/cegui/lib/CEGUIBase.lib")
-#pragma comment(lib, "ExternalLibs/google/lib/libprotobuf.lib")
-
-#if defined(_DEBUG)
-  #pragma comment(lib, "ExternalLibs/raknet/lib/RakNetLibStaticDebug.lib")
-#else
-  #pragma comment(lib, "ExternalLibs/raknet/lib/RakNetLibStatic.lib")
-#endif
-*/
 
 #include <string>
 #include <stack>
@@ -29,12 +18,11 @@ using namespace std;
 
 #include <math.h>
 
-#include "DataTypes.h"
-#include "Helper.h"
-#include "Hook.h"
-#include "Offsets.h"
-
-#define STDARG (TLMP::HookStruct *e, TLMP::HookFunctionDef *_f)
+#define STDARG (HookStruct *e, HookFunctionDef *_f)
 #define Pz e->arg
 #define Ud e->user
 #define rPz e->ref_arg
+
+//#include "Hook.h"
+#include "Helper.h"
+#include "Offsets.h"

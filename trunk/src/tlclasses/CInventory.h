@@ -32,47 +32,52 @@
   61-81: Fish       Tab
 */
 
-struct CPlayer;
-
-// 
-struct CInventory : CRunicCore
+namespace TLAPI
 {
-  u32                   unk0[3];
 
-  CEffectManager       *pCEffectManager;
-  CPlayer              *pCPlayer;
+  struct CPlayer;
 
-  u32                   unk10;
+  // 
+  struct CInventory : CRunicCore
+  {
+    u32                   unk0[3];
 
-  CList<CEquipmentRef*> equipmentList;
-  CList<PVOID>          iInventoryListenerList;
+    CEffectManager       *pCEffectManager;
+    CPlayer              *pCPlayer;
+
+    u32                   unk10;
+
+    CList<CEquipmentRef*> equipmentList;
+    CList<PVOID>          iInventoryListenerList;
 
 
-  void dumpInventory() {
-    logColor(B_RED, "Inventory Dump: %p", this);
+    void dumpInventory() {
+      logColor(B_RED, "Inventory Dump: %p", this);
 
-    for (int i = 0; i < 3; i++) {
-      logColor(B_RED, "  unk0[%i] = %9i %#9x", i, unk0[i], unk0[i]);
+      for (int i = 0; i < 3; i++) {
+        logColor(B_RED, "  unk0[%i] = %9i %#9x", i, unk0[i], unk0[i]);
+      }
+      //logColor(B_RED, "  unk10 = %9i %#9x", unk10, unk10);
+
+      logColor(B_RED, "  CEffectManager: %p", pCEffectManager);
+      logColor(B_RED, "  CPlayer: %p", pCPlayer);
+      logColor(B_RED, "  EquipmentCount: %i", equipmentList.size);
+      logColor(B_RED, "  Equipment:");
+
+      for (int i = 0; i < (int)equipmentList.size; i++) {
+        logColor(B_RED, L"  Equipment Name: %s", equipmentList[i]->pCEquipment->nameReal.getString());
+        logColor(B_RED, L"  Equipment AttackDesc:");
+        CAttackDescription *attackLeftHand = equipmentList[i]->pCEquipment->pCAttackDescriptor0;
+        CAttackDescription *attackRightHand = equipmentList[i]->pCEquipment->pCAttackDescriptor0;
+
+        if (attackLeftHand)
+          attackLeftHand->dumpAttack();
+        if (attackRightHand)
+          attackRightHand->dumpAttack();
+
+        equipmentList[i]->dumpEquipmentRef();
+      }
     }
-    //logColor(B_RED, "  unk10 = %9i %#9x", unk10, unk10);
+  };
 
-    logColor(B_RED, "  CEffectManager: %p", pCEffectManager);
-    logColor(B_RED, "  CPlayer: %p", pCPlayer);
-    logColor(B_RED, "  EquipmentCount: %i", equipmentList.size);
-    logColor(B_RED, "  Equipment:");
-
-    for (int i = 0; i < (int)equipmentList.size; i++) {
-      logColor(B_RED, L"  Equipment Name: %s", equipmentList[i]->pCEquipment->nameReal.getString());
-      logColor(B_RED, L"  Equipment AttackDesc:");
-      CAttackDescription *attackLeftHand = equipmentList[i]->pCEquipment->pCAttackDescriptor0;
-      CAttackDescription *attackRightHand = equipmentList[i]->pCEquipment->pCAttackDescriptor0;
-
-      if (attackLeftHand)
-        attackLeftHand->dumpAttack();
-      if (attackRightHand)
-        attackRightHand->dumpAttack();
-
-      equipmentList[i]->dumpEquipmentRef();
-    }
-  }
 };
