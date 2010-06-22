@@ -31,8 +31,10 @@ private: \
   static vector<EventType_##name> m_Callback_##name##_post; \
 public: \
   void RegisterEvent_##name(EventType_##name funcPre, EventType_##name funcPost) { \
-    m_Callback_##name##_pre.push_back(funcPre); \
-    m_Callback_##name##_post.push_back(funcPost); \
+    if(funcPre) \
+      m_Callback_##name##_pre.push_back(funcPre); \
+    if(funcPost) \
+      m_Callback_##name##_post.push_back(funcPost); \
   }; \
   static void FireEvent_##name##_Pre STDARG { \
     vector<EventType_##name>::iterator itr = m_Callback_##name##_pre.begin(); \

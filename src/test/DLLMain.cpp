@@ -9,6 +9,8 @@
 
 #include "tlapi.h"
 
+#include "Test.h"
+
 
 //const char*dll = "winmm.dll";
 //const char*dll = "C:\\win32\\system32\\winmm";
@@ -289,11 +291,13 @@ BOOL WINAPI DllMain(HANDLE hModule, DWORD dwReason, void *lpReserved)
   freopen("CONOUT$", "w", stdout);
 
   if (GetModuleHandle("torchlight.exe")) {
-    if (dwReason==DLL_PROCESS_ATTACH) {
+    if (dwReason == DLL_PROCESS_ATTACH) {
       log("Torchlight Multiplayer");
       log("Base is at %p", GetModuleHandle("torchlight.exe"));
 
       TLAPI::Initialize();
+
+      TestSetup();
     } else if (dwReason==DLL_THREAD_ATTACH) {
     } else if (dwReason==DLL_PROCESS_DETACH) {
     }
