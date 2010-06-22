@@ -150,16 +150,16 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\src\Events.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\src\tlapi.cpp"
 				>
 			</File>
 			<Filter
 				Name="Kernel"
 				>
+				<File
+					RelativePath="..\src\Events.cpp"
+					>
+				</File>
 				<File
 					RelativePath="..\src\Helper.cpp"
 					>
@@ -259,7 +259,15 @@
 					>
 				</File>
 				<File
+					RelativePath="..\src\Common.h"
+					>
+				</File>
+				<File
 					RelativePath="..\src\DataTypes.h"
+					>
+				</File>
+				<File
+					RelativePath="..\src\Events.h"
 					>
 				</File>
 				<File

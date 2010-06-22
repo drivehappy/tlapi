@@ -1,6 +1,7 @@
 #include "tlapi.h"
 #include "Hook.h"
 #include "Offsets.h"
+#include "Events.h"
 
 using namespace TLAPI;
 
@@ -132,7 +133,8 @@ void TLAPI::HookFunctions()
   CGameClient gameClient;
   gameClient.RegisterEvent_LoadMap(TestCallbackPre, TestCallbackPost);
 
-  Hook(LoadMap, &CGameClient::FireEvent_Pre, &CGameClient::FireEvent_Post, HOOK_THISCALL, 2);
+  //Hook(LoadMap, &CGameClient::FireEvent_Pre, &CGameClient::FireEvent_Post, HOOK_THISCALL, 2);
+  EVENT_INIT(CGameClient, LoadMap, 2);
 
   // Map
   //Hook(LoadMap, _load_map_pre, _load_map_post, HOOK_THISCALL, 2);
