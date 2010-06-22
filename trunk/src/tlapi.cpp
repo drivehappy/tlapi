@@ -114,27 +114,19 @@ void TLAPI::PatchProcess()
   PatchJMP(EXEOFFSET(0x489F8D), EXEOFFSET(0x48A08B));   // v1.15
 }
 
-
-// Testing
-void TestCallbackPre(CGameClient *client, u32 unk0)
-{
-  log("TestCallbackPre (%p, %i)", client, unk0);
-}
-void TestCallbackPost(CGameClient *client, u32 unk0)
-{
-  log("TestCallbackPost (%p, %i)", client, unk0);
-}
-
 void TLAPI::HookFunctions()
 {
   log("Hooking functions...");
 
+  /*
   // Just testing
   CGameClient gameClient;
   gameClient.RegisterEvent_LoadMap(TestCallbackPre, TestCallbackPost);
+  */
 
   //Hook(LoadMap, &CGameClient::FireEvent_Pre, &CGameClient::FireEvent_Post, HOOK_THISCALL, 2);
   EVENT_INIT(CGameClient, LoadMap, 2);
+
 
   // Map
   //Hook(LoadMap, _load_map_pre, _load_map_post, HOOK_THISCALL, 2);

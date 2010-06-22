@@ -176,6 +176,14 @@
 			RelativePath="..\src\test\DLLMain.cpp"
 			>
 		</File>
+		<File
+			RelativePath="..\src\test\Test.cpp"
+			>
+		</File>
+		<File
+			RelativePath="..\src\test\Test.h"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
