@@ -27,7 +27,7 @@ struct CQuestController : CEditorBaseObject
   u32 unk4;
 
   PVOID vtableIMenuListener;
-  PVOID vtableILevelUpdate;
+  PVOID vtableIPlayerLevelUpdate;
 
   PVOID pCResourceManager;
 

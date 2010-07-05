@@ -30,7 +30,7 @@ private: \
   static vector<EventType_##name> m_Callback_##name##_pre; \
   static vector<EventType_##name> m_Callback_##name##_post; \
 public: \
-  void RegisterEvent_##name(EventType_##name funcPre, EventType_##name funcPost) { \
+  static void RegisterEvent_##name(EventType_##name funcPre, EventType_##name funcPost) { \
     if(funcPre) \
       m_Callback_##name##_pre.push_back(funcPre); \
     if(funcPost) \

@@ -19,6 +19,8 @@ namespace TLAPI
 {
 
   // 
+#pragma pack(1)
+
   struct CGameClient : CRunicCore
   {
     PVOID vtableOgre_RenderTargetListener;
@@ -46,10 +48,12 @@ namespace TLAPI
 
     // 
     // Function hooks
-    EVENT_DECL(CGameClient, void, __cdecl, LoadMap, (CGameClient*, u32), ((CGameClient *)e->_this, Pz[0]));
+    EVENT_DECL(CGameClient, void, __cdecl, GameClientLoadMap, (CGameClient*, u32), ((CGameClient *)e->_this, Pz[0]));
     
   public:
-    void LoadMap(u32 unk);
+    void GameClientLoadMap(u32 unk);
   };
+
+#pragma pack()
 
 };
