@@ -1,13 +1,19 @@
 #pragma once
 
+#include "Common.h"
+#include "Events.h"
+
 #include "CCharacter.h"
 #include "CSkill.h"
 #include "CInventory.h"
+#include "CResourceManager.h"
 
 namespace TLAPI
 {
 
   //
+#pragma pack(1)
+
   struct CPlayer: CCharacter
   {
     float unk0[8];
@@ -26,7 +32,7 @@ namespace TLAPI
 
     CString  Skill1;        // "Heal All I"
     CString  UnkString0;     // This is actually non-wide string
-    u32   unk5;
+    u32      unk5;
     CString  Skill2;        // "Summon Zombies III"
     CString  UnkString1;     // This is actually non-wide string
 
@@ -35,11 +41,14 @@ namespace TLAPI
     CInventory  *pCInventory;
 
 
+    
     void dumpPlayer()
     {
       log("CPlayer dump: %p (sizeof CPlayer: %i)", this, sizeof(CPlayer));
       log("  CPlayer dump: (sizeof CCharacter: %i)", sizeof(CCharacter));
     }
   };
+
+#pragma pack()
 
 };

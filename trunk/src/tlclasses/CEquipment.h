@@ -9,6 +9,7 @@ namespace TLAPI
 
   // Forward decl CInventory
   struct CInventory;
+  struct CItemSaveState;
 
   // Size?: 3E0h
   // Inherits: CItem
@@ -54,6 +55,11 @@ namespace TLAPI
 
     u32   unk1006[16];
     u32   physicalDamage[2];    // Both contain it
+
+    
+    // 
+    // Function hooks
+    EVENT_DECL(CItem, void, __cdecl, EquipmentInitialize, (CEquipment*, CItemSaveState*), ((CEquipment*)e->_this, (CItemSaveState*)Pz[0]));
 
 
     void dumpEquipment() {

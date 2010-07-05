@@ -3,6 +3,7 @@
 #include "Helper.h"
 
 #include "CGameClient.h"
+#include "CPlayer.h"
 
 namespace TLAPI {
   
