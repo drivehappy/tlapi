@@ -91,6 +91,21 @@ namespace TLAPI
     EVENT_DECL(CCharacter, void, CharacterSetDestination,
       (CCharacter*, CLevel*, float, float),
       ((CCharacter*)e->_this, (CLevel*)Pz[0], *(float*)&Pz[1], *(float*)&Pz[2]));
+    
+    // Character Set Action
+    EVENT_DECL(CCharacter, void, CharacterSetAction,
+      (CCharacter*, u32),
+      ((CCharacter*)e->_this, Pz[0]));
+
+    // Character Add Minion
+    EVENT_DECL(CCharacter, void, CharacterAddMinion,
+      (CCharacter*, CCharacter*),
+      ((CCharacter*)e->_this, (CCharacter*)Pz[0]));
+    
+    // Character Strike
+    EVENT_DECL(CCharacter, void, CharacterStrike,
+      (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32),
+      ((CCharacter*)e->_this, (CLevel*)Pz[0], (CCharacter*)Pz[1], (PVOID)Pz[2], Pz[3], *(float*)&Pz[4], *(float*)&Pz[5], Pz[6]));
 
   };
 

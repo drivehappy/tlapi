@@ -20,3 +20,10 @@ void Test_InitCharacter(CResourceManager* resourceManager, u32 unk0, u32 unk1)
     L"ResourceManager(%p)::InitCharacter( %i %i ) returns Character(%p)",
     resourceManager, unk0, unk1, NULL);
 }
+
+void Test_CreateSomething(PVOID retVal, CResourceManager* resourceManager, u64 guid, u32 unk0, u32 unk1, u32 unk2)
+{
+  testLogger.WriteLine(Info,
+    L"ResourceManager(%p)::CreateSomething( %016I64X, %#x, %#x, %#x ) returns Unk(%p)",
+    resourceManager, guid, unk0, unk1, unk2, retVal);
+}

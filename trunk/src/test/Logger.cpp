@@ -45,7 +45,7 @@ wstring Logger::wvFormat(const wchar_t *format, va_list args)
 void Logger::WriteLine(LoggingLevel level, const wchar_t* fmt, ...)
 {
   // Don't log unneccessary stuff
-  if (level > m_logLevel)
+  if (level < m_logLevel)
     return;
 
   if (level == Error) {

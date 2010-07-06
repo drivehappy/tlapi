@@ -16,6 +16,7 @@ void TestSetup()
 
   // Test a Player Initialize
   CResourceManager::RegisterEvent_ResourceManagerInitializePlayer(NULL, Test_InitCharacter);
+  CResourceManager::RegisterEvent_ResourceManagerCreateSomething(NULL, Test_CreateSomething);
 
   // Test an Equipment Initialize
   CEquipment::RegisterEvent_EquipmentInitialize(NULL, Test_Equipment_Initialize);
@@ -29,6 +30,18 @@ void TestSetup()
   // Character
   CCharacter::RegisterEvent_CharacterSetAlignment(NULL, Test_CharacterSetAlignment);
   CCharacter::RegisterEvent_CharacterSetDestination(NULL, Test_CharacterSetDestination);
+  CCharacter::RegisterEvent_CharacterSetAction(NULL, Test_CharacterSetAction);
+  CCharacter::RegisterEvent_CharacterAddMinion(NULL, Test_CharacterAddMinion);
+  CCharacter::RegisterEvent_CharacterStrike(NULL, Test_CharacterStrike);
+
+  // Player
+  CPlayer::RegisterEvent_PlayerUseSkill(NULL, Test_PlayerUseSkill);
+
+  // GenericModel
+  CGenericModel::RegisterEvent_GenericModelGetPosition(NULL, Test_GenericModelGetPosition);
+
+  // Layout
+  CLayout::RegisterEvent_LayoutSetPosition(NULL, Test_LayoutSetPosition);
 
   testLogger.WriteLine(Info, L"Registering Events... Done");
 }

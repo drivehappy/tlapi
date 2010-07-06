@@ -12,14 +12,13 @@ TLFUNCPTR(ResouceManagerCreateCharacter,          CCharacter*,  __thiscall, (CRe
 TLFUNCPTR(LevelCharacterInitialize,               CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32),                          0x4F2EF0);     // CLevel, CMonster, vector3*, u32 unk
 TLFUNCPTR(ResourceManagerCreateCharacterByName,   CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32),  0x5FC600);     // CResourceManager, ...
 TLFUNCPTR(CharacterSetAlignment,                  void,         __thiscall, (CCharacter*, u32),                                             0x4839E0);     // CMonster, u32 alignment (2 = badguy, 0 = goodguy)
+TLFUNCPTR(CharacterSetDestination,                void,         __thiscall, (CCharacter*, CLevel*, float, float),                           0x492AD0);     // CPlayer, CLevel, u32 x, u32 y
+TLFUNCPTR(GenericModelGetPosition,                PVOID,        __thiscall, (CGenericModel*, Vector3, u32),                                 0x50E3F0);     // CGenericModel, vector3 &, unk
+TLFUNCPTR(CharacterSetAction,                     PVOID,        __thiscall, (CCharacter*, u32),                                             0x489E50);     // CMonster, u32 action
+TLFUNCPTR(PlayerUseSkill,                         PVOID,        __thiscall, (CPlayer*, u64),                                                0x494E50);     // CPlayer, u64 skill
+TLFUNCPTR(LayoutSetPosition,                      void,         __thiscall, (CLayout*, const Vector3),                                      0x50E450);     // CLayout, 
+TLFUNCPTR(CharacterAddMinion,                     void,         __thiscall, (CCharacter*, CCharacter*),                                     0x4A9B20);     // CMonster, CMonster
 
-TLFUNCPTR(CharacterSetDestination,                u32,          __thiscall, (CCharacter*, CLevel*, float, float),                           0x492AD0);     // CPlayer, CLevel, u32 x, u32 y
-
-TLFUNCPTR(GenericModelGetPosition,          PVOID,        __thiscall, (CGenericModel*, Vector3, u32),                                 0x50E3F0);     // CGenericModel, vector3 &, unk
-TLFUNCPTR(CharacterSetAction,               PVOID,        __thiscall, (CCharacter*, u32),                                             0x489E50);     // CMonster, u32 action
-TLFUNCPTR(PlayerUseSkill,                   PVOID,        __thiscall, (CPlayer*, u64),                                                0x494E50);     // CPlayer, u64 skill
-TLFUNCPTR(LayoutSetPosition,                PVOID,        __thiscall, (CLayout*, const Vector3),                                      0x50E450);     // CLayout, 
-TLFUNCPTR(CharacterAddMinion,               PVOID,        __thiscall, (CCharacter*, CCharacter*),                                     0x4A9B20);     // CMonster, CMonster
 TLFUNCPTR(ResourceManagerCreateSomething,   PVOID,        __thiscall, (CResourceManager*, u64, u32, u32, u32),                        0x5FC170);     // CResourceManager
 
 TLFUNCPTR(CharacterSetAttack,          PVOID,        __thiscall, (CCharacter*, PVOID),                                           0x492970);     // CMonster, NULL
@@ -130,6 +129,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CResourceManager, ResourceManagerInitializePlayer, 3);
   EVENT_INIT(CResourceManager, ResouceManagerCreateCharacter, 4);
   EVENT_INIT(CResourceManager, ResourceManagerCreateCharacterByName, 5);
+  EVENT_INIT(CResourceManager, ResourceManagerCreateSomething, 5);
 
   // Hook Level
   EVENT_INIT(CLevel, LevelCharacterInitialize, 3);
@@ -137,6 +137,18 @@ void TLAPI::HookFunctions()
   // Hook Character
   EVENT_INIT(CCharacter, CharacterSetAlignment, 1);
   EVENT_INIT(CCharacter, CharacterSetDestination, 3);
+  EVENT_INIT(CCharacter, CharacterSetAction, 1);
+  EVENT_INIT(CCharacter, CharacterAddMinion, 1);
+  EVENT_INIT(CCharacter, CharacterStrike, 7);
+
+  // Hook Player
+  EVENT_INIT(CPlayer, PlayerUseSkill, 2);
+
+  // Hook Layout
+  EVENT_INIT(CLayout, LayoutSetPosition, 1);
+
+  // Hook GenericModel
+  //EVENT_INIT(CGenericModel, GenericModelGetPosition, 2);
 
   log("Done hooking.");
 

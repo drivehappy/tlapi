@@ -46,6 +46,11 @@ namespace TLAPI
       (CCharacter*, CResourceManager*, const wchar_t*, const wchar_t*, u32, u32),
       ((CCharacter*)e->retval, (CResourceManager*)e->_this, (const wchar_t*)Pz[0], (const wchar_t*)Pz[1], Pz[2], Pz[3]));
     
+    // Create Something
+    EVENT_DECL(CResourceManager, void, ResourceManagerCreateSomething,
+      (PVOID, CResourceManager*, u64, u32, u32, u32),
+      ((PVOID)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[1], Pz[2], Pz[3]));
+    
 
   };
 
