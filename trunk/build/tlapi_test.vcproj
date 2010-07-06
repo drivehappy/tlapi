@@ -198,6 +198,18 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="Logging"
+			>
+			<File
+				RelativePath="..\src\test\Logger.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\test\Logger.h"
+				>
+			</File>
+		</Filter>
 		<File
 			RelativePath="..\src\test\DLLMain.cpp"
 			>

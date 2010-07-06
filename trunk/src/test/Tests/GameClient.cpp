@@ -1,10 +1,8 @@
 #include "Test.h"
 
-void TestCallbackPost_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0)
+void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0)
 {
-  log("retVal = %x", retVal);
-  log("GameClient has loaded the map (%p, %i)", client, unk0);
-
-  client->pCPlayer->dumpEditorBase();
-  //client->pCPlayer->pCInventory->dumpInventory();
+  testLogger.WriteLine(Info,
+    L"GameClient(%p)::LoadMap( unk0(%x) ) returns Unk(%p)",
+    client, unk0, retVal);
 }
