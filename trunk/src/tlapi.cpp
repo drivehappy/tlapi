@@ -8,17 +8,19 @@ using namespace TLAPI;
 u32 exeBaseReal = (u32)GetModuleHandle("Torchlight.exe");
 
 // Define the offset locations
-TLFUNCPTR(ResouceManagerCreateCharacter,   CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool),                            0x5FBB70);     // CResourceManager, u64 guid, u32 level, bool noitems?
-TLFUNCPTR(LevelCharacterInitialize,   CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32),                          0x4F2EF0);     // CLevel, CMonster, vector3*, u32 unk
-TLFUNCPTR(ResourceManagerCreateUnitByName,   CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32),  0x5FC600);     // CResourceManager, ...
-TLFUNCPTR(CharacterSetAlignment,       PVOID,        __thiscall, (CCharacter*, u32),                                             0x4839E0);     // CMonster, u32 alignment (2 = badguy, 0 = goodguy)
-TLFUNCPTR(CharacterSetDestination,     PVOID,        __thiscall, (CCharacter*, CLevel*, float, float),                           0x492AD0);     // CPlayer, CLevel, u32 x, u32 y
-TLFUNCPTR(GenericModelGetPosition,        PVOID,        __thiscall, (CGenericModel*, Vector3, u32),                                 0x50E3F0);     // CGenericModel, vector3 &, unk
-TLFUNCPTR(CharacterSetAction,          PVOID,        __thiscall, (CCharacter*, u32),                                             0x489E50);     // CMonster, u32 action
-TLFUNCPTR(PlayerUseSkill,           PVOID,        __thiscall, (CPlayer*, u64),                                                0x494E50);     // CPlayer, u64 skill
-TLFUNCPTR(LayoutSetPosition,        PVOID,        __thiscall, (CLayout*, const Vector3),                                      0x50E450);     // CLayout, 
-TLFUNCPTR(CharacterAddMinion,          PVOID,        __thiscall, (CCharacter*, CCharacter*),                                     0x4A9B20);     // CMonster, CMonster
-TLFUNCPTR(ResourceManagerCreateSomething,    PVOID,        __thiscall, (CResourceManager*, u64, u32, u32, u32),                        0x5FC170);     // CResourceManager
+TLFUNCPTR(ResouceManagerCreateCharacter,          CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool),                            0x5FBB70);     // CResourceManager, u64 guid, u32 level, bool noitems?
+TLFUNCPTR(LevelCharacterInitialize,               CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32),                          0x4F2EF0);     // CLevel, CMonster, vector3*, u32 unk
+TLFUNCPTR(ResourceManagerCreateCharacterByName,   CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32),  0x5FC600);     // CResourceManager, ...
+TLFUNCPTR(CharacterSetAlignment,                  void,         __thiscall, (CCharacter*, u32),                                             0x4839E0);     // CMonster, u32 alignment (2 = badguy, 0 = goodguy)
+
+TLFUNCPTR(CharacterSetDestination,                u32,          __thiscall, (CCharacter*, CLevel*, float, float),                           0x492AD0);     // CPlayer, CLevel, u32 x, u32 y
+
+TLFUNCPTR(GenericModelGetPosition,          PVOID,        __thiscall, (CGenericModel*, Vector3, u32),                                 0x50E3F0);     // CGenericModel, vector3 &, unk
+TLFUNCPTR(CharacterSetAction,               PVOID,        __thiscall, (CCharacter*, u32),                                             0x489E50);     // CMonster, u32 action
+TLFUNCPTR(PlayerUseSkill,                   PVOID,        __thiscall, (CPlayer*, u64),                                                0x494E50);     // CPlayer, u64 skill
+TLFUNCPTR(LayoutSetPosition,                PVOID,        __thiscall, (CLayout*, const Vector3),                                      0x50E450);     // CLayout, 
+TLFUNCPTR(CharacterAddMinion,               PVOID,        __thiscall, (CCharacter*, CCharacter*),                                     0x4A9B20);     // CMonster, CMonster
+TLFUNCPTR(ResourceManagerCreateSomething,   PVOID,        __thiscall, (CResourceManager*, u64, u32, u32, u32),                        0x5FC170);     // CResourceManager
 
 TLFUNCPTR(CharacterSetAttack,          PVOID,        __thiscall, (CCharacter*, PVOID),                                           0x492970);     // CMonster, NULL
 
@@ -118,19 +120,25 @@ void TLAPI::HookFunctions()
 {
   log("Hooking functions...");
 
-  /*
-  // Just testing
-  CGameClient gameClient;
-  gameClient.RegisterEvent_GameClientLoadMap(TestCallbackPre, TestCallbackPost);
-  */
+  // Hook GameClient
+  EVENT_INIT(CGameClient, GameClientLoadMap, 2);
 
-  //Hook(GameClientLoadMap, &CGameClient::FireEvent_Pre, &CGameClient::FireEvent_Post, HOOK_THISCALL, 2);
+  // Hook Equipment
+  EVENT_INIT(CEquipment, EquipmentInitialize, 1);
 
-  //EVENT_INIT(CGameClient, GameClientLoadMap, 2);
-  //EVENT_INIT(CResourceManager, ResourceManagerInitializePlayer, 3);
-  //EVENT_INIT(CEquipment, EquipmentInitialize, 1);
-  //EVENT_INIT(CResourceManager, ResouceManagerCreateCharacter, 5);
+  // Hook ResourceManager
+  EVENT_INIT(CResourceManager, ResourceManagerInitializePlayer, 3);
+  EVENT_INIT(CResourceManager, ResouceManagerCreateCharacter, 4);
+  EVENT_INIT(CResourceManager, ResourceManagerCreateCharacterByName, 5);
 
+  // Hook Level
+  EVENT_INIT(CLevel, LevelCharacterInitialize, 3);
+
+  // Hook Character
+  EVENT_INIT(CCharacter, CharacterSetAlignment, 1);
+  EVENT_INIT(CCharacter, CharacterSetDestination, 3);
+
+  log("Done hooking.");
 
   // Map
   //Hook(GameClientLoadMap, _load_map_pre, _load_map_post, HOOK_THISCALL, 2);
@@ -210,7 +218,7 @@ void TLAPI::HookFunctions()
   Hook((PVOID)EXEOFFSET(0x4F3960), test0_pre, test0_post, HOOK_THISCALL, 5);    // v1.15
 
   // Doesn't work, don't use
-  //Hook(ResourceManagerCreateUnitByName, test1_pre, test1_post, HOOK_THISCALL, 5);
+  //Hook(ResourceManagerCreateCharacterByName, test1_pre, test1_post, HOOK_THISCALL, 5);
 
   log("Unknowns/Tests");
 

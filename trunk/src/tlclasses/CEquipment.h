@@ -59,7 +59,11 @@ namespace TLAPI
     
     // 
     // Function hooks
-    EVENT_DECL(CItem, void, __cdecl, EquipmentInitialize, (CEquipment*, CItemSaveState*), ((CEquipment*)e->_this, (CItemSaveState*)Pz[0]));
+
+    // Equipment Initialization
+    EVENT_DECL(CItem, void, EquipmentInitialize,
+      (CEquipment*, CItemSaveState*),
+      ((CEquipment*)e->_this, (CItemSaveState*)Pz[0]));
 
 
     void dumpEquipment() {

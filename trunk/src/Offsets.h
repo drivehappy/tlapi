@@ -16,11 +16,13 @@
 
 namespace TLAPI {
 
-  TLFUNC(ResouceManagerCreateCharacter,   CCharacter*, __thiscall, (CResourceManager*, u64, u32, bool));
-  TLFUNC(LevelCharacterInitialize,        CCharacter*, __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
-  TLFUNC(ResourceManagerCreateUnitByName, CCharacter*, __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
-  TLFUNC(CharacterSetAlignment,           PVOID,       __thiscall, (CCharacter*, u32));
-  TLFUNC(CharacterSetDestination,         PVOID,       __thiscall, (CCharacter*, CLevel*, float, float));
+  TLFUNC(ResouceManagerCreateCharacter,         CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool));
+  TLFUNC(LevelCharacterInitialize,              CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
+  TLFUNC(ResourceManagerCreateCharacterByName,  CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
+  TLFUNC(CharacterSetAlignment,                 void,         __thiscall, (CCharacter*, u32));
+
+  TLFUNC(CharacterSetDestination,               u32,          __thiscall, (CCharacter*, CLevel*, float, float));
+
   TLFUNC(GenericModelGetPosition,         PVOID,       __thiscall, (CGenericModel*, Vector3, u32));
   TLFUNC(CharacterSetAction,              PVOID,       __thiscall, (CCharacter*, u32));
   TLFUNC(PlayerUseSkill,                  PVOID,       __thiscall, (CPlayer*, u64));
