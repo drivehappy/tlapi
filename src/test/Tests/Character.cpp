@@ -1,23 +1,25 @@
 #include "Test.h"
 
-void TestCallbackPost_CreateCharacter(CCharacter* retVal, CResourceManager* resourceManager, u64 guid, u32 unk0, bool unk1)
+void Test_CharacterSetAlignment(CCharacter* character, u32 alignment)
 {
-  log("ResourceManager (%p) CreateCharacter: %016I64X, %x, %i", resourceManager, guid, unk0, unk1);
+  testLogger.WriteLine(Info,
+    L"Character(%p)::SetAlignment( %s ) returns void",
+    character, alignment == 2 ? L"Friendly" : L"Hostile");
+
+  // Dump the GUID for more information
+  testLogger.WriteLine(Verbose,
+    L"  GUID: %016I64X",
+    character->GUID);
 }
 
-void TestCallbackPost_CreateCharacterByName(CCharacter* retVal, CResourceManager* resourceManager, const wchar_t* str1, const wchar_t* str2, u32 unk0, u32 unk1)
+void Test_CharacterSetDestination(CCharacter* character, CLevel* level, float x, float y)
 {
-  log(L"ResourceManager (%p) CreateCharacterByName: %s %s %x %x", resourceManager, str1, str2, unk0, unk1);
-  log("  retVal = %p", retVal);
-}
+  testLogger.WriteLine(Info,
+    L"Character(%p)::SetDestination( Level(%p), %f, %f ) returns void",
+    character, level, x, y);
 
-void TestCallbackPost_CharacterSetAlignment(CCharacter* character, u32 alignment)
-{
-  log("Character Set Alignment: %p, Alignment: %x", character, alignment);
+  // Dump the GUID for more information
+  testLogger.WriteLine(Verbose,
+    L"  GUID: %016I64X",
+    character->GUID);
 }
-
-void TestCallbackPost_CharacterSetDestination(CCharacter* character, CLevel* level, float x, float y)
-{
-  log("Character Set Destination: %p, Level: %p, X: %f, Y: %f", character, level, x, y);
-}
-
