@@ -20,19 +20,15 @@ namespace TLAPI {
   TLFUNC(LevelCharacterInitialize,              CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
   TLFUNC(ResourceManagerCreateCharacterByName,  CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
   TLFUNC(CharacterSetAlignment,                 void,         __thiscall, (CCharacter*, u32));
+  TLFUNC(CharacterSetDestination,               void,         __thiscall, (CCharacter*, CLevel*, float, float));
+  TLFUNC(GenericModelGetPosition,               PVOID,        __thiscall, (CGenericModel*, Vector3, u32));
+  TLFUNC(CharacterSetAction,                    PVOID,        __thiscall, (CCharacter*, u32));
+  TLFUNC(PlayerUseSkill,                        PVOID,        __thiscall, (CPlayer*, u64));
+  TLFUNC(LayoutSetPosition,                     void,         __thiscall, (CLayout*, const Vector3));
+  TLFUNC(CharacterAddMinion,                    void,         __thiscall, (CCharacter*, CCharacter*));
+  TLFUNC(ResourceManagerCreateSomething,        PVOID,        __thiscall, (CResourceManager*, u64, u32, u32, u32));
 
-  TLFUNC(CharacterSetDestination,               u32,          __thiscall, (CCharacter*, CLevel*, float, float));
-
-  TLFUNC(GenericModelGetPosition,         PVOID,       __thiscall, (CGenericModel*, Vector3, u32));
-  TLFUNC(CharacterSetAction,              PVOID,       __thiscall, (CCharacter*, u32));
-  TLFUNC(PlayerUseSkill,                  PVOID,       __thiscall, (CPlayer*, u64));
-  TLFUNC(LayoutSetPosition,               PVOID,       __thiscall, (CLayout*, const Vector3));
-  TLFUNC(CharacterAddMinion,              PVOID,       __thiscall, (CCharacter*, CCharacter*));
-  TLFUNC(ResourceManagerCreateSomething,  PVOID,       __thiscall, (CResourceManager*, u64, u32, u32, u32));
-
-  TLFUNC(CharacterSetAttack,              PVOID,       __thiscall, (CCharacter*, PVOID));
-
-  TLFUNC(CharacterStrike,                 PVOID,       __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
+  TLFUNC(CharacterStrike,                       PVOID,        __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
 
   TLFUNC(MonsterProcessAI,                PVOID,       __thiscall, (CMonster*, float, PVOID));
   TLFUNC(PlayerSetAnimation,              PVOID,       __thiscall, (CPlayer*, u32, bool, float, float, u32));
@@ -102,6 +98,8 @@ namespace TLAPI {
 
   TLFUNC(EquipmentUse,                    void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*));
   TLFUNC(EquipmentIdentify,               void,     __thiscall, (CEquipment*));
+
+  TLFUNC(CharacterSetAttack,                    PVOID,        __thiscall, (CCharacter*, PVOID));
 
   //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
 

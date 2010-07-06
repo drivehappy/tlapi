@@ -41,6 +41,11 @@ namespace TLAPI
     CInventory  *pCInventory;
 
 
+    // Character Set Action
+    EVENT_DECL(CPlayer, void, PlayerUseSkill,
+      (u32, CPlayer*, u64),
+      (e->retval, (CPlayer*)e->_this, *(u64*)&Pz[0]));
+
     
     void dumpPlayer()
     {

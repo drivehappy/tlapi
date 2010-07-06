@@ -20,6 +20,7 @@ extern Logger testLogger;
 void Test_CreateCharacter(CCharacter*, CResourceManager*, u64, u32, bool);
 void Test_CreateCharacterByName(CCharacter*, CResourceManager*, const wchar_t*, const wchar_t*, u32, u32);
 void Test_InitCharacter(CResourceManager* resourceMgr, u32 unk0, u32 unk1);
+void Test_CreateSomething(PVOID retVal, CResourceManager*, u64, u32, u32, u32);
 
 // Equipment
 void Test_Equipment_Initialize(CEquipment*, CItemSaveState*);
@@ -33,6 +34,18 @@ void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter
 // Character
 void Test_CharacterSetAlignment(CCharacter*, u32);
 void Test_CharacterSetDestination(CCharacter*, CLevel*, float, float);
+void Test_CharacterSetAction(CCharacter* character, u32 action);
+void Test_CharacterAddMinion(CCharacter* character, CCharacter* minion);
+void Test_CharacterStrike(CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32);
 
+// Player
+void Test_PlayerUseSkill(u32 retVal, CPlayer*, u64);
 
+// GenericModel
+void Test_GenericModelGetPosition(CGenericModel* genericModel, Vector3 position, u32 unk);
+
+// Layout
+void Test_LayoutSetPosition(CLayout* layout, const Vector3 position);
+
+//
 void TestSetup();

@@ -190,7 +190,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\test\GenericModel.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\test\Layout.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\test\tests\Level.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\src\test\Player.cpp"
 				>
 			</File>
 			<File

@@ -7,30 +7,46 @@
 #include "CDescriptorManager.h"
 #include "CSettings.h"
 
-// Size?: 1A8h, base class data: 168h
-struct CLayout : CAllDescriptorsScene
+namespace TLAPI
 {
-  // These may be in base object or derived
-  CDescriptorManager      *pCDescriptorManager;
-  
-  CList<PVOID>            UnkList0;
 
-  PVOID unk12;
-  PVOID unk13;
+#pragma pack(1)
 
-  CList<PVOID>            UnkList1;
+  // Size?: 1A8h, base class data: 168h
+  struct CLayout : CAllDescriptorsScene
+  {
+    // These may be in base object or derived
+    CDescriptorManager      *pCDescriptorManager;
+    
+    CList<PVOID>            UnkList0;
 
-  u32 unk14[7];
+    PVOID unk12;
+    PVOID unk13;
 
-  CString                 location;   // "MEDIA/PARTICLES/MISSILES/CORRUPTION.LAYOUT"
+    CList<PVOID>            UnkList1;
 
-  CSettings*             *pCSettings;
-  PVOID                   pOctreeSM;
+    u32 unk14[7];
 
-  PVOID unk15[4];         // NULLs
+    CString                 location;   // "MEDIA/PARTICLES/MISSILES/CORRUPTION.LAYOUT"
 
-  PVOID vtable_iRandomWeight;
-  PVOID vtable_iHighlight;
+    CSettings*             *pCSettings;
+    PVOID                   pOctreeSM;
 
-  u32 unk16[36];          // 2 dup(   1),0Ah dup(   0), 0Ah,17h dup(   0)
+    PVOID unk15[4];         // NULLs
+
+    PVOID vtable_iRandomWeight;
+    PVOID vtable_iHighlight;
+
+    u32 unk16[36];          // 2 dup(   1),0Ah dup(   0), 0Ah,17h dup(   0)
+
+    // Character Set Action
+    EVENT_DECL(CLayout, void, LayoutSetPosition,
+      (CLayout*, const Vector3),
+      ((CLayout*)e->_this, *(const Vector3*)&Pz[0]));
+
+  };
+
+#pragma pack()
+
 };
+

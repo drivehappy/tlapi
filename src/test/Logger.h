@@ -22,6 +22,13 @@ namespace Test
     Error
   };
 
+  enum LoggingFilter {
+    Character = 0,
+    Layout,
+    Equipment,
+    ResourceManager,
+  };
+
   class Logger
   {
   private:
