@@ -48,7 +48,7 @@ namespace TLAPI
 
     // 
     // Function hooks
-    EVENT_DECL(CGameClient, void, __cdecl, GameClientLoadMap, (CGameClient*, u32), ((CGameClient *)e->_this, Pz[0]));
+    EVENT_DECL(CGameClient, void, GameClientLoadMap, (PVOID, CGameClient*, u32), ((PVOID)e->retval, (CGameClient *)e->_this, Pz[0]));
     
   public:
     void GameClientLoadMap(u32 unk);

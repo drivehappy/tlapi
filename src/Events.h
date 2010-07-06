@@ -23,9 +23,9 @@
     Note: Used in tlapi.cpp solely for the initial function hooking.
 **/
 
-#define EVENT_DECL(className,retType,callConv,name,args,stdargs) \
+#define EVENT_DECL(className,retType,name,args,stdargs) \
 public: \
-  typedef retType(callConv *EventType_##name)args; \
+  typedef retType(__cdecl *EventType_##name)args; \
 private: \
   static vector<EventType_##name> m_Callback_##name##_pre; \
   static vector<EventType_##name> m_Callback_##name##_post; \
@@ -49,7 +49,7 @@ public: \
     } \
   };
 
-#define EVENT_DEF(className,retType,callConv,name,args) \
+#define EVENT_DEF(className,retType,name,args) \
   vector<className::EventType_##name> className::m_Callback_##name##_pre; \
   vector<className::EventType_##name> className::m_Callback_##name##_post;
 

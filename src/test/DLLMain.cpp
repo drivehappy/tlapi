@@ -67,7 +67,7 @@ extern "C" {
   bounce(gfxBatchChange);
   bounce(gfxCreateGfxFactoriesList);
   bounce(gfxCreateZoneFactoriesList);
-  bounce(gfxLevelDestroyMonsterDeviceInterfaceList);
+  bounce(gfxDestroyDeviceInterfaceList);
   bounce(gfxEnumerateGfxs);
   //bounce(_gfxLogoff@0);
   //bounce(_gfxLogon@4);
@@ -220,7 +220,7 @@ extern "C" {
   bounce(waveInGetErrorTextW);
   bounce(waveInGetID);
   bounce(waveInGetNumDevs);
-  bounce(waveInGenericModelGetPosition);
+  bounce(waveInGetPosition);
   bounce(waveInMessage);
   bounce(waveInOpen);
   bounce(waveInPrepareHeader);
@@ -238,7 +238,7 @@ extern "C" {
   bounce(waveOutGetNumDevs);
   bounce(waveOutGetPitch);
   bounce(waveOutGetPlaybackRate);
-  bounce(waveOutGenericModelGetPosition);
+  bounce(waveOutGetPosition);
   bounce(waveOutGetVolume);
   bounce(waveOutMessage);
   bounce(waveOutOpen);
@@ -298,8 +298,6 @@ BOOL WINAPI DllMain(HANDLE hModule, DWORD dwReason, void *lpReserved)
       TLAPI::Initialize();
 
       TestSetup();
-
-      log("Done.");
     } else if (dwReason==DLL_THREAD_ATTACH) {
     } else if (dwReason==DLL_PROCESS_DETACH) {
     }

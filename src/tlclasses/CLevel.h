@@ -5,49 +5,71 @@
 #include "CLayout.h"
 #include "CQuadTree.h"
 #include "CCollisionList.h"
+#include "CCharacter.h"
+#include "CResourceManager.h"
 
-// Size?: 17Ch
-struct CLevel : CRunicCore
+namespace TLAPI
 {
-  u32 unk0;
-  
-  CList<CLayout*>    CLayoutsList;
 
-  u32 unk1;           // 3
-  u32 unk2;           // 0Ah
-  u32 unk3;           // 0Ah
-  PVOID unk4;         // ptr to unk struct
+#pragma pack(1)
 
-  u32 unk5;           // 3
-  u32 unk6;           // 0Ah
-  u32 unk7;           // 0Ah
-  PVOID unk8;         // ptr to unk struct
-  PVOID unk9;         // ptr to unk struct
+  struct CResourceManager;
 
-  u32 unk10[3];       // 195h, 186h, 3C81h
+  // Size?: 17Ch
+  struct CLevel : CRunicCore
+  {
+    u32 unk0;
+    
+    CList<CLayout*>    CLayoutsList;
 
-  CQuadtree          *pCQuadTree;       // ptr to CQuadTree
-  CCollisionList     *pCCollisionList;  // ptr to CCollisionList
-  u32 unk11;          // Cylic ptr to itself
+    u32 unk1;           // 3
+    u32 unk2;           // 0Ah
+    u32 unk3;           // 0Ah
+    PVOID unk4;         // ptr to unk struct
 
-  float unk12[2];     // 1, 1
+    u32 unk5;           // 3
+    u32 unk6;           // 0Ah
+    u32 unk7;           // 0Ah
+    PVOID unk8;         // ptr to unk struct
+    PVOID unk9;         // ptr to unk struct
 
-  PVOID unk13[3];     // Odd structure
+    u32 unk10[3];       // 195h, 186h, 3C81h
 
-  PVOID unk14[5];     // Another odd structure
+    CQuadtree          *pCQuadTree;       // ptr to CQuadTree
+    CCollisionList     *pCCollisionList;  // ptr to CCollisionList
+    u32 unk11;          // Cylic ptr to itself
 
-  u32 unk15;          // 7
-  u32 unk16;          // 46h
-  u32 unk17;          // 0Ah
+    float unk12[2];     // 1, 1
 
-  PVOID unk18[4];
+    PVOID unk13[3];     // Odd structure
 
-  float unk19[2];     // 1, 1
+    PVOID unk14[5];     // Another odd structure
 
-  PVOID* ppCPropertyNode;   // ptr ptr to CPropertyNode
+    u32 unk15;          // 7
+    u32 unk16;          // 46h
+    u32 unk17;          // 0Ah
 
-  PVOID unk20;
-  PVOID unk21;
+    PVOID unk18[4];
 
-  // ...
+    float unk19[2];     // 1, 1
+
+    PVOID* ppCPropertyNode;   // ptr ptr to CPropertyNode
+
+    PVOID unk20;
+    PVOID unk21;
+
+    // ...
+
+
+    // 
+    // Function hooks
+
+    // Player Initialization
+    EVENT_DECL(CLevel, void, LevelCharacterInitialize,
+      (CCharacter*, CLevel*, CCharacter*, Vector3*, u32),
+      ((CCharacter*)e->retval, (CLevel*)e->_this, (CCharacter*)Pz[0], (Vector3*)Pz[1], Pz[2]));
+  };
+
+#pragma pack()
+
 };
