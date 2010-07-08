@@ -13,6 +13,7 @@
 #include "CDieMenu.h"
 #include "CPlayer.h"
 #include "CMonster.h"
+#include "CAstarPathFinder.h"
 
 namespace TLAPI {
 
@@ -99,7 +100,9 @@ namespace TLAPI {
   TLFUNC(EquipmentUse,                    void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*));
   TLFUNC(EquipmentIdentify,               void,     __thiscall, (CEquipment*));
 
-  TLFUNC(CharacterSetAttack,                    PVOID,        __thiscall, (CCharacter*, PVOID));
+  TLFUNC(CharacterSetAttack,              PVOID,    __thiscall, (CCharacter*, PVOID));
+
+  TLFUNC(LevelCreateAstarPathfinding,     CAstarPathfinder*,    __stdcall,  (float, float, u32, u32, PVOID, PVOID, float));
 
   //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
 

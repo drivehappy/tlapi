@@ -1,12 +1,26 @@
 #pragma once
 
+#include "CRunicCore.h"
 #include "CDataValue.h"
+#include "CDataGroup.h"
 
-struct CDataGroup : CRunicCore
+namespace TLAPI
 {
-  u32 unk0;
-  u32 unk1;             // 3211h
-  PVOID unk2;
-  PVOID pCDataValues;   // Probably: CList<CDataValue*>
-  u32 unk3, unk4, unk5; // All contain the above size for the vector
+
+#pragma pack(1)
+
+  struct CDataGroup : CRunicCore
+  {
+    u32     unk0;
+    u32     unk1;         // 3211h
+    PVOID   unk2;
+
+    CList<CDataValue*>    listDataValues;
+    CList<CDataGroup*>    listDataGroups;
+
+    CDataGroup*           unk3;
+  };
+
+#pragma pack()
+
 };

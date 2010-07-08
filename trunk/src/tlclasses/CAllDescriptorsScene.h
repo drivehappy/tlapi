@@ -2,10 +2,19 @@
 
 #include "CLayoutScene.h"
 
-// Size?: F0h
-struct CAllDescriptorsScene : CLayoutScene
+namespace TLAPI
 {
-  u32 unk6[27];
 
-  PVOID unk7;     // 
+#pragma pack(1)
+
+  // Size?: F0h
+  struct CAllDescriptorsScene : CLayoutScene
+  {
+    u32 unk6[27];
+
+    PVOID unk7;     // 
+  };
+
+#pragma pack()
+
 };

@@ -1,10 +1,17 @@
 #pragma once
 
-// Size: Unknown
-// Note: Tied to CAstarPathFinder
-struct CUnknownStruct0
+namespace TLAPI
 {
-  PVOID pUnknownStruct1[240];   // ptrs to CUnknownStruct1
 
-  u32 unk1;                     // 64h   -- another struct: 2CFh
+#pragma pack(1)
+
+  // Size: Unknown
+  // Note: Tied to CAstarPathFinder
+  struct CUnknownStruct0
+  {
+    u8* pUnknownStruct1[404];   // ptrs to CUnknownStruct1
+  };
+
+#pragma pack()
+
 };

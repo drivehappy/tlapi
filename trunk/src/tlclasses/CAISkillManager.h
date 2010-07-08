@@ -1,10 +1,24 @@
 #pragma once
 
-struct CAISkillManager : CRunicCore
+#include "_CString.h"
+#include "CCharacter.h"
+
+namespace TLAPI
 {
-  u32 unk0[4];  // values of 0
-  u32 unk1;     // value of 2 w/ first pass
-  PVOID pCCharacter;  // ptr to CCharacter
-  PVOID pCAIManager;  // ptr to CAIManager
-  PVOID pMediaModelString;  // ptr string value: MEDIA/MODELS/WEAPONS/HACKER/weapon_hacker
+
+#pragma pack(1)
+
+  struct CAIManager;
+
+  struct CAISkillManager : CRunicCore
+  {
+    u32         unk0[4];            // values of 0
+    u32         unk1;               // value of 2 w/ first pass
+    CCharacter* pCCharacter;        // ptr to CCharacter
+    CAIManager* pCAIManager;        // ptr to CAIManager
+    CString     pMediaModelString;  // ptr string value: MEDIA/MODELS/WEAPONS/HACKER/weapon_hacker
+  };
+
+#pragma pack()
+
 };

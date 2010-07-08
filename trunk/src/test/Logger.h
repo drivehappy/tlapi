@@ -44,6 +44,7 @@ namespace Test
     ~Logger();
 
     void WriteLine(LoggingLevel level, const wchar_t *fmt, ...);
+    void Write(LoggingLevel level, const wchar_t *fmt, ...);
 
     void SetLoggingLevel(LoggingLevel level);
     

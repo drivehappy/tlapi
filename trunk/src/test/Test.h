@@ -30,6 +30,7 @@ void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0);
 
 // Level
 void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter* character, Vector3* position, u32);
+void Test_LevelCreateAstarPathfinding(CAstarPathfinder*, float, float, u32, u32, PVOID, PVOID, float);
 
 // Character
 void Test_CharacterSetAlignment(CCharacter*, u32);

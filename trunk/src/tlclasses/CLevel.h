@@ -7,6 +7,7 @@
 #include "CCollisionList.h"
 #include "CCharacter.h"
 #include "CResourceManager.h"
+#include "CAstarPathFinder.h"
 
 namespace TLAPI
 {
@@ -68,6 +69,11 @@ namespace TLAPI
     EVENT_DECL(CLevel, void, LevelCharacterInitialize,
       (CCharacter*, CLevel*, CCharacter*, Vector3*, u32),
       ((CCharacter*)e->retval, (CLevel*)e->_this, (CCharacter*)Pz[0], (Vector3*)Pz[1], Pz[2]));
+    
+    // Create AstarPathFinder - This appears to be a static member function
+    EVENT_DECL(CLevel, void, LevelCreateAstarPathfinding,
+      (CAstarPathfinder*, float, float, u32, u32, PVOID, PVOID, float),
+      ((CAstarPathfinder*)e->retval, *(float*)&Pz[0], *(float*)&Pz[1], Pz[2], Pz[3], (PVOID)Pz[4], (PVOID)Pz[5], *(float*)&Pz[6]));
   };
 
 #pragma pack()

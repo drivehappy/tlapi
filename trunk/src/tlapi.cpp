@@ -95,6 +95,8 @@ TLFUNCPTR(MonsterReadProp,     void,     __thiscall, (CMonster*),               
 TLFUNCPTR(EquipmentUse,       void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*),                 0x4B4FB0);     // 1.15  CEquipment, CPlayer, CPlayer
 TLFUNCPTR(EquipmentIdentify,  void,     __thiscall, (CEquipment*),                                     0x4B0200);     // 1.15  CEquipment
 
+TLFUNCPTR(LevelCreateAstarPathfinding,   CAstarPathfinder*,    __stdcall,  (float, float, u32, u32, PVOID, PVOID, float),  0x421700);
+
 //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF20);
 // ... and add more later
 
@@ -133,6 +135,7 @@ void TLAPI::HookFunctions()
 
   // Hook Level
   EVENT_INIT(CLevel, LevelCharacterInitialize, 3);
+  EVENT_INIT(CLevel, LevelCreateAstarPathfinding, 7);
 
   // Hook Character
   EVENT_INIT(CCharacter, CharacterSetAlignment, 1);

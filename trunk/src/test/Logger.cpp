@@ -72,6 +72,31 @@ void Logger::WriteLine(LoggingLevel level, const wchar_t* fmt, ...)
   m_outFile.flush();
 }
 
+void Logger::Write(LoggingLevel level, const wchar_t* fmt, ...)
+{
+  // Don't log unneccessary stuff
+  if (level < m_logLevel)
+    return;
+
+  if (level == Error) {
+    const wchar_t errorString[] = L"ERROR";
+    m_outFile.write(errorString, wcslen(errorString));
+  }
+
+  // We're good, dump it out
+  va_list args;
+  va_start(args,fmt);
+
+  wstring s;
+
+  // Dump the actual log
+  s = wvFormat(fmt, args);
+  s = wFormat(L"%s", s.c_str());
+
+  m_outFile << setiosflags(ios::left);
+  m_outFile << s;
+}
+
 void Logger::SetLoggingLevel(LoggingLevel level)
 {
   m_logLevel = level;
