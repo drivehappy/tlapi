@@ -10,3 +10,11 @@ void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter
     L"  Position: %f, %f, %f",
     position->x, position->y, position->z);
 }
+
+void Test_LevelCreateAstarPathfinding(CAstarPathfinder* pathFinder, float unk0, float unk1, u32 unk2, u32 unk3, PVOID unk4, PVOID unk5, float unk6)
+{
+  testLogger.WriteLine(Info,
+    L"LevelCreateAstarPathfinder(%p) (%f, %f, %x, %x, %p, %p, %f)",
+    pathFinder, unk0, unk1, unk2, unk3, unk4, unk5, unk6
+    );
+}

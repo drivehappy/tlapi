@@ -26,6 +26,7 @@ void TestSetup()
 
   // Level
   CLevel::RegisterEvent_LevelCharacterInitialize(NULL, Test_LevelCharacterInitialize);
+  CLevel::RegisterEvent_LevelCreateAstarPathfinding(NULL, Test_LevelCreateAstarPathfinding);
 
   // Character
   CCharacter::RegisterEvent_CharacterSetAlignment(NULL, Test_CharacterSetAlignment);

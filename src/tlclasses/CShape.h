@@ -1,54 +1,63 @@
 #pragma once
 
-// Size?: 120h
-struct CShape : CPositionableObject
+namespace TLAPI
 {
-  // TODO use below
-  /*
-  PVOID vtable;
-  u32 unk0;
 
-  u64 guid0;  // 0A83F79FE49D311DFh
-  u64 guid1;  // 0A83F75CD49D311DFh
-  u64 guid2;  // 0CDEFB2A8BB7F11DEh
-  u64 guid3;  // 0
+#pragma pack(1)
 
-  float unk1; // -0.5
+  // Size?: 120h
+  struct CShape : CPositionableObject
+  {
+    // TODO use below
+    /*
+    PVOID vtable;
+    u32 unk0;
 
-  PVOID pCUnitSpawnerDescriptor;
+    u64 guid0;  // 0A83F79FE49D311DFh
+    u64 guid1;  // 0A83F75CD49D311DFh
+    u64 guid2;  // 0CDEFB2A8BB7F11DEh
+    u64 guid3;  // 0
 
-  float unk2; // -0.5
+    float unk1; // -0.5
 
-  PVOID pStringUnitSpawner; // ptr string "Unit Spawner1"
+    PVOID pCUnitSpawnerDescriptor;
 
-  float unk3[3];  // 0.5, 0,0
+    float unk2; // -0.5
 
-  u32 unk4[2];    // 0Dh, 0Fh
+    PVOID pStringUnitSpawner; // ptr string "Unit Spawner1"
 
-  PVOID pEditorScene0;
-  PVOID pEditorScene1;  // same as above
+    float unk3[3];  // 0.5, 0,0
 
-  float unk5;     // -998.625
-  PVOID pOctree0;
+    u32 unk4[2];    // 0Dh, 0Fh
 
-  float unk6;     // 0
-  PVOID pCResourceManager; 
+    PVOID pEditorScene0;
+    PVOID pEditorScene1;  // same as above
 
-  float unk7;     // 0
-  PVOID pOctree0;
+    float unk5;     // -998.625
+    PVOID pOctree0;
 
-  float unk8;     // 0
+    float unk6;     // 0
+    PVOID pCResourceManager; 
 
-  // ^^^^^^ SAME BASE AS CLogicTrigger ^^^^^^
+    float unk7;     // 0
+    PVOID pOctree0;
 
-  float unk9[30];
+    float unk8;     // 0
 
-  PVOID vtableIHightlight;
+    // ^^^^^^ SAME BASE AS CLogicTrigger ^^^^^^
 
-  u32 unk10[3];
+    float unk9[30];
 
-  PVOID pDynamicParticleAttr[4];    // ParticleUniverse
+    PVOID vtableIHightlight;
 
-  float unk11[5];     // -26.884277, 0, 10, 1, 10
-  */
+    u32 unk10[3];
+
+    PVOID pDynamicParticleAttr[4];    // ParticleUniverse
+
+    float unk11[5];     // -26.884277, 0, 10, 1, 10
+    */
+  };
+
+#pragma pack()
+
 };

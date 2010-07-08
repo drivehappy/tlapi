@@ -1,11 +1,24 @@
 #pragma once
 
-// Size?: 0Ch
-struct CAIManager : CRunicCore
+#include "CCharacter.h"
+#include "CAIFlagManager.h"
+#include "CAISkillManager.h"
+
+namespace TLAPI
 {
-  PVOID vtable;
-  u32 unk0;
-  PVOID pCharacterPtr;  // Pointer to character
-  PVOID pAIFlagManager; // Ptr to AIFlagManager
-  PVOID pAISkillManager;// Ptr to CAISkillManager
+
+#pragma pack(1)
+
+  // Size?: 0Ch
+  struct CAIManager : CRunicCore
+  {
+    u32               unk0;
+    CCharacter*       pCharacterPtr;    // Pointer to character
+    CAIFlagManager*   pAIFlagManager;   // Ptr to AIFlagManager
+    CAISkillManager*  pAISkillManager;  // Ptr to CAISkillManager
+  };
+
+#pragma pack()
+
 };
+

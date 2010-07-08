@@ -17,6 +17,7 @@ EVENT_DEF(CResourceManager, void, ResourceManagerCreateSomething, (CResourceMana
 
 // Level
 EVENT_DEF(CLevel, void, LevelCharacterInitialize, (CLevel*, CCharacter*, Vector3*, u32));
+EVENT_DEF(CLevel, void, LevelCreateAstarPathfinding, (CAstarPathfinder*, float unk0, float unk1, u32 unk2, u32 unk3, PVOID unk4, PVOID unk5, float unk6));
 
 // Character
 EVENT_DEF(CCharacter, void, CharacterSetAlignment, (CCharacter*, u32));

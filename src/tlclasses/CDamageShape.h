@@ -2,7 +2,16 @@
 
 #include "CShape.h"
 
-struct CDamageShape : CShape
+namespace TLAPI
 {
-  // TODO
+
+#pragma pack(1)
+
+  struct CDamageShape : CShape
+  {
+    // TODO
+  };
+
+#pragma pack()
+
 };

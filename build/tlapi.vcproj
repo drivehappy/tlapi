@@ -725,6 +725,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\tlclasses\CPathControllerDescriptor.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CPetMenu.h"
 				>
 			</File>
@@ -858,6 +862,10 @@
 			</File>
 			<File
 				RelativePath="..\src\tlclasses\CSoundManager.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\tlclasses\CSpawnClass.h"
 				>
 			</File>
 			<File

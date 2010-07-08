@@ -15,6 +15,28 @@ void Test_CharacterSetAlignment(CCharacter* character, u32 alignment)
 void Test_CharacterSetDestination(CCharacter* character, CLevel* level, float x, float y)
 {
   testLogger.WriteLine(Info,
+    L"Character(%p)::SetDestination dumping AstarPathfiner(%p) P1: %p  P2: %p",
+    character, character->pCAstarPathfiner,
+    character->pCAstarPathfiner->unkData, character->pCAstarPathfiner->unk100);
+
+  // --
+  testLogger.WriteLine(Info, L"\nUnknown Structure:");
+
+  for (int j = 0; j <= 0; j++) {
+    for (int i = 0; i < 800; i++) {
+      testLogger.Write(Info,
+        L"%x ",
+        character->pCAstarPathfiner->unkData->pUnknownStruct1[j][i]);
+
+      if ((i + 1) % 32 == 0)
+        testLogger.Write(Info, L"\n");
+    }
+  }
+
+  testLogger.WriteLine(Info, L"\n");
+  // --
+
+  testLogger.WriteLine(Verbose,
     L"Character(%p)::SetDestination( Level(%p), %f, %f ) returns void",
     character, level, x, y);
 

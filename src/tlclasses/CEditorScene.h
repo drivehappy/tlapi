@@ -2,9 +2,18 @@
 
 #include "CPositionableObject.h"
 
-// Size?: 158h
-// 
-struct CEditorScene : CPositionableObject
+namespace TLAPI
 {
-  // TODO
+
+#pragma pack(1)
+
+  // Size?: 158h
+  // 
+  struct CEditorScene : CPositionableObject
+  {
+    // TODO
+  };
+
+#pragma pack()
+
 };

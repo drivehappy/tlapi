@@ -3,6 +3,8 @@
 #include "_CString.h"
 #include "CBaseUnit.h"
 #include "CLevel.h"
+#include "CAstarPathfinder.h"
+#include "CPath.h"
 
 namespace TLAPI
 {
@@ -35,8 +37,8 @@ namespace TLAPI
 
     float unk7[5];      // 0, 1, 1, 1, 0
 
-    PVOID pCAstarPathfiner;
-    PVOID pCPath;
+    CAstarPathfinder*   pCAstarPathfiner;
+    CPath*              pCPath;
 
     float unk8[7];      // 100, 100, 95.69, 95.69, 10, 0,0
                         /*

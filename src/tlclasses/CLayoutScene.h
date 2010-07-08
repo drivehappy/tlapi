@@ -2,8 +2,17 @@
 
 #include "CEditorScene.h"
 
-// Size?: 
-struct CLayoutScene : CEditorScene
+namespace TLAPI
 {
-  // TODO
+
+#pragma pack(1)
+
+  // Size?: 
+  struct CLayoutScene : CEditorScene
+  {
+    // TODO
+  };
+
+#pragma pack()
+
 };
