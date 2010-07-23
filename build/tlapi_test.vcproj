@@ -194,6 +194,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\test\Global.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\test\Layout.cpp"
 				>
 			</File>

@@ -36,7 +36,7 @@ namespace TLAPI
     CString  Skill2;        // "Summon Zombies III"
     CString  UnkString1;     // This is actually non-wide string
 
-    u32      unk6[40];
+    u32      unk6[41];
 
     CInventory  *pCInventory;
 

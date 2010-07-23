@@ -4,6 +4,7 @@
 #include "Common.h"
 
 #include "CPlayer.h"
+#include "Globals.h"
 
 #include "Logger.h"
 
@@ -12,10 +13,14 @@ using namespace TLAPI;
 using namespace Test;
 
 
-extern Logger testLogger;
-
+extern Logger       testLogger;
+extern CGameClient *gameClient;
 
 // Testing
+
+// Globals
+void Test_WndProc(HWND, UINT, WPARAM, LPARAM);
+
 // ResourceManager
 void Test_CreateCharacter(CCharacter*, CResourceManager*, u64, u32, bool);
 void Test_CreateCharacterByName(CCharacter*, CResourceManager*, const wchar_t*, const wchar_t*, u32, u32);
@@ -27,6 +32,7 @@ void Test_Equipment_Initialize(CEquipment*, CItemSaveState*);
 
 // GameClient
 void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0);
+void Test_GameClientProcessObjects(CGameClient*, PVOID, PVOID, PVOID);
 
 // Level
 void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter* character, Vector3* position, u32);

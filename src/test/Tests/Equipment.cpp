@@ -12,4 +12,5 @@ void Test_Equipment_Initialize(CEquipment* equipment, CItemSaveState* itemSaveSt
 
   //log("Equipment Initialize: this = %p, ItemSaveState = %p", equipment, itemSaveState);
   //itemSaveState->dumpItemSaveState();
+  //equipment->dumpEquipment();
 }

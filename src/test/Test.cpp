@@ -11,8 +11,12 @@ void TestSetup()
 
   testLogger.WriteLine(Info, L"Registering Events...");
 
+  // Test the WndProc
+  _GLOBAL::RegisterEvent_WndProc(NULL, Test_WndProc);
+
   // Test the GameClient
   CGameClient::RegisterEvent_GameClientLoadMap(NULL, Test_GameClientLoadMap);
+  CGameClient::RegisterEvent_GameClientProcessObjects(NULL, Test_GameClientProcessObjects);
 
   // Test a Player Initialize
   CResourceManager::RegisterEvent_ResourceManagerInitializePlayer(NULL, Test_InitCharacter);
@@ -24,13 +28,14 @@ void TestSetup()
   // Test a ResourceCreateCharacter
   //CResourceManager::RegisterEvent_ResouceManagerCreateCharacter(NULL, TestCallbackPost_CreateCharacter);
 
+
   // Level
   CLevel::RegisterEvent_LevelCharacterInitialize(NULL, Test_LevelCharacterInitialize);
   CLevel::RegisterEvent_LevelCreateAstarPathfinding(NULL, Test_LevelCreateAstarPathfinding);
 
   // Character
   CCharacter::RegisterEvent_CharacterSetAlignment(NULL, Test_CharacterSetAlignment);
-  CCharacter::RegisterEvent_CharacterSetDestination(NULL, Test_CharacterSetDestination);
+  //CCharacter::RegisterEvent_CharacterSetDestination(NULL, Test_CharacterSetDestination);
   CCharacter::RegisterEvent_CharacterSetAction(NULL, Test_CharacterSetAction);
   CCharacter::RegisterEvent_CharacterAddMinion(NULL, Test_CharacterAddMinion);
   CCharacter::RegisterEvent_CharacterStrike(NULL, Test_CharacterStrike);
