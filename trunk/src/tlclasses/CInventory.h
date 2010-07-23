@@ -24,7 +24,7 @@
   7:  Waist
 
   8:  Left Ring
-  9: Right Ring
+  9:  Right Ring
   10: Amulet
 
   19-39: Equipment  Tab  (row-order)

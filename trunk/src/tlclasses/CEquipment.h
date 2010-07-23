@@ -3,6 +3,7 @@
 #include "CItem.h"
 #include "CAttackDescription.h"
 #include "CCharacter.h"
+#include "CGenericModel.h"
 
 namespace TLAPI
 {
@@ -28,19 +29,14 @@ namespace TLAPI
     u32       unk1002[5];
     u32       requirements[5];    // level  str  dex   unk/unk (magic/defense?)
 
-    CCharacter *character;
-    PVOID       unk1000;
-    u32         unk0998;
-    //u32   id[4];
-    //u32   unk1000[9];
-
+    u32       unk0998[3];         // 0, 0, 10h
 
     // Correct, first corresponds to Left hand or Main hand attack
     // second corresponds to Right hand attack
     CAttackDescription *pCAttackDescriptor0;
     CAttackDescription *pCAttackDescriptor1;
 
-    PVOID pCGenericModel;
+    CGenericModel      *pCGenericModel;
 
     PVOID unk1001;
     PVOID unk1004;
@@ -56,6 +52,11 @@ namespace TLAPI
     u32   unk1006[16];
     u32   physicalDamage[2];    // Both contain it
 
+    u32   unk1008[5];
+
+    u32   enhancementCount;
+
+    u32   unk1007[26];          // Possibly extends Equipment bounds, but looking for enchantment stuff
     
     // 
     // Function hooks
@@ -73,8 +74,6 @@ namespace TLAPI
 
       logColor(B_GREEN, "  StackSize: %i", stackSize);
       logColor(B_GREEN, "  StackSize Max: %i", stackSizeMax);
-
-      logColor(B_GREEN, "  unk1000 = %p", unk1000);
 
       logColor(B_GREEN, "  pCAttackDescriptor0 = %p", pCAttackDescriptor0);
       logColor(B_GREEN, "  pCAttackDescriptor1 = %p", pCAttackDescriptor1);
@@ -97,8 +96,6 @@ namespace TLAPI
       logColor(B_GREEN, "     Dexterity: %i", requirements[2]);
       logColor(B_GREEN, "     Magic: %i", requirements[3]);
       logColor(B_GREEN, "     Defense: %i", requirements[4]);
-
-      logColor(B_GREEN, "  Character: %p", character);
     }
   };
 

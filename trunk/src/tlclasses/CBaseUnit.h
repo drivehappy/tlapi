@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CPositionableObject.h"
+#include "CDataGroup.h"
 
 namespace TLAPI
 {
@@ -33,7 +34,8 @@ namespace TLAPI
 
     u32 unk9;           // 68h    || 2ah
 
-    PVOID pCDataGroup;
+    CDataGroup *pCDataGroup;
+
     PVOID pCEffectManager;  // NULL
     PVOID pCCullingBounds;
     PVOID pCSkillManager;
@@ -48,6 +50,9 @@ namespace TLAPI
       log("CBaseUnit Dump: %p (size: %i)", this, sizeof(CBaseUnit));
       log("  GUID: %016I64X", GUID);
       log("  CDataGroup: %p", pCDataGroup);
+
+      pCDataGroup->dumpDataGroup();
+
       log("  CEffectManager: %p", pCEffectManager);
       log("  CCullingBounds: %p", pCCullingBounds);
       log("  CSkillManager: %p", pCSkillManager);

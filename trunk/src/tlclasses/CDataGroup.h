@@ -2,7 +2,6 @@
 
 #include "CRunicCore.h"
 #include "CDataValue.h"
-#include "CDataGroup.h"
 
 namespace TLAPI
 {
@@ -18,7 +17,27 @@ namespace TLAPI
     CList<CDataValue*>    listDataValues;
     CList<CDataGroup*>    listDataGroups;
 
-    CDataGroup*           unk3;
+    //CDataGroup*           unk3;
+
+
+    void dumpDataGroup() {
+      logColor(B_RED, "  DataGroup Dump: %p (basesize: %i)", this, sizeof(CDataGroup));
+      logColor(B_RED, "    unk0: %x", unk0);
+      logColor(B_RED, "    unk1: %x", unk1);
+      logColor(B_RED, "    unk2: %p", unk2);
+      logColor(B_RED, "    DataValues: Size = %i", listDataValues.size);
+
+      for (u32 i = 0; i < listDataValues.size; i++) {
+        listDataValues[i]->dumpValues();
+      }
+
+      logColor(B_RED, "    DataGroup: Size = %i", listDataGroups.size);
+
+      for (u32 i = 0; i < listDataGroups.size; i++) {
+        logColor(B_GREEN, "    subDataGroup [%i]:", i);
+        listDataGroups[i]->dumpDataGroup();
+      }
+    }
   };
 
 #pragma pack()
