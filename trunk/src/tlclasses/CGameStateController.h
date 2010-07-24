@@ -1,8 +1,17 @@
 #pragma once
 
-// Size?:
-// 
-struct CGameStateController : CEditorBaseObject
+#include "CEditorBaseObject.h"
+
+namespace TLAPI
 {
-  // TODO
+
+#pragma pack(1)
+
+  struct CGameStateController : CEditorBaseObject
+  {
+    // TODO
+  };
+
+#pragma pack()
+
 };

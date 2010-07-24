@@ -12,7 +12,6 @@ namespace TLAPI
 
 #pragma pack(1)
 
-  // Size?: 1A8h, base class data: 168h
   struct CLayout : CAllDescriptorsScene
   {
     // These may be in base object or derived

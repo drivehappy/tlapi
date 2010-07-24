@@ -2,32 +2,41 @@
 
 #include "CResourceSettings.h"
 
-struct CRoomPieceDataInformation : CRunicCore
-{
-  PVOID unk0;
+namespace TLAPI {
 
-  typedef struct CRoomPieceCoreData {
-    u32 unk0;
-    u32 unk1;
+#pragma pack(1)
 
-    CString roomPieceName;    // "MINE_WOOD_ARM"
+  struct CRoomPieceDataInformation : CRunicCore
+  {
+    PVOID unk0;
 
-    u32 unk2;
+    typedef struct CRoomPieceCoreData {
+      u32 unk0;
+      u32 unk1;
 
-    u64 GUID;
+      CString roomPieceName;    // "MINE_WOOD_ARM"
 
-    u32 unk3;
+      u32 unk2;
 
-    CList<PVOID>        UnkList0;
-    CList<PVOID>        UnkList1;
-    CList<PVOID>        UnkList2;
-    CList<PVOID>        UnkList3;
+      u64 GUID;
 
-    CList<PVOID>        UnkList4;   // list of unknown struct
-    CList<PVOID>        UnkList5;   // list of unknown struct
-  } *pRoomPieceCoredData;
+      u32 unk3;
 
-  CResourceSettings   *pResourceSettings;
+      CList<PVOID>        UnkList0;
+      CList<PVOID>        UnkList1;
+      CList<PVOID>        UnkList2;
+      CList<PVOID>        UnkList3;
 
-  PVOID *ptrtomyself;       // cyclic ptr to myself
+      CList<PVOID>        UnkList4;   // list of unknown struct
+      CList<PVOID>        UnkList5;   // list of unknown struct
+    } *pRoomPieceCoredData;
+
+    CResourceSettings   *pResourceSettings;
+
+    PVOID *ptrtomyself;       // cyclic ptr to myself
+  };
+
+#pragma pack()
+
 };
+

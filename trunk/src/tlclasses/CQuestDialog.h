@@ -1,8 +1,17 @@
 #pragma once
 
-struct CQuestDialog : CRunicCore
+namespace TLAPI
 {
-  PVOID unk0;
 
-  CQuest      *pCQuest;
+#pragma pack(1)
+
+  struct CQuestDialog : CRunicCore
+  {
+    PVOID   unk0;
+
+    CQuest *pCQuest;
+  };
+
+#pragma pack()
+
 };

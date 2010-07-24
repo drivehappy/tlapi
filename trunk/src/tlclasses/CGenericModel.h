@@ -1,5 +1,7 @@
 #pragma once
 
+#include "CPositionableObject.h"
+
 namespace TLAPI
 {
 

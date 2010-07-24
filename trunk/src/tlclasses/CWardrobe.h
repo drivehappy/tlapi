@@ -3,26 +3,34 @@
 #include "CRunicCore.h"
 #include "_CString.h"
 
-// Size?: 44h
-struct CWardrobe : CRunicCore
-{
-  u32 unk0;
+namespace TLAPI {
 
-  PVOID pOctree0;
+#pragma pack(1)
 
-  PVOID pCGenericModel;
+  struct CWardrobe : CRunicCore
+  {
+    u32 unk0;
 
-  PVOID unk1;
+    PVOID pOctree0;
 
-  PVOID pShadowCaster;    // ogre
+    PVOID pCGenericModel;
 
-  PVOID unk2;
+    PVOID unk1;
 
-  CString name;
+    PVOID pShadowCaster;    // ogre
 
-  PVOID pTexturePtr;    // ogre
-  PVOID unk3;
-  PVOID unk4;
+    PVOID unk2;
 
-  PVOID unk5;           // NULL
+    CString name;
+
+    PVOID pTexturePtr;    // ogre
+    PVOID unk3;
+    PVOID unk4;
+
+    PVOID unk5;           // NULL
+  };
+
+#pragma pack()
+
 };
+

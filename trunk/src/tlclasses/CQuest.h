@@ -1,26 +1,39 @@
 #pragma once
 
-struct CQuest : CRunicCore
+#include "CRunicCore.h"
+#include "CLevelTemplateData.h"
+
+namespace TLAPI
 {
-  PVOID unk0;
 
-  CLevelTemplateData   *pCLevelTemplateData;
+#pragma pack(1)
 
-  u32 unk1[7];
+  struct CQuest : CRunicCore
+  {
+    PVOID unk0;
 
-  CString             name0;    // "RANDOMDUNGEON"
-  CString             unk2;     // ""
+    CLevelTemplateData   *pCLevelTemplateData;
 
-  u32 unk2[15];
+    u32 unk1[7];
 
-  CString             location; // "MEDIA/QUESTS/VASMANRANDOM/ANOTHERPIECECAVES.DAT"
-  CString             name1;    // "ANOTHERPIECECAVES"
-  CString             name2;    // "|cFFFFBA00Another Piece|u"
+    CString             name0;    // "RANDOMDUNGEON"
+    CString             unk2;     // ""
 
-  CList<CQuestDialog *>    CQuestDialogList0;
-  CList<CQuestDialog *>    CQuestDialogList1;
+    u32 unk2[15];
 
-  // And some more...
+    CString             location; // "MEDIA/QUESTS/VASMANRANDOM/ANOTHERPIECECAVES.DAT"
+    CString             name1;    // "ANOTHERPIECECAVES"
+    CString             name2;    // "|cFFFFBA00Another Piece|u"
 
+    CList<CQuestDialog *>    CQuestDialogList0;
+    CList<CQuestDialog *>    CQuestDialogList1;
+
+    // And some more...
+
+
+  };
+
+#pragma pack()
 
 };
+

@@ -4,25 +4,35 @@
 #include "CGenericModel.h"
 #include "CParticle.h"
 
-//
-struct CItemGold : CItem
+
+namespace TLAPI
 {
-  u32 amount;
 
-  float x;        // I think
-  float y;
+#pragma pack(1)
 
-  CGenericModel  *pCGenericModel;
-
-  u32 unk1001[16];
-
-  CParticle      *pCParticle;
-
-
-  void dumpItemGold()
+  struct CItemGold : CItem
   {
-    log("CItemGold Dump: %p (size: %i)", this, sizeof(CItemGold));
-    log("  Amount: %i", amount);
-    log("  Position: %f %f", x, y);
-  }
+    u32 amount;
+
+    float x;        // I think
+    float y;
+
+    CGenericModel  *pCGenericModel;
+
+    u32 unk1001[16];
+
+    CParticle      *pCParticle;
+
+
+    void dumpItemGold()
+    {
+      log("CItemGold Dump: %p (size: %i)", this, sizeof(CItemGold));
+      log("  Amount: %i", amount);
+      log("  Position: %f %f", x, y);
+    }
+  };
+  
+#pragma pack()
+
 };
+
