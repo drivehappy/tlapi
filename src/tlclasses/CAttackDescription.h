@@ -46,5 +46,12 @@ struct CAttackDescription : CRunicCore
   {
     log("CAttackDescription: %p", this);
     log("  AttackSpeed: %f", attackSpeed);
+    log("  damageMaximumPhysical0: %i", damageMaximumPhysical0);
+    log("  damageMaximumPhysical1: %i", damageMaximumPhysical1);
+    log("  unk6: %x %x %x %x %x %x", unk6[0], unk6[1], unk6[2], unk6[3], unk6[4], unk6[5]);
+    log("  unk12: %x %x %x %x %x %x %x %x %x", unk12[0], unk12[1], unk12[2], unk12[3], unk12[4], unk12[5], unk12[6], unk12[7], unk12[8]);
+    log("  unk7: %x %x", unk7[0], unk7[1]);
+    log("  unk10: %x", unk10);
+    log("  unk13: %x", unk13);
   }
 };

@@ -98,6 +98,14 @@ TLFUNCPTR(EquipmentIdentify,                      void,     __thiscall, (CEquipm
 
 TLFUNCPTR(LevelCreateAstarPathfinding,            CAstarPathfinder*,    __stdcall,  (float, float, u32, u32, PVOID, PVOID, float),  0x421700);
 
+TLFUNCPTR(EquipmentGetEnchantPrice,               u32,      __thiscall, (CEquipment*),                                     0x4B0230);
+
+TLFUNCPTR(PlayerRemoveGold,                       void,     __thiscall, (CPlayer*, u32 amount),                            0x4860B0);
+
+TLFUNCPTR(GetGameGlobals,                         CGameGlobals*, __thiscall, (),                                           0x5219B0);
+
+TLFUNCPTR(EquipmentEnchant,                       u32,      __thiscall, (CEquipment*, u32, u32, u32),                      0x4BF560);
+
 //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF20);
 // ... and add more later
 
@@ -131,6 +139,7 @@ void TLAPI::HookFunctions()
 
   // Hook Equipment
   EVENT_INIT(CEquipment, EquipmentInitialize, 1);
+  EVENT_INIT(CEquipment, EquipmentEnchant, 3);
 
   /*
   // Hook ResourceManager

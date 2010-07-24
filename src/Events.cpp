@@ -17,6 +17,7 @@ EVENT_DEF(CGameClient, void, GameClientProcessObjects, (CGameClient*, PVOID, PVO
 
 // Equipment
 EVENT_DEF(CEquipment, void, EquipmentInitialize, (CEquipment*, CItemSaveState*));
+EVENT_DEF(CEquipment, void, EquipmentEnchant, (u32, CEquipment*, u32, u32, u32));
 
 // ResourceManager
 EVENT_DEF(CResourceManager, void, ResourceManagerInitializePlayer, (CResourceManager*, u32, u32));

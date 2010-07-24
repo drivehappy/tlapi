@@ -29,6 +29,7 @@ void Test_CreateSomething(PVOID retVal, CResourceManager*, u64, u32, u32, u32);
 
 // Equipment
 void Test_Equipment_Initialize(CEquipment*, CItemSaveState*);
+void Test_Equipment_Enchant(u32 retVal, CEquipment* equipment, u32 unk0, u32 unk1, u32 unk2);
 
 // GameClient
 void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0);

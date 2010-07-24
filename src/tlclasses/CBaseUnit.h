@@ -2,6 +2,7 @@
 
 #include "CPositionableObject.h"
 #include "CDataGroup.h"
+#include "CEffectManager.h"
 
 namespace TLAPI
 {
@@ -36,7 +37,7 @@ namespace TLAPI
 
     CDataGroup *pCDataGroup;
 
-    PVOID pCEffectManager;  // NULL
+    CEffectManager *pCEffectManager;  // NULL
     PVOID pCCullingBounds;
     PVOID pCSkillManager;
 
@@ -51,7 +52,7 @@ namespace TLAPI
       log("  GUID: %016I64X", GUID);
       log("  CDataGroup: %p", pCDataGroup);
 
-      pCDataGroup->dumpDataGroup();
+      //pCDataGroup->dumpDataGroup();
 
       log("  CEffectManager: %p", pCEffectManager);
       log("  CCullingBounds: %p", pCCullingBounds);

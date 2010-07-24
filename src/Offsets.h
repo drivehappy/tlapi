@@ -13,7 +13,8 @@
 #include "CDieMenu.h"
 #include "CPlayer.h"
 #include "CMonster.h"
-#include "CAstarPathFinder.h"
+#include "CAstarPathfinder.h"
+#include "CGameGlobals.h"
 
 namespace TLAPI {
 
@@ -103,6 +104,15 @@ namespace TLAPI {
   TLFUNC(CharacterSetAttack,                    PVOID,    __thiscall, (CCharacter*, PVOID));
 
   TLFUNC(LevelCreateAstarPathfinding,           CAstarPathfinder*,    __stdcall,  (float, float, u32, u32, PVOID, PVOID, float));
+
+  //TLFUNC(EnchantMenu_EnchantItem,               PVOID,    __thiscall, (CEnchantMenu*,));
+  TLFUNC(EquipmentGetEnchantPrice,              u32,      __thiscall, (CEquipment*));
+
+  TLFUNC(PlayerRemoveGold,                      void,     __thiscall, (CPlayer*, u32 amount));
+
+  TLFUNC(GetGameGlobals,                        CGameGlobals*, __thiscall, (void));
+
+  TLFUNC(EquipmentEnchant,                      u32,      __thiscall, (CEquipment*, u32, u32, u32));
 
   //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
 

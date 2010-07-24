@@ -12,6 +12,11 @@ namespace TLAPI
   struct CInventory;
   struct CItemSaveState;
 
+  // Redefine the function here so we can use it within CEquipment
+  // good ol' cyclic dependencies...
+  struct CEquipment;
+  TLFUNC(EquipmentEnchant, u32, __thiscall, (CEquipment*, u32, u32, u32));
+
   // Size?: 3E0h
   // Inherits: CItem
   struct CEquipment : CItem
@@ -23,9 +28,8 @@ namespace TLAPI
 
     CInventory    *inventory;
 
-    u32   unk0999[5];
+    u32       unk0999[5];
 
-    // Below appears to be wrong
     u32       unk1002[5];
     u32       requirements[5];    // level  str  dex   unk/unk (magic/defense?)
 
@@ -38,26 +42,32 @@ namespace TLAPI
 
     CGenericModel      *pCGenericModel;
 
-    PVOID unk1001;
-    PVOID unk1004;
+    PVOID     unk1001;
+    PVOID     unk1004;
 
-    PVOID pCEGUIPropertySheet;
+    PVOID     pCEGUIPropertySheet;
 
-    u32   unk1005;
+    u32       unk1005;
 
     CString nameUnidentified;
     CString namePrefix;         // Appears to crash, not quite right?
     CString nameSuffix;
 
-    u32   unk1006[16];
-    u32   physicalDamage[2];    // Both contain it
-
-    u32   unk1008[5];
+    u32   unk1006[23];
 
     u32   enhancementCount;
 
-    u32   unk1007[26];          // Possibly extends Equipment bounds, but looking for enchantment stuff
+    u32   unk1008[10];
+
+    u32  *enchantListStart;
+    u32  *enchantListEnd;
+
+    u32   unk1007[20];          // Possibly extends Equipment bounds, but looking for enchantment stuff
     
+    // Notes:
+    // Interesting 3 ptrs at offset 780
+    // Partial func for enchanting: @575F4A
+
     // 
     // Function hooks
 
@@ -66,9 +76,18 @@ namespace TLAPI
       (CEquipment*, CItemSaveState*),
       ((CEquipment*)e->_this, (CItemSaveState*)Pz[0]));
 
+    EVENT_DECL(CEquipment, void, EquipmentEnchant,
+      (u32, CEquipment*, u32, u32, u32),
+      (e->retval, (CEquipment*)e->_this, Pz[0], Pz[1], Pz[2]));
 
+    
+    u32 Enchant(u32 unk0, u32 unk1, u32 unk2) const {
+      return EquipmentEnchant((CEquipment*)this, unk0, unk1, unk2);
+    }
+
+    //
     void dumpEquipment() {
-      logColor(B_GREEN, "Equipment Dump: %p (basesize: %i)", this, sizeof(CItem));
+      logColor(B_GREEN, "Equipment Dump: %p (basesize: %i)", this, sizeof(CEquipment));
       
       dumpItem();
 
@@ -76,7 +95,9 @@ namespace TLAPI
       logColor(B_GREEN, "  StackSize Max: %i", stackSizeMax);
 
       logColor(B_GREEN, "  pCAttackDescriptor0 = %p", pCAttackDescriptor0);
+      pCAttackDescriptor0->dumpAttack();
       logColor(B_GREEN, "  pCAttackDescriptor1 = %p", pCAttackDescriptor1);
+      pCAttackDescriptor1->dumpAttack();
 
       logColor(B_GREEN, "  pCGenericModel = %p", pCGenericModel);
       logColor(B_GREEN, "  unk1001 = %p", unk1001);
@@ -88,14 +109,22 @@ namespace TLAPI
       //logColor(B_GREEN, L"  namePrefix = %s", namePrefix.getString());
       //logColor(B_GREEN, L"  nameSuffix = %s", nameSuffix.getString());
 
-      logColor(B_GREEN, "  physicalDamage = %i %i", physicalDamage[0], physicalDamage[1]);
-
       logColor(B_GREEN, "  Item Requirements:");
       logColor(B_GREEN, "     Level: %i", requirements[0]);
       logColor(B_GREEN, "     Strength: %i", requirements[1]);
       logColor(B_GREEN, "     Dexterity: %i", requirements[2]);
       logColor(B_GREEN, "     Magic: %i", requirements[3]);
       logColor(B_GREEN, "     Defense: %i", requirements[4]);
+
+      u32* itr = enchantListStart;
+      logColor(B_GREEN, "  Item Enchants:");
+      while (itr != enchantListEnd) {
+        logColor(B_GREEN, "     %i", (*itr++));
+      }
+
+      if (pCEffectManager) {
+        pCEffectManager->dumpEffectManager();
+      }
     }
   };
 
