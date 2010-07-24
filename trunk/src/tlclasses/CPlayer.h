@@ -51,6 +51,7 @@ namespace TLAPI
     {
       log("CPlayer dump: %p (sizeof CPlayer: %i)", this, sizeof(CPlayer));
       log("  CPlayer dump: (sizeof CCharacter: %i)", sizeof(CCharacter));
+      log("  CPlayer Gold: %i", *(int*)((char*)this + 0x3C4));
     }
   };
 

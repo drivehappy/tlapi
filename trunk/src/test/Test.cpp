@@ -24,6 +24,7 @@ void TestSetup()
 
   // Test an Equipment Initialize
   CEquipment::RegisterEvent_EquipmentInitialize(NULL, Test_Equipment_Initialize);
+  CEquipment::RegisterEvent_EquipmentEnchant(NULL, Test_Equipment_Enchant);
 
   // Test a ResourceCreateCharacter
   //CResourceManager::RegisterEvent_ResouceManagerCreateCharacter(NULL, TestCallbackPost_CreateCharacter);
