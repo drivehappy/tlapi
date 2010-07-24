@@ -1,13 +1,23 @@
 #pragma once
 
-// Size?: 30h
-struct CSkipCutscene : CEditorBaseObject
-{
-  PVOID unk1;
+#include "CEditorBaseObject.h"
 
-  CSkipCutsceneDescriptor   *pCSkipCutsceneDescriptor;
+namespace TLAPI {
 
-  CString *name;      // "skipCutscene"
+#pragma pack(1)
 
+  struct CSkipCutscene : CEditorBaseObject
+  {
+    PVOID unk1;
+
+    CSkipCutsceneDescriptor   *pCSkipCutsceneDescriptor;
+
+    CString *name;      // "skipCutscene"
+
+
+  };
+
+#pragma pack()
 
 };
+

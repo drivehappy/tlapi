@@ -3,16 +3,24 @@
 #include "CRunicCore.h"
 #include "CRoomPieceDataInformation.h"
 
-// Size?: 08h
-struct CRoomPieceData : CRunicCore
-{
-  u32 unk0;
+namespace TLAPI {
 
-  // ----
+#pragma pack(1)
 
-  CRoomPieceCoreData    *pCRoomPieceCoreData;
+  struct CRoomPieceData : CRunicCore
+  {
+    u32 unk0;
 
-  u32 unk1;
+    // ----
 
-  u64 GUID;
+    CRoomPieceCoreData    *pCRoomPieceCoreData;
+
+    u32 unk1;
+
+    u64 GUID;
+  };
+
+#pragma pack()
+
 };
+

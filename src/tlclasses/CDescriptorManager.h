@@ -2,6 +2,15 @@
 
 #include "CRunicCore.h"
 
-struct CDescriptorManager : CRunicCore
-{
+namespace TLAPI {
+
+#pragma pack(1)
+
+  struct CDescriptorManager : CRunicCore
+  {
+  };
+
+#pragma pack()
+
 };
+

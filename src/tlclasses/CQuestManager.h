@@ -2,7 +2,17 @@
 
 #include "CRunicCore.h"
 
-struct CQuestManager : CRunicCore
+namespace TLAPI
 {
 
+#pragma pack(1)
+
+  struct CQuestManager : CRunicCore
+  {
+    
+  };
+
+#pragma pack()
+
 };
+

@@ -2,8 +2,16 @@
 
 #include "CDropdownMenu.h"
 
-//
-struct CDieMenu : CDropdownMenu
-{
-  // TODO
+namespace TLAPI {
+
+#pragma pack(1)
+
+  struct CDieMenu : CDropdownMenu
+  {
+    // TODO
+  };
+
+#pragma pack()
+
 };
+

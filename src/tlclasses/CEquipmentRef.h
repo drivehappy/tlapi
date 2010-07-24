@@ -6,7 +6,6 @@
 namespace TLAPI
 {
 
-  // Size: 40 bytes (at least, no more than)
   struct CEquipmentRef : CRunicCore
   {
     PVOID       unk0;         // NULL -- is this the vtable?? if it is remove (defined in CRunicCore)

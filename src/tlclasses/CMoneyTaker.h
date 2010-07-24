@@ -1,6 +1,17 @@
 #pragma once
 
-struct CMoneyTaker : CEditorBaseObject
+#include "CEditorBaseObject.h"
+
+namespace TLAPI
 {
-  // TODO
+
+#pragma pack(1)
+
+  struct CMoneyTaker : CEditorBaseObject
+  {
+    // TODO
+  };
+
+#pragma pack()
+
 };

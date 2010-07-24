@@ -1,8 +1,17 @@
 #pragma once
 
-// Size?:
-// 
-struct CLayoutDescriptor : CPositionableObjectDescriptor
+#include "CPositionableObjectDescriptor.h"
+
+namespace TLAPI
 {
-  // TODO
+
+#pragma pack(1)
+
+  struct CLayoutDescriptor : CPositionableObjectDescriptor
+  {
+    // TODO
+  };
+
+#pragma pack()
+
 };

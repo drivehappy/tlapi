@@ -1,36 +1,47 @@
 #pragma once
 
-// Size?: 0E8h (Base?)  + some
-struct CLevelTemplateData : CRunicCore
+#include "CRunicCore.h"
+
+namespace TLAPI
 {
-  u32 unk0;
-  PVOID unk1;
 
-  u32 unk2[3];      // 1, Ah, Ah
+#pragma pack(1)
 
-  PVOID unk3;
+  struct CLevelTemplateData : CRunicCore
+  {
+    u32 unk0;
+    PVOID unk1;
 
-  u32 unk4[16];
+    u32 unk2[3];      // 1, Ah, Ah
 
-  PVOID pStringMainMenumine;  // ptr string "MAINMENUMINE"
+    PVOID unk3;
 
-  u32 unk5[11];
+    u32 unk4[16];
 
-  float unk6[4];
+    PVOID pStringMainMenumine;  // ptr string "MAINMENUMINE"
 
-  u32 unk7[8];
+    u32 unk5[11];
 
-  float unk8[3];      // 1,1,0
+    float unk6[4];
 
-  PVOID* ppCLevelLayout0; // ptr ptr CLevelLayout
+    u32 unk7[8];
 
-  u32 unk9[3];       // 1, Ah, Ah
+    float unk8[3];      // 1,1,0
 
-  PVOID* ppCLevelLayout1; // ptr ptr CLevelLayout
+    PVOID* ppCLevelLayout0; // ptr ptr CLevelLayout
 
-  u32 unk10[3];       // 1, Ah, Ah
+    u32 unk9[3];       // 1, Ah, Ah
 
-  // --------- Base type breakoff -----------
+    PVOID* ppCLevelLayout1; // ptr ptr CLevelLayout
 
-  PVOID pCRandomizer;
+    u32 unk10[3];       // 1, Ah, Ah
+
+    // --------- Base type breakoff -----------
+
+    PVOID pCRandomizer;
+  };
+
+#pragma pack()
+
 };
+

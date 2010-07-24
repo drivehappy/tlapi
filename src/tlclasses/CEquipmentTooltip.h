@@ -1,6 +1,18 @@
 #pragma once
 
-struct CEquipmentTooltip : CRunicCore
+#include "CRunicCore.h"
+
+namespace TLAPI
 {
-  // TODO
+
+#pragma pack(1)
+
+  struct CEquipmentTooltip : CRunicCore
+  {
+    // TODO
+  };
+
+#pragma pack()
+
 };
+

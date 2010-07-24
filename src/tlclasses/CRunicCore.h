@@ -1,7 +1,16 @@
 #pragma once
 
-// Size?: 4h
-struct CRunicCore
-{
-  PVOID vtable;
+
+namespace TLAPI {
+
+#pragma pack(1)
+
+  struct CRunicCore
+  {
+    PVOID vtable;
+  };
+
+#pragma pack()
+
 };
+

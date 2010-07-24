@@ -1,8 +1,18 @@
 #pragma once
 
-// Size?: unk
-struct CLevelLayout : CRunicCore
+#include "CRunicCore.h"
+
+namespace TLAPI
 {
-  u32 unk0;
-  PVOID pChunkList;   // Probably: CList<CChunk*>
+
+#pragma pack(1)
+
+  struct CLevelLayout : CRunicCore
+  {
+    u32 unk0;
+    PVOID pChunkList;   // Probably: CList<CChunk*>
+  };
+
+#pragma pack()
+
 };

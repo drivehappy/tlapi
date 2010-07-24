@@ -1,10 +1,19 @@
 #pragma once
 
-// Size?:
-// 
-struct CHierarchy : CRunicCore
-{
-  PVOID unk0;
+#include "CRunicCore.h"
 
-  PVOID *ptrtomyself;     // Cyclic ptr to point to myself
+namespace TLAPI
+{
+
+#pragma pack(1)
+
+  struct CHierarchy : CRunicCore
+  {
+    PVOID unk0;
+
+    PVOID *ptrtomyself;     // Cyclic ptr to point to myself
+  };
+
+#pragma pack()
+
 };

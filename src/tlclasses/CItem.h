@@ -5,9 +5,7 @@
 namespace TLAPI
 {
 
-  // Size?: 180h
-  // Inheritance: CBaseUnit
-  #pragma pack(1)
+#pragma pack(1)
 
   struct CItem : CBaseUnit
   {
@@ -40,6 +38,6 @@ namespace TLAPI
 
   };
 
-};
-
 #pragma pack()
+
+};

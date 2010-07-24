@@ -1,15 +1,25 @@
 #pragma once
 
 #include "_CString.h"
+#include "CRunicCore.h"
 
-struct CSets : CRunicCore
-{
-  PVOID unk0;
-  PVOID unk1;
 
-  CString location;   // "media/sets/"
+namespace TLAPI {
 
-  CList<PVOID>   SetsList;
+#pragma pack(1)
 
-  // Unk rest
+  struct CSets : CRunicCore
+  {
+    PVOID unk0;
+    PVOID unk1;
+
+    CString location;   // "media/sets/"
+
+    CList<PVOID>   SetsList;
+
+    // Unk rest
+  };
+
+#pragma pack()
+
 };

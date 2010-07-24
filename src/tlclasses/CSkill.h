@@ -1,30 +1,38 @@
 #pragma once
 
-// Size?: 68h   - base 0Ch
-// Inherits: CRunicCore
-struct CSkill : CRunicCore
-{
-  PVOID unk0;
+#include "CRunicCore.h"
 
-  // ----------- End Base Data members -----
+namespace TLAPI {
 
-  PVOID vtableIUnitObserver;
+#pragma pack(1)
 
-  PVOID pCResourceManager;
-  PVOID pCSkillManager;
-  PVOID pCDataGroup;
+  struct CSkill : CRunicCore
+  {
+    PVOID unk0;
 
-  u32 unk1[4];
+    // ----------- End Base Data members -----
 
-  PVOID unk2;
+    PVOID vtableIUnitObserver;
 
-  u32 unk3[7];
+    PVOID pCResourceManager;
+    PVOID pCSkillManager;
+    PVOID pCDataGroup;
 
-  float unk4;
+    u32 unk1[4];
 
-  u32 unk5[4];
+    PVOID unk2;
 
-  PVOID pCSkillProperty0;
-  PVOID pCSkillProperty1;
-  PVOID pCSkillProperty2;
+    u32 unk3[7];
+
+    float unk4;
+
+    u32 unk5[4];
+
+    PVOID pCSkillProperty0;
+    PVOID pCSkillProperty1;
+    PVOID pCSkillProperty2;
+  };
+
+#pragma pack()
+
 };
