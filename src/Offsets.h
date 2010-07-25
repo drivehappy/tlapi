@@ -15,6 +15,7 @@
 #include "CMonster.h"
 #include "CAstarPathfinder.h"
 #include "CGameGlobals.h"
+#include "CEffectGroupManager.h"
 
 namespace TLAPI {
 
@@ -113,6 +114,16 @@ namespace TLAPI {
   TLFUNC(GetGameGlobals,                        CGameGlobals*, __thiscall, (void));
 
   TLFUNC(EquipmentEnchant,                      u32,      __thiscall, (CEquipment*, u32, u32, u32));
+
+  TLFUNC(EffectManagerCreateEffect,             CEffect*, __thiscall, (CEffectManager*));
+
+  TLFUNC(EffectManager_AddEffectToEquipment,    void,     __thiscall, (CEffectManager*, CEquipment*, CEffect*));
+
+  TLFUNC(Equipment_AddMagicModifier,            void,     __thiscall, (CEquipment*, u32, u32));
+
+  TLFUNC(EffectGroupManager_CreateAffix,        void,     __thiscall, (CEffectGroupManager*, u32, u32, u32, CAffix**));
+
+  TLFUNC(GameClient_SaveGame,                   void,     __thiscall, (CGameClient*, u32, u32));
 
   //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
 

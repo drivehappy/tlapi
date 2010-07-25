@@ -12,10 +12,10 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
   case WM_KEYUP:
     switch (wParam) {
     
-    // 2 = Attempt to auto enchant equipment
-    case '2':
+    // 3 = Attempt to add magic modifier to equipment
+    case '3':
       {
-        log("Dumping Player Equipment (Rock Grotesque)");
+        log("Dumping Player Equipment (Rickety Pistol)");
         
         if (gameClient == NULL) {
           log("gameClient is null, cannot proceed");
@@ -23,7 +23,38 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
         }
 
         // Grab the list and iterate through it
-        const wchar_t searchTerm[] = L"Rock Grotesque";
+        const wchar_t searchTerm[] = L"Rickety Pistol"; //L"Rock Grotesque";
+        CList<CEquipmentRef*> *list = &gameClient->pCPlayer->pCInventory->equipmentList;
+
+        for (u32 i = 0; i < list->size; i++) {
+          wchar_t *equipmentName = (*list)[i]->pCEquipment->nameReal.getString();
+          
+          int val = wcscmp(equipmentName, searchTerm);
+
+          if (val == 0) {
+            CEquipment *equipment = (*list)[i]->pCEquipment;
+
+            // We found it, dump it
+            log(L"Attempting to change %s", equipment->nameReal);
+            equipment->AddMagicModifier(PHYSICAL, 100);
+            log("Change done.");
+          }
+        }
+      }
+      break;
+
+    // 2 = Attempt to auto enchant equipment
+    case '2':
+      {
+        log("Dumping Player Equipment (Rickety Pistol)");
+        
+        if (gameClient == NULL) {
+          log("gameClient is null, cannot proceed");
+          break;
+        }
+
+        // Grab the list and iterate through it
+        const wchar_t searchTerm[] = L"Rickety Pistol"; //L"Rock Grotesque";
         CList<CEquipmentRef*> *list = &gameClient->pCPlayer->pCInventory->equipmentList;
 
         for (u32 i = 0; i < list->size; i++) {
@@ -36,7 +67,7 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
 
             // We found it, dump it
             log(L"Attempting to enchant %s", equipment->nameReal);
-            u32 retVal = equipment->Enchant(0, 0, 1);
+            u32 retVal = equipment->Enchant(0, 0, 5);
             log("Enchantment done.");
           }
         }
@@ -47,7 +78,7 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
     // 1 = Dump Player Equipment (specificially just named "Rickety Pistol")
     case '1':
       {
-        log("Dumping Player Equipment (Rock Grotesque)");
+        log("Dumping Player Equipment (Rickety Pistol)");
         
         if (gameClient == NULL) {
           log("gameClient is null, cannot proceed");
@@ -57,7 +88,7 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
         gameClient->pCPlayer->dumpPlayer();
 
         // Grab the list and iterate through it
-        const wchar_t searchTerm[] = L"Rock Grotesque";
+        const wchar_t searchTerm[] = L"Rickety Pistol"; //L"Rock Grotesque";
         CList<CEquipmentRef*> *list = &gameClient->pCPlayer->pCInventory->equipmentList;
 
         for (u32 i = 0; i < list->size; i++) {

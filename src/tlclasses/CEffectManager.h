@@ -11,6 +11,7 @@ namespace TLAPI {
   
   // Forward decl
   struct CEquipment;
+  struct CPlayer;
 
   struct CEffectManager : CRunicCore
   {
@@ -21,9 +22,13 @@ namespace TLAPI {
 
     u32 unk1[8];    // 3 dup(   0),   1,3 dup(   0),   1
 
-    CEquipment*     equipment;
+    CPlayer*     player;    // Equipment* too???
 
-    u32   unk2[6];   // 0s
+    u32   unk101;     // 5
+
+    u32   unk102;     //
+
+    u32   unk2[4];   // 0s
     float valHealth;
     u32   unk10[4];
 
@@ -53,6 +58,14 @@ namespace TLAPI {
 
     CString *stringEffect;
 
+    // EffectManager effect creation
+    EVENT_DECL(CEffectManager, void, EffectManagerCreateEffect,
+      (CEffect*, CEffectManager*),
+      ((CEffect*)e->retval, (CEffectManager*)e->_this));
+
+    EVENT_DECL(CEffectManager, void, EffectManager_AddEffectToEquipment,
+      (CEffectManager*, CEquipment*, CEffect*),
+      ((CEffectManager*)e->_this, (CEquipment*)Pz[0], (CEffect*)Pz[1]));
 
     
     void dumpEffectManager() {
@@ -64,7 +77,7 @@ namespace TLAPI {
         effectList[i]->dumpEffect();
       }
 
-      logColor(B_GREEN, "  Equipment: %p", equipment);
+      logColor(B_GREEN, "  Player: %p", player);
 
       /*
       if (effectList.size && stringEffect) {

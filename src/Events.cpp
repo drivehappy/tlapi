@@ -11,13 +11,19 @@ using namespace TLAPI;
 // Setup a dummy class to setup the WndProc event
 EVENT_DEF(_GLOBAL, LRESULT, WndProc, (HWND, UINT, WPARAM, LPARAM));
 
+// EffectManager
+EVENT_DEF(CEffectManager, void, EffectManagerCreateEffect, (CEffect*, CEffectManager*));
+EVENT_DEF(CEffectManager, void, EffectManager_AddEffectToEquipment, (CEffectManager*, CEquipment*, CEffect*));
+
 // GameClient
 EVENT_DEF(CGameClient, void, GameClientLoadMap, (CGameClient*, u32));
 EVENT_DEF(CGameClient, void, GameClientProcessObjects, (CGameClient*, PVOID, PVOID, PVOID));
+EVENT_DEF(CGameClient, void, GameClient_SaveGame, (CGameClient*, u32, u32));
 
 // Equipment
 EVENT_DEF(CEquipment, void, EquipmentInitialize, (CEquipment*, CItemSaveState*));
 EVENT_DEF(CEquipment, void, EquipmentEnchant, (u32, CEquipment*, u32, u32, u32));
+EVENT_DEF(CEquipment, void, Equipment_AddMagicModifier, (CEquipment*, u32, u32));
 
 // ResourceManager
 EVENT_DEF(CResourceManager, void, ResourceManagerInitializePlayer, (CResourceManager*, u32, u32));

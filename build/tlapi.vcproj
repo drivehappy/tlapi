@@ -573,6 +573,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\tlclasses\CEffectGroupManager.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CEffectManager.h"
 				>
 			</File>

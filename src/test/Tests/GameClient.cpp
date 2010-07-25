@@ -22,3 +22,14 @@ void Test_GameClientProcessObjects(CGameClient *client, PVOID unk0, PVOID unk1, 
   // Handle key input for dumping current player Equipment list
   CList<CEquipmentRef*>* equipmentList = &client->pCPlayer->pCInventory->equipmentList;
 }
+
+void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1)
+{
+  gameClient = client;
+
+  testLogger.WriteLine(Info,
+    L"GameClient(%p)::SaveGame( unk0(%x), unk1(%x) )",
+    client, unk0, unk1);
+
+  log("SaveGame: %x %x", unk0, unk1);
+}

@@ -106,6 +106,16 @@ TLFUNCPTR(GetGameGlobals,                         CGameGlobals*, __thiscall, (),
 
 TLFUNCPTR(EquipmentEnchant,                       u32,      __thiscall, (CEquipment*, u32, u32, u32),                      0x4BF560);
 
+TLFUNCPTR(EffectManagerCreateEffect,              CEffect*, __thiscall, (CEffectManager*),                                 0x47D300);
+
+TLFUNCPTR(EffectManager_AddEffectToEquipment,     void,     __thiscall, (CEffectManager*, CEquipment*, CEffect*),          0x47E3A0);
+
+TLFUNCPTR(Equipment_AddMagicModifier,             void,     __thiscall, (CEquipment*, u32, u32),                           0x4BC7C0);
+
+TLFUNCPTR(EffectGroupManager_CreateAffix,         void,     __thiscall, (CEffectGroupManager*, u32, u32, u32, CAffix**),   0x47BB50);
+
+TLFUNCPTR(GameClient_SaveGame,                    void,     __thiscall, (CGameClient*, u32, u32),                          0x417110);
+
 //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF20);
 // ... and add more later
 
@@ -130,16 +140,22 @@ void TLAPI::HookFunctions()
 {
   log("Hooking functions...");
 
+  // Hook EffectManager
+  EVENT_INIT(CEffectManager, EffectManagerCreateEffect, 0);
+  EVENT_INIT(CEffectManager, EffectManager_AddEffectToEquipment, 2);
+
   // Hook WndProc
   EVENT_INIT(_GLOBAL, WndProc, 5);
 
   // Hook GameClient
   EVENT_INIT(CGameClient, GameClientLoadMap, 2);
   EVENT_INIT(CGameClient, GameClientProcessObjects, 4);
+  EVENT_INIT(CGameClient, GameClient_SaveGame, 2);
 
   // Hook Equipment
   EVENT_INIT(CEquipment, EquipmentInitialize, 1);
   EVENT_INIT(CEquipment, EquipmentEnchant, 3);
+  EVENT_INIT(CEquipment, Equipment_AddMagicModifier, 2);
 
   /*
   // Hook ResourceManager
