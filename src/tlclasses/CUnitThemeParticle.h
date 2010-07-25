@@ -1,13 +1,22 @@
 #pragma once
 
+#include "CRunicCore.h"
 #include "_CString.h"
 
-struct CUnitThemeParticle : CRunicCore
-{
-  PVOID unk0;
-  PVOID unk1;
+namespace TLAPI {
 
-  CString location;      // "media/particles/playerskills/armordebuffeffect.layout"
+#pragma pack(1)
 
-  // Unk rest if any
+  struct CUnitThemeParticle : CRunicCore
+  {
+    PVOID unk0;
+    PVOID unk1;
+
+    CString location;      // "media/particles/playerskills/armordebuffeffect.layout"
+
+    // Unk rest if any
+  };
+
+#pragma pack()
+
 };

@@ -21,10 +21,12 @@ extern CGameClient *gameClient;
 // Globals
 void Test_WndProc(HWND, UINT, WPARAM, LPARAM);
 
+// EffectGroupManager
+void Test_EffectGroupManager_CreateAffix(CEffectGroupManager* effectGroupManager, u32 unk0, u32 unk1, u32 unk2, CList<CAffix*> *listAffixes);
+
 // EffectManager
 void Test_EffectManagerCreateEffect(CEffect* retVal, CEffectManager* effectManager);
 void Test_EffectManager_AddEffectToEquipment(CEffectManager* effectManager, CEquipment* equipment, CEffect* effect);
-
 
 // ResourceManager
 void Test_CreateCharacter(CCharacter*, CResourceManager*, u64, u32, bool);
@@ -36,11 +38,12 @@ void Test_CreateSomething(PVOID retVal, CResourceManager*, u64, u32, u32, u32);
 void Test_Equipment_Initialize(CEquipment*, CItemSaveState*);
 void Test_Equipment_Enchant(u32 retVal, CEquipment* equipment, u32 unk0, u32 unk1, u32 unk2);
 void Test_Equipment_AddMagicModifier(CEquipment* equipment, u32 unk0, u32 unk1);
+void Test_Equipment_AddAffix(CEquipment* equipment, CAffix* affix, u32 unk0, CEquipment* equipment2, float unk1);
 
 // GameClient
 void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0);
 void Test_GameClientProcessObjects(CGameClient*, PVOID, PVOID, PVOID);
-void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1);
+void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1, bool & callOriginal);
 
 // Level
 void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter* character, Vector3* position, u32);

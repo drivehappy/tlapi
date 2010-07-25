@@ -112,9 +112,13 @@ TLFUNCPTR(EffectManager_AddEffectToEquipment,     void,     __thiscall, (CEffect
 
 TLFUNCPTR(Equipment_AddMagicModifier,             void,     __thiscall, (CEquipment*, u32, u32),                           0x4BC7C0);
 
-TLFUNCPTR(EffectGroupManager_CreateAffix,         void,     __thiscall, (CEffectGroupManager*, u32, u32, u32, CAffix**),   0x47BB50);
+TLFUNCPTR(EffectGroupManager_CreateAffix,         void,     __thiscall, (CEffectGroupManager*, u32, u32, u32, CList<CAffix*>*),   0x47BB50);
 
-TLFUNCPTR(GameClient_SaveGame,                    void,     __thiscall, (CGameClient*, u32, u32),                          0x417110);
+TLFUNCPTR(GameClient_SaveGame,                    void,     __thiscall, (CGameClient*, u32, u32, bool*),                   0x417110);
+
+TLFUNCPTR(Equipment_AddAffix,                     void,     __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float),   0x47F940);
+
+TLFUNCPTR(GetMasterResourceManager, CMasterResourceManager*,__thiscall, (void),                                            0x524EC0);
 
 //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF20);
 // ... and add more later
@@ -140,6 +144,9 @@ void TLAPI::HookFunctions()
 {
   log("Hooking functions...");
 
+  // Hook EffectGroupManager
+  EVENT_INIT(CEffectGroupManager, EffectGroupManager_CreateAffix, 4);
+
   // Hook EffectManager
   EVENT_INIT(CEffectManager, EffectManagerCreateEffect, 0);
   EVENT_INIT(CEffectManager, EffectManager_AddEffectToEquipment, 2);
@@ -156,6 +163,8 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CEquipment, EquipmentInitialize, 1);
   EVENT_INIT(CEquipment, EquipmentEnchant, 3);
   EVENT_INIT(CEquipment, Equipment_AddMagicModifier, 2);
+  EVENT_INIT(CEquipment, Equipment_AddAffix, 4);
+  
 
   /*
   // Hook ResourceManager

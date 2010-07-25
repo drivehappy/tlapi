@@ -2,15 +2,24 @@
 
 #include "_CString.h"
 #include "_CList.h"
+#include "CRunicCore.h"
 
-struct CCinematics : CRunicCore
-{
-  PVOID unk0;
-  PVOID unk1;
+namespace TLAPI {
 
-  CString location;   // "media/cinematics/"
+#pragma pack(1)
 
-  CList<PVOID>     CinematicsList;
+  struct CCinematics : CRunicCore
+  {
+    PVOID unk0;
+    PVOID unk1;
 
-  // Unk rest
+    CString location;   // "media/cinematics/"
+
+    CList<PVOID>     CinematicsList;
+
+    // Unk rest
+  };
+
+#pragma pack()
+
 };

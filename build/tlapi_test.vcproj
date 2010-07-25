@@ -182,6 +182,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\test\EffectGroupManager.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\test\EffectManager.cpp"
 				>
 			</File>

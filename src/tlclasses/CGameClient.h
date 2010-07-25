@@ -57,8 +57,8 @@ namespace TLAPI
       ((CGameClient *)e->_this, (PVOID)Pz[0], (PVOID)Pz[1], (PVOID)Pz[2]));
 
     EVENT_DECL(CGameClient, void, GameClient_SaveGame,
-      (CGameClient*, u32, u32),
-      ((CGameClient *)e->_this, Pz[0], Pz[1]));
+      (CGameClient*, u32, u32, bool&),
+      ((CGameClient*)e->_this, Pz[0], Pz[1], e->calloriginal));
     
   public:
     void GameClientLoadMap(u32 unk);

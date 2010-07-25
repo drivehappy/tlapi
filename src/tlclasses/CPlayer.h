@@ -36,7 +36,11 @@ namespace TLAPI
     CString  Skill2;        // "Summon Zombies III"
     CString  UnkString1;     // This is actually non-wide string
 
-    u32      unk6[41];
+    u32      unk6[25];
+
+    u32      gold;
+
+    u32      unk7[15];
 
     CInventory  *pCInventory;
 
@@ -51,7 +55,7 @@ namespace TLAPI
     {
       log("CPlayer dump: %p (sizeof CPlayer: %i)", this, sizeof(CPlayer));
       log("  CPlayer dump: (sizeof CCharacter: %i)", sizeof(CCharacter));
-      log("  CPlayer Gold: %i", *(int*)((char*)this + 0x3C4));
+      log("  CPlayer Gold: %i", gold);
     }
   };
 

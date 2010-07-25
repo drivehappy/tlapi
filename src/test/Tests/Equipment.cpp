@@ -31,3 +31,11 @@ void Test_Equipment_AddMagicModifier(CEquipment* equipment, u32 unk0, u32 unk1)
     L"Equipment(%p)::AddMagicModifier( %x, %x )",
     equipment, unk0, unk1);
 }
+
+void Test_Equipment_AddAffix(CEquipment* equipment, CAffix* affix, u32 unk0, CEquipment* equipment2, float unk1)
+{
+  testLogger.WriteLine(Info,
+    L"Equipment(%p)::AddAffix( Affix(%p), unk0(%x), Equipment2(%p), unk1(%f) )",
+    equipment, affix, unk0, equipment2, unk1);
+}
+

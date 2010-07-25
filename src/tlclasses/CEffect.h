@@ -8,6 +8,7 @@ namespace TLAPI {
 
   // Type of the effect
   enum EffectType {
+    REGULAR = 0xa,
     KNOCKBACK = 0xc,
     CRITICAL_HIT = 0x37,
     ARMOR_DEGRADED = 0x36,
@@ -19,6 +20,7 @@ namespace TLAPI {
   };
 
   // Forward decl
+  struct CAffix;
   struct CEquipment;
   enum EnchantType;
 
@@ -39,7 +41,9 @@ namespace TLAPI {
 
     u32   effectIndex;
 
-    u32   unk5[44];
+    u32   unk5[45];
+
+    CAffix *unk7;
 
     float effectValue;
 
