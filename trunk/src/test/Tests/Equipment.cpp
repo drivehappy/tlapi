@@ -24,3 +24,10 @@ void Test_Equipment_Enchant(u32 retVal, CEquipment* equipment, u32 unk0, u32 unk
   log("Equipment(%p)::Enchant( %x, %x, %x ) returns %i",
     equipment, unk0, unk1, unk2, retVal);
 }
+
+void Test_Equipment_AddMagicModifier(CEquipment* equipment, u32 unk0, u32 unk1)
+{
+  testLogger.WriteLine(Info,
+    L"Equipment(%p)::AddMagicModifier( %x, %x )",
+    equipment, unk0, unk1);
+}

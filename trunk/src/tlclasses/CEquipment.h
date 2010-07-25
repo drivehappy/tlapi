@@ -15,10 +15,20 @@ namespace TLAPI
   // Redefine the function here so we can use it within CEquipment
   // good ol' cyclic dependencies...
   struct CEquipment;
-  TLFUNC(EquipmentEnchant, u32, __thiscall, (CEquipment*, u32, u32, u32));
+  TLFUNC(EquipmentEnchant,           u32,  __thiscall, (CEquipment*, u32, u32, u32));
+  TLFUNC(Equipment_AddMagicModifier, void, __thiscall, (CEquipment*, u32, u32));
 
-  // Size?: 3E0h
-  // Inherits: CItem
+  // Enchantment Types
+  enum EnchantType {
+    PHYSICAL = 0,
+    UNKNOWN,
+    FIRE,
+    ICE, 
+    ELECTRIC,
+    POISON,
+  };
+
+  // 
   struct CEquipment : CItem
   {
     PVOID vtable_iMissle;
@@ -57,7 +67,12 @@ namespace TLAPI
 
     u32   enhancementCount;
 
-    u32   unk1008[10];
+    u32   unk1008[4];
+
+    u32  *enchantTypeListStart;
+    u32  *enchantTypeListEnd;
+
+    u32   unk1009[4];
 
     u32  *enchantListStart;
     u32  *enchantListEnd;
@@ -80,9 +95,16 @@ namespace TLAPI
       (u32, CEquipment*, u32, u32, u32),
       (e->retval, (CEquipment*)e->_this, Pz[0], Pz[1], Pz[2]));
 
+    EVENT_DECL(CEquipment, void, Equipment_AddMagicModifier,
+      (CEquipment*, u32, u32),
+      ((CEquipment*)e->_this, Pz[0], Pz[1]));
+
     
     u32 Enchant(u32 unk0, u32 unk1, u32 unk2) const {
       return EquipmentEnchant((CEquipment*)this, unk0, unk1, unk2);
+    }
+    void AddMagicModifier(EnchantType type, u32 amount) {
+      Equipment_AddMagicModifier((CEquipment*)this, type, amount);
     }
 
     //
@@ -116,10 +138,16 @@ namespace TLAPI
       logColor(B_GREEN, "     Magic: %i", requirements[3]);
       logColor(B_GREEN, "     Defense: %i", requirements[4]);
 
-      u32* itr = enchantListStart;
+      u32 *itr = enchantListStart;
+      u32 *itrType = enchantTypeListStart;
+      const char* EnchantTypeString[] = { "PHYSICAL", "UNKNOWN", "FIRE", "ICE", "ELECTRIC", "POISON" };
+
       logColor(B_GREEN, "  Item Enchants:");
       while (itr != enchantListEnd) {
-        logColor(B_GREEN, "     %i", (*itr++));
+        logColor(B_GREEN, "     %s %i", EnchantTypeString[*itrType], (*itr));
+
+        itr++;
+        itrType++;
       }
 
       if (pCEffectManager) {

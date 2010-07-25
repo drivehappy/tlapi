@@ -11,7 +11,7 @@ namespace TLAPI {
   {
     u32 unk0;
 
-    CItemSaveState *pCItemSaveState;    // Linked list node? ptr to another CItemSaveState
+    CItemSaveState *pCItemSaveState;    // Gem?
 
     CString name;
 

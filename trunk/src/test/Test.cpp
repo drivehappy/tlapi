@@ -14,9 +14,15 @@ void TestSetup()
   // Test the WndProc
   _GLOBAL::RegisterEvent_WndProc(NULL, Test_WndProc);
 
+  // Test the EffectManager
+  // This is continually creating events (non are properly setup either, bad function)
+  //CEffectManager::RegisterEvent_EffectManagerCreateEffect(NULL, Test_EffectManagerCreateEffect);
+  CEffectManager::RegisterEvent_EffectManager_AddEffectToEquipment(NULL, Test_EffectManager_AddEffectToEquipment);
+
   // Test the GameClient
   CGameClient::RegisterEvent_GameClientLoadMap(NULL, Test_GameClientLoadMap);
   CGameClient::RegisterEvent_GameClientProcessObjects(NULL, Test_GameClientProcessObjects);
+  CGameClient::RegisterEvent_GameClient_SaveGame(NULL, Test_GameClient_SaveGame);
 
   // Test a Player Initialize
   CResourceManager::RegisterEvent_ResourceManagerInitializePlayer(NULL, Test_InitCharacter);
@@ -25,6 +31,7 @@ void TestSetup()
   // Test an Equipment Initialize
   CEquipment::RegisterEvent_EquipmentInitialize(NULL, Test_Equipment_Initialize);
   CEquipment::RegisterEvent_EquipmentEnchant(NULL, Test_Equipment_Enchant);
+  CEquipment::RegisterEvent_Equipment_AddMagicModifier(NULL, Test_Equipment_AddMagicModifier);
 
   // Test a ResourceCreateCharacter
   //CResourceManager::RegisterEvent_ResouceManagerCreateCharacter(NULL, TestCallbackPost_CreateCharacter);

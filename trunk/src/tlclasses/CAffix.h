@@ -2,10 +2,17 @@
 
 #include "CRunicCore.h"
 #include "_CString.h"
+#include "CEffect.h"
 
 namespace TLAPI {
 
 #pragma pack(1)
+
+  /* Notes for Affix creation (call @0x5FC0F0):
+      u32 param is type?
+        1 - Tiger (Faster Attack)
+        3 - Ice
+  */
 
   struct CAffix : CRunicCore
   {
@@ -25,16 +32,25 @@ namespace TLAPI {
 
     u32 unk3[2];          // 80h, 0
 
-    CString name;
+    CString name;         // "Expert [ITEM]"
 
-    u32 unk4;             // 0
+    u32 unk4[3];             // 0
 
-    CString name2;
+    PVOID pOgreSharedPtr;   //
 
-    u32 unk5;             // 0
+    u32 unk5[6];             // 0
 
-    //
-    u32 unk6[6];          // 64h, CB758109h, 1, 0, 9, CB758109h
+    u32 unkInteresting[2];    // 0Ah, 2   -- Magic Type IDs?
+
+    u32 unk6[2];          // 0
+
+    CList<CEffect*> effectList;
+
+    PVOID pOgreGenerateShadowVolume;
+
+    u32 unk7[2];
+
+    CList<PVOID>  unkList;
   };
 
 #pragma pack()
