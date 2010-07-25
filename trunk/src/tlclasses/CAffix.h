@@ -30,15 +30,15 @@ namespace TLAPI {
 
     CString pStringSkill_spellcast; // ptr string = "SKILL_SPELLCASTING_MASTERY"
 
-    u32 unk3[2];          // 80h, 0
+    u32 unk3[8];          // 80h, 0
 
     CString name;         // "Expert [ITEM]"
 
     u32 unk4[3];             // 0
 
-    PVOID pOgreSharedPtr;   //
+    //PVOID pOgreSharedPtr;   //
 
-    u32 unk5[6];             // 0
+    //u32 unk5[6];             // 0
 
     u32 unkInteresting[2];    // 0Ah, 2   -- Magic Type IDs?
 
@@ -48,7 +48,7 @@ namespace TLAPI {
 
     PVOID pOgreGenerateShadowVolume;
 
-    u32 unk7[2];
+    u32 unk7[4];
 
     CList<PVOID>  unkList;
   };

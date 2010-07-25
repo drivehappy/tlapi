@@ -11,6 +11,9 @@ using namespace TLAPI;
 // Setup a dummy class to setup the WndProc event
 EVENT_DEF(_GLOBAL, LRESULT, WndProc, (HWND, UINT, WPARAM, LPARAM));
 
+// EffectGroupManager
+EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGroupManager*, u32, u32, u32, CList<CAffix*>&));
+
 // EffectManager
 EVENT_DEF(CEffectManager, void, EffectManagerCreateEffect, (CEffect*, CEffectManager*));
 EVENT_DEF(CEffectManager, void, EffectManager_AddEffectToEquipment, (CEffectManager*, CEquipment*, CEffect*));
@@ -18,12 +21,13 @@ EVENT_DEF(CEffectManager, void, EffectManager_AddEffectToEquipment, (CEffectMana
 // GameClient
 EVENT_DEF(CGameClient, void, GameClientLoadMap, (CGameClient*, u32));
 EVENT_DEF(CGameClient, void, GameClientProcessObjects, (CGameClient*, PVOID, PVOID, PVOID));
-EVENT_DEF(CGameClient, void, GameClient_SaveGame, (CGameClient*, u32, u32));
+EVENT_DEF(CGameClient, void, GameClient_SaveGame, (CGameClient*, u32, u32, bool*));
 
 // Equipment
 EVENT_DEF(CEquipment, void, EquipmentInitialize, (CEquipment*, CItemSaveState*));
 EVENT_DEF(CEquipment, void, EquipmentEnchant, (u32, CEquipment*, u32, u32, u32));
 EVENT_DEF(CEquipment, void, Equipment_AddMagicModifier, (CEquipment*, u32, u32));
+EVENT_DEF(CEquipment, void, Equipment_AddAffix, (CEquipment*, CAffix*, u32, CEquipment*, float));
 
 // ResourceManager
 EVENT_DEF(CResourceManager, void, ResourceManagerInitializePlayer, (CResourceManager*, u32, u32));

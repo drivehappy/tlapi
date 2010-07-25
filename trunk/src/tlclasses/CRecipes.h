@@ -3,15 +3,23 @@
 #include "_CString.h"
 #include "_CList.h"
 
-struct CRecipes : CRunicCore
-{
-  PVOID unk0;
+namespace TLAPI {
 
-  PVOID unk1;       // ptr to unknown structure - probably some recipe structure
-  CString location; // "media/recipes/"
+#pragma pack(1)
 
-  CList<PVOID> RecipesList;
+  struct CRecipes : CRunicCore
+  {
+    PVOID unk0;
 
-  u32 unk2;         // 46CC1340h
-  u32 unk3;         // 4Bh      -- noticed this alot, is this a compiler signal for end of class?
+    PVOID unk1;       // ptr to unknown structure - probably some recipe structure
+    CString location; // "media/recipes/"
+
+    CList<PVOID> RecipesList;
+
+    u32 unk2;         // 46CC1340h
+    u32 unk3;         // 4Bh      -- noticed this alot, is this a compiler signal for end of class?
+  };
+
+#pragma pack()
+
 };

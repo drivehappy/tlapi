@@ -4,6 +4,8 @@
 #include "CAttackDescription.h"
 #include "CCharacter.h"
 #include "CGenericModel.h"
+#include "CMasterResourceManager.h"
+#include "CEffectGroupManager.h"
 
 namespace TLAPI
 {
@@ -17,15 +19,26 @@ namespace TLAPI
   struct CEquipment;
   TLFUNC(EquipmentEnchant,           u32,  __thiscall, (CEquipment*, u32, u32, u32));
   TLFUNC(Equipment_AddMagicModifier, void, __thiscall, (CEquipment*, u32, u32));
+  TLFUNC(Equipment_AddAffix,         void, __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float));
 
   // Enchantment Types
   enum EnchantType {
     PHYSICAL = 0,
-    UNKNOWN,
+    MAGICAL,
     FIRE,
     ICE, 
     ELECTRIC,
     POISON,
+    ALL,
+
+    USER,       // ???
+    ITEM,       // ???
+
+    // Values here will display as "" string in tooltip, no idea if the damage is
+    // modified.
+
+    // Defined by myself to aid in enchant
+    NONE = 0xFF,
   };
 
   // 
@@ -59,7 +72,7 @@ namespace TLAPI
 
     u32       unk1005;
 
-    CString nameUnidentified;
+    CString nameUnidentified;   // 74 after this is socket count?
     CString namePrefix;         // Appears to crash, not quite right?
     CString nameSuffix;
 
@@ -77,7 +90,11 @@ namespace TLAPI
     u32  *enchantListStart;
     u32  *enchantListEnd;
 
-    u32   unk1007[20];          // Possibly extends Equipment bounds, but looking for enchantment stuff
+    u32   unk1007[28];          // Possibly extends Equipment bounds, but looking for enchantment stuff
+
+    u32   socketCount;
+
+    u32   unk1010[10];
     
     // Notes:
     // Interesting 3 ptrs at offset 780
@@ -91,20 +108,75 @@ namespace TLAPI
       (CEquipment*, CItemSaveState*),
       ((CEquipment*)e->_this, (CItemSaveState*)Pz[0]));
 
+    // Enchant
     EVENT_DECL(CEquipment, void, EquipmentEnchant,
       (u32, CEquipment*, u32, u32, u32),
       (e->retval, (CEquipment*)e->_this, Pz[0], Pz[1], Pz[2]));
 
+    // Add only the magic modifier (PHYSICAL, ICE, FIRE, etc. [Not: CRIT, KNOCKBACK, etc])
     EVENT_DECL(CEquipment, void, Equipment_AddMagicModifier,
       (CEquipment*, u32, u32),
       ((CEquipment*)e->_this, Pz[0], Pz[1]));
+
+    // Adds and Affix to the equipment (and internally the Effect attached to the Affix)
+    EVENT_DECL(CEquipment, void, Equipment_AddAffix,
+      (CEquipment*, CAffix*, u32, CEquipment*, float),
+      ((CEquipment*)e->_this, (CAffix*)Pz[0], Pz[1], (CEquipment*)Pz[2], *(float*)&Pz[3]));
 
     
     u32 Enchant(u32 unk0, u32 unk1, u32 unk2) const {
       return EquipmentEnchant((CEquipment*)this, unk0, unk1, unk2);
     }
     void AddMagicModifier(EnchantType type, u32 amount) {
-      Equipment_AddMagicModifier((CEquipment*)this, type, amount);
+      Equipment_AddMagicModifier(this, type, amount);
+    }
+    void AddAffix(CAffix* affix, u32 unk0, CEquipment* equipment2, float unk1) {
+      Equipment_AddAffix(this, affix, unk0, equipment2, unk1);
+    }
+    void AddOtherModifier(EffectType type, float amount) {
+      CMasterResourceManager *masterResMgr = CMasterResourceManager::GetInstance();
+      CEffectGroupManager *effectMgr = masterResMgr->pCEffectGroupManager;
+      CList<CAffix*> *listAffixes = new CList<CAffix*>();
+      listAffixes->size = 0;
+      listAffixes->capacity = 0;
+      listAffixes->growth = 1;
+
+      effectMgr->CreateAffix(0x5F, 0, 5, listAffixes);
+
+      if (listAffixes->size) {
+        // Change the list of affixes to size 1
+        listAffixes->size = 1;
+
+        // Change the first effect list to size 1
+        CAffix* affix = (*listAffixes)[0];
+        CList<CEffect*> *effectList = &affix->effectList;
+        effectList->size = 1;
+
+        // Change the effect type and value
+        CEffect* effect = (*effectList)[0];
+        effect->effectType = type;
+
+        // Add the modified Affix to the Equipment
+        AddAffix(affix, 0, this, 1.0f);
+
+        // Set the value after it's added, as this is changed as it's added
+        effect->effectValue = amount;
+
+        delete listAffixes;
+      }
+    }
+
+    // This is designed to encompass the above into an easily callable function
+    // for creating the exact item enchants requested (i.e. network item copy)
+    void AddEnchant(EffectType type, EnchantType subType, float amount) {
+      // Special case for regular type
+      if (type == REGULAR) {
+        // PHYSICAL, FIRE, ICE, POISON, ELECTRIC
+        Equipment_AddMagicModifier(this, subType, (u32)amount);
+      } else {
+        // KNOCKBACK, FASTER ATTACK, etc.
+        AddOtherModifier(type, amount);
+      }
     }
 
     //
@@ -113,6 +185,18 @@ namespace TLAPI
       
       dumpItem();
 
+      /*
+      logColor(B_GREEN, "  SocketTest: unk1007:");
+      for (u32 i = 0; i < 30; i++) {
+        logColor(B_BLUE, "    unk1007[%i] = %i", i, unk1007[i]);
+      }
+      logColor(B_GREEN, "  SocketTest: unk1010:");
+      for (u32 i = 0; i < 10; i++) {
+        logColor(B_BLUE, "    unk1010[%i] = %i", i, unk1010[i]);
+      }
+      */
+
+      logColor(B_GREEN, "  SocketCount: %i", socketCount);
       logColor(B_GREEN, "  StackSize: %i", stackSize);
       logColor(B_GREEN, "  StackSize Max: %i", stackSizeMax);
 

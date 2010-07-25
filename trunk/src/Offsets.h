@@ -16,6 +16,7 @@
 #include "CAstarPathfinder.h"
 #include "CGameGlobals.h"
 #include "CEffectGroupManager.h"
+#include "CMasterResourceManager.h"
 
 namespace TLAPI {
 
@@ -121,9 +122,13 @@ namespace TLAPI {
 
   TLFUNC(Equipment_AddMagicModifier,            void,     __thiscall, (CEquipment*, u32, u32));
 
-  TLFUNC(EffectGroupManager_CreateAffix,        void,     __thiscall, (CEffectGroupManager*, u32, u32, u32, CAffix**));
+  TLFUNC(EffectGroupManager_CreateAffix,        void,     __thiscall, (CEffectGroupManager*, u32, u32, u32, CList<CAffix*>*));
 
-  TLFUNC(GameClient_SaveGame,                   void,     __thiscall, (CGameClient*, u32, u32));
+  TLFUNC(GameClient_SaveGame,                   void,     __thiscall, (CGameClient*, u32, u32, bool*));
+
+  TLFUNC(Equipment_AddAffix,                    void,     __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float));
+
+  TLFUNC(GetMasterResourceManager, CMasterResourceManager*,__thiscall, (void));
 
   //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
 

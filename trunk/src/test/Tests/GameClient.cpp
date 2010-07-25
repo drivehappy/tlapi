@@ -23,7 +23,7 @@ void Test_GameClientProcessObjects(CGameClient *client, PVOID unk0, PVOID unk1, 
   CList<CEquipmentRef*>* equipmentList = &client->pCPlayer->pCInventory->equipmentList;
 }
 
-void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1)
+void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1, bool & callOriginal)
 {
   gameClient = client;
 
@@ -31,5 +31,11 @@ void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1)
     L"GameClient(%p)::SaveGame( unk0(%x), unk1(%x) )",
     client, unk0, unk1);
 
-  log("SaveGame: %x %x", unk0, unk1);
+  /*
+  testLogger.WriteLine(Info,
+    L"Save Game Suppressed",
+    client, unk0, unk1);
+
+  callOriginal = false;
+  */
 }

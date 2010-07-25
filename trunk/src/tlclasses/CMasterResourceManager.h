@@ -9,11 +9,17 @@
 #include "CCinematics.h"
 #include "CGameSpeed.h"
 #include "CRoomPieceDataInformation.h"
+#include "CEffectGroupManager.h"
 
 namespace TLAPI {
 
 #pragma pack(1)
 
+  // Forward decls... stupid C++
+  struct CMasterResourceManager;
+  TLFUNC(GetMasterResourceManager, CMasterResourceManager*,__thiscall, (void));
+
+  //
   struct CMasterResourceManager : CRunicCore
   {
     PVOID unk0;
@@ -28,7 +34,7 @@ namespace TLAPI {
     PVOID unk1;                     // ptr to unknown structure
     PVOID pCGraphManager;           //
     PVOID pCDungeonManager;
-    PVOID pCEffectGroupManager;
+    CEffectGroupManager *pCEffectGroupManager;
     PVOID pCMissilePreloader;
     PVOID pCResourceSettings;
     PVOID pCSkillParser;
@@ -59,6 +65,11 @@ namespace TLAPI {
     PVOID *tomyself;                // Cyclic ptr that points to this ptr
     
     // End?
+
+
+    static CMasterResourceManager* GetInstance() {
+      return GetMasterResourceManager();
+    }
   };
 
 #pragma pack()
