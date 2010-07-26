@@ -1,5 +1,7 @@
 #pragma once
 
+#pragma comment(lib, "../externallibs/cegui/lib/CEGUIBase.lib")
+
 #include "Helper.h"
 
 #include "CGameClient.h"

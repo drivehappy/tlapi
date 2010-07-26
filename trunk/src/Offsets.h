@@ -40,7 +40,7 @@ namespace TLAPI {
   TLFUNC(PlayerDoAttack,                        PVOID,       __thiscall, (CPlayer*));
 
   TLFUNC(EquipmentInitialize,                   PVOID,    __thiscall, (CEquipment*, CItemSaveState*));
-  TLFUNC(ResourceManagerCreateEquipment,        PVOID,    __thiscall, (CResourceManager*, u64, u32, u32, u32));
+  TLFUNC(ResourceManagerCreateEquipment,  CEquipment*,    __thiscall, (CResourceManager*, u64, u32, u32, u32));
   TLFUNC(PlayerPickupEquipment,                 PVOID,    __thiscall, (CPlayer*, CEquipment*, CLevel*));
   TLFUNC(InventoryAddEquipment,                 PVOID,    __thiscall, (CInventory*, CEquipment*, u32, u32));
   TLFUNC(InventoryRemoveEquipment,              PVOID,    __thiscall, (CInventory*, CEquipment*));
@@ -129,6 +129,8 @@ namespace TLAPI {
   TLFUNC(Equipment_AddAffix,                    void,     __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float));
 
   TLFUNC(GetMasterResourceManager, CMasterResourceManager*,__thiscall, (void));
+
+  TLFUNC(GameClient_SetupUI,                    void,     __thiscall, (CGameClient*, u32, u32));
 
   //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
 

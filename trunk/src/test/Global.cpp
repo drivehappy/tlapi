@@ -34,6 +34,42 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
   case WM_KEYUP:
     switch (wParam) {
 
+    // 7 = Item Creation
+    case '7':
+      {
+        if (!resManager) {
+          log("Error: ResourceManager is not initialized!");
+          break;
+        }
+
+        log("Creating Chaos Gem...");
+        u64 chaosGem = 0xEF8CFF367B0711DE;
+        Vector3 position = gameClient->pCPlayer->position;
+        CEquipment *equipmentGem0 = resManager->CreateEquipment(chaosGem, 1, 0, 0);
+        CEquipment *equipmentGem1 = resManager->CreateEquipment(chaosGem, 1, 0, 0);
+        equipmentGem0->AddEnchant(FASTER_ATTACK, NONE, 1000);
+        equipmentGem1->AddEnchant(REGULAR, PHYSICAL, 1337);
+
+        log("Creating Bishop Axe...");
+        u64 bishopAxe = 0x764ECFC83F3D11De;
+        CEquipment *equipmentBishopAxe = resManager->CreateEquipment(bishopAxe, 1, 0, 0);
+        equipmentBishopAxe->socketCount = 2;
+        equipmentBishopAxe->gemList.push(equipmentGem0);
+        equipmentBishopAxe->gemList.push(equipmentGem1);
+
+        equipmentBishopAxe->pCAttackDescriptor0->damageMaximumPhysical0 = 300;
+        equipmentBishopAxe->pCAttackDescriptor0->damageMaximumPhysical1 = 300;
+        equipmentBishopAxe->pCAttackDescriptor1->damageMaximumPhysical0 = 600;
+        equipmentBishopAxe->pCAttackDescriptor1->damageMaximumPhysical1 = 600;
+
+        equipmentBishopAxe->pCAttackDescriptor0->attackSpeed = 2;
+        equipmentBishopAxe->pCAttackDescriptor1->attackSpeed = 2;
+        
+        resManager->pCLevel->EquipmentDrop(equipmentBishopAxe, position, 0);
+        log("Done: Axe %p (Gems = %i)", equipmentBishopAxe, equipmentBishopAxe->gemList.size);
+      }
+      break;
+
     // 6 = Add equipment sockets
     case '6':
       {
@@ -127,10 +163,17 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
             L"  Equipment(%p) (%s) Dump of unk1007 (enhancementCount = %i):",
             equipment, equipment->nameReal.getString(), equipment->enhancementCount, searchTerm);
 
-          for (int j = 0; j < 32; j++) {
+          for (int j = 0; j < 28; j++) {
             testLogger.WriteLine(Info,
             L"  %x",
             equipment->unk1007[j]);
+          }
+
+          // unk1010
+          for (int j = 0; j < 10; j++) {
+            testLogger.WriteLine(Info,
+            L"  %x",
+            equipment->unk1010[j]);
           }
 
           // unk1006

@@ -17,4 +17,25 @@ struct CList
   T operator[](int index) {
     return list[index];
   };
+
+  // Our own... too lazy to find the real one
+  void push(T item) {
+    if (size >= capacity) {
+      if (growth == 0)
+        return;   // Can't do it
+
+      capacity += growth;
+
+      // Create new list, copy old to new
+      T *newList = new T[capacity];
+      memcpy(newList, list, sizeof(T*) * size);
+
+      // Delete old and replace with new
+      delete[] list;
+      list = newList;
+    }
+
+    // And finally push our item onto the list
+    list[size++] = item;
+  }
 };

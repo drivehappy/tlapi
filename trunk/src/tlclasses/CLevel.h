@@ -14,9 +14,12 @@ namespace TLAPI
 
 #pragma pack(1)
 
+  // Forward decl
   struct CResourceManager;
+  struct CLevel;
+  TLFUNC(LevelDropEquipment, PVOID, __thiscall, (CLevel*, CEquipment*, Vector3 &, bool));
 
-  // Size?: 17Ch
+  //
   struct CLevel : CRunicCore
   {
     u32 unk0;
@@ -74,6 +77,17 @@ namespace TLAPI
     EVENT_DECL(CLevel, void, LevelCreateAstarPathfinding,
       (CAstarPathfinder*, float, float, u32, u32, PVOID, PVOID, float),
       ((CAstarPathfinder*)e->retval, *(float*)&Pz[0], *(float*)&Pz[1], Pz[2], Pz[3], (PVOID)Pz[4], (PVOID)Pz[5], *(float*)&Pz[6]));
+
+    // Drop Equipment
+    EVENT_DECL(CLevel, void, LevelDropEquipment,
+      (CLevel*, CEquipment*, Vector3 &, bool),
+      ((CLevel*)e->_this, (CEquipment*)Pz[0], *(Vector3*)Pz[1], (bool)Pz[2]));
+
+
+    // Equipment drop
+    void EquipmentDrop(CEquipment* equipment, Vector3 & position, bool unk) {
+      LevelDropEquipment(this, equipment, position, unk0);
+    }
   };
 
 #pragma pack()
