@@ -105,7 +105,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;..\externallibs\udis86-1.7\&quot;;..\src\;..\src\hook;..\src\tlclasses"
+				AdditionalIncludeDirectories="..\externallibs\cegui\include;&quot;..\externallibs\udis86-1.7\&quot;;..\src\;..\src\hook;..\src\tlclasses;..\src\UI"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -238,6 +238,14 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="UI"
+				>
+				<File
+					RelativePath="..\src\UI\UserInterface.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -351,6 +359,14 @@
 						>
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="UI"
+				>
+				<File
+					RelativePath="..\src\UI\UserInterface.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter

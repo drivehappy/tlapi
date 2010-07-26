@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CRunicCore.h"
+#include "CSettings.h"
 
 namespace TLAPI
 {
@@ -13,6 +14,11 @@ namespace TLAPI
     PVOID pOctreeSM[4];     // 4 ptrs to Octrees
     PVOID pCSoundManager;   // ptr to CSoundManager
     PVOID pCPlayer;         // ptr to CPlayer
+
+    u32   unk1[7];
+
+    CSettings*    pCSettings;
+
   };
 
 #pragma pack()

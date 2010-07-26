@@ -18,3 +18,10 @@ void Test_LevelCreateAstarPathfinding(CAstarPathfinder* pathFinder, float unk0, 
     pathFinder, unk0, unk1, unk2, unk3, unk4, unk5, unk6
     );
 }
+
+void Test_LevelDropEquipment(CLevel* level, CEquipment* equipment, Vector3 & position, bool unk0)
+{
+  log("Level::DropEquipment(%p) (%p, (%f, %f, %f), %x)", level, equipment,
+    position.x, position.y, position.z, unk0);
+}
+

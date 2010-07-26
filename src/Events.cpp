@@ -22,6 +22,7 @@ EVENT_DEF(CEffectManager, void, EffectManager_AddEffectToEquipment, (CEffectMana
 EVENT_DEF(CGameClient, void, GameClientLoadMap, (CGameClient*, u32));
 EVENT_DEF(CGameClient, void, GameClientProcessObjects, (CGameClient*, PVOID, PVOID, PVOID));
 EVENT_DEF(CGameClient, void, GameClient_SaveGame, (CGameClient*, u32, u32, bool*));
+EVENT_DEF(CGameClient, void, GameClient_SetupUI, (CGameClient*, u32, u32));
 
 // Equipment
 EVENT_DEF(CEquipment, void, EquipmentInitialize, (CEquipment*, CItemSaveState*));
@@ -34,10 +35,12 @@ EVENT_DEF(CResourceManager, void, ResourceManagerInitializePlayer, (CResourceMan
 EVENT_DEF(CResourceManager, void, ResouceManagerCreateCharacter, (CResourceManager*, u64, u32, bool));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateCharacterByName, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateSomething, (CResourceManager*, u64, u32, u32, u32));
+EVENT_DEF(CResourceManager, void, ResourceManagerCreateEquipment, (CEquipment*, CResourceManager*, u64, u32, u32, u32));
 
 // Level
 EVENT_DEF(CLevel, void, LevelCharacterInitialize, (CLevel*, CCharacter*, Vector3*, u32));
 EVENT_DEF(CLevel, void, LevelCreateAstarPathfinding, (CAstarPathfinder*, float unk0, float unk1, u32 unk2, u32 unk3, PVOID unk4, PVOID unk5, float unk6));
+EVENT_DEF(CLevel, void, LevelDropEquipment, (CLevel*, CEquipment*, Vector3 &, bool));
 
 // Character
 EVENT_DEF(CCharacter, void, CharacterSetAlignment, (CCharacter*, u32));

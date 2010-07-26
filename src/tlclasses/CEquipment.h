@@ -72,7 +72,7 @@ namespace TLAPI
 
     u32       unk1005;
 
-    CString nameUnidentified;   // 74 after this is socket count?
+    CString nameUnidentified;
     CString namePrefix;         // Appears to crash, not quite right?
     CString nameSuffix;
 
@@ -90,11 +90,12 @@ namespace TLAPI
     u32  *enchantListStart;
     u32  *enchantListEnd;
 
-    u32   unk1007[28];          // Possibly extends Equipment bounds, but looking for enchantment stuff
+    u32   unk1007[28];
 
-    u32   socketCount;
+    u32                 socketCount;
+    CList<CEquipment*>  gemList;
 
-    u32   unk1010[10];
+    u32   unk1010[6];
     
     // Notes:
     // Interesting 3 ptrs at offset 780
@@ -197,6 +198,11 @@ namespace TLAPI
       */
 
       logColor(B_GREEN, "  SocketCount: %i", socketCount);
+      logColor(B_GREEN, "    Gems: %i", gemList.size);
+      for (u32 i = 0; i < gemList.size; i++) {
+        logColor(B_RED, "      %p: GUID: %016I64X", gemList[i], gemList[i]->GUID);
+      }
+
       logColor(B_GREEN, "  StackSize: %i", stackSize);
       logColor(B_GREEN, "  StackSize Max: %i", stackSizeMax);
 

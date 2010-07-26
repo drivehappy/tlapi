@@ -1,4 +1,5 @@
 #include "Test.h"
+#include "TestUserInterface.h"
 
 CGameClient *gameClient = NULL;
 
@@ -38,4 +39,11 @@ void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1, bool & ca
 
   callOriginal = false;
   */
+}
+
+void Test_GameClient_SetupUI(CGameClient *client, u32 unk0, u32 unk1)
+{
+  log("Setup UI");
+
+  Test_MainWindow();
 }

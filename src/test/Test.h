@@ -1,5 +1,7 @@
 #pragma once
 
+//#include "TestUserInterface.h"
+
 #include "Events.h"
 #include "Common.h"
 
@@ -13,8 +15,9 @@ using namespace TLAPI;
 using namespace Test;
 
 
-extern Logger       testLogger;
-extern CGameClient *gameClient;
+extern Logger            testLogger;
+extern CGameClient      *gameClient;
+extern CResourceManager *resManager;
 
 // Testing
 
@@ -33,6 +36,7 @@ void Test_CreateCharacter(CCharacter*, CResourceManager*, u64, u32, bool);
 void Test_CreateCharacterByName(CCharacter*, CResourceManager*, const wchar_t*, const wchar_t*, u32, u32);
 void Test_InitCharacter(CResourceManager* resourceMgr, u32 unk0, u32 unk1);
 void Test_CreateSomething(PVOID retVal, CResourceManager*, u64, u32, u32, u32);
+void Test_CreateEquipment(CEquipment* retval, CResourceManager* resManager, u64 guid, u32 unk0, u32 unk1, u32 unk2);
 
 // Equipment
 void Test_Equipment_Initialize(CEquipment*, CItemSaveState*);
@@ -44,10 +48,12 @@ void Test_Equipment_AddAffix(CEquipment* equipment, CAffix* affix, u32 unk0, CEq
 void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0);
 void Test_GameClientProcessObjects(CGameClient*, PVOID, PVOID, PVOID);
 void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1, bool & callOriginal);
+void Test_GameClient_SetupUI(CGameClient *client, u32 unk0, u32 unk1);
 
 // Level
 void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter* character, Vector3* position, u32);
 void Test_LevelCreateAstarPathfinding(CAstarPathfinder*, float, float, u32, u32, PVOID, PVOID, float);
+void Test_LevelDropEquipment(CLevel*, CEquipment*, Vector3 &, bool);
 
 // Character
 void Test_CharacterSetAlignment(CCharacter*, u32);

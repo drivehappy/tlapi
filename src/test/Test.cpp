@@ -1,4 +1,5 @@
 #include "Test.h"
+#include "TestUserInterface.h"
 
 Test::Logger testLogger("testLog.txt");
 
@@ -26,10 +27,12 @@ void TestSetup()
   CGameClient::RegisterEvent_GameClientLoadMap(NULL, Test_GameClientLoadMap);
   CGameClient::RegisterEvent_GameClientProcessObjects(NULL, Test_GameClientProcessObjects);
   CGameClient::RegisterEvent_GameClient_SaveGame(Test_GameClient_SaveGame, NULL);
+  CGameClient::RegisterEvent_GameClient_SetupUI(NULL, Test_GameClient_SetupUI);
 
   // Test a Player Initialize
   CResourceManager::RegisterEvent_ResourceManagerInitializePlayer(NULL, Test_InitCharacter);
   CResourceManager::RegisterEvent_ResourceManagerCreateSomething(NULL, Test_CreateSomething);
+  CResourceManager::RegisterEvent_ResourceManagerCreateEquipment(NULL, Test_CreateEquipment);
 
   // Test an Equipment Initialize
   CEquipment::RegisterEvent_EquipmentInitialize(NULL, Test_Equipment_Initialize);
@@ -45,6 +48,7 @@ void TestSetup()
   // Level
   CLevel::RegisterEvent_LevelCharacterInitialize(NULL, Test_LevelCharacterInitialize);
   CLevel::RegisterEvent_LevelCreateAstarPathfinding(NULL, Test_LevelCreateAstarPathfinding);
+  CLevel::RegisterEvent_LevelDropEquipment(NULL, Test_LevelDropEquipment);
 
   // Character
   CCharacter::RegisterEvent_CharacterSetAlignment(NULL, Test_CharacterSetAlignment);

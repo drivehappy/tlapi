@@ -116,7 +116,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="../src;../src/tlclasses;../src/hook;&quot;../externallibs/udis86-1.7&quot;;../src/test"
+				AdditionalIncludeDirectories="..\externallibs\cegui\include;../src;../src/tlclasses;../src/hook;&quot;../externallibs/udis86-1.7&quot;;../src/test;../src/UI"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;TLAPI_TEST_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -221,6 +221,10 @@
 				RelativePath="..\src\test\tests\ResourceManager.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\src\test\TestUserInterface.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Logging"
@@ -244,6 +248,10 @@
 		</File>
 		<File
 			RelativePath="..\src\test\Test.h"
+			>
+		</File>
+		<File
+			RelativePath="..\src\test\TestUserInterface.h"
 			>
 		</File>
 	</Files>
