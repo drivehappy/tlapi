@@ -121,6 +121,7 @@ TLFUNCPTR(Equipment_AddAffix,                     void,     __thiscall, (CEquipm
 TLFUNCPTR(GetMasterResourceManager, CMasterResourceManager*,__thiscall, (void),                                            0x524EC0);
 
 TLFUNCPTR(GameClient_SetupUI,                     void,     __thiscall, (CGameClient*, u32, u32),                          0x40C9A0);
+TLFUNCPTR(Game_CreateUI,                          void,     __thiscall, (CGame*),                                          0x402070);
 
 //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF20);
 // ... and add more later
@@ -155,6 +156,9 @@ void TLAPI::HookFunctions()
 
   // Hook WndProc
   EVENT_INIT(_GLOBAL, WndProc, 5);
+
+  // Hook Game
+  EVENT_INIT(CGame, Game_CreateUI, 0);
 
   // Hook GameClient
   EVENT_INIT(CGameClient, GameClientLoadMap, 2);

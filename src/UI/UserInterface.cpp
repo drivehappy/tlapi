@@ -36,6 +36,11 @@ CEGUI::Window* UserInterface::createWindow(const char* name)
   return g_pWm->createWindow(CEGUI::String("DefaultWindow"), CEGUI::String(name));
 }
 
+CEGUI::WindowManager* UserInterface::getManager()
+{
+  return g_pWm;
+}
+
 void UserInterface::createWindow()
 {
   if (!g_pWm)

@@ -194,6 +194,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\test\Game.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\src\test\tests\GameClient.cpp"
 				>
 			</File>

@@ -17,7 +17,10 @@ namespace TLAPI {
 
     void init();
 
+    static CEGUI::WindowManager* getManager();
+
     static CEGUI::Window* getWindowFromName(const char* name);
+
     static CEGUI::Window* createWindow(const char* name);
 
     static void updateLatency(const double latency);

@@ -24,6 +24,9 @@ extern CResourceManager *resManager;
 // Globals
 void Test_WndProc(HWND, UINT, WPARAM, LPARAM);
 
+// Game
+void Test_Game_CreateUI(CGame*);
+
 // EffectGroupManager
 void Test_EffectGroupManager_CreateAffix(CEffectGroupManager* effectGroupManager, u32 unk0, u32 unk1, u32 unk2, CList<CAffix*> *listAffixes);
 
