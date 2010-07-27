@@ -17,6 +17,7 @@
 #include "CGameGlobals.h"
 #include "CEffectGroupManager.h"
 #include "CMasterResourceManager.h"
+#include "CGame.h"
 
 namespace TLAPI {
 
@@ -131,6 +132,7 @@ namespace TLAPI {
   TLFUNC(GetMasterResourceManager, CMasterResourceManager*,__thiscall, (void));
 
   TLFUNC(GameClient_SetupUI,                    void,     __thiscall, (CGameClient*, u32, u32));
+  TLFUNC(Game_CreateUI,                         void,     __thiscall, (CGame*));
 
   //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
 

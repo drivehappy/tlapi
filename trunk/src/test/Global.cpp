@@ -1,4 +1,5 @@
 #include "Test.h"
+#include "TestUserInterface.h"
 
 CEquipment* SearchForEquipment(const wchar_t* searchTerm)
 {
@@ -33,6 +34,18 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
   switch (msg) {
   case WM_KEYUP:
     switch (wParam) {
+
+    // 8 = 
+    case '8':
+      {
+        CEGUI::Window* window = UserInterface::getWindowFromName("1000_TestSuite_Main");
+        if (window) {
+          window->moveToFront();
+        } else {
+          log("No Window");
+        }
+      }
+      break;
 
     // 7 = Item Creation
     case '7':

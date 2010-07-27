@@ -43,7 +43,5 @@ void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1, bool & ca
 
 void Test_GameClient_SetupUI(CGameClient *client, u32 unk0, u32 unk1)
 {
-  log("Setup UI");
 
-  Test_MainWindow();
 }

@@ -1,36 +1,53 @@
 #pragma once
 
 #include "CRunicCore.h"
+#include "CCameraControl.h"
+#include "CSoundManager.h"
 
-struct CGame : CRunicCore
+namespace TLAPI
 {
-  PVOID   unk0;
 
-  PVOID   vtable_OgreFrameListener;
-  PVOID   vtable_OgreWindowEventListener;
-  PVOID   vtable_iEditorResourceManager;
-  PVOID   vtable_OgreRenderQueue;
-  PVOID   vtable_RenderTargetListener;
+#pragma pack(1)
 
-  CCameraControl   *pCCameraControl;
+  struct CGame : CRunicCore
+  {
+    PVOID   unk0;
 
-  PVOID   unk2;
+    PVOID   vtable_OgreFrameListener;
+    PVOID   vtable_OgreWindowEventListener;
+    PVOID   vtable_iEditorResourceManager;
+    PVOID   vtable_OgreRenderQueue;
+    PVOID   vtable_RenderTargetListener;
 
-  PVOID  *pOctreeSM[6];    // Ogre -- why 6 SceneManagers?
+    CCameraControl   *pCCameraControl;
 
-  PVOID  *pViewportOgre;    // Ogre
-  PVOID  *pString;          // Points to (-8) of a CString struct non-wide
+    PVOID   unk2;
 
-  u32     unk3;
-  CString UnkString;
+    PVOID  *pOctreeSM[6];    // Ogre -- why 6 SceneManagers?
 
-  u32     unk4[6];
+    PVOID  *pViewportOgre;    // Ogre
+    PVOID  *pString;          // Points to (-8) of a CString struct non-wide
 
-  CSettings     *pCSettings;
-  CSoundManager *pCSoundManager;
+    u32     unk3;
+    CString UnkString;
 
-  u32 unk5[2];
-  CString   UnkString2;
+    u32     unk4[6];
+
+    CSettings     *pCSettings;
+    CSoundManager *pCSoundManager;
+
+    u32 unk5[2];
+    CString   UnkString2;
 
 
-}
+    // 
+    // Function hooks
+    EVENT_DECL(CGame, void, Game_CreateUI,
+      (CGame*),
+      ((CGame*)e->_this));
+
+  };
+
+#pragma pack()
+
+};

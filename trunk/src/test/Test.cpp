@@ -15,6 +15,9 @@ void TestSetup()
   // Test the WndProc
   _GLOBAL::RegisterEvent_WndProc(NULL, Test_WndProc);
 
+  // Test the Game CreateUI
+  CGame::RegisterEvent_Game_CreateUI(NULL, Test_Game_CreateUI);
+
   // Test the EffectGroupManager
   //CEffectGroupManager::RegisterEvent_EffectGroupManager_CreateAffix(NULL, Test_EffectGroupManager_CreateAffix);
 
