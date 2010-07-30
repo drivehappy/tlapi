@@ -28,22 +28,26 @@ CEquipment* SearchForEquipment(const wchar_t* searchTerm)
 //
 void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
 {
-  if (!(msg == 0x100 || msg == 0x101 || msg == 0x102))
+  if (!(msg == 0x100 || msg == 0x101 || msg == 0x102 || msg == 0x201))
     return;
 
   switch (msg) {
+  case WM_LBUTTONDOWN:
+    switch (wParam) {
+    case MK_LBUTTON:
+      {
+        gameClient->CMouseManager.dumpMouse();
+      }
+      break;
+    }
   case WM_KEYUP:
     switch (wParam) {
 
     // 8 = 
     case '8':
       {
-        CEGUI::Window* window = UserInterface::getWindowFromName("1000_TestSuite_Main");
-        if (window) {
-          window->moveToFront();
-        } else {
-          log("No Window");
-        }
+        log("gameClient: %p", gameClient);
+        gameClient->CMouseManager.dumpMouse();
       }
       break;
 
@@ -100,10 +104,11 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
       }
       break;
 
-    // 5 = Add gold to player
+    // 5 = Add gold to player and dump player
     case '5':
       {
         gameClient->pCPlayer->gold += 100000;
+        gameClient->pCPlayer->dumpPlayer();
       }
       break;
 

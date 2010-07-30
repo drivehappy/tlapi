@@ -5,7 +5,6 @@
 #include "_CList.h"
 
 #include "CEffectManager.h"
-#include "CPlayer.h"
 #include "CEquipmentRef.h"
 
 /* Slot IDs and their positions:

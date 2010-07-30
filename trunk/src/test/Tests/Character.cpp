@@ -64,6 +64,9 @@ void Test_CharacterAddMinion(CCharacter* character, CCharacter* minion)
     L"Character(%p)::AddMinion( Minion(%p) ) returns void",
     character, minion);
 
+  log("AddMinion(%p): %p", character, minion);
+  log("  Minion Name: %s", minion->characterName.getString());
+
   // Dump the GUID for more information
   testLogger.WriteLine(Verbose,
     L"  GUID: %016I64X, GUID Minion: %016I64X",

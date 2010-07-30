@@ -26,6 +26,8 @@ EVENT_DEF(CGameClient, void, GameClientLoadMap, (CGameClient*, u32));
 EVENT_DEF(CGameClient, void, GameClientProcessObjects, (CGameClient*, PVOID, PVOID, PVOID));
 EVENT_DEF(CGameClient, void, GameClient_SaveGame, (CGameClient*, u32, u32, bool*));
 EVENT_DEF(CGameClient, void, GameClient_SetupUI, (CGameClient*, u32, u32));
+EVENT_DEF(CGameClient, void, GameClient_CreateLevel, (CGameClient*, u32, u32, u32,
+          CGameClient*, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32));
 
 // Equipment
 EVENT_DEF(CEquipment, void, EquipmentInitialize, (CEquipment*, CItemSaveState*));

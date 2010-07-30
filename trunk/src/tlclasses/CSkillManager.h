@@ -1,15 +1,26 @@
 #pragma once
 
-// Size?: 30h
-struct CSkillManager : CRunicCore
+#include "CRunicCore.h"
+
+namespace TLAPI
 {
-  u32 unk0;
 
-  PVOID pCResourceManager;
+#pragma pack(1)
 
-  u32 unk1[6];
+  // Size?: 30h
+  struct CSkillManager : CRunicCore
+  {
+    u32 unk0;
 
-  PVOID unk2;
+    PVOID pCResourceManager;
 
-  u32 unk3[2];
+    u32 unk1[6];
+
+    PVOID unk2;
+
+    u32 unk3[2];
+  };
+
+#pragma pack()
+
 };

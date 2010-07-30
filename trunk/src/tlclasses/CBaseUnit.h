@@ -3,6 +3,8 @@
 #include "CPositionableObject.h"
 #include "CDataGroup.h"
 #include "CEffectManager.h"
+#include "CCullingBounds.h"
+#include "CSkillManager.h"
 
 namespace TLAPI
 {
@@ -20,26 +22,32 @@ namespace TLAPI
                         0FFFFFFFFh
                         0FFFFFFFFh
                         0FFFFFFFFh
-                        0
+                        0FFFFFFFFh
                         0FFFFFFFFh
                         0FFFFFFFFh
                       */
 
     u32 unk6;           // 1010101
 
-    u32 unk7[5];        // 340D5401h
+    u32 unk7[5];        /*
+                        1000101h
+                        69740000h
+                        0.30000001
+                        1010101h
+                        656D6101h
+                        */
 
     u64 GUID;        // 0F59522DA8B7A11DEh
 
     u32 unk8;         
 
-    u32 unk9;           // 68h    || 2ah
+    u32 unk9;           // 68h    || 2ah || 1C
 
     CDataGroup *pCDataGroup;
 
-    CEffectManager *pCEffectManager;  // NULL
-    PVOID pCCullingBounds;
-    PVOID pCSkillManager;
+    CEffectManager *pCEffectManager;
+    CCullingBounds *pCCullingBounds;
+    CSkillManager  *pCSkillManager;
 
     float unk12;        // 0.5
     u32 unk13;          // 1

@@ -5,6 +5,15 @@
 #include "CLevel.h"
 #include "CAstarPathfinder.h"
 #include "CPath.h"
+#include "CGenericModel.h"
+#include "CSkill.h"
+#include "CInventory.h"
+#include "CResourceManager.h"
+#include "CParticle.h"
+#include "CCollisionModel.h"
+#include "CWardrobe.h"
+#include "CWeaponTrail.h"
+#include "CAIManager.h"
 
 namespace TLAPI
 {
@@ -13,8 +22,7 @@ namespace TLAPI
 
   struct CLevel;
   
-  // Size?: 160h
-  // Inheritance: CBaseUnit
+  // 
   struct CCharacter : CBaseUnit
   {
     PVOID vtableIInventoryListener;
@@ -25,9 +33,10 @@ namespace TLAPI
     u32 unk1;           // 343C0001h
     u32 unk2;           // 0
 
-    PVOID pCGenericModel;
+    CGenericModel     *pCGenericModel0;
+    CGenericModel     *pCGenericModel1;
 
-    float unk3[8];      // 0, -25.59, 0.0727, 33.62, -25.59, 0.81, 33.62, 0
+    float unk3[7];      // -25.59, 0.0727, 33.62, -25.59, 0.81, 33.62, 0
 
     u32 unk4[2];        // 7,8
 
@@ -77,9 +86,70 @@ namespace TLAPI
 
     float unk13[4];     // 2.0, 0, 0, 1
 
-    u32 unk14[6];       // Last one ptr to CItemGold??
+    u32 unk14[6];       // 
 
-    // hmm getting into some weird values that appear to be garbage... is this size correct?
+    float unk20[8];
+
+    u32   unk21[2];
+    PVOID unk22;
+    u32   unk30;
+
+    CAttackDescription  *pCAttackDescription;
+    CSkill              *pCSkill;
+
+    u32     unk15[3];        // 0, 0, 0
+
+    u64     guidMonster[3]; // 6B03517E9E3311DEh, 0FFFFFFFFFFFFFFFFh, 0FFFFFFFFFFFFFFFFh
+
+    CString2  Skill1;    // "Heal All I"
+    CString2  Skill2;    // "TOWN PORTAL"
+    CString2  Skill3;    // "Summon Zombies III"
+    CString   Skill4;    // "HEAL SELF IV"
+
+    u32      unk23[4];    // 1, 1, 1, 1
+    u32      unk24[3];
+
+    CAttackDescription **pCAttackDescription2;
+
+    CAttackDescription *pCAttackDescriptionEnd0;
+    CAttackDescription *pCAttackDescriptionEnd1;   // Same value as above
+
+    u32      unk16[14];
+
+    u32      gold;
+
+    u32      unk17[15];
+
+    CInventory  *pCInventory;
+    CEquipment  *pCEquipment;
+
+    u32      unk18;
+    CList<CParticle*>  listParticles;
+
+    CString2 characterName;
+    CCollisionModel   *pCCollisionModel;
+
+    u32      unk31;
+    float    unk32[4];  // 0.5, 0.375, 1.0, 1.25
+
+    CWardrobe         *pCWardrobe;
+    CString2           playerTextureBody;
+    CString2           playerTextureChest;
+    CString2           playerTextureFeet;
+    CString2           playerTextureHands;
+    CString2           playerTexture0;
+
+    u32     unk33[29];
+
+    PVOID   pOgreShadowCaster;
+
+    u32     unk34[49];
+
+    CWeaponTrail  *pCWeaponTrail;
+
+    u32     unk35[22];
+
+    CAIManager    *pCAIManager;
 
     // 
     // Function hooks

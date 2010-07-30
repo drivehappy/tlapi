@@ -11,16 +11,15 @@ namespace TLAPI
 #pragma pack(1)
 
   struct CAIManager;
+  struct CCharacter;
 
-  // Inheritance: CRunicCore
+  //
   struct CAIFlagManager : CRunicCore
   {
     u32               unk0;
-    CList<CAIFlag*>   pAIFlags; // This appears to be a CList<CAIFlag*>
-    u32               unk1[3];
+    CList<CAIFlag*>   pAIFlags;
     CCharacter*       pCharacter; // Ptr to CCharacter
     CAIManager*       pAIManager; // Ptr to AI Manager
-    CString           nameMesh;
   };
 
 #pragma pack()
