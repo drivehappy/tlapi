@@ -17,7 +17,8 @@ namespace TLAPI
 
     PVOID unk0;
 
-    CString name;        // ptr string "Base Glow", Also contains CPlayer's class name
+    CString name;                 // ptr string "Base Glow", Also contains CPlayer's class name
+                                  // i.e. "Destroyer"
     
     //u32 unk4[5];
 

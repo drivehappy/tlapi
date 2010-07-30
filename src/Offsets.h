@@ -134,6 +134,8 @@ namespace TLAPI {
   TLFUNC(GameClient_SetupUI,                    void,     __thiscall, (CGameClient*, u32, u32));
   TLFUNC(Game_CreateUI,                         void,     __thiscall, (CGame*));
 
+  TLFUNC(GameClient_CreateLevel,                void,     __thiscall, (CGameClient*, u32, u32, u32, CGameClient*));
+
   //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
 
   // ... and add more later

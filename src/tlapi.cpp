@@ -123,6 +123,8 @@ TLFUNCPTR(GetMasterResourceManager, CMasterResourceManager*,__thiscall, (void), 
 TLFUNCPTR(GameClient_SetupUI,                     void,     __thiscall, (CGameClient*, u32, u32),                          0x40C9A0);
 TLFUNCPTR(Game_CreateUI,                          void,     __thiscall, (CGame*),                                          0x402070);
 
+TLFUNCPTR(GameClient_CreateLevel,                 void,     __thiscall, (CGameClient*, u32, u32, u32, CGameClient*),       0x415820);
+
 //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF20);
 // ... and add more later
 
@@ -165,6 +167,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CGameClient, GameClientProcessObjects, 4);
   EVENT_INIT(CGameClient, GameClient_SaveGame, 2);
   EVENT_INIT(CGameClient, GameClient_SetupUI, 2);
+  EVENT_INIT(CGameClient, GameClient_CreateLevel, 24);
 
   // Hook Equipment
   EVENT_INIT(CEquipment, EquipmentInitialize, 1);

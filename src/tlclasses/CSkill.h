@@ -1,10 +1,15 @@
 #pragma once
 
 #include "CRunicCore.h"
+#include "CResourceManager.h"
 
 namespace TLAPI {
 
 #pragma pack(1)
+
+  // Forward decl
+  struct CResourceManager;
+
 
   struct CSkill : CRunicCore
   {
@@ -14,9 +19,9 @@ namespace TLAPI {
 
     PVOID vtableIUnitObserver;
 
-    PVOID pCResourceManager;
-    PVOID pCSkillManager;
-    PVOID pCDataGroup;
+    CResourceManager *pCResourceManager;
+    CSkillManager    *pCSkillManager;
+    CDataGroup       *pCDataGroup;
 
     u32 unk1[4];
 

@@ -31,6 +31,7 @@ void TestSetup()
   CGameClient::RegisterEvent_GameClientProcessObjects(NULL, Test_GameClientProcessObjects);
   CGameClient::RegisterEvent_GameClient_SaveGame(Test_GameClient_SaveGame, NULL);
   CGameClient::RegisterEvent_GameClient_SetupUI(NULL, Test_GameClient_SetupUI);
+  CGameClient::RegisterEvent_GameClient_CreateLevel(NULL, Test_GameClient_CreateLevel);
 
   // Test a Player Initialize
   CResourceManager::RegisterEvent_ResourceManagerInitializePlayer(NULL, Test_InitCharacter);

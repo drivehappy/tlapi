@@ -529,6 +529,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\tlclasses\CCullingBounds.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CDamageShape.h"
 				>
 			</File>
@@ -730,6 +734,10 @@
 			</File>
 			<File
 				RelativePath="..\src\tlclasses\CMonsterDescriptor.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\tlclasses\CMouseManager.h"
 				>
 			</File>
 			<File
@@ -954,6 +962,10 @@
 			</File>
 			<File
 				RelativePath="..\src\tlclasses\CWaypointActivator.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\tlclasses\CWeaponTrail.h"
 				>
 			</File>
 		</Filter>

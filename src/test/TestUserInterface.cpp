@@ -14,16 +14,76 @@ bool mouseEventOk(const CEGUI::EventArgs& args)
   return true;
 }
 
+//
+bool mouseEventInGameOk(const CEGUI::EventArgs& args)
+{
+  CEGUI::Window* settings = UserInterface::getWindowFromName("1002_Frame");
+  if (settings) {
+    settings->setVisible(true);
+    settings->moveToFront();
+  }
+
+  // Test
+  gameClient->CMouseManager.unk1 = 0;
+  gameClient->CMouseManager.unk0[1] = 0;
+  gameClient->CMouseManager.unk3[0] = 0;
+  log("Mouse State:");
+  gameClient->CMouseManager.dumpMouse();
+
+  return true;
+}
+
+//
+void Create_InGameMenu()
+{
+  const CEGUI::String stringOk("Open Tests");
+  const CEGUI::String stringTitle("TLAPI TestSuite");
+
+  // Added the main game GUI elements
+  CEGUI::WindowManager* wm = UserInterface::getManager();
+  CEGUI::Window *pRoot;
+  CEGUI::Window *windowTestSuite, *windowParent, *windowFrame, *windowText, *windowButton;
+
+  if (wm->isWindowPresent(CEGUI::String("1_PlayerHealthRoot"))) {
+    pRoot = wm->getWindow(CEGUI::String("1_PlayerHealthRoot"));
+  } else {
+    return;
+  }
+
+  try {
+    windowButton = wm->loadWindowLayout(CEGUI::String("IngameTest0.layout"), CEGUI::String("1001_"));
+    windowTestSuite = wm->loadWindowLayout(CEGUI::String("IngameTest.layout"), CEGUI::String("1002_"));
+  } catch (CEGUI::FileIOException e) {
+    log("Error loading file (FileIOException)");
+  } catch (CEGUI::InvalidRequestException e) {
+    log("Error loading file (InvalidRequestException)");
+  } catch (std::exception e) {
+    log("Error loading file (%s)", e.what());
+  }
+
+  
+  if (windowTestSuite) {
+    windowTestSuite->setVisible(false);
+    pRoot->addChildWindow(windowTestSuite);
+
+    windowButton = windowButton->recursiveChildSearch("OpenTests");
+
+    windowButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&mouseEventInGameOk));
+    windowButton->setVisible(true);
+    pRoot->addChildWindow(windowButton);
+  }
+}
+
 // Sets up the initial TestSuite screen
-void Create_MainButton()
+void Create_MainMain()
 {
   const CEGUI::String stringOk("Ok");
   const CEGUI::String stringTitle("TestSuite");
-  const CEGUI::String stringDesc("The TLAPI TestSuite has been successfully loaded.\
-    The purpose of the TestSuite is to test for functionality needed for (at this point), Multiplayer.\
-    You will find an ingame menu option for running the available tests.\
-    This suite of tests does _not_ contain any network functionality and is simply provided to test the \"hard\" stuff\
-    to get the underlying code for Multiplayer working.");
+  const CEGUI::String stringDesc("The TLAPI TestSuite has been successfully loaded. \
+The purpose of the TestSuite is to test for functionality needed for (at this point), Multiplayer. \
+You will find an ingame menu option for running the available tests. \
+This suite of tests does _not_ contain any network functionality and is simply provided to test the \"hard\" stuff \
+to get the underlying code for Multiplayer working.");
 
   CEGUI::WindowManager* wm = UserInterface::getManager();
 
@@ -90,7 +150,8 @@ void Test_MainWindow()
 
   UI.init();
 
-  Create_MainButton();
+  Create_MainMain();
+  Create_InGameMenu();
 
   //UI.createWindow();
 }
