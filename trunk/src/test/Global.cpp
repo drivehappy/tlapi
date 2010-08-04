@@ -43,6 +43,8 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
       break;
     }
   case WM_KEYUP:
+    break; // Skip keyboard
+
     switch (wParam) {
 
     // 9 =

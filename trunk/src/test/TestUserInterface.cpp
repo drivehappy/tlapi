@@ -399,6 +399,30 @@ Game saves with this test have been suppressed (nothing should be saved). Howeve
 // 
 void Test_MainWindow()
 {
+  /*
+  // Problem: Ogre::Root contains this, but also ResouceGroupManager, and it does initialize afterwards,
+  // is this best left in the resource.cfg file?
+  //
+  // Add the TLAPI folder to the Ogre resource location
+  // 
+  testLogger.WriteLine(Info, L"Adding TLAPI Resource Location...");
+
+  typedef PVOID(* OgreRootGetSingleton)(void);
+  typedef PVOID(* OgreAddResourceLocation)(PVOID _this, string name, string type, string groupName, bool recursive);
+
+  OgreRootGetSingleton ogreRootFunc = (OgreRootGetSingleton)GetProcAddress(GetModuleHandle("OgreMain.dll"), "?getSingleton@Root@Ogre@@SAAAV12@XZ");
+  OgreAddResourceLocation addResourceLocation = (OgreAddResourceLocation)GetProcAddress(GetModuleHandle("OgreMain.dll"), "?addResourceLocation@ResourceGroupManager@Ogre@@QAEXABV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@00_N@Z");
+
+  log("RootFunc = %p", ogreRootFunc);
+  log("ResourceFunc = %p", addResourceLocation);
+
+  PVOID ogreRoot = ogreRootFunc();
+  log("ogreRoot = %p", ogreRoot);
+
+  addResourceLocation(ogreRoot, string("TLAPI"), string("FILESYSTEM"), string(""), false);
+  */
+
+  // Add the Interface elements
   log("Test_MainWindow() Creating...");
 
   UserInterface UI;

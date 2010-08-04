@@ -9,7 +9,7 @@
         <Property Name="AlwaysOnTop" Value="True" />
 
         <Window Type="GuiLook/StandardButton" Name="OpenTests">
-       	    <Property Name="UnifiedPosition" Value="{{.32,-6},{.87,0}}" />
+       	    <Property Name="UnifiedPosition" Value="{{.30,0},{.87,0}}" />
 	          <Property Name="UnifiedSize" Value="{{0,120},{0,28}}" />
             <Property Name="Text" Value="Open Tests"/>
         </Window>
