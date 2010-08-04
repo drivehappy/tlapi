@@ -6,6 +6,7 @@
 #include "CAllDescriptorsScene.h"
 #include "CDescriptorManager.h"
 #include "CSettings.h"
+#include "CSoundObject.h"
 
 namespace TLAPI
 {
@@ -24,9 +25,9 @@ namespace TLAPI
 
     CList<PVOID>            UnkList1;
 
-    u32 unk14[7];
+    u32 unk14[12];
 
-    CString                 location;   // "MEDIA/PARTICLES/MISSILES/CORRUPTION.LAYOUT"
+    wstring                 location;   // "MEDIA/PARTICLES/MISSILES/CORRUPTION.LAYOUT"
 
     CSettings*             *pCSettings;
     PVOID                   pOctreeSM;
@@ -36,7 +37,9 @@ namespace TLAPI
     PVOID vtable_iRandomWeight;
     PVOID vtable_iHighlight;
 
-    u32 unk16[36];          // 2 dup(   1),0Ah dup(   0), 0Ah,17h dup(   0)
+    u32 unk16[9];          // 2 dup(   1),0Ah dup(   0), 0Ah,17h dup(   0)
+
+    CList<CSoundObject*>   listSoundObjects;
 
     // Character Set Action
     EVENT_DECL(CLayout, void, LayoutSetPosition,

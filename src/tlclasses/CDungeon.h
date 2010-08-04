@@ -1,28 +1,45 @@
 #pragma once
 
 #include "_CList.h"
+#include "CLevelTemplateData.h"
 
-// Size?: 
-// 
-struct CDungeon : CRunicCore
+namespace TLAPI
 {
-  PVOID unk0;
 
-  CList<CTemplateLevelData *>    CTemplateLevelDataList;
-  CList<PVOID>                   UnkList0;
-  CList<PVOID>                   UnkList1;
+#pragma pack(1)
 
-  float unk1;
-  u32 unk2;
+  //
+  struct CDungeon : CRunicCore
+  {
+    PVOID unk0;
 
-  CString name0;    // "HATCHCAVE"
+    CList<CLevelTemplateData*>     CLevelTemplateDataList;
+    CList<PVOID>                   UnkList0;
+    CList<PVOID>                   UnkList1;
 
-  CString name1;    // "Forsaken Caverns"
+    u32 unk2;
 
-  u32 unk3[5];
+    wstring name0;    // "HATCHCAVE", "TOWN"
 
-  CString name2;    // "Town"
+    wstring name1;    // "Forsaken Caverns"
 
-  
+    float unk1;
+    u32   unk3[5];
+
+    wstring name2;    // "Town"
+
+    u32   unk4;
+
+    
+    void dumpDungeon() {
+      log("Dungeon Dump (%p):", this);
+      log(L"  name0: %s", name0.c_str());
+      log(L"  name1: %s", name1.c_str());
+      log(L"  name2: %s", name2.c_str());
+    }
+
+  };
+
+#pragma pack()
 
 };

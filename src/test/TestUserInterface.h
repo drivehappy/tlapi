@@ -6,6 +6,8 @@
 
 #include "Test.h"
 
+#include "CMonsterDescriptor.h"
+
 // Event handlers
 bool mouseEventOk(const CEGUI::EventArgs& args);
 bool mouseEventInGameOk(const CEGUI::EventArgs& args);

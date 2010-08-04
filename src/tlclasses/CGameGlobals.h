@@ -60,11 +60,11 @@ namespace TLAPI {
     float IndoorUnitActiveRange;
     float OutdoorUnitActiveRange;
 
-    CList<CString2>   PlayerTitles;
+    CList<wstring>   PlayerTitles;
 
     u32   unk8[6];    // Weird ptrs
 
-    CString2      ContextTips[24];
+    wstring      ContextTips[24];
 
     // Unk rest
 

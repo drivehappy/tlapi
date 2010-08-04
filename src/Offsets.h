@@ -18,10 +18,11 @@
 #include "CEffectGroupManager.h"
 #include "CMasterResourceManager.h"
 #include "CGame.h"
+#include "CMouseManager.h"
 
 namespace TLAPI {
 
-  TLFUNC(ResouceManagerCreateCharacter,         CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool));
+  TLFUNC(ResourceManagerCreateCharacter,         CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool));
   TLFUNC(LevelCharacterInitialize,              CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
   TLFUNC(ResourceManagerCreateCharacterByName,  CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
   TLFUNC(CharacterSetAlignment,                 void,         __thiscall, (CCharacter*, u32));
@@ -135,6 +136,9 @@ namespace TLAPI {
   TLFUNC(Game_CreateUI,                         void,     __thiscall, (CGame*));
 
   TLFUNC(GameClient_CreateLevel,                void,     __thiscall, (CGameClient*, u32, u32, u32, CGameClient*));
+  TLFUNC(GameClient_LoadLevel,                  void,     __thiscall, (CGameClient*));
+
+  TLFUNC(MouseManagerInput,                     void,     __thiscall, (CMouseManager*, u32, u32));
 
   //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
 

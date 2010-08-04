@@ -26,12 +26,16 @@ void TestSetup()
   //CEffectManager::RegisterEvent_EffectManagerCreateEffect(NULL, Test_EffectManagerCreateEffect);
   CEffectManager::RegisterEvent_EffectManager_AddEffectToEquipment(NULL, Test_EffectManager_AddEffectToEquipment);
 
+  // MouseManager
+  CMouseManager::RegisterEvent_MouseManagerInput(Test_MouseManagerHandleInput, NULL);
+
   // Test the GameClient
   CGameClient::RegisterEvent_GameClientLoadMap(NULL, Test_GameClientLoadMap);
   CGameClient::RegisterEvent_GameClientProcessObjects(NULL, Test_GameClientProcessObjects);
   CGameClient::RegisterEvent_GameClient_SaveGame(Test_GameClient_SaveGame, NULL);
   CGameClient::RegisterEvent_GameClient_SetupUI(NULL, Test_GameClient_SetupUI);
   CGameClient::RegisterEvent_GameClient_CreateLevel(NULL, Test_GameClient_CreateLevel);
+  CGameClient::RegisterEvent_GameClient_LoadLevel(Test_GameClient_LoadLevel, NULL);
 
   // Test a Player Initialize
   CResourceManager::RegisterEvent_ResourceManagerInitializePlayer(NULL, Test_InitCharacter);

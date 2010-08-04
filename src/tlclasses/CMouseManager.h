@@ -21,6 +21,13 @@ namespace TLAPI
     u32 positionX;
     u32 positionY;
 
+    // MouseManager HandleInput
+    EVENT_DECL(CMouseManager, void, MouseManagerInput,
+      (CMouseManager*, u32 wParam, u32 mouseButton, bool* calloriginal),
+      ((CMouseManager*)e->_this, Pz[0], Pz[1], (bool*)&e->calloriginal));
+
+
+
     void dumpMouse() {
       log("MouseManager(%p) Dump:", this);
       log("  unk0: %x %x %x", unk0[0], unk0[1], unk0[2]);

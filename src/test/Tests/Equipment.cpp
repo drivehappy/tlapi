@@ -13,6 +13,8 @@ void Test_Equipment_Initialize(CEquipment* equipment, CItemSaveState* itemSaveSt
   //log("Equipment Initialize: this = %p, ItemSaveState = %p", equipment, itemSaveState);
   //itemSaveState->dumpItemSaveState();
   //equipment->dumpEquipment();
+
+  //log(L"Equipment Initialize: %s", equipment->nameReal.c_str());
 }
 
 void Test_Equipment_Enchant(u32 retVal, CEquipment* equipment, u32 unk0, u32 unk1, u32 unk2)

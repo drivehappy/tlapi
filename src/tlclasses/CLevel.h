@@ -17,7 +17,8 @@ namespace TLAPI
   // Forward decl
   struct CResourceManager;
   struct CLevel;
-  TLFUNC(LevelDropEquipment, PVOID, __thiscall, (CLevel*, CEquipment*, Vector3 &, bool));
+  TLFUNC(LevelDropEquipment,       PVOID,       __thiscall, (CLevel*, CEquipment*, Vector3 &, bool));
+  TLFUNC(LevelCharacterInitialize, CCharacter*, __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
 
   //
   struct CLevel : CRunicCore
@@ -87,6 +88,9 @@ namespace TLAPI
     // Equipment drop
     void EquipmentDrop(CEquipment* equipment, Vector3 & position, bool unk) {
       LevelDropEquipment(this, equipment, position, unk0);
+    }
+    void CharacterInitialize(CCharacter* character, Vector3* position, u32 unk0) {
+      LevelCharacterInitialize(this, character, position, unk0);
     }
   };
 

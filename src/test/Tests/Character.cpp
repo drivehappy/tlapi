@@ -65,7 +65,7 @@ void Test_CharacterAddMinion(CCharacter* character, CCharacter* minion)
     character, minion);
 
   log("AddMinion(%p): %p", character, minion);
-  log("  Minion Name: %s", minion->characterName.getString());
+  log(L"  Minion Name: %s", minion->characterName.c_str());
 
   // Dump the GUID for more information
   testLogger.WriteLine(Verbose,

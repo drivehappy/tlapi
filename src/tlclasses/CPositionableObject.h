@@ -7,18 +7,8 @@ namespace TLAPI
 
 #pragma pack(1)
 
-  // Size: 68h
-  // Inheritance: CSceneNodeObject
   struct CPositionableObject : CSceneNodeObject
   {
-    /*
-    CLevel              *pCLevel;
-    CHierarchy          *pCHierarchy;
-    CList<CGameClient*>  pCGameClient;
-
-    PVOID                pOgreMaterial;
-    */
-
     u32 unk10;
 
     Vector3 position;

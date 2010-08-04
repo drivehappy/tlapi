@@ -2,8 +2,17 @@
 
 #include "CEditorBaseObject.h"
 
-// Size?: 168h
-struct CDescriptor : CEditorBaseObject
+namespace TLAPI
 {
-  // Todo
+
+#pragma pack(1)
+
+  struct CDescriptor : CEditorBaseObject
+  {
+    // Don't know where the split is on this and CBaseObjectDescriptor,
+    // Leaving this empty for now and placing it all into CBaseObjectDescriptor
+  };
+
+#pragma pack()
+
 };

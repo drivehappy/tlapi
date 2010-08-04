@@ -25,11 +25,11 @@ namespace TLAPI
       log("CPlayer dump: %p (sizeof CPlayer: %i)", this, sizeof(CPlayer));
       log("  (sizeof CCharacter: %i)", sizeof(CCharacter));
       log("  Gold: %i", gold);
-      log(L"  Name: %s", characterName.getString());
-      log(L"  Body Texture: %s", playerTextureBody.getString());
-      log(L"  Hand Texture: %s", playerTextureHands.getString());
-      log(L"  Feet Texture: %s", playerTextureFeet.getString());
-      log(L"  Chest Texture: %s", playerTextureChest.getString());
+      log(L"  Name: %s", characterName.c_str());
+      log(L"  Body Texture: %s", playerTextureBody.c_str());
+      log(L"  Hand Texture: %s", playerTextureHands.c_str());
+      log(L"  Feet Texture: %s", playerTextureFeet.c_str());
+      log(L"  Chest Texture: %s", playerTextureChest.c_str());
       log("");
       log("  AIManager: %p", pCAIManager);
     }

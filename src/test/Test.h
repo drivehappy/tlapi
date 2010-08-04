@@ -18,6 +18,7 @@ using namespace Test;
 extern Logger            testLogger;
 extern CGameClient      *gameClient;
 extern CResourceManager *resManager;
+extern bool              suppressInGameMouse;
 
 // Testing
 
@@ -33,6 +34,9 @@ void Test_EffectGroupManager_CreateAffix(CEffectGroupManager* effectGroupManager
 // EffectManager
 void Test_EffectManagerCreateEffect(CEffect* retVal, CEffectManager* effectManager);
 void Test_EffectManager_AddEffectToEquipment(CEffectManager* effectManager, CEquipment* equipment, CEffect* effect);
+
+// MouseManager
+void Test_MouseManagerHandleInput(CMouseManager*, u32 wParam, u32 mouseButton, bool* callOriginal);
 
 // ResourceManager
 void Test_CreateCharacter(CCharacter*, CResourceManager*, u64, u32, bool);
@@ -55,6 +59,7 @@ void Test_GameClient_SetupUI(CGameClient *client, u32 unk0, u32 unk1);
 void Test_GameClient_CreateLevel(CGameClient *client, u32 unk0, u32 unk1, u32 unk2, CGameClient *client2, u32 unk4, u32 unk5,
   u32 unk6, u32 unk7, u32 unk8, u32 unk9, u32 unk10, u32 unk11,u32 unk12, u32 unk13, u32 unk14, u32 unk15, u32 unk16,
   u32 unk17,u32 unk18, u32 unk19, u32 unk20, u32 unk21, u32 unk22, u32 unk23);
+void Test_GameClient_LoadLevel(CGameClient *client);
 
 // Level
 void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter* character, Vector3* position, u32);

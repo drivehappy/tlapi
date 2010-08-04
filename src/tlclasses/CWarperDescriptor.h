@@ -4,13 +4,6 @@
 
 struct CWarperDescriptor : CPositionableObjectDescriptor
 {
-  PVOID unk0;
-
-  PVOID guid0;
-  PVOID guid1;
-  PVOID guid2;
-  PVOID guid3;
-
   u32 unk1[13];   // 0s
 
   CString   name;

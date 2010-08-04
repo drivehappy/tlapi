@@ -10,15 +10,17 @@ CEquipment* SearchForEquipment(const wchar_t* searchTerm)
 
   CList<CEquipmentRef*> *list = &gameClient->pCPlayer->pCInventory->equipmentList;
 
+  /*
   for (u32 i = 0; i < list->size; i++) {
     wchar_t *equipmentName = (*list)[i]->pCEquipment->nameReal.getString();
-    
+
     int val = wcscmp(equipmentName, searchTerm);
 
     if (val == 0) {
       return (*list)[i]->pCEquipment;
     }
   }
+  */
 
   return NULL;
 }
@@ -36,12 +38,33 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
     switch (wParam) {
     case MK_LBUTTON:
       {
-        gameClient->CMouseManager.dumpMouse();
+        //gameClient->CMouseManager.dumpMouse();
       }
       break;
     }
   case WM_KEYUP:
     switch (wParam) {
+
+    // 9 =
+    case '9':
+      {
+        log("GameClient(5p) size: %i, Dungeon: %p", gameClient, sizeof(CGameClient), gameClient->pCDungeon);
+        gameClient->pCDungeon->dumpDungeon();
+
+        u32 offset = ((u32*)&gameClient->pCLayout - (u32*)gameClient);
+        if (gameClient->pCLayout) {
+          log("  CLayout: (@: %p) %p (offset: %x)", &gameClient->pCLayout, gameClient->pCLayout, offset);
+          log(L"    DescriptorManager: (@ %p) %p", &gameClient->pCLayout->pCDescriptorManager, gameClient->pCLayout->pCDescriptorManager);
+          log(L"    Location: %s", gameClient->pCLayout->location.c_str());
+        }
+
+        /*
+        log("UnkChunk3 GameClient:");
+        for (u32 i = 0; i < 1300; i++) {
+          log("  unkChunk3[%i] = %x", i, gameClient->unkChunk3[i]);
+        }*/
+      }
+      break;
 
     // 8 = 
     case '8':
@@ -179,7 +202,8 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
           // unk1007
           testLogger.WriteLine(Info,
             L"  Equipment(%p) (%s) Dump of unk1007 (enhancementCount = %i):",
-            equipment, equipment->nameReal.getString(), equipment->enhancementCount, searchTerm);
+            //equipment, equipment->nameReal.getString(), equipment->enhancementCount, searchTerm);
+            equipment, equipment->nameReal.c_str(), equipment->enhancementCount, searchTerm);
 
           for (int j = 0; j < 28; j++) {
             testLogger.WriteLine(Info,
@@ -197,7 +221,8 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
           // unk1006
           testLogger.WriteLine(Info,
             L"  Equipment(%p) (%s) Dump of unk1006 (enhancementCount = %i):",
-            equipment, equipment->nameReal.getString(), equipment->enhancementCount, searchTerm);
+            //equipment, equipment->nameReal.getString(), equipment->enhancementCount, searchTerm);
+            equipment, equipment->nameReal.c_str(), equipment->enhancementCount, searchTerm);
 
           for (int j = 0; j < 23; j++) {
             testLogger.WriteLine(Info,
@@ -240,8 +265,8 @@ void Test_WndProc(HWND handle, UINT msg, WPARAM wParam, LPARAM lParam)
 
           // unk1001/1004/1005
           testLogger.WriteLine(Info,
-            L"  Dump of 1001/1004/1005: %x %x %x",
-            equipment->unk1001, equipment->unk1004, equipment->unk1005);
+            L"  Dump of 1001/1004: %x %x",
+            equipment->unk1001, equipment->unk1004);
 
           testLogger.WriteLine(Info,
             L"---------------------------",

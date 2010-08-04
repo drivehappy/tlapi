@@ -22,6 +22,8 @@ struct CString
 };
 
 /*
+Edit: This is a wstring, removed for now
+
 Only difference I see is there's another ptr in front, this sometimes
 corresponds to a ptr to another string e.g.:
       debug159:0B7D0898 unicode 0, <You have |cFFFFBA00completed a quest|u. To receive your r>
@@ -29,6 +31,7 @@ corresponds to a ptr to another string e.g.:
       debug159:0B7D0898 unicode 0, <l with a |cFFFFBA00?|u above their head. Use a |cFFFFBA00>
       debug159:0B7D0898 unicode 0, <Town Portal Scroll|u to return directly to Torchlight. >,0
 */
+/*
 struct CString2
 {
   wchar_t* firstStringPtr;
@@ -51,3 +54,4 @@ struct CString2
       return L"";
   };
 };
+*/

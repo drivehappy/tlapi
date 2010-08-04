@@ -11,16 +11,19 @@ namespace TLAPI
   {
     PVOID pSoundBank;
 
-    u32 unk102[8];
+    //u32 unk102[8];
+    u32 unk102[7];
 
-    CString nameReal;
+    wstring nameReal;
+    //CString nameReal;
 
     u32 unk103[5];        //
 
     // Dump item info
     void dumpItem() {
       log("CItem Dump: %p (size: %i)", this, sizeof(CItem));
-      log(L"  nameReal: %s", nameReal.getString());
+      //log(L"  nameReal: %s", nameReal.getString());
+      log(L"  nameReal: %s", nameReal.c_str());
       log("  SoundBank: %p", pSoundBank);
 
       for (int i = 0; i < 8; i++) {

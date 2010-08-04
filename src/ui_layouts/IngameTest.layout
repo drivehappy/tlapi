@@ -1,0 +1,108 @@
+<?xml version="1.0" ?>
+<GUILayout>
+    <Window Type="GuiLook/StaticImage" Name="Frame">
+          <Property Name="UnifiedPosition" Value="{{0.01,0},{0.2,0}}" />
+          <Property Name="UnifiedSize" Value="{{0.4,0},{0.6,0}}" />
+          <Property Name="Image" Value="set:GuiLook image:GrayLine" />
+
+          <Window Type="GuiLook/StaticText" Name="Title">
+              <Property Name="HorzTextFormatting" Value="CentreAligned" />
+              <Property Name="VertFormatting" Value="CentreAligned" />
+              <Property Name="UnifiedPosition" Value="{{.5,-71},{.5,-200}}" />
+              <Property Name="UnifiedSize" Value="{{0,142},{0,28}}" />
+              <Property Name="TextColour" Value="FFFFFFFF"/>
+		          <Property Name="Font" Value="SerifBig"/>
+          </Window>   
+          <Window Type="GuiLook/StandardButton" Name="CloseTests">
+              <Property Name="UnifiedPosition" Value="{{.5,-76},{.90,0}}" />
+              <Property Name="UnifiedSize" Value="{{0,152},{0,28}}" />
+              <Property Name="Text" Value="Close Tests"/>
+              <Property Name="onClick" Value="guiExitGame"/>
+          </Window>
+          
+          <Window Type="GuiLook/StandardButton" Name="Test1">
+              <Property Name="UnifiedPosition" Value="{{0.02,0},{.5,-150}}" />
+              <Property Name="UnifiedSize" Value="{{0,152},{0,28}}" />
+              <Property Name="Text" Value="Run Test 1"/>
+          </Window>
+          <Window Type="GuiLook/StaticText" Name="Choice1">
+              <Property Name="HorzTextFormatting" Value="WordWrapLeftAligned" />
+              <Property Name="VertFormatting" Value="CentreAligned" />
+              <Property Name="UnifiedPosition" Value="{{0.35,0},{.5,-150}}" />
+              <Property Name="UnifiedSize" Value="{{0,300},{0,40}}" />
+              <Property Name="TextColour" Value="FFFFFFFF"/>
+              <Property Name="Text" Value="Test1: Create a deterministic socketed and enchanted item with a gem placed inside."/>
+          </Window>   
+          
+          <Window Type="GuiLook/StandardButton" Name="Test2">
+              <Property Name="UnifiedPosition" Value="{{0.02,0},{.5,-100}}" />
+              <Property Name="UnifiedSize" Value="{{0,152},{0,28}}" />
+              <Property Name="Text" Value="Run Test 2"/>
+          </Window>
+          <Window Type="GuiLook/StaticText" Name="Choice2">
+              <Property Name="HorzTextFormatting" Value="WordWrapLeftAligned" />
+              <Property Name="VertFormatting" Value="CentreAligned" />
+              <Property Name="UnifiedPosition" Value="{{0.35,0},{.5,-100}}" />
+              <Property Name="UnifiedSize" Value="{{0,300},{0,40}}" />
+              <Property Name="TextColour" Value="FFFFFFFF"/>
+              <Property Name="Text" Value="Test2: Create each type of class character."/>
+          </Window>   
+          
+          <Window Type="GuiLook/StandardButton" Name="Test3">
+              <Property Name="UnifiedPosition" Value="{{0.02,0},{.5,-50}}" />
+              <Property Name="UnifiedSize" Value="{{0,152},{0,28}}" />
+              <Property Name="Text" Value="Run Test 3"/>
+          </Window>
+          <Window Type="GuiLook/StaticText" Name="Choice3">
+              <Property Name="HorzTextFormatting" Value="WordWrapLeftAligned" />
+              <Property Name="VertFormatting" Value="CentreAligned" />
+              <Property Name="UnifiedPosition" Value="{{0.35,0},{.5,-50}}" />
+              <Property Name="UnifiedSize" Value="{{0,300},{0,40}}" />
+              <Property Name="TextColour" Value="FFFFFFFF"/>
+              <Property Name="Text" Value="Test3: Drop all player equipment to the ground."/>
+          </Window>
+
+          <Window Type="GuiLook/StandardButton" Name="Test4">
+            <Property Name="UnifiedPosition" Value="{{0.02,0},{.5,0}}" />
+            <Property Name="UnifiedSize" Value="{{0,152},{0,28}}" />
+            <Property Name="Text" Value="Run Test 4"/>
+          </Window>
+          <Window Type="GuiLook/StaticText" Name="Choice4">
+            <Property Name="HorzTextFormatting" Value="WordWrapLeftAligned" />
+            <Property Name="VertFormatting" Value="CentreAligned" />
+            <Property Name="UnifiedPosition" Value="{{0.35,0},{.5,0}}" />
+            <Property Name="UnifiedSize" Value="{{0,300},{0,40}}" />
+            <Property Name="TextColour" Value="FFFFFFFF"/>
+            <Property Name="Text" Value="Test4: Force player load into Town."/>
+          </Window>
+
+          <Window Type="GuiLook/StandardButton" Name="Test5">
+            <Property Name="UnifiedPosition" Value="{{0.02,0},{.5,50}}" />
+            <Property Name="UnifiedSize" Value="{{0,152},{0,28}}" />
+            <Property Name="Text" Value="Run Test 5"/>
+          </Window>
+          <Window Type="GuiLook/StaticText" Name="Choice5">
+            <Property Name="HorzTextFormatting" Value="WordWrapLeftAligned" />
+            <Property Name="VertFormatting" Value="CentreAligned" />
+            <Property Name="UnifiedPosition" Value="{{0.35,0},{.5,50}}" />
+            <Property Name="UnifiedSize" Value="{{0,300},{0,40}}" />
+            <Property Name="TextColour" Value="FFFFFFFF"/>
+            <Property Name="Text" Value="Test5: Dump vendor inventories to console."/>
+          </Window>
+
+          <Window Type="GuiLook/StandardButton" Name="Test6">
+            <Property Name="UnifiedPosition" Value="{{0.02,0},{.5,100}}" />
+            <Property Name="UnifiedSize" Value="{{0,152},{0,28}}" />
+            <Property Name="Text" Value="Run Test 6"/>
+          </Window>
+          <Window Type="GuiLook/StaticText" Name="Choice6">
+            <Property Name="HorzTextFormatting" Value="WordWrapLeftAligned" />
+            <Property Name="VertFormatting" Value="CentreAligned" />
+            <Property Name="UnifiedPosition" Value="{{0.35,0},{.5,100}}" />
+            <Property Name="UnifiedSize" Value="{{0,300},{0,45}}" />
+            <Property Name="TextColour" Value="FFFFFFFF"/>
+            <Property Name="Text" Value="Test6: Creates a Bishop's Axe with uber chaos gems and places it into Tarn's inventory."/>
+          </Window>
+
+      </Window>
+</GUILayout>
