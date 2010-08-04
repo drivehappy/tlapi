@@ -21,6 +21,9 @@ namespace TLAPI
 #pragma pack(1)
 
   struct CLevel;
+  struct CCharacter;
+  TLFUNC(CharacterSetAlignment, void,  __thiscall, (CCharacter*, u32));
+  TLFUNC(PlayerPickupEquipment, PVOID, __thiscall, (CPlayer*, CEquipment*, CLevel*));
   
   // 
   struct CCharacter : CBaseUnit
@@ -101,9 +104,9 @@ namespace TLAPI
 
     u64     guidMonster[3]; // 6B03517E9E3311DEh, 0FFFFFFFFFFFFFFFFh, 0FFFFFFFFFFFFFFFFh
 
-    CString2  Skill1;    // "Heal All I"
-    CString2  Skill2;    // "TOWN PORTAL"
-    CString2  Skill3;    // "Summon Zombies III"
+    wstring  Skill1;    // "Heal All I"
+    wstring  Skill2;    // "TOWN PORTAL"
+    wstring  Skill3;    // "Summon Zombies III"
     CString   Skill4;    // "HEAL SELF IV"
 
     u32      unk23[4];    // 1, 1, 1, 1
@@ -126,18 +129,18 @@ namespace TLAPI
     u32      unk18;
     CList<CParticle*>  listParticles;
 
-    CString2 characterName;
+    wstring characterName;
     CCollisionModel   *pCCollisionModel;
 
     u32      unk31;
     float    unk32[4];  // 0.5, 0.375, 1.0, 1.25
 
     CWardrobe         *pCWardrobe;
-    CString2           playerTextureBody;
-    CString2           playerTextureChest;
-    CString2           playerTextureFeet;
-    CString2           playerTextureHands;
-    CString2           playerTexture0;
+    wstring           playerTextureBody;
+    wstring           playerTextureChest;
+    wstring           playerTextureFeet;
+    wstring           playerTextureHands;
+    wstring           playerTexture0;
 
     u32     unk33[29];
 
@@ -178,6 +181,17 @@ namespace TLAPI
     EVENT_DECL(CCharacter, void, CharacterStrike,
       (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32),
       ((CCharacter*)e->_this, (CLevel*)Pz[0], (CCharacter*)Pz[1], (PVOID)Pz[2], Pz[3], *(float*)&Pz[4], *(float*)&Pz[5], Pz[6]));
+
+
+
+    // Set Alignment
+    void SetAlignment(u32 alignment) {
+      CharacterSetAlignment(this, alignment);
+    }
+    void PickupEquipment(CEquipment* equipment, CLevel* level) {
+      CPlayer* player = (CPlayer*)this;
+      PlayerPickupEquipment(player, equipment, level);
+    }
 
   };
 

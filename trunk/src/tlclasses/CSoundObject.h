@@ -1,15 +1,16 @@
 #pragma once
 
-#include "CRunicCore.h"
+#include "CPositionableObject.h"
 
 namespace TLAPI
 {
 
 #pragma pack(1)
 
-  struct CDescriptorProp : CRunicCore
+  struct CSoundObject : CPositionableObject
   {
-    
+
+
   };
 
 #pragma pack()

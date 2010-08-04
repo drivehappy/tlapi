@@ -73,3 +73,10 @@ void Test_GameClient_CreateLevel(CGameClient *client, u32 unk0, u32 unk1, u32 un
   log("  unk22: %x", unk22);
   log("  unk23: %x", unk23);
 }
+
+void Test_GameClient_LoadLevel(CGameClient *client)
+{
+  log("GameClient LoadLevel (client = %p)", client);
+  log("  LevelChange = %i", client->level);
+  log("  LevelChangeUnk = %i", client->levelUnk);
+}

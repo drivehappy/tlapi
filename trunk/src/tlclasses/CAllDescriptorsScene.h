@@ -10,9 +10,11 @@ namespace TLAPI
   // Size?: F0h
   struct CAllDescriptorsScene : CLayoutScene
   {
+    /*
     u32 unk6[27];
 
     PVOID unk7;     // 
+    */
   };
 
 #pragma pack()

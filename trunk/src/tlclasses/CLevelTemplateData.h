@@ -7,6 +7,7 @@ namespace TLAPI
 
 #pragma pack(1)
 
+  //
   struct CLevelTemplateData : CRunicCore
   {
     u32 unk0;

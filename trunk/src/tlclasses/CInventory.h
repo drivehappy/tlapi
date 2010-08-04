@@ -34,7 +34,12 @@
 namespace TLAPI
 {
 
-  struct CPlayer;
+  struct CCharacter;
+  struct CInventory;
+  TLFUNC(InventoryRemoveEquipment, PVOID, __thiscall, (CInventory*, CEquipment*));
+  TLFUNC(InventoryAddEquipment,    PVOID, __thiscall, (CInventory*, CEquipment*, u32, u32));
+
+#pragma pack(1)
 
   // 
   struct CInventory : CRunicCore
@@ -42,12 +47,22 @@ namespace TLAPI
     u32                   unk0[3];
 
     CEffectManager       *pCEffectManager;
-    CPlayer              *pCPlayer;
+    CCharacter           *pCCharacter;
 
     u32                   unk10;
 
     CList<CEquipmentRef*> equipmentList;
     CList<PVOID>          iInventoryListenerList;
+
+    
+    // Remove equipment from inventory
+    void RemoveEquipment(CEquipment* equipment) {
+      InventoryRemoveEquipment(this, equipment);
+    }
+    void AddEquipment(CEquipment* equipment, u32 slot, u32 unk) {
+      InventoryAddEquipment(this, equipment, slot, unk);
+    }
+
 
 
     void dumpInventory() {
@@ -59,12 +74,13 @@ namespace TLAPI
       //logColor(B_RED, "  unk10 = %9i %#9x", unk10, unk10);
 
       logColor(B_RED, "  CEffectManager: %p", pCEffectManager);
-      logColor(B_RED, "  CPlayer: %p", pCPlayer);
+      logColor(B_RED, "  CCharacter: %p", pCCharacter);
       logColor(B_RED, "  EquipmentCount: %i", equipmentList.size);
       logColor(B_RED, "  Equipment:");
 
       for (int i = 0; i < (int)equipmentList.size; i++) {
-        logColor(B_RED, L"  Equipment Name: %s", equipmentList[i]->pCEquipment->nameReal.getString());
+        //logColor(B_RED, L"  Equipment Name: %s", equipmentList[i]->pCEquipment->nameReal.getString());
+        logColor(B_RED, L"  Equipment Name: %s", equipmentList[i]->pCEquipment->nameReal.c_str());
         logColor(B_RED, L"  Equipment AttackDesc:");
         CAttackDescription *attackLeftHand = equipmentList[i]->pCEquipment->pCAttackDescriptor0;
         CAttackDescription *attackRightHand = equipmentList[i]->pCEquipment->pCAttackDescriptor0;
@@ -78,5 +94,7 @@ namespace TLAPI
       }
     }
   };
+
+#pragma pack()
 
 };

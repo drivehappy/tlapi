@@ -19,6 +19,7 @@ namespace TLAPI
   // Forward decl
   struct CResourceManager;
   TLFUNC(ResourceManagerCreateEquipment, CEquipment*, __thiscall, (CResourceManager*, u64, u32, u32, u32));
+  TLFUNC(ResourceManagerCreateCharacter, CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool));
 
   // 
   struct CResourceManager : CRunicCore
@@ -41,7 +42,7 @@ namespace TLAPI
       ((CResourceManager*)e->_this, Pz[0], Pz[1]));
 
     // Character Creation
-    EVENT_DECL(CResourceManager, void, ResouceManagerCreateCharacter,
+    EVENT_DECL(CResourceManager, void, ResourceManagerCreateCharacter,
       (CResourceManager*, u64, u32, bool),
       ((CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], (bool)Pz[3]));
 
@@ -64,6 +65,10 @@ namespace TLAPI
     // Create equipment
     CEquipment* CreateEquipment(u64 guid, u32 unk0, u32 unk1, u32 unk2) {
       return ResourceManagerCreateEquipment(this, guid, unk0, unk1, unk2);
+    }
+    // Create Character
+    CCharacter* CreateCharacter(u64 guid, u32 level, bool unk) {
+      return ResourceManagerCreateCharacter(this, guid, level, unk);
     }
   };
 

@@ -70,9 +70,11 @@ namespace TLAPI
 
     PVOID     pCEGUIPropertySheet;
 
-    u32       unk1005;
+    //u32       unk1005;
+    //CString nameUnidentified;
 
-    CString nameUnidentified;
+    wstring nameUnidentified;
+
     CString namePrefix;         // Appears to crash, not quite right?
     CString nameSuffix;
 
@@ -217,7 +219,7 @@ namespace TLAPI
 
       logColor(B_GREEN, "  CEGUIPropertySheet = %p", pCEGUIPropertySheet);
 
-      logColor(B_GREEN, L"  nameUnidentified = %s", nameUnidentified.getString());
+      logColor(B_GREEN, L"  nameUnidentified = %s", nameUnidentified.c_str());
       //logColor(B_GREEN, L"  namePrefix = %s", namePrefix.getString());
       //logColor(B_GREEN, L"  nameSuffix = %s", nameSuffix.getString());
 

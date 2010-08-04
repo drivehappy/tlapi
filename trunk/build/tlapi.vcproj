@@ -709,6 +709,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\tlclasses\CLogicTimerDescriptor.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CLogicTrigger.h"
 				>
 			</File>
@@ -897,11 +901,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\tlclasses\CSoundObject.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CSpawnClass.h"
 				>
 			</File>
 			<File
 				RelativePath="..\src\tlclasses\CStringTranslate.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\tlclasses\CSubMenu.h"
 				>
 			</File>
 			<File

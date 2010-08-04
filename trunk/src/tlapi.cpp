@@ -9,7 +9,7 @@ using namespace TLAPI;
 u32 exeBaseReal = (u32)GetModuleHandle("Torchlight.exe");
 
 // Define the offset locations
-TLFUNCPTR(ResouceManagerCreateCharacter,          CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool),                            0x5FBB70);     // CResourceManager, u64 guid, u32 level, bool noitems?
+TLFUNCPTR(ResourceManagerCreateCharacter,         CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool),                            0x5FBB70);     // CResourceManager, u64 guid, u32 level, bool noitems?
 TLFUNCPTR(LevelCharacterInitialize,               CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32),                          0x4F2EF0);     // CLevel, CMonster, vector3*, u32 unk
 TLFUNCPTR(ResourceManagerCreateCharacterByName,   CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32),  0x5FC600);     // CResourceManager, ...
 TLFUNCPTR(CharacterSetAlignment,                  void,         __thiscall, (CCharacter*, u32),                                             0x4839E0);     // CMonster, u32 alignment (2 = badguy, 0 = goodguy)
@@ -124,6 +124,9 @@ TLFUNCPTR(GameClient_SetupUI,                     void,     __thiscall, (CGameCl
 TLFUNCPTR(Game_CreateUI,                          void,     __thiscall, (CGame*),                                          0x402070);
 
 TLFUNCPTR(GameClient_CreateLevel,                 void,     __thiscall, (CGameClient*, u32, u32, u32, CGameClient*),       0x415820);
+TLFUNCPTR(GameClient_LoadLevel,                   void,     __thiscall, (CGameClient*),                                    0x4197E0);
+
+TLFUNCPTR(MouseManagerInput,                      void,     __thiscall, (CMouseManager*, u32, u32),                        0x4E47F0);
 
 //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF20);
 // ... and add more later
@@ -138,10 +141,12 @@ void TLAPI::Initialize()
 
 void TLAPI::PatchProcess()
 {
-  // always generate new uhm.. monsters? when zoning
-  PatchJMP(EXEOFFSET(0x4169D1), EXEOFFSET(0x416A21));   // v1.15
+  // This suppresses Stash and Shared Stashes from loading - only when loading a game
+  //  on a new game these are present
+  // This also stops vendor inventories from loading
+  //PatchJMP(EXEOFFSET(0x4169D1), EXEOFFSET(0x416A21));   // v1.15
 
-  // What is this patch for?
+  // 
   PatchJMP(EXEOFFSET(0x489F8D), EXEOFFSET(0x48A08B));   // v1.15
 }
 
@@ -168,6 +173,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CGameClient, GameClient_SaveGame, 2);
   EVENT_INIT(CGameClient, GameClient_SetupUI, 2);
   EVENT_INIT(CGameClient, GameClient_CreateLevel, 24);
+  EVENT_INIT(CGameClient, GameClient_LoadLevel, 0);
 
   // Hook Equipment
   EVENT_INIT(CEquipment, EquipmentInitialize, 1);
@@ -179,10 +185,10 @@ void TLAPI::HookFunctions()
   /*
   // Hook ResourceManager
   EVENT_INIT(CResourceManager, ResourceManagerInitializePlayer, 3);
-  EVENT_INIT(CResourceManager, ResouceManagerCreateCharacter, 4);
   EVENT_INIT(CResourceManager, ResourceManagerCreateCharacterByName, 5);
   EVENT_INIT(CResourceManager, ResourceManagerCreateSomething, 5);
   */
+  EVENT_INIT(CResourceManager, ResourceManagerCreateCharacter, 4);
   EVENT_INIT(CResourceManager, ResourceManagerCreateEquipment, 5);
   
   // Hook Level
@@ -190,6 +196,8 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CLevel, LevelCreateAstarPathfinding, 7);
   EVENT_INIT(CLevel, LevelDropEquipment, 3);
   
+  // Hook MouseManager
+  EVENT_INIT(CMouseManager, MouseManagerInput, 2);
 
   // Hook Character
   EVENT_INIT(CCharacter, CharacterSetAlignment, 1);

@@ -9,6 +9,9 @@ void Test_CreateCharacter(CCharacter* retVal, CResourceManager* resourceManager,
     L"ResourceManager(%p)::CreateCharacter( %016I64X, %i, %s ) returns Character(%p)",
     resourceManager, guid, unk0, unk1 ? L"true" : L"false", retVal);
 
+  log(L"CreateCharacter: %016I64X  %s",
+    guid, retVal->name);
+
   resManager = resourceManager;
 }
 
@@ -32,7 +35,9 @@ void Test_CreateEquipment(CEquipment* retval, CResourceManager* resourceManager,
     L"ResourceManager(%p)::Test_CreateEquipment( %016I64X, %x, %x, %x ) returns Equipment(%p)",
     resourceManager, guid, level, unk1, unk2, retval);
 
-  log(L"CreateEquipment: %016I64X  %s  (Level = %i)", guid, retval->nameReal, level);
+  //log(L"CreateEquipment: %016I64X  %s  (Level = %i)",
+  //  guid, retval->nameReal.c_str(), level);
+
   resManager = resourceManager;
 }
 
