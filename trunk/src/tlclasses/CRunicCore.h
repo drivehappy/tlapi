@@ -1,5 +1,11 @@
 #pragma once
 
+// Include our helper so we don't have to on every other file
+#include "Helper.h"
+
+/*
+  This is the base class of most Torchlight classes.
+*/
 
 namespace TLAPI {
 
