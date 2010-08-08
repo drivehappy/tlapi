@@ -72,7 +72,7 @@ TLFUNCPTR(PlayerResurrect,                        void,     __thiscall, (CDieMen
 // In-place definitions
 
 //TLFUNCPTR(GameClientProcessObjects,     void,     __thiscall, (PVOID, PVOID, PVOID, PVOID),                      0x41A790);     // 1.15  CGameClient
-TLFUNCPTR(GameClientProcessObjects,               void,     __thiscall, (CGameClient*, PVOID, PVOID, PVOID),               0x41A790);     // 1.15  CGameClient
+TLFUNCPTR(GameClientProcessObjects,               void,     __thiscall, (CGameClient*, float, PVOID, PVOID),               0x41A790);     // 1.15  CGameClient
 
 TLFUNCPTR(MonsterProcessAI2,                      void,     __thiscall, (CMonster*, float),                                0x4D4450);     // 1.15  CMonster, float (0.002)
 TLFUNCPTR(MonsterProcessAI3,                      void,     __thiscall, (CMonster*, u32),                                  0x498670);     // 1.15  CMonster, u32 unk (0)

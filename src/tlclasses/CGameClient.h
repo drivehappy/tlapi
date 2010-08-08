@@ -87,8 +87,8 @@ namespace TLAPI
       ((PVOID)e->retval, (CGameClient *)e->_this, Pz[0]));
 
     EVENT_DECL(CGameClient, void, GameClientProcessObjects,
-      (CGameClient*, PVOID, PVOID, PVOID),
-      ((CGameClient *)e->_this, (PVOID)Pz[0], (PVOID)Pz[1], (PVOID)Pz[2]));
+      (CGameClient*, float, PVOID, PVOID),
+      ((CGameClient *)e->_this, *(float*)&Pz[0], (PVOID)Pz[1], (PVOID)Pz[2]));
 
     EVENT_DECL(CGameClient, void, GameClient_SaveGame,
       (CGameClient*, u32, u32, bool&),

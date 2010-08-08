@@ -38,13 +38,13 @@ namespace TLAPI
 
     // Player Initialization
     EVENT_DECL(CResourceManager, void, ResourceManagerInitializePlayer,
-      (CResourceManager*, u32, u32),
-      ((CResourceManager*)e->_this, Pz[0], Pz[1]));
+      (CPlayer*, CResourceManager*, u32, u32),
+      ((CPlayer*)e->retval, (CResourceManager*)e->_this, Pz[0], Pz[1]));
 
     // Character Creation
     EVENT_DECL(CResourceManager, void, ResourceManagerCreateCharacter,
-      (CResourceManager*, u64, u32, bool),
-      ((CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], (bool)Pz[3]));
+      (CCharacter*, CResourceManager*, u64, u32, bool),
+      ((CCharacter*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], (bool)Pz[3]));
 
     // Character Creation by Name
     EVENT_DECL(CResourceManager, void, ResourceManagerCreateCharacterByName,

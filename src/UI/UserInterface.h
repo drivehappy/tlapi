@@ -15,7 +15,7 @@ namespace TLAPI {
     UserInterface();
     ~UserInterface() {};
 
-    void init();
+    static void init();
 
     static CEGUI::WindowManager* getManager();
 
