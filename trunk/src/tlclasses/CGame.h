@@ -1,13 +1,20 @@
 #pragma once
 
+#include "_CString.h"
 #include "CRunicCore.h"
 #include "CCameraControl.h"
 #include "CSoundManager.h"
+#include "CSettings.h"
 
 namespace TLAPI
 {
 
 #pragma pack(1)
+
+  // Forward decls
+  //struct CGame;
+  //TLFUNC(Game_CreateUI, void, __thiscall, (CGame*));
+
 
   struct CGame : CRunicCore
   {

@@ -81,7 +81,7 @@ namespace TLAPI {
   // In-place definitions
 
   //TLFUNC(GameClientProcessObjects,           void,     __thiscall, (PVOID, PVOID, PVOID, PVOID));
-  TLFUNC(GameClientProcessObjects,              void,     __thiscall, (CGameClient*, PVOID, PVOID, PVOID));
+  TLFUNC(GameClientProcessObjects,              void,     __thiscall, (CGameClient*, float, PVOID, PVOID));
 
   TLFUNC(MonsterProcessAI2,                     void,     __thiscall, (CMonster*, float));
   TLFUNC(MonsterProcessAI3,                     void,     __thiscall, (CMonster*, u32));

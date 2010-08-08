@@ -26,7 +26,7 @@ EVENT_DEF(CMouseManager, void, MouseManagerInput, (CMouseManager*, u32, u32, boo
 
 // GameClient
 EVENT_DEF(CGameClient, void, GameClientLoadMap, (CGameClient*, u32));
-EVENT_DEF(CGameClient, void, GameClientProcessObjects, (CGameClient*, PVOID, PVOID, PVOID));
+EVENT_DEF(CGameClient, void, GameClientProcessObjects, (CGameClient*, float, PVOID, PVOID));
 EVENT_DEF(CGameClient, void, GameClient_SaveGame, (CGameClient*, u32, u32, bool*));
 EVENT_DEF(CGameClient, void, GameClient_SetupUI, (CGameClient*, u32, u32));
 EVENT_DEF(CGameClient, void, GameClient_CreateLevel, (CGameClient*, u32, u32, u32,
@@ -40,11 +40,11 @@ EVENT_DEF(CEquipment, void, Equipment_AddMagicModifier, (CEquipment*, u32, u32))
 EVENT_DEF(CEquipment, void, Equipment_AddAffix, (CEquipment*, CAffix*, u32, CEquipment*, float));
 
 // ResourceManager
-EVENT_DEF(CResourceManager, void, ResourceManagerInitializePlayer, (CResourceManager*, u32, u32));
-EVENT_DEF(CResourceManager, void, ResourceManagerCreateCharacter, (CResourceManager*, u64, u32, bool));
-EVENT_DEF(CResourceManager, void, ResourceManagerCreateCharacterByName, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
-EVENT_DEF(CResourceManager, void, ResourceManagerCreateSomething, (CResourceManager*, u64, u32, u32, u32));
-EVENT_DEF(CResourceManager, void, ResourceManagerCreateEquipment, (CEquipment*, CResourceManager*, u64, u32, u32, u32));
+EVENT_DEF(CResourceManager, void, ResourceManagerInitializePlayer,      (CResourceManager*, u32, u32));
+EVENT_DEF(CResourceManager, void, ResourceManagerCreateCharacter,       (CCharacter*, CResourceManager*, u64, u32, bool));
+EVENT_DEF(CResourceManager, void, ResourceManagerCreateCharacterByName, (CCharacter*, CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
+EVENT_DEF(CResourceManager, void, ResourceManagerCreateSomething,       (CResourceManager*, u64, u32, u32, u32));
+EVENT_DEF(CResourceManager, void, ResourceManagerCreateEquipment,       (CEquipment*, CResourceManager*, u64, u32, u32, u32));
 
 // Level
 EVENT_DEF(CLevel, void, LevelCharacterInitialize, (CLevel*, CCharacter*, Vector3*, u32));
