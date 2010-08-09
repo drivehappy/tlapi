@@ -56,9 +56,7 @@ void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0);
 void Test_GameClientProcessObjects(CGameClient*, float, PVOID, PVOID);
 void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1, bool & callOriginal);
 void Test_GameClient_SetupUI(CGameClient *client, u32 unk0, u32 unk1);
-void Test_GameClient_CreateLevel(CGameClient *client, u32 unk0, u32 unk1, u32 unk2, CGameClient *client2, u32 unk4, u32 unk5,
-  u32 unk6, u32 unk7, u32 unk8, u32 unk9, u32 unk10, u32 unk11,u32 unk12, u32 unk13, u32 unk14, u32 unk15, u32 unk16,
-  u32 unk17,u32 unk18, u32 unk19, u32 unk20, u32 unk21, u32 unk22, u32 unk23);
+void Test_GameClient_CreateLevel(CGameClient* client, wstring unk0, wstring unk1, u32 unk2, u32 unk3, u32 unk4, wstring unk5);
 void Test_GameClient_LoadLevel(CGameClient *client);
 
 // Level
