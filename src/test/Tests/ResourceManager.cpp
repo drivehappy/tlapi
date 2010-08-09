@@ -22,11 +22,11 @@ void Test_CreateCharacterByName(CCharacter* retVal, CResourceManager* resourceMa
     resourceManager, str1, str2, unk0, unk1, retVal);
 }
 
-void Test_InitCharacter(CResourceManager* resourceManager, u32 unk0, u32 unk1)
+void Test_InitCharacter(CPlayer* player, CResourceManager* resourceManager, u32 unk0, u32 unk1)
 {
   testLogger.WriteLine(Info,
     L"ResourceManager(%p)::InitCharacter( %i %i ) returns Character(%p)",
-    resourceManager, unk0, unk1, NULL);
+    resourceManager, unk0, unk1, player);
 }
 
 void Test_CreateEquipment(CEquipment* retval, CResourceManager* resourceManager, u64 guid, u32 level, u32 unk1, u32 unk2)

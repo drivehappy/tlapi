@@ -41,7 +41,7 @@ void Test_MouseManagerHandleInput(CMouseManager*, u32 wParam, u32 mouseButton, b
 // ResourceManager
 void Test_CreateCharacter(CCharacter*, CResourceManager*, u64, u32, bool);
 void Test_CreateCharacterByName(CCharacter*, CResourceManager*, const wchar_t*, const wchar_t*, u32, u32);
-void Test_InitCharacter(CResourceManager* resourceMgr, u32 unk0, u32 unk1);
+void Test_InitCharacter(CPlayer*, CResourceManager* resourceMgr, u32 unk0, u32 unk1);
 void Test_CreateSomething(PVOID retVal, CResourceManager*, u64, u32, u32, u32);
 void Test_CreateEquipment(CEquipment* retval, CResourceManager* resManager, u64 guid, u32 unk0, u32 unk1, u32 unk2);
 
@@ -53,7 +53,7 @@ void Test_Equipment_AddAffix(CEquipment* equipment, CAffix* affix, u32 unk0, CEq
 
 // GameClient
 void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0);
-void Test_GameClientProcessObjects(CGameClient*, PVOID, PVOID, PVOID);
+void Test_GameClientProcessObjects(CGameClient*, float, PVOID, PVOID);
 void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1, bool & callOriginal);
 void Test_GameClient_SetupUI(CGameClient *client, u32 unk0, u32 unk1);
 void Test_GameClient_CreateLevel(CGameClient *client, u32 unk0, u32 unk1, u32 unk2, CGameClient *client2, u32 unk4, u32 unk5,

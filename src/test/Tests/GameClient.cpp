@@ -12,13 +12,13 @@ void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0)
     client, unk0, retVal);
 }
 
-void Test_GameClientProcessObjects(CGameClient *client, PVOID unk0, PVOID unk1, PVOID unk2)
+void Test_GameClientProcessObjects(CGameClient *client, float dTime, PVOID unk1, PVOID unk2)
 {
   gameClient = client;
 
   testLogger.WriteLine(Verbose,
-    L"GameClient(%p)::ProcessObjects( unk0(%x), unk1(%x), unk2(%x) )",
-    client, unk0, unk1, unk2);
+    L"GameClient(%p)::ProcessObjects( dTime(%f), unk1(%x), unk2(%x) )",
+    client, dTime, unk1, unk2);
 
 
 }
