@@ -99,16 +99,9 @@ namespace TLAPI
       ((CGameClient*)e->_this, Pz[0], Pz[1]));
     
     EVENT_DECL(CGameClient, void, GameClient_CreateLevel,
-      (CGameClient*,
-       u32, u32, u32, CGameClient*, u32, u32,
-       u32, u32, u32, u32, u32, u32,
-       u32, u32, u32, u32, u32, u32,
-       u32, u32, u32, u32, u32, u32),
+      (CGameClient* client, wstring unk0, wstring unk1, u32 unk2, u32 unk3, u32 unk4, wstring unk5),
       ((CGameClient*)e->_this,
-       Pz[0], Pz[1], Pz[2], (CGameClient*)Pz[3], Pz[4], Pz[5],
-       Pz[6], Pz[7], Pz[8], Pz[9], Pz[10], Pz[11],
-       Pz[12], Pz[13], Pz[14], Pz[15], Pz[16], Pz[17],
-       Pz[18], Pz[19], Pz[20], Pz[21], Pz[22], Pz[23]));
+       *(wstring*)&Pz[0], *(wstring*)&Pz[7], Pz[14], Pz[15], Pz[16], *(wstring*)&Pz[17]));
 
     EVENT_DECL(CGameClient, void, GameClient_LoadLevel,
       (CGameClient*),
