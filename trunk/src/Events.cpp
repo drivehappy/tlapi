@@ -14,9 +14,15 @@ EVENT_DEF(_GLOBAL, LRESULT, WndProc, (HWND, UINT, WPARAM, LPARAM));
 // EffectGroupManager
 EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGroupManager*, u32, u32, u32, CList<CAffix*>&));
 
+// MainMenu
+EVENT_DEF(CMainMenu, void, MainMenu_Event, (CMainMenu*, u32, wstring, bool&));
+
 // EffectManager
 EVENT_DEF(CEffectManager, void, EffectManagerCreateEffect, (CEffect*, CEffectManager*));
 EVENT_DEF(CEffectManager, void, EffectManager_AddEffectToEquipment, (CEffectManager*, CEquipment*, CEffect*));
+
+// CharacterSaveState
+EVENT_DEF(CCharacterSaveState, void, CharacterSaveState_LoadFromFile, (CCharacterSaveState*, PVOID, u32));
 
 // Game
 EVENT_DEF(CGame, void, Game_CreateUI, (CGame*));
@@ -32,6 +38,7 @@ EVENT_DEF(CGameClient, void, GameClient_SetupUI, (CGameClient*, u32, u32));
 EVENT_DEF(CGameClient, void, GameClient_CreateLevel, (CGameClient*, u32, u32, u32,
           CGameClient*, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32));
 EVENT_DEF(CGameClient, void, GameClient_LoadLevel, (CGameClient*));
+EVENT_DEF(CGameClient, void, GameClientProcessTitleScreen, (CGameClient*, float, PVOID, float, u32));
 
 // Equipment
 EVENT_DEF(CEquipment, void, EquipmentInitialize, (CEquipment*, CItemSaveState*));

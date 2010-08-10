@@ -19,6 +19,8 @@
 #include "CMasterResourceManager.h"
 #include "CGame.h"
 #include "CMouseManager.h"
+#include "CCharacterSaveState.h"
+#include "CMainMenu.h"
 
 namespace TLAPI {
 
@@ -92,7 +94,7 @@ namespace TLAPI {
 
   TLFUNC(PlayerCharacterSetAction,              void,     __thiscall, (CPlayer*));
   
-  TLFUNC(GameClientProcessTitleScreen,          void,     __thiscall, (CGameClient*, float, PVOID, float, u32));
+  TLFUNC(GameClientProcessTitleScreen,          void,     __thiscall, (CGameClient*, float, PVOID, PVOID));
 
   TLFUNC(GameClientLoadMap,                     void,     __thiscall, (CGameClient*, u32));
 
@@ -135,10 +137,14 @@ namespace TLAPI {
   TLFUNC(GameClient_SetupUI,                    void,     __thiscall, (CGameClient*, u32, u32));
   TLFUNC(Game_CreateUI,                         void,     __thiscall, (CGame*));
 
-  TLFUNC(GameClient_CreateLevel,                void,     __thiscall, (CGameClient*, u32, u32, u32, CGameClient*));
+  TLFUNC(GameClient_CreateLevel,                void,     __thiscall, (CGameClient*, wstring, wstring, u32, u32, u32, wstring));
   TLFUNC(GameClient_LoadLevel,                  void,     __thiscall, (CGameClient*));
 
   TLFUNC(MouseManagerInput,                     void,     __thiscall, (CMouseManager*, u32, u32));
+
+  TLFUNC(CharacterSaveState_LoadFromFile,       void,     __thiscall, (CCharacterSaveState*, PVOID, u32));
+
+  TLFUNC(MainMenu_Event,                        void,     __thiscall, (CMainMenu*, u32, wstring));
 
   //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
 

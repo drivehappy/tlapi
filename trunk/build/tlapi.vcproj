@@ -721,6 +721,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\tlclasses\CMainMenu.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CMasterResourceManager.h"
 				>
 			</File>
