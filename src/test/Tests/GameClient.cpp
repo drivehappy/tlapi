@@ -3,7 +3,7 @@
 
 CGameClient *gameClient = NULL;
 
-void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0)
+void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0, bool& calloriginal)
 {
   gameClient = client;
 
@@ -43,7 +43,7 @@ void Test_GameClient_SetupUI(CGameClient *client, u32 unk0, u32 unk1)
   client->pCGameUI->dumpGameUI();
 }
 
-void Test_GameClient_CreateLevel(CGameClient* client, wstring unk0, wstring unk1, u32 unk2, u32 unk3, u32 unk4, wstring unk5)
+void Test_GameClient_CreateLevel(CGameClient* client, wstring unk0, wstring unk1, u32 unk2, u32 unk3, u32 unk4, wstring unk5, bool& calloriginal)
 {
   log("GameClient(%p) CreateLevel:", client);
   log(L"  unk0: %s", unk0.c_str());
@@ -54,7 +54,7 @@ void Test_GameClient_CreateLevel(CGameClient* client, wstring unk0, wstring unk1
   log(L"  unk5: %s", unk5.c_str());
 }
 
-void Test_GameClient_LoadLevel(CGameClient *client)
+void Test_GameClient_LoadLevel(CGameClient *client, bool& calloriginal)
 {
   log("GameClient LoadLevel (client = %p)", client);
   log("  LevelChange = %i", client->level);

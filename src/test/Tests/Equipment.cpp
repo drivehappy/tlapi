@@ -1,6 +1,6 @@
 #include "Test.h"
 
-void Test_Equipment_Initialize(CEquipment* equipment, CItemSaveState* itemSaveState)
+void Test_Equipment_Initialize(CEquipment* equipment, CItemSaveState* itemSaveState, bool& calloriginal)
 {
   testLogger.WriteLine(Info,
     L"Equipment(%p)::Initialize( %p ) returns TODO",
@@ -8,7 +8,7 @@ void Test_Equipment_Initialize(CEquipment* equipment, CItemSaveState* itemSaveSt
 
   testLogger.WriteLine(Verbose,
     L"  Name: %s",
-    itemSaveState->name.getString());
+    itemSaveState->name.c_str());
 
   //log("Equipment Initialize: this = %p, ItemSaveState = %p", equipment, itemSaveState);
   //itemSaveState->dumpItemSaveState();
