@@ -2,7 +2,6 @@
 
 #include "_CList.h"
 
-#include "CLayout.h"
 #include "CQuadTree.h"
 #include "CCollisionList.h"
 #include "CCharacter.h"
@@ -16,6 +15,7 @@ namespace TLAPI
 #pragma pack(1)
 
   // Forward decl
+  struct CLayout;
   struct CResourceManager;
   struct CLevel;
   TLFUNC(LevelDropEquipment,       PVOID,       __thiscall, (CLevel*, CEquipment*, Vector3 &, bool));

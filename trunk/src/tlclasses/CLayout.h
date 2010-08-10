@@ -6,7 +6,6 @@
 #include "_CList.h"
 
 #include "CAllDescriptorsScene.h"
-#include "CDescriptorManager.h"
 #include "CSettings.h"
 #include "CSoundObject.h"
 
@@ -14,6 +13,8 @@ namespace TLAPI
 {
 
 #pragma pack(1)
+
+  struct CDescriptorManager;
 
   struct CLayout : CAllDescriptorsScene
   {

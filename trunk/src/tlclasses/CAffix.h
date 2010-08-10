@@ -1,7 +1,9 @@
 #pragma once
 
-#include "CRunicCore.h"
 #include "_CString.h"
+#include "_CList.h"
+
+#include "CRunicCore.h"
 #include "CEffect.h"
 
 namespace TLAPI {

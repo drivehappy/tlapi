@@ -5,6 +5,7 @@
 
 namespace TLAPI
 {
+  struct CEquipment;
 
   struct CEquipmentRef : CRunicCore
   {

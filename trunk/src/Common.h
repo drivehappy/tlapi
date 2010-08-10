@@ -24,6 +24,6 @@ using namespace std;
 #define Ud e->user
 #define rPz e->ref_arg
 
+#include "Hook.h"
 #include "Helper.h"
-//#include "Offsets.h"
 #include "Events.h"

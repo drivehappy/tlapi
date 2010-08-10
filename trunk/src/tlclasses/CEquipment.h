@@ -2,9 +2,8 @@
 
 #include "CItem.h"
 #include "CAttackDescription.h"
-#include "CCharacter.h"
-#include "CGenericModel.h"
 #include "CMasterResourceManager.h"
+#include "CEffectManager.h"
 #include "CEffectGroupManager.h"
 
 namespace TLAPI
@@ -13,6 +12,8 @@ namespace TLAPI
   // Forward decl CInventory
   struct CInventory;
   struct CItemSaveState;
+  struct CGenericModel;
+  struct CCharacter;
 
   // Redefine the function here so we can use it within CEquipment
   // good ol' cyclic dependencies...
@@ -108,8 +109,8 @@ namespace TLAPI
 
     // Equipment Initialization
     EVENT_DECL(CItem, void, EquipmentInitialize,
-      (CEquipment*, CItemSaveState*),
-      ((CEquipment*)e->_this, (CItemSaveState*)Pz[0]));
+      (CEquipment*, CItemSaveState*, bool&),
+      ((CEquipment*)e->_this, (CItemSaveState*)Pz[0], e->calloriginal));
 
     // Enchant
     EVENT_DECL(CEquipment, void, EquipmentEnchant,

@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Helper.h"
+#include "Common.h"
 
 #include "_CList.h"
-
-#include "CEffectManager.h"
+#include "CEquipment.h"
 #include "CEquipmentRef.h"
 
 /* Slot IDs and their positions:
@@ -34,6 +33,7 @@
 namespace TLAPI
 {
 
+  struct CEffectManager;
   struct CCharacter;
   struct CInventory;
   TLFUNC(InventoryRemoveEquipment, PVOID, __thiscall, (CInventory*, CEquipment*));

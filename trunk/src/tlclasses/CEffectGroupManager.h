@@ -1,6 +1,8 @@
 #pragma once
 
+#include "_CList.h"
 #include "CRunicCore.h"
+#include "CAffix.h"
 
 namespace TLAPI {
 

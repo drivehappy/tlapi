@@ -2,9 +2,7 @@
 
 #include "Events.h"
 
-#include "CLevel.h"
-#include "CHierarchy.h"
-#include "CCharacter.h"
+#include "CRunicCore.h"
 
 namespace TLAPI
 {
@@ -13,11 +11,13 @@ namespace TLAPI
   struct CPlayer;
   struct CLevel;
   struct CCharacter;
+  struct CHierarchy;
 
 #pragma pack(1)
 
   // Forward decl
   struct CResourceManager;
+  struct CEquipment;
   TLFUNC(ResourceManagerCreateEquipment, CEquipment*, __thiscall, (CResourceManager*, u64, u32, u32, u32));
   TLFUNC(ResourceManagerCreateCharacter, CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool));
 

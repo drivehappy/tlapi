@@ -1,5 +1,9 @@
 #pragma once
 
+#include "Common.h"
+
+#include "_CString.h"
+#include "_CList.h"
 #include "CPositionableObject.h"
 
 namespace TLAPI
