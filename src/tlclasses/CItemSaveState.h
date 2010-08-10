@@ -11,18 +11,28 @@ namespace TLAPI {
   {
     u32 unk0;
 
-    CItemSaveState *pCItemSaveState;    // Gem?
+    wstring name;
+    wstring name2;
+    wstring name3;
 
-    CString name;
+    u32 unk1[1];
 
-    // .. more
+    u64 guid3;
+    u64 guid2;
+    u64 guid0;
+    u64 guid1;
+
+    u32 unk3[2];
+
+    u32 slot;
+
+    u32 unk2[30];
 
 
     void dumpItemSaveState()
     {
       log("ItemSaveState (%p)", this);
-      log(L"  name: %s", name.getString());
-      log("  Next: %p", pCItemSaveState);
+      log(L"  name: %s", name.c_str());
     };
   };
 

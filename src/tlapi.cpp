@@ -83,7 +83,7 @@ TLFUNCPTR(PlayerCtor,                             void,     __thiscall, (PVOID),
 
 TLFUNCPTR(PlayerCharacterSetAction,               void,     __thiscall, (CPlayer*),                                        0x4D5D00);     // 1.15  CPlayer
 
-TLFUNCPTR(GameClientProcessTitleScreen,           void,     __thiscall, (CGameClient*, float, PVOID, float, u32),          0x40DF70);     // 1.15  CGameClient, float (0.005) / (0.1), u32 unk, float (0), u32 unk(0)
+TLFUNCPTR(GameClientProcessTitleScreen,           void,     __thiscall, (CGameClient*, float, PVOID, PVOID),               0x40DF70);     // 1.15  CGameClient, float (0.005) / (0.1), u32 unk, float (0), u32 unk(0)
 
 TLFUNCPTR(GameClientLoadMap,                      void,     __thiscall, (CGameClient*, u32),                               0x4188E0);     // 1.15  CGameClient, u32 unk (0)
 
@@ -123,13 +123,18 @@ TLFUNCPTR(GetMasterResourceManager, CMasterResourceManager*,__thiscall, (void), 
 TLFUNCPTR(GameClient_SetupUI,                     void,     __thiscall, (CGameClient*, u32, u32),                          0x40C9A0);
 TLFUNCPTR(Game_CreateUI,                          void,     __thiscall, (CGame*),                                          0x402070);
 
-TLFUNCPTR(GameClient_CreateLevel,                 void,     __thiscall, (CGameClient*, u32, u32, u32, CGameClient*),       0x415820);
+TLFUNCPTR(GameClient_CreateLevel,                 void,     __thiscall, (CGameClient*, wstring, wstring, u32, u32, u32, wstring), 0x415820);
 TLFUNCPTR(GameClient_LoadLevel,                   void,     __thiscall, (CGameClient*),                                    0x4197E0);
 
 TLFUNCPTR(MouseManagerInput,                      void,     __thiscall, (CMouseManager*, u32, u32),                        0x4E47F0);
 
+TLFUNCPTR(CharacterSaveState_LoadFromFile,        void,     __thiscall, (CCharacterSaveState*, PVOID, u32),                0x4AE370); 
+
+TLFUNCPTR(MainMenu_Event,                         void,     __thiscall, (CMainMenu*, u32, wstring),                        0x5B6800);
+
 //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF20);
 // ... and add more later
+
 
 void TLAPI::Initialize()
 {
@@ -174,13 +179,19 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CGameClient, GameClient_SetupUI, 2);
   EVENT_INIT(CGameClient, GameClient_CreateLevel, 24);
   EVENT_INIT(CGameClient, GameClient_LoadLevel, 0);
+  EVENT_INIT(CGameClient, GameClientProcessTitleScreen, 4);
 
   // Hook Equipment
   EVENT_INIT(CEquipment, EquipmentInitialize, 1);
   EVENT_INIT(CEquipment, EquipmentEnchant, 3);
   EVENT_INIT(CEquipment, Equipment_AddMagicModifier, 2);
   EVENT_INIT(CEquipment, Equipment_AddAffix, 4);
+
+  // MainMenu
+  EVENT_INIT(CMainMenu, MainMenu_Event, 8);
   
+  // CharacterSaveState
+  EVENT_INIT(CCharacterSaveState, CharacterSaveState_LoadFromFile, 2);
 
   /*
   // Hook ResourceManager

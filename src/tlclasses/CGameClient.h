@@ -24,8 +24,8 @@ namespace TLAPI
 #pragma pack(1)
 
   struct CGameClient;
-  TLFUNC(GameClient_LoadLevel, void,  __thiscall, (CGameClient*));
-
+  TLFUNC(GameClient_LoadLevel, void, __thiscall, (CGameClient*));
+  TLFUNC(GameClientProcessTitleScreen, void, __thiscall, (CGameClient*, float, PVOID, PVOID));
 
   struct CGameClient : CRunicCore
   {
@@ -53,16 +53,20 @@ namespace TLAPI
     CMouseManager       CMouseManager;      // Not a pointer (offset: 979*4)
     u32                 unkChunk2[14];
 
-    CLayout            *pCLayout;           // @FA8
+    CLayout            *pCLayout;           //
 
     u32                 unkChunk4[10];
 
     s32                 level;              // Level change parameter, listed below
-    s32                 levelUnk;              //
+    s32                 levelUnk;           //
 
-    u32                 unkChunk3[1300];
+    u32                 unkChunk3[1299];    //
 
-    CDungeon           *pCDungeon;
+    bool                inGame;             // @2314  
+
+    CDungeon           *pCDungeon;          // @2308
+
+    
 
     /*
       here's what I've found for Level Loads: 
@@ -83,8 +87,8 @@ namespace TLAPI
     // 
     // Function hooks
     EVENT_DECL(CGameClient, void, GameClientLoadMap,
-      (PVOID, CGameClient*, u32),
-      ((PVOID)e->retval, (CGameClient *)e->_this, Pz[0]));
+      (PVOID, CGameClient*, u32, bool&),
+      ((PVOID)e->retval, (CGameClient *)e->_this, Pz[0], e->calloriginal));
 
     EVENT_DECL(CGameClient, void, GameClientProcessObjects,
       (CGameClient*, float, PVOID, PVOID),
@@ -99,13 +103,16 @@ namespace TLAPI
       ((CGameClient*)e->_this, Pz[0], Pz[1]));
     
     EVENT_DECL(CGameClient, void, GameClient_CreateLevel,
-      (CGameClient* client, wstring unk0, wstring unk1, u32 unk2, u32 unk3, u32 unk4, wstring unk5),
-      ((CGameClient*)e->_this,
-       *(wstring*)&Pz[0], *(wstring*)&Pz[7], Pz[14], Pz[15], Pz[16], *(wstring*)&Pz[17]));
+      (CGameClient* client, wstring unk0, wstring unk1, u32 unk2, u32 unk3, u32 unk4, wstring unk5, bool&),
+      ((CGameClient*)e->_this, *(wstring*)&Pz[0], *(wstring*)&Pz[7], Pz[14], Pz[15], Pz[16], *(wstring*)&Pz[17], e->calloriginal));
 
     EVENT_DECL(CGameClient, void, GameClient_LoadLevel,
-      (CGameClient*),
-      ((CGameClient*)e->_this));
+      (CGameClient*, bool&),
+      ((CGameClient*)e->_this, e->calloriginal));
+
+    EVENT_DECL(CGameClient, void, GameClientProcessTitleScreen,
+      (CGameClient*, float, PVOID, PVOID),
+      ((CGameClient*)e->_this, *(float*)&Pz[0], (PVOID)Pz[1], (PVOID)Pz[2]));
 
 
     // Change level
