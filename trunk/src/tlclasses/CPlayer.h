@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Common.h"
 #include "Events.h"
-
 #include "CCharacter.h"
 
 namespace TLAPI

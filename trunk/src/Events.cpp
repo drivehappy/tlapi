@@ -24,6 +24,10 @@ EVENT_DEF(CEffectManager, void, EffectManager_AddEffectToEquipment, (CEffectMana
 // CharacterSaveState
 EVENT_DEF(CCharacterSaveState, void, CharacterSaveState_LoadFromFile, (CCharacterSaveState*, PVOID, u32));
 
+// Monster
+EVENT_DEF(CMonster, void, MonsterProcessAI2, (CMonster*, float, bool&));
+EVENT_DEF(CMonster, void, MonsterIdle, (CMonster*, float, bool&));
+
 // Game
 EVENT_DEF(CGame, void, Game_CreateUI, (CGame*));
 

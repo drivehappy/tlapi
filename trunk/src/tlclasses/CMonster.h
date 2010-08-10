@@ -19,7 +19,19 @@ namespace TLAPI
 
     float   unk20;            // 60.0
 
+  
+    // 
+    // Function hooks
 
+    // Monster Process AI
+    EVENT_DECL(CMonster, void, MonsterProcessAI2,
+      (CMonster*, float, bool&),
+      ((CMonster*)e->_this, *(float*)&Pz[0], e->calloriginal));
+
+    // Monster Idle
+    EVENT_DECL(CMonster, void, MonsterIdle,
+      (CMonster*, float, bool&),
+      ((CMonster*)e->_this, *(float*)&Pz[0], e->calloriginal));
 
   };
 

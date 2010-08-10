@@ -4,9 +4,9 @@
 #include "Logger.h"
 #include "UserInterface.h"
 
-#include "Test.h"
+//#include "Test.h"
 
-#include "CMonsterDescriptor.h"
+//#include "CMonsterDescriptor.h"
 
 // Event handlers
 bool mouseEventOk(const CEGUI::EventArgs& args);

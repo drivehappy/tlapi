@@ -4,12 +4,9 @@
 
 #include "Events.h"
 #include "Common.h"
-
-#include "CPlayer.h"
 #include "Globals.h"
 
 #include "Logger.h"
-
 
 using namespace TLAPI;
 using namespace Test;

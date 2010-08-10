@@ -1,15 +1,14 @@
 #pragma once
 
-#include "CEditorBaseObject.h"
 #include "_CString.h"
+#include "CEditorBaseObject.h"
+#include "CResourceManager.h"
 
 namespace TLAPI
 {
 
 #pragma pack(1)
 
-  // Size?: 5Ch
-  // Inheritance: CEditorBaseObject
   struct CSceneNodeObject : CEditorBaseObject
   {
     PVOID pAnimationTrack;        // ptr to Ogre Animation Track
