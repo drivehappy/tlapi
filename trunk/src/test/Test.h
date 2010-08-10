@@ -1,10 +1,7 @@
 #pragma once
 
-//#include "TestUserInterface.h"
-
 #include "Events.h"
-#include "Common.h"
-#include "Globals.h"
+#include "tlapi.h"
 
 #include "Logger.h"
 
@@ -43,18 +40,18 @@ void Test_CreateSomething(PVOID retVal, CResourceManager*, u64, u32, u32, u32);
 void Test_CreateEquipment(CEquipment* retval, CResourceManager* resManager, u64 guid, u32 unk0, u32 unk1, u32 unk2);
 
 // Equipment
-void Test_Equipment_Initialize(CEquipment*, CItemSaveState*);
+void Test_Equipment_Initialize(CEquipment*, CItemSaveState*, bool&);
 void Test_Equipment_Enchant(u32 retVal, CEquipment* equipment, u32 unk0, u32 unk1, u32 unk2);
 void Test_Equipment_AddMagicModifier(CEquipment* equipment, u32 unk0, u32 unk1);
 void Test_Equipment_AddAffix(CEquipment* equipment, CAffix* affix, u32 unk0, CEquipment* equipment2, float unk1);
 
 // GameClient
-void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0);
+void Test_GameClientLoadMap(PVOID retVal, CGameClient *client, u32 unk0, bool&);
 void Test_GameClientProcessObjects(CGameClient*, float, PVOID, PVOID);
 void Test_GameClient_SaveGame(CGameClient *client, u32 unk0, u32 unk1, bool & callOriginal);
 void Test_GameClient_SetupUI(CGameClient *client, u32 unk0, u32 unk1);
-void Test_GameClient_CreateLevel(CGameClient* client, wstring unk0, wstring unk1, u32 unk2, u32 unk3, u32 unk4, wstring unk5);
-void Test_GameClient_LoadLevel(CGameClient *client);
+void Test_GameClient_CreateLevel(CGameClient* client, wstring unk0, wstring unk1, u32 unk2, u32 unk3, u32 unk4, wstring unk5, bool&);
+void Test_GameClient_LoadLevel(CGameClient *client, bool&);
 
 // Level
 void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter* character, Vector3* position, u32);
