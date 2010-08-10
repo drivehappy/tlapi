@@ -8,7 +8,6 @@ namespace TLAPI {
 
 #pragma pack(1)
 
-  struct CLayout;
 
   struct CDescriptorManager : CRunicCore
   {

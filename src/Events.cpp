@@ -1,9 +1,7 @@
 #include "Events.h"
 
 // Defined here to keep everything together
-#include "CGameClient.h"
-#include "CPlayer.h"
-#include "Globals.h"
+#include "tlapi.h"
 
 using namespace TLAPI;
 

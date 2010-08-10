@@ -2,7 +2,7 @@
 
 #include "_CString.h"
 #include "CEditorBaseObject.h"
-#include "CResourceManager.h"
+//#include "CResourceManager.h"
 
 namespace TLAPI
 {

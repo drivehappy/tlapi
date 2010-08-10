@@ -7,7 +7,7 @@
 #include "CPath.h"
 #include "CGenericModel.h"
 #include "CSkill.h"
-#include "CInventory.h"
+//#include "CInventory.h"
 #include "CResourceManager.h"
 #include "CParticle.h"
 #include "CCollisionModel.h"

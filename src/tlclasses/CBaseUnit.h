@@ -2,7 +2,6 @@
 
 #include "CPositionableObject.h"
 #include "CDataGroup.h"
-#include "CEffectManager.h"
 #include "CCullingBounds.h"
 #include "CSkillManager.h"
 
@@ -11,8 +10,8 @@ namespace TLAPI
 
 #pragma pack(1)
 
-  // Size?: 60h
-  // Inheritance: CPositionableObject
+  struct CEffectManager;
+
   struct CBaseUnit : CPositionableObject
   {
     u32 unk1[18];

@@ -1,6 +1,9 @@
 #pragma once
 
+#include "Common.h"
+
 #include "_CList.h"
+#include "_CString.h"
 #include "CRunicCore.h"
 #include "CAffix.h"
 #include "CEffect.h"
