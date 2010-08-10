@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Common.h"
+#include "Offsets.h"
 
 #include "CCameraControl.h"
 #include "CSoundManager.h"

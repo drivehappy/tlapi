@@ -24,7 +24,7 @@
 
 namespace TLAPI {
 
-  TLFUNC(ResourceManagerCreateCharacter,         CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool));
+  TLFUNC(ResourceManagerCreateCharacter,        CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool));
   TLFUNC(LevelCharacterInitialize,              CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
   TLFUNC(ResourceManagerCreateCharacterByName,  CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
   TLFUNC(CharacterSetAlignment,                 void,         __thiscall, (CCharacter*, u32));
@@ -145,9 +145,5 @@ namespace TLAPI {
   TLFUNC(CharacterSaveState_LoadFromFile,       void,     __thiscall, (CCharacterSaveState*, PVOID, u32));
 
   TLFUNC(MainMenu_Event,                        void,     __thiscall, (CMainMenu*, u32, wstring));
-
-  //TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF40);
-
-  // ... and add more later
 
 };

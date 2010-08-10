@@ -132,10 +132,6 @@ TLFUNCPTR(CharacterSaveState_LoadFromFile,        void,     __thiscall, (CCharac
 
 TLFUNCPTR(MainMenu_Event,                         void,     __thiscall, (CMainMenu*, u32, wstring),                        0x5B6800);
 
-//TLFUNCPTR(LoadArea,           void,     __thiscall, (/* 18 */),                                        0x40CF20);
-// ... and add more later
-
-
 void TLAPI::Initialize()
 {
   log("Initializing tlapi...");
@@ -171,6 +167,10 @@ void TLAPI::HookFunctions()
 
   // Hook Game
   EVENT_INIT(CGame, Game_CreateUI, 0);
+
+  // Hook Monster
+  EVENT_INIT(CMonster, MonsterProcessAI2, 3);
+  EVENT_INIT(CMonster, MonsterIdle, 3);
 
   // Hook GameClient
   EVENT_INIT(CGameClient, GameClientLoadMap, 2);

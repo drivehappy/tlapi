@@ -8,6 +8,7 @@
 #include "CCharacter.h"
 #include "CResourceManager.h"
 #include "CAstarPathFinder.h"
+#include "CEquipment.h"
 
 namespace TLAPI
 {

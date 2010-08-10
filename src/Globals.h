@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Common.h"
+
 namespace TLAPI {
 
   class _GLOBAL {
