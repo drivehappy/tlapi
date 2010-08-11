@@ -49,11 +49,9 @@ void TestSetup()
   CEquipment::RegisterEvent_EquipmentEnchant(NULL, Test_Equipment_Enchant);
   CEquipment::RegisterEvent_Equipment_AddMagicModifier(NULL, Test_Equipment_AddMagicModifier);
   CEquipment::RegisterEvent_Equipment_AddAffix(NULL, Test_Equipment_AddAffix);
-  
 
   // Test a ResourceCreateCharacter
   //CResourceManager::RegisterEvent_ResouceManagerCreateCharacter(NULL, TestCallbackPost_CreateCharacter);
-
 
   // Level
   CLevel::RegisterEvent_LevelCharacterInitialize(NULL, Test_LevelCharacterInitialize);

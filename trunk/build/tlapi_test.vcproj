@@ -167,7 +167,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy &quot;$(OutDir)\\tlapi_test.dll&quot; &quot;%ProgramFiles%\\Steam\\steamapps\\common\\torchlight\\winmm.dll&quot;&#x0D;&#x0A;mkdir &quot;%ProgramFiles%\\Steam\\steamapps\\common\\torchlight\\TLAPI&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\\..\\src\\ui_layouts\\*.layout&quot; &quot;%ProgramFiles%\\Steam\\steamapps\\common\\torchlight\\TLAPI&quot;"
+				CommandLine="copy &quot;$(OutDir)\\tlapi_test.dll&quot; &quot;%ProgramFiles%\\Steam\\steamapps\\common\\torchlight\\winmm.dll&quot;&#x0D;&#x0A;mkdir &quot;%ProgramFiles%\\Steam\\steamapps\\common\\torchlight\\TLAPI&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\\..\\src\\ui_layouts\\*.layout&quot; &quot;%ProgramFiles%\\Steam\\steamapps\\common\\torchlight\\TLAPI&quot;&#x0D;&#x0A;copy &quot;$(OutDir)\\..\\src\\ui_layouts\\resources.cfg&quot; &quot;%ProgramFiles%\\Steam\\steamapps\\common\\torchlight&quot;&#x0D;&#x0A;"
 			/>
 		</Configuration>
 	</Configurations>

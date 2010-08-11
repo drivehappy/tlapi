@@ -1,6 +1,6 @@
 #include "Test.h"
 
-void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter* character, Vector3* position, u32)
+void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter* character, Vector3* position, u32 unk0, bool & calloriginal)
 {
   testLogger.WriteLine(Info,
     L"Level(%p)::InitializeCharacter( Character(%p), Position(%p) ) returns Character(%p)",
