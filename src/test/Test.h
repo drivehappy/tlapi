@@ -55,7 +55,7 @@ void Test_GameClient_CreateLevel(CGameClient* client, wstring unk0, wstring unk1
 void Test_GameClient_LoadLevel(CGameClient *client, bool&);
 
 // Level
-void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter* character, Vector3* position, u32);
+void Test_LevelCharacterInitialize(CCharacter* retVal, CLevel* level, CCharacter* character, Vector3* position, u32, bool&);
 void Test_LevelCreateAstarPathfinding(CAstarPathfinder*, float, float, u32, u32, PVOID, PVOID, float);
 void Test_LevelDropEquipment(CLevel*, CEquipment*, Vector3 &, bool);
 
