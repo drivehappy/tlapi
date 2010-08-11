@@ -72,8 +72,8 @@ namespace TLAPI
 
     // Player Initialization
     EVENT_DECL(CLevel, void, LevelCharacterInitialize,
-      (CCharacter*, CLevel*, CCharacter*, Vector3*, u32),
-      ((CCharacter*)e->retval, (CLevel*)e->_this, (CCharacter*)Pz[0], (Vector3*)Pz[1], Pz[2]));
+      (CCharacter*, CLevel*, CCharacter*, Vector3*, u32, bool&),
+      ((CCharacter*)e->retval, (CLevel*)e->_this, (CCharacter*)Pz[0], (Vector3*)Pz[1], Pz[2], e->calloriginal));
     
     // Create AstarPathFinder - This appears to be a static member function
     EVENT_DECL(CLevel, void, LevelCreateAstarPathfinding,
