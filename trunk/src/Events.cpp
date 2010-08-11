@@ -57,7 +57,7 @@ EVENT_DEF(CResourceManager, void, ResourceManagerCreateBaseUnit,        (CResour
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateEquipment,       (CEquipment*, CResourceManager*, u64, u32, u32, u32));
 
 // Level
-EVENT_DEF(CLevel, void, LevelCharacterInitialize, (CLevel*, CCharacter*, Vector3*, u32));
+EVENT_DEF(CLevel, void, LevelCharacterInitialize, (CLevel*, CCharacter*, Vector3*, u32, bool&));
 EVENT_DEF(CLevel, void, LevelCreateAstarPathfinding, (CAstarPathfinder*, float unk0, float unk1, u32 unk2, u32 unk3, PVOID unk4, PVOID unk5, float unk6));
 EVENT_DEF(CLevel, void, LevelDropEquipment, (CLevel*, CEquipment*, Vector3 &, bool));
 

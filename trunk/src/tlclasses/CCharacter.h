@@ -22,8 +22,9 @@ namespace TLAPI
 
   struct CLevel;
   struct CCharacter;
-  TLFUNC(CharacterSetAlignment, void,  __thiscall, (CCharacter*, u32));
-  TLFUNC(PlayerPickupEquipment, PVOID, __thiscall, (CPlayer*, CEquipment*, CLevel*));
+  TLFUNC(CharacterSetAlignment,   void, __thiscall, (CCharacter*, u32));
+  TLFUNC(CharacterSetDestination, void, __thiscall, (CCharacter*, CLevel*, float, float));
+  TLFUNC(PlayerPickupEquipment,  PVOID, __thiscall, (CPlayer*, CEquipment*, CLevel*));
   
   // 
   struct CCharacter : CBaseUnit
@@ -187,6 +188,9 @@ namespace TLAPI
     // Set Alignment
     void SetAlignment(u32 alignment) {
       CharacterSetAlignment(this, alignment);
+    }
+    void SetDestination(CLevel* level, float x, float z) {
+      CharacterSetDestination(this, level, x, z);
     }
     void PickupEquipment(CEquipment* equipment, CLevel* level) {
       CPlayer* player = (CPlayer*)this;
