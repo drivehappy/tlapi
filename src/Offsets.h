@@ -24,7 +24,8 @@
 
 namespace TLAPI {
 
-  TLFUNC(ResourceManagerCreateCharacter,        CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool));
+  TLFUNC(ResourceManagerCreatePlayer,           CPlayer*,     __thiscall, (CResourceManager*, u32, u32));
+  TLFUNC(ResourceManagerCreateMonster,          CMonster*,    __thiscall, (CResourceManager*, u64, u32, bool));
   TLFUNC(LevelCharacterInitialize,              CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
   TLFUNC(ResourceManagerCreateCharacterByName,  CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
   TLFUNC(CharacterSetAlignment,                 void,         __thiscall, (CCharacter*, u32));
@@ -34,7 +35,7 @@ namespace TLAPI {
   TLFUNC(PlayerUseSkill,                        PVOID,        __thiscall, (CPlayer*, u64));
   TLFUNC(LayoutSetPosition,                     void,         __thiscall, (CLayout*, const Vector3));
   TLFUNC(CharacterAddMinion,                    void,         __thiscall, (CCharacter*, CCharacter*));
-  TLFUNC(ResourceManagerCreateSomething,        PVOID,        __thiscall, (CResourceManager*, u64, u32, u32, u32));
+  TLFUNC(ResourceManagerCreateBaseUnit,         CBaseUnit*,   __thiscall, (CResourceManager*, u64, u32, u32, u32));
 
   TLFUNC(CharacterStrike,                       PVOID,        __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
 

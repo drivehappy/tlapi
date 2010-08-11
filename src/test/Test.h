@@ -33,10 +33,11 @@ void Test_EffectManager_AddEffectToEquipment(CEffectManager* effectManager, CEqu
 void Test_MouseManagerHandleInput(CMouseManager*, u32 wParam, u32 mouseButton, bool* callOriginal);
 
 // ResourceManager
-void Test_CreateCharacter(CCharacter*, CResourceManager*, u64, u32, bool);
+void Test_CreatePlayer(CPlayer*, CResourceManager*, u32, u32);
+void Test_CreateMonster(CMonster*, CResourceManager*, u64, u32, bool, bool&);
 void Test_CreateCharacterByName(CCharacter*, CResourceManager*, const wchar_t*, const wchar_t*, u32, u32);
 void Test_InitCharacter(CPlayer*, CResourceManager* resourceMgr, u32 unk0, u32 unk1);
-void Test_CreateSomething(PVOID retVal, CResourceManager*, u64, u32, u32, u32);
+void Test_CreateBaseUnit(CBaseUnit* retVal, CResourceManager*, u64, u32, u32, u32, bool&);
 void Test_CreateEquipment(CEquipment* retval, CResourceManager* resManager, u64 guid, u32 unk0, u32 unk1, u32 unk2);
 
 // Equipment

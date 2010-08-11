@@ -7,19 +7,20 @@
 namespace TLAPI
 {
 
+#pragma pack(1)
+
+  // Forward decl
   struct CGameClient;
   struct CPlayer;
   struct CLevel;
   struct CCharacter;
   struct CHierarchy;
-
-#pragma pack(1)
-
-  // Forward decl
+  struct CMonster;
   struct CResourceManager;
   struct CEquipment;
   TLFUNC(ResourceManagerCreateEquipment, CEquipment*, __thiscall, (CResourceManager*, u64, u32, u32, u32));
-  TLFUNC(ResourceManagerCreateCharacter, CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool));
+  TLFUNC(ResourceManagerCreateMonster,   CMonster*,   __thiscall, (CResourceManager*, u64, u32, bool));
+  TLFUNC(ResourceManagerCreatePlayer,    CPlayer*,    __thiscall, (CResourceManager*, u32, u32));
 
   // 
   struct CResourceManager : CRunicCore
@@ -41,10 +42,15 @@ namespace TLAPI
       (CPlayer*, CResourceManager*, u32, u32),
       ((CPlayer*)e->retval, (CResourceManager*)e->_this, Pz[0], Pz[1]));
 
+    // Player Creation
+    EVENT_DECL(CResourceManager, void, ResourceManagerCreatePlayer,
+      (CPlayer*, CResourceManager*, u32, u32),
+      ((CPlayer*)e->retval, (CResourceManager*)e->_this, Pz[0], Pz[1]));
+
     // Character Creation
-    EVENT_DECL(CResourceManager, void, ResourceManagerCreateCharacter,
-      (CCharacter*, CResourceManager*, u64, u32, bool),
-      ((CCharacter*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], (bool)Pz[3]));
+    EVENT_DECL(CResourceManager, void, ResourceManagerCreateMonster,
+      (CMonster*, CResourceManager*, u64, u32, bool, bool&),
+      ((CMonster*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], (bool)Pz[3], e->calloriginal));
 
     // Character Creation by Name
     EVENT_DECL(CResourceManager, void, ResourceManagerCreateCharacterByName,
@@ -56,10 +62,10 @@ namespace TLAPI
       (CEquipment*, CResourceManager*, u64, u32, u32, u32),
       ((CEquipment*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], Pz[3], Pz[4]));
     
-    // Create Something
-    EVENT_DECL(CResourceManager, void, ResourceManagerCreateSomething,
-      (PVOID, CResourceManager*, u64, u32, u32, u32),
-      ((PVOID)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], Pz[3], Pz[4]));
+    // Create Base Unit
+    EVENT_DECL(CResourceManager, void, ResourceManagerCreateBaseUnit,
+      (CBaseUnit*, CResourceManager*, u64, u32, u32, u32, bool&),
+      ((CBaseUnit*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], Pz[3], Pz[4], e->calloriginal));
     
 
     // Create equipment
@@ -67,8 +73,12 @@ namespace TLAPI
       return ResourceManagerCreateEquipment(this, guid, unk0, unk1, unk2);
     }
     // Create Character
-    CCharacter* CreateCharacter(u64 guid, u32 level, bool unk) {
-      return ResourceManagerCreateCharacter(this, guid, level, unk);
+    CMonster* CreateMonster(u64 guid, u32 level, bool unk) {
+      return ResourceManagerCreateMonster(this, guid, level, unk);
+    }
+    // Create Player
+    CPlayer* CreatePlayer(u32 unk0, u32 unk1) {
+      return ResourceManagerCreatePlayer(this, unk0, unk1);
     }
   };
 

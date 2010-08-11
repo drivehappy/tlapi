@@ -9,7 +9,8 @@ using namespace TLAPI;
 u32 exeBaseReal = (u32)GetModuleHandle("Torchlight.exe");
 
 // Define the offset locations
-TLFUNCPTR(ResourceManagerCreateCharacter,         CCharacter*,  __thiscall, (CResourceManager*, u64, u32, bool),                            0x5FBB70);     // CResourceManager, u64 guid, u32 level, bool noitems?
+TLFUNCPTR(ResourceManagerCreatePlayer,            CPlayer*,     __thiscall, (CResourceManager*, u32, u32),                                  0x5FB7B0);     // CResourceManager, u32 unk0, u32 unk1
+TLFUNCPTR(ResourceManagerCreateMonster,           CMonster*,    __thiscall, (CResourceManager*, u64, u32, bool),                            0x5FBB70);     // CResourceManager, u64 guid, u32 level, bool noitems?
 TLFUNCPTR(LevelCharacterInitialize,               CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32),                          0x4F2EF0);     // CLevel, CMonster, vector3*, u32 unk
 TLFUNCPTR(ResourceManagerCreateCharacterByName,   CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32),  0x5FC600);     // CResourceManager, ...
 TLFUNCPTR(CharacterSetAlignment,                  void,         __thiscall, (CCharacter*, u32),                                             0x4839E0);     // CMonster, u32 alignment (2 = badguy, 0 = goodguy)
@@ -20,7 +21,7 @@ TLFUNCPTR(PlayerUseSkill,                         PVOID,        __thiscall, (CPl
 TLFUNCPTR(LayoutSetPosition,                      void,         __thiscall, (CLayout*, const Vector3),                                      0x50E450);     // CLayout, 
 TLFUNCPTR(CharacterAddMinion,                     void,         __thiscall, (CCharacter*, CCharacter*),                                     0x4A9B20);     // CMonster, CMonster
 
-TLFUNCPTR(ResourceManagerCreateSomething,         PVOID,        __thiscall, (CResourceManager*, u64, u32, u32, u32),                        0x5FC170);     // CResourceManager
+TLFUNCPTR(ResourceManagerCreateBaseUnit,          CBaseUnit*,   __thiscall, (CResourceManager*, u64, u32, u32, u32),                        0x5FC170);     // CResourceManager
 
 TLFUNCPTR(CharacterSetAttack,                     PVOID,        __thiscall, (CCharacter*, PVOID),                                           0x492970);     // CMonster, NULL
 
@@ -197,9 +198,11 @@ void TLAPI::HookFunctions()
   // Hook ResourceManager
   EVENT_INIT(CResourceManager, ResourceManagerInitializePlayer, 3);
   EVENT_INIT(CResourceManager, ResourceManagerCreateCharacterByName, 5);
-  EVENT_INIT(CResourceManager, ResourceManagerCreateSomething, 5);
   */
-  EVENT_INIT(CResourceManager, ResourceManagerCreateCharacter, 4);
+
+  EVENT_INIT(CResourceManager, ResourceManagerCreatePlayer, 2);
+  EVENT_INIT(CResourceManager, ResourceManagerCreateBaseUnit, 5);
+  EVENT_INIT(CResourceManager, ResourceManagerCreateMonster, 4);
   EVENT_INIT(CResourceManager, ResourceManagerCreateEquipment, 5);
   
   // Hook Level
