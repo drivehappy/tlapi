@@ -941,6 +941,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\tlclasses\CUnitResourceList.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CUnitSpawner.h"
 				>
 			</File>

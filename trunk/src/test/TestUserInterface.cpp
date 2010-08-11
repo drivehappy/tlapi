@@ -105,12 +105,19 @@ bool mouseEventTest2(const CEGUI::EventArgs& args)
   log("Creating Characters level 1 @(%f, %f, %f)",
     position->x, position->y, position->z);
 
+  log("  resManager = %p", resManager);
+  log("  level = %p", gameClient->pCLevel);
+
   for (int i = 0; i < 6; i++) {
-    characters[i] = resManager->CreateCharacter(guids[i], 1, false);
+    log(" Attempting to create character %016I64X", guids[i]);
+    characters[i] = resManager->CreateMonster(guids[i], 1, false);
+    log(" Attempting to assign character name...");
     characters[i]->characterName.assign(names[i]);
     characters[i]->SetAlignment(i % 2 ? 0 : 2);
     gameClient->pCLevel->CharacterInitialize(characters[i], position, 0);
   }
+
+  log("Completed.");
 
   return true;
 }
@@ -142,6 +149,8 @@ bool mouseEventTest3(const CEGUI::EventArgs& args)
 bool mouseEventTest4(const CEGUI::EventArgs& args)
 {
   log("Forcing player load into town...");
+  log("  gameClient = %p", gameClient);
+  log("  dungeon = %p", gameClient->pCDungeon);
 
   wstring Town(L"TOWN");
   if (gameClient->pCDungeon->name0 == Town) {

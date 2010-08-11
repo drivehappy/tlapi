@@ -39,8 +39,10 @@ void TestSetup()
 
   // Test a Player Initialize
   CResourceManager::RegisterEvent_ResourceManagerInitializePlayer(NULL, Test_InitCharacter);
-  CResourceManager::RegisterEvent_ResourceManagerCreateSomething(NULL, Test_CreateSomething);
+  CResourceManager::RegisterEvent_ResourceManagerCreatePlayer(NULL, Test_CreatePlayer);
+  CResourceManager::RegisterEvent_ResourceManagerCreateBaseUnit(NULL, Test_CreateBaseUnit);
   CResourceManager::RegisterEvent_ResourceManagerCreateEquipment(NULL, Test_CreateEquipment);
+  CResourceManager::RegisterEvent_ResourceManagerCreateMonster(NULL, Test_CreateMonster);
 
   // Test an Equipment Initialize
   CEquipment::RegisterEvent_EquipmentInitialize(NULL, Test_Equipment_Initialize);

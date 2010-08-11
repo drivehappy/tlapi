@@ -16,6 +16,7 @@
 
 #include "CDynamicPropertyFile.h"
 #include "CSettings.h"
+#include "CResourceSettings.h"
 
 #include "CEditorBaseObject.h"
 #include "CSceneNodeObject.h"
@@ -44,6 +45,8 @@
 #include "CPlayer.h"
 #include "CMonster.h"
 #include "CGameClient.h"
+
+#include "CUnitResourceList.h"
 
 #include "Globals.h"
 

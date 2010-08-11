@@ -56,14 +56,16 @@ namespace TLAPI
 
     CLayout            *pCLayout;           //
 
-    u32                 unkChunk4[10];
+    //u32                 unkChunk4[10];
+    u32                 unkChunk4[3];
+    wstring             dungeonName;
 
     s32                 level;              // Level change parameter, listed below
     s32                 levelUnk;           //
 
     u32                 unkChunk3[1299];    //
 
-    bool                inGame;             // @2314  
+    u32                 inGame;             // @2314  
 
     CDungeon           *pCDungeon;          // @2308
 
