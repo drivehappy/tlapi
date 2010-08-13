@@ -146,7 +146,9 @@ void TLAPI::PatchProcess()
   // This suppresses Stash and Shared Stashes from loading - only when loading a game
   //  on a new game these are present
   // This also stops vendor inventories from loading
-  //PatchJMP(EXEOFFSET(0x4169D1), EXEOFFSET(0x416A21));   // v1.15
+
+  //
+  PatchJMP(EXEOFFSET(0x4169D1), EXEOFFSET(0x416A21));   // v1.15
 
   // 
   PatchJMP(EXEOFFSET(0x489F8D), EXEOFFSET(0x48A08B));   // v1.15
