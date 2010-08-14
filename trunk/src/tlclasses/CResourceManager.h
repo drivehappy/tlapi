@@ -59,8 +59,8 @@ namespace TLAPI
 
     // Equipment Creation
     EVENT_DECL(CResourceManager, void, ResourceManagerCreateEquipment,
-      (CEquipment*, CResourceManager*, u64, u32, u32, u32),
-      ((CEquipment*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], Pz[3], Pz[4]));
+      (CEquipment*, CResourceManager*, u64, u32, u32, u32, bool&),
+      ((CEquipment*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], Pz[3], Pz[4], e->calloriginal));
     
     // Create Base Unit
     EVENT_DECL(CResourceManager, void, ResourceManagerCreateBaseUnit,
@@ -69,8 +69,8 @@ namespace TLAPI
     
 
     // Create equipment
-    CEquipment* CreateEquipment(u64 guid, u32 unk0, u32 unk1, u32 unk2) {
-      return ResourceManagerCreateEquipment(this, guid, unk0, unk1, unk2);
+    CEquipment* CreateEquipment(u64 guid, u32 level, u32 unk1, u32 unk2) {
+      return ResourceManagerCreateEquipment(this, guid, level, unk1, unk2);
     }
     // Create Character
     CMonster* CreateMonster(u64 guid, u32 level, bool unk) {

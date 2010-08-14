@@ -61,6 +61,10 @@ EVENT_DEF(CLevel, void, LevelCharacterInitialize, (CLevel*, CCharacter*, Vector3
 EVENT_DEF(CLevel, void, LevelCreateAstarPathfinding, (CAstarPathfinder*, float unk0, float unk1, u32 unk2, u32 unk3, PVOID unk4, PVOID unk5, float unk6));
 EVENT_DEF(CLevel, void, LevelDropEquipment, (CLevel*, CEquipment*, Vector3 &, bool));
 
+// Inventory
+EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u32, u32));
+EVENT_DEF(CInventory, void, InventoryRemoveEquipment, (CInventory*, CEquipment*));
+
 // Character
 EVENT_DEF(CCharacter, void, CharacterSetAlignment, (CCharacter*, u32));
 EVENT_DEF(CCharacter, void, CharacterSetDestination, (CCharacter*, CLevel*, float, float));
