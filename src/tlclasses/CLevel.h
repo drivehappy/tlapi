@@ -82,8 +82,8 @@ namespace TLAPI
 
     // Drop Equipment
     EVENT_DECL(CLevel, void, LevelDropEquipment,
-      (CLevel*, CEquipment*, Vector3 &, bool),
-      ((CLevel*)e->_this, (CEquipment*)Pz[0], *(Vector3*)Pz[1], (bool)Pz[2]));
+      (CLevel*, CEquipment*, Vector3 &, bool, bool&),
+      ((CLevel*)e->_this, (CEquipment*)Pz[0], *(Vector3*)Pz[1], (bool)Pz[2], e->calloriginal));
 
 
     // Equipment drop
