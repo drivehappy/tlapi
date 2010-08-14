@@ -37,7 +37,7 @@ namespace TLAPI
   struct CCharacter;
   struct CInventory;
   TLFUNC(InventoryRemoveEquipment, PVOID, __thiscall, (CInventory*, CEquipment*));
-  TLFUNC(InventoryAddEquipment,    PVOID, __thiscall, (CInventory*, CEquipment*, u32));
+  TLFUNC(InventoryAddEquipment,    PVOID, __thiscall, (CInventory*, CEquipment*, u32, u32));
 
 #pragma pack(1)
 
@@ -57,21 +57,21 @@ namespace TLAPI
     //
     // Adds equipment to the given Inventory
     EVENT_DECL(CInventory, void, InventoryAddEquipment,
-      (CEquipment*, CInventory*, CEquipment*, u32, bool&),
-      ((CEquipment*)e->retval, (CInventory*)e->_this, (CEquipment*)Pz[0], Pz[1], e->calloriginal));
+      (CEquipment*, CInventory*, CEquipment*, u32, u32, bool&),
+      ((CEquipment*)e->retval, (CInventory*)e->_this, (CEquipment*)Pz[0], Pz[1], Pz[2], e->calloriginal));
 
     // Removes equipment from the given Inventory
     EVENT_DECL(CInventory, void, InventoryRemoveEquipment,
       (CInventory*, CEquipment*),
-      ((CInventory*)e->retval, (CEquipment*)e->_this));
+      ((CInventory*)e->_this, (CEquipment*)Pz[0]));
     
     
     // Remove equipment from inventory
     void RemoveEquipment(CEquipment* equipment) {
       InventoryRemoveEquipment(this, equipment);
     }
-    void AddEquipment(CEquipment* equipment, u32 slot) {
-      InventoryAddEquipment(this, equipment, slot);
+    void AddEquipment(CEquipment* equipment, u32 slot, u32 unk0) {
+      InventoryAddEquipment(this, equipment, slot, unk0);
     }
 
 
