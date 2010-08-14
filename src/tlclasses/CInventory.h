@@ -54,6 +54,17 @@ namespace TLAPI
     CList<CEquipmentRef*> equipmentList;
     CList<PVOID>          iInventoryListenerList;
 
+    //
+    // Adds equipment to the given Inventory
+    EVENT_DECL(CInventory, void, InventoryAddEquipment,
+      (CInventory*, CEquipment*, u32, u32),
+      ((CInventory*)e->retval, (CEquipment*)e->_this, Pz[0], Pz[1]));
+
+    // Removes equipment from the given Inventory
+    EVENT_DECL(CInventory, void, InventoryRemoveEquipment,
+      (CInventory*, CEquipment*),
+      ((CInventory*)e->retval, (CEquipment*)e->_this));
+    
     
     // Remove equipment from inventory
     void RemoveEquipment(CEquipment* equipment) {

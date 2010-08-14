@@ -22,9 +22,9 @@ namespace TLAPI
 
   struct CLevel;
   struct CCharacter;
-  TLFUNC(CharacterSetAlignment,   void, __thiscall, (CCharacter*, u32));
+  TLFUNC(CharacterSetAlignment, void,  __thiscall, (CCharacter*, u32));
   TLFUNC(CharacterSetDestination, void, __thiscall, (CCharacter*, CLevel*, float, float));
-  TLFUNC(PlayerPickupEquipment,  PVOID, __thiscall, (CPlayer*, CEquipment*, CLevel*));
+  TLFUNC(CharacterPickupEquipment, PVOID, __thiscall, (CCharacter*, CEquipment*, CLevel*));
   
   // 
   struct CCharacter : CBaseUnit
@@ -183,6 +183,12 @@ namespace TLAPI
       (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32),
       ((CCharacter*)e->_this, (CLevel*)Pz[0], (CCharacter*)Pz[1], (PVOID)Pz[2], Pz[3], *(float*)&Pz[4], *(float*)&Pz[5], Pz[6]));
 
+    // Character Pickup Equipment
+    EVENT_DECL(CCharacter, void, CharacterPickupEquipment,
+      (CCharacter*, CEquipment*, CLevel*),
+      ((CCharacter*)e->_this, (CEquipment*)Pz[0], (CLevel*)Pz[1]));
+
+
 
 
     // Set Alignment
@@ -193,8 +199,7 @@ namespace TLAPI
       CharacterSetDestination(this, level, x, z);
     }
     void PickupEquipment(CEquipment* equipment, CLevel* level) {
-      CPlayer* player = (CPlayer*)this;
-      PlayerPickupEquipment(player, equipment, level);
+      CharacterPickupEquipment(this, equipment, level);
     }
 
   };
