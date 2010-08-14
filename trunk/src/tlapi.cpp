@@ -37,7 +37,7 @@ TLFUNCPTR(PlayerDoAttack,                         PVOID,    __thiscall, (CPlayer
 TLFUNCPTR(EquipmentInitialize,                    PVOID,    __thiscall, (CEquipment*, CItemSaveState*),                                     0x4BE250);     // 1.15  CEquipment, CItemSaveState
 TLFUNCPTR(LevelDropEquipment,                     PVOID,    __thiscall, (CLevel*, CEquipment*, Vector3 &, bool),                            0x4F3070);     // 1.15  CLevel, CEquipment, vector3 pos, bool unk
 TLFUNCPTR(ResourceManagerCreateEquipment,   CEquipment*,    __thiscall, (CResourceManager*, u64, u32, u32, u32),                            0x5FB6D0);     // 1.15  CResourceManager, u64 guid, u32 level, u32 unk, u32 unk
-TLFUNCPTR(PlayerPickupEquipment,                  PVOID,    __thiscall, (CPlayer*, CEquipment*, CLevel*),                                   0x4969B0);     // 1.15  CPlayer, CEquipment, CLevel
+TLFUNCPTR(CharacterPickupEquipment,               PVOID,    __thiscall, (CCharacter*, CEquipment*, CLevel*),                                0x4969B0);     // 1.15  CPlayer, CEquipment, CLevel
 TLFUNCPTR(InventoryAddEquipment,                  PVOID,    __thiscall, (CInventory*, CEquipment*, u32, u32),                               0x4E6CE0);     // 1.15  CInventory, CEquipment, int slot, int unk
 TLFUNCPTR(InventoryRemoveEquipment,               PVOID,    __thiscall, (CInventory*, CEquipment*),                                         0x4E7610);     // 1.15  CInventory, CEquipment
 TLFUNCPTR(LevelHideEquipment,                     PVOID,    __thiscall, (CLevel*, CEquipment*, u32),                                        0x4F48C0);     // 1.15  CLevel, CEquipment, int unk
@@ -221,6 +221,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, CharacterSetAction, 1);
   EVENT_INIT(CCharacter, CharacterAddMinion, 1);
   EVENT_INIT(CCharacter, CharacterStrike, 7);
+  EVENT_INIT(CCharacter, CharacterPickupEquipment, 2);
 
   // Hook Player
   EVENT_INIT(CPlayer, PlayerUseSkill, 2);
@@ -228,93 +229,8 @@ void TLAPI::HookFunctions()
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);
 
-  // Hook GenericModel
-  //EVENT_INIT(CGenericModel, GenericModelGetPosition, 2);
-
   log("Done hooking.");
-
-  // Map
-  //Hook(GameClientLoadMap, _load_map_pre, _load_map_post, HOOK_THISCALL, 2);
-
   /*
-  Hook(ChangeLevel, _change_level_pre, _change_level_post, HOOK_THISCALL, 18);
-  //Hook((PVOID)EXEOFFSET(0x4197E0), _on_load_area_pre, _on_load_area_post, HOOK_THISCALL, 0);    // v1.15
-
-  log("Map Done");
-
-  // Various
-  Hook(CharacterSetDestination, _set_destination_pre, 0, HOOK_THISCALL, 3);
-  Hook(CharacterStrike, _on_strike_pre, _on_strike_post, HOOK_THISCALL, 7);
-  Hook(Random, 0, _random_post, HOOK_THISCALL, 0);
-  Hook(LevelDestroyMonster, _LevelDestroyMonster_pre, 0, HOOK_THISCALL, 1);
-  Hook(GameClientProcessObjects, _process_objects_pre, _process_objects_pre, HOOK_THISCALL, 4);
-  Hook(WndProc, _wnd_proc_pre, NULL, HOOK_STDCALL, 5);
-
-  log("Various Done");
-
-  // Monster
-  Hook(ResouceManagerCreateCharacter, _spider_some_create_pre, _spider_some_create_post, HOOK_THISCALL, 4);
-  Hook(MonsterProcessAI, _spider_process_ai_pre, 0, HOOK_THISCALL, 2);
-  Hook(MonsterProcessAI2, _spider_process_ai2_pre, 0, HOOK_THISCALL, 3);
-  Hook(MonsterProcessAI3, _spider_process_ai3_pre, _spider_process_ai3_post, HOOK_THISCALL, 1);
-  Hook(MonsterIdle, _spider_idle_pre, 0, HOOK_THISCALL, 3);
-  Hook(MonsterOnHit, _spider_on_hit_pre, 0, HOOK_THISCALL, 2);
-  Hook(CharacterSetAlignment, _set_alignment_pre, 0, HOOK_THISCALL, 1);
-
-  log("Monster Done");
-
-  // Entity
-  Hook(LevelCharacterInitialize, _entity_initialize_pre, _entity_initialize_post, HOOK_THISCALL, 3);
-
-  // Player
-  Hook(PlayerCtor, 0, _player_ctor_post, HOOK_THISCALL, 1);
-  Hook(PlayerCharacterSetAction, _player_set_action_pre, 0, HOOK_THISCALL, 1);
-  Hook(PlayerAddGold, _add_goldtoplayer, 0, HOOK_THISCALL, 1);
-  
-  // Broken in v1.15 -- Look into this
-  // Updated arg count from 2 to 3... check what was added
-  Hook(ResourceManagerInitializePlayer, _initialize_player_pre, _initialize_player_post, HOOK_THISCALL, 3);
-  
-  Hook(PlayerDied, _player_died_pre, NULL, HOOK_THISCALL, 0);
-  Hook(PlayerResurrect, _player_resurrect_pre, NULL, HOOK_THISCALL, 8);
-  Hook(PlayerLevelUp, _PlayerLevelUp_pre, 0, HOOK_THISCALL, 0);
-  Hook(PlayerLevelUpSilent, _PlayerLevelUp_silent_pre, NULL, HOOK_THISCALL, 0);
-  Hook(CharacterAddMinion, _add_minion_pre, 0, HOOK_THISCALL, 1);
-
-  log("Player Done");
-
-  // Item
-  Hook(EquipmentInitialize, _item_initialize_pre, 0, HOOK_THISCALL, 1);
-  Hook(ResourceManagerCreateEquipment, _item_create_pre, _item_create_post, HOOK_THISCALL, 5);
-  Hook(LevelDropEquipment, _item_drop_pre, 0, HOOK_THISCALL, 3);
-  Hook(PlayerPickupEquipment, _item_pick_up_pre, _item_pick_up_post ,HOOK_THISCALL, 2);
-  Hook(InventoryAddEquipment, _item_equip_pre, _item_equip_post, HOOK_THISCALL, 3);
-  Hook(InventoryRemoveEquipment, _item_unequip_pre, 0, HOOK_THISCALL, 1);
-
-  log("Item Done");
-
-  // Object
-  Hook(TriggerUnitTriggered, _interact_with_object, 0, HOOK_THISCALL, 1);
-  Hook(ObjectCreate, _object_create_pre, _object_create_post, HOOK_THISCALL, 1);
-  log("Object Done");
-
-  // Ogre
-  Hook(GetProcAddress(GetModuleHandle("OgreMain.dll"), "?isActive@RenderWindow@Ogre@@UBE_NXZ"), _ogre_is_active, 0, HOOK_THISCALL, 0);
-  log("OGRE Done");
-
-  log("Hooking complete");
-
-  // Unknowns, Testings
-  // This one handles bypassing monster creation as well (I think this is some sort of initial
-  // monster load from file, while the rest are generated at runtime).
-  // This calls the spider_create, but doesn't handle when it returns null.
-  Hook((PVOID)EXEOFFSET(0x4F3960), test0_pre, test0_post, HOOK_THISCALL, 5);    // v1.15
-
-  // Doesn't work, don't use
-  //Hook(ResourceManagerCreateCharacterByName, test1_pre, test1_post, HOOK_THISCALL, 5);
-
-  log("Unknowns/Tests");
-
   // Handles item loading and positioning of objects (if we don't call org then:
   //   player appears to start at (0,0), no items are loaded, but it does load the level the player is at
   Hook((PVOID)EXEOFFSET(0x4AA580), test2_pre, test2_post, HOOK_THISCALL, 1);
@@ -324,11 +240,6 @@ void TLAPI::HookFunctions()
 
   // More level loading tests -- appears to be saving items on the previous level
   Hook((PVOID)EXEOFFSET(0x4E1210), test4_pre, test4_post, HOOK_THISCALL, 3);
-
-  // dengus' unknown/weird function
-  // I'm seeing this getting called 7 times per frame on the main menu,
-  // although it doesn't do it's memmove processing
-  Hook((PVOID)EXEOFFSET(0x5B1DA0), test5_pre, test5_post, HOOK_THISCALL, 5);
 
   // delete(void*)
   //Hook((PVOID)EXEOFFSET(0x6059B8), test6_pre, test6_post, HOOK_CDECL, 1);
