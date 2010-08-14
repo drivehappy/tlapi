@@ -47,7 +47,7 @@ namespace TLAPI {
   TLFUNC(EquipmentInitialize,                   PVOID,    __thiscall, (CEquipment*, CItemSaveState*));
   TLFUNC(ResourceManagerCreateEquipment,  CEquipment*,    __thiscall, (CResourceManager*, u64, u32, u32, u32));
   TLFUNC(CharacterPickupEquipment,              PVOID,    __thiscall, (CCharacter*, CEquipment*, CLevel*));
-  TLFUNC(InventoryAddEquipment,                 PVOID,    __thiscall, (CInventory*, CEquipment*, u32));
+  TLFUNC(InventoryAddEquipment,                 PVOID,    __thiscall, (CInventory*, CEquipment*, u32, u32));
   TLFUNC(InventoryRemoveEquipment,              PVOID,    __thiscall, (CInventory*, CEquipment*));
   TLFUNC(LevelDropEquipment,                    PVOID,    __thiscall, (CLevel*, CEquipment*, Vector3 &, bool));
   TLFUNC(LevelHideEquipment,                    PVOID,    __thiscall, (CLevel*, CEquipment*, u32));

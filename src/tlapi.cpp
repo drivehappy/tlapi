@@ -38,7 +38,7 @@ TLFUNCPTR(EquipmentInitialize,                    PVOID,    __thiscall, (CEquipm
 TLFUNCPTR(LevelDropEquipment,                     PVOID,    __thiscall, (CLevel*, CEquipment*, Vector3 &, bool),                            0x4F3070);     // 1.15  CLevel, CEquipment, vector3 pos, bool unk
 TLFUNCPTR(ResourceManagerCreateEquipment,   CEquipment*,    __thiscall, (CResourceManager*, u64, u32, u32, u32),                            0x5FB6D0);     // 1.15  CResourceManager, u64 guid, u32 level, u32 unk, u32 unk
 TLFUNCPTR(CharacterPickupEquipment,               PVOID,    __thiscall, (CCharacter*, CEquipment*, CLevel*),                                0x4969B0);     // 1.15  CPlayer, CEquipment, CLevel
-TLFUNCPTR(InventoryAddEquipment,                  PVOID,    __thiscall, (CInventory*, CEquipment*, u32),                                    0x4E6CE0);     // 1.15  CInventory, CEquipment, int slot, int unk
+TLFUNCPTR(InventoryAddEquipment,                  PVOID,    __thiscall, (CInventory*, CEquipment*, u32, u32),                               0x4E6CE0);     // 1.15  CInventory, CEquipment, int slot, int unk
 TLFUNCPTR(InventoryRemoveEquipment,               PVOID,    __thiscall, (CInventory*, CEquipment*),                                         0x4E7610);     // 1.15  CInventory, CEquipment
 TLFUNCPTR(LevelHideEquipment,                     PVOID,    __thiscall, (CLevel*, CEquipment*, u32),                                        0x4F48C0);     // 1.15  CLevel, CEquipment, int unk
 
