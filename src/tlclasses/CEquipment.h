@@ -5,12 +5,12 @@
 #include "CMasterResourceManager.h"
 #include "CEffectManager.h"
 #include "CEffectGroupManager.h"
+#include "CInventory.h"
 
 namespace TLAPI
 {
 
   // Forward decl CInventory
-  struct CInventory;
   struct CItemSaveState;
   struct CGenericModel;
   struct CCharacter;
@@ -50,7 +50,7 @@ namespace TLAPI
     u32 stackSize;    // 13h = 19 pots
     u32 stackSizeMax; // 14h = 20 max size pots
 
-    CInventory    *inventory;
+    PVOID     inventory;
 
     u32       unk0999[5];
 

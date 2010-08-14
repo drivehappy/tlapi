@@ -75,7 +75,7 @@ namespace TLAPI
     }
 
 
-
+    /*
     void dumpInventory() {
       logColor(B_RED, "Inventory Dump: %p", this);
 
@@ -104,6 +104,7 @@ namespace TLAPI
         equipmentList[i]->dumpEquipmentRef();
       }
     }
+    */
   };
 
 #pragma pack()

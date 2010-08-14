@@ -22,11 +22,11 @@
 #include "CSceneNodeObject.h"
 #include "CPositionableObject.h"
 
+#include "CInventory.h"
 #include "CBaseUnit.h"
 #include "CItem.h"
 #include "CEquipment.h"
 #include "CEquipmentRef.h"
-#include "CInventory.h"
 
 #include "CLevel.h"
 #include "CResourceManager.h"
