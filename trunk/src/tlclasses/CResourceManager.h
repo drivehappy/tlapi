@@ -73,8 +73,8 @@ namespace TLAPI
       return ResourceManagerCreateEquipment(this, guid, level, unk1, unk2);
     }
     // Create Character
-    CMonster* CreateMonster(u64 guid, u32 level, bool unk) {
-      return ResourceManagerCreateMonster(this, guid, level, unk);
+    CMonster* CreateMonster(u64 guid, u32 level, bool removeDefaultInventory) {
+      return ResourceManagerCreateMonster(this, guid, level, removeDefaultInventory);
     }
     // Create Player
     CPlayer* CreatePlayer(u32 unk0, u32 unk1) {
