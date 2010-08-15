@@ -159,6 +159,10 @@ namespace TLAPI
     // Function hooks
 
     // Character Initialization
+    EVENT_DECL(CCharacter, void, CharacterCtor,
+      (CCharacter*),
+      ((CCharacter*)e->_this));
+
     EVENT_DECL(CCharacter, void, CharacterSetAlignment,
       (CCharacter*, u32),
       ((CCharacter*)e->_this, Pz[0]));

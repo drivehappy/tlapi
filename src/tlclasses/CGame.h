@@ -49,6 +49,9 @@ namespace TLAPI
 
     // 
     // Function hooks
+    EVENT_DECL(CGame, void, GameCtor,
+      (CGame*),
+      ((CGame*)e->_this));
     EVENT_DECL(CGame, void, Game_CreateUI,
       (CGame*),
       ((CGame*)e->_this));

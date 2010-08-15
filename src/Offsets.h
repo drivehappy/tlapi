@@ -91,7 +91,11 @@ namespace TLAPI {
   TLFUNC(MonsterIdle,                           void,     __thiscall, (CMonster*, float));
   TLFUNC(MonsterOnHit,                          void,     __thiscall, (CMonster*, CMonster*));
     
-  TLFUNC(PlayerCtor,                            void,     __thiscall, (PVOID));
+  TLFUNC(PlayerCtor,                            void,     __thiscall, ());
+  TLFUNC(GameClientCtor,                        void,     __thiscall, ());
+  TLFUNC(GameCtor,                              void,     __thiscall, ());
+  TLFUNC(CharacterCtor,                         void,     __thiscall, ());
+  TLFUNC(EquipmentCtor,                         void,     __thiscall, ());
 
   TLFUNC(PlayerCharacterSetAction,              void,     __thiscall, (CPlayer*));
   
