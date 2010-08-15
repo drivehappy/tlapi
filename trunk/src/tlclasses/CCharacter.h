@@ -25,6 +25,7 @@ namespace TLAPI
   TLFUNC(CharacterSetAlignment, void,  __thiscall, (CCharacter*, u32));
   TLFUNC(CharacterSetDestination, void, __thiscall, (CCharacter*, CLevel*, float, float));
   TLFUNC(CharacterPickupEquipment, PVOID, __thiscall, (CCharacter*, CEquipment*, CLevel*));
+  TLFUNC(CharacterAddMinion, void, __thiscall, (CCharacter*, CCharacter*));
   
   // 
   struct CCharacter : CBaseUnit
@@ -147,7 +148,13 @@ namespace TLAPI
 
     PVOID   pOgreShadowCaster;
 
-    u32     unk34[49];
+    u32     unk34[26];
+
+    CCharacter      **pCMinionStart;
+    CCharacter      **pCMinionEnd;
+    CCharacter      **pCMinionEnd2;
+
+    u32     unk36[12];
 
     CWeaponTrail  *pCWeaponTrail;
 
@@ -204,6 +211,18 @@ namespace TLAPI
     }
     void PickupEquipment(CEquipment* equipment, CLevel* level) {
       CharacterPickupEquipment(this, equipment, level);
+    }
+    void AddMinion(CCharacter *minion) {
+      CharacterAddMinion(this, minion);
+    }
+    vector<CCharacter*>* GetMinions() {
+      vector<CCharacter*> *retval = new vector<CCharacter*>;
+      CCharacter **itr = pCMinionStart;
+      while (itr != pCMinionEnd) {
+        retval->push_back((*itr));
+        itr++;
+      }
+      return retval;
     }
 
   };
