@@ -27,12 +27,14 @@ EVENT_DEF(CMonster, void, MonsterProcessAI2, (CMonster*, float, bool&));
 EVENT_DEF(CMonster, void, MonsterIdle, (CMonster*, float, bool&));
 
 // Game
+EVENT_DEF(CGame, void, GameCtor, (CGame*));
 EVENT_DEF(CGame, void, Game_CreateUI, (CGame*));
 
 // MouseManager
 EVENT_DEF(CMouseManager, void, MouseManagerInput, (CMouseManager*, u32, u32, bool*));
 
 // GameClient
+EVENT_DEF(CGameClient, void, GameClientCtor, (CGameClient*));
 EVENT_DEF(CGameClient, void, GameClientLoadMap, (CGameClient*, u32));
 EVENT_DEF(CGameClient, void, GameClientProcessObjects, (CGameClient*, float, PVOID, PVOID));
 EVENT_DEF(CGameClient, void, GameClient_SaveGame, (CGameClient*, u32, u32, bool*));
@@ -43,6 +45,7 @@ EVENT_DEF(CGameClient, void, GameClient_LoadLevel, (CGameClient*));
 EVENT_DEF(CGameClient, void, GameClientProcessTitleScreen, (CGameClient*, float, PVOID, float, u32));
 
 // Equipment
+EVENT_DEF(CEquipment, void, EquipmentCtor, (CEquipment*));
 EVENT_DEF(CEquipment, void, EquipmentInitialize, (CEquipment*, CItemSaveState*));
 EVENT_DEF(CEquipment, void, EquipmentEnchant, (u32, CEquipment*, u32, u32, u32));
 EVENT_DEF(CEquipment, void, Equipment_AddMagicModifier, (CEquipment*, u32, u32));
@@ -66,6 +69,7 @@ EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u3
 EVENT_DEF(CInventory, void, InventoryRemoveEquipment, (CInventory*, CEquipment*));
 
 // Character
+EVENT_DEF(CCharacter, void, CharacterCtor, (CCharacter*));
 EVENT_DEF(CCharacter, void, CharacterSetAlignment, (CCharacter*, u32));
 EVENT_DEF(CCharacter, void, CharacterSetDestination, (CCharacter*, CLevel*, float, float));
 EVENT_DEF(CCharacter, void, CharacterSetAction, (CCharacter*, u32));

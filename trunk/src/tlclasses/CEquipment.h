@@ -106,6 +106,9 @@ namespace TLAPI
 
     // 
     // Function hooks
+    EVENT_DECL(CEquipment, void, EquipmentCtor,
+      (CEquipment*),
+      ((CEquipment*)e->_this));
 
     // Equipment Initialization
     EVENT_DECL(CItem, void, EquipmentInitialize,

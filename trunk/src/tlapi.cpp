@@ -80,7 +80,13 @@ TLFUNCPTR(MonsterProcessAI3,                      void,     __thiscall, (CMonste
 TLFUNCPTR(MonsterIdle,                            void,     __thiscall, (CMonster*, float),                                0x4D4950);     // 1.15  CMonster, float dtime (0.02)
 TLFUNCPTR(MonsterOnHit,                           void,     __thiscall, (CMonster*, CMonster*),                            0x4D29E0);     // 1.15  CMonster, CMonster
   
-TLFUNCPTR(PlayerCtor,                             void,     __thiscall, (PVOID),                                           0x4DA160);     // 1.15
+TLFUNCPTR(PlayerCtor,                             void,     __thiscall, (),                                                0x4DA160);     // 1.15
+TLFUNCPTR(GameClientCtor,                         void,     __thiscall, (),                                                0x40F7B0);     // 1.15
+TLFUNCPTR(GameCtor,                               void,     __thiscall, (),                                                0x4095A0);     // 1.15
+TLFUNCPTR(CharacterCtor,                          void,     __thiscall, (),                                                0x4A70A0);     // 1.15
+TLFUNCPTR(EquipmentCtor,                          void,     __thiscall, (),                                                0x4BA250);     // 1.15
+
+
 
 TLFUNCPTR(PlayerCharacterSetAction,               void,     __thiscall, (CPlayer*),                                        0x4D5D00);     // 1.15  CPlayer
 
@@ -169,6 +175,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(_GLOBAL, WndProc, 5);
 
   // Hook Game
+  EVENT_INIT(CGame, GameCtor, 0);
   EVENT_INIT(CGame, Game_CreateUI, 0);
 
   // Hook Monster
@@ -176,6 +183,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CMonster, MonsterIdle, 3);
 
   // Hook GameClient
+  EVENT_INIT(CGameClient, GameClientCtor, 8);
   EVENT_INIT(CGameClient, GameClientLoadMap, 2);
   EVENT_INIT(CGameClient, GameClientProcessObjects, 4);
   EVENT_INIT(CGameClient, GameClient_SaveGame, 2);
@@ -185,6 +193,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CGameClient, GameClientProcessTitleScreen, 4);
 
   // Hook Equipment
+  EVENT_INIT(CEquipment, EquipmentCtor, 0);
   EVENT_INIT(CEquipment, EquipmentInitialize, 1);
   EVENT_INIT(CEquipment, EquipmentEnchant, 3);
   EVENT_INIT(CEquipment, Equipment_AddMagicModifier, 2);
@@ -220,6 +229,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CMouseManager, MouseManagerInput, 2);
 
   // Hook Character
+  EVENT_INIT(CCharacter, CharacterCtor, 0);
   EVENT_INIT(CCharacter, CharacterSetAlignment, 1);
   EVENT_INIT(CCharacter, CharacterSetDestination, 3);
   EVENT_INIT(CCharacter, CharacterSetAction, 1);
