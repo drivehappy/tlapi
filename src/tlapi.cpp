@@ -25,8 +25,6 @@ TLFUNCPTR(ResourceManagerCreateBaseUnit,          CBaseUnit*,   __thiscall, (CRe
 
 TLFUNCPTR(CharacterSetAttack,                     PVOID,        __thiscall, (CCharacter*, PVOID),                                           0x492970);     // CMonster, NULL
 
-
-// !!! CHECK MY ARG COUNT, MAYBE +1/-1
 TLFUNCPTR(CharacterStrike,                        PVOID,    __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32), 0x4A0190);  // 1.15  CMonster src, CLevel, CMonster dst, NULL, 0, 1.0, 1.0, 7
 
 TLFUNCPTR(MonsterProcessAI,                       PVOID,    __thiscall, (CMonster*, float, PVOID),                                          0x4D36F0);     // 1.15  CMonster, float unk (0.005), CLevel
