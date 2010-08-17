@@ -75,7 +75,7 @@ EVENT_DEF(CCharacter, void, CharacterSetDestination, (CCharacter*, CLevel*, floa
 EVENT_DEF(CCharacter, void, CharacterSetAction, (CCharacter*, u32));
 EVENT_DEF(CCharacter, void, CharacterAddMinion, (CCharacter*, CCharacter*));
 EVENT_DEF(CCharacter, void, CharacterStrike, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
-EVENT_DEF(CCharacter, void, CharacterPickupEquipment, (CCharacter*, CEquipment*, CLevel*));
+EVENT_DEF(CCharacter, void, CharacterPickupEquipment, (CCharacter*, CEquipment*, CLevel*, bool&));
 
 // Player
 EVENT_DEF(CPlayer, void, PlayerUseSkill, (u32 retVal, CPlayer* player, u64 skill));
