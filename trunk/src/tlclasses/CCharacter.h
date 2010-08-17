@@ -196,8 +196,8 @@ namespace TLAPI
 
     // Character Pickup Equipment
     EVENT_DECL(CCharacter, void, CharacterPickupEquipment,
-      (CCharacter*, CEquipment*, CLevel*),
-      ((CCharacter*)e->_this, (CEquipment*)Pz[0], (CLevel*)Pz[1]));
+      (CCharacter*, CEquipment*, CLevel*, bool&),
+      ((CCharacter*)e->_this, (CEquipment*)Pz[0], (CLevel*)Pz[1], e->calloriginal));
 
 
 
