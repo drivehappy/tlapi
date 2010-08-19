@@ -123,7 +123,7 @@ namespace TLAPI
 
 
     // Change level
-    void ChangeLevel(u32 relativeLevel) {
+    void ChangeLevel(s32 relativeLevel) {
       this->level = relativeLevel;
       GameClient_LoadLevel(this);
     }
