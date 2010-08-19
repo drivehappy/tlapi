@@ -32,7 +32,7 @@ namespace TLAPI {
   TLFUNC(CharacterSetDestination,               void,         __thiscall, (CCharacter*, CLevel*, float, float));
   TLFUNC(GenericModelGetPosition,               PVOID,        __thiscall, (CGenericModel*, Vector3, u32));
   TLFUNC(CharacterSetAction,                    PVOID,        __thiscall, (CCharacter*, u32));
-  TLFUNC(PlayerUseSkill,                        PVOID,        __thiscall, (CPlayer*, u64));
+  TLFUNC(CharacterUseSkill,                     PVOID,        __thiscall, (CCharacter*, u64));
   TLFUNC(LayoutSetPosition,                     void,         __thiscall, (CLayout*, const Vector3));
   TLFUNC(CharacterAddMinion,                    void,         __thiscall, (CCharacter*, CCharacter*));
   TLFUNC(ResourceManagerCreateBaseUnit,         CBaseUnit*,   __thiscall, (CResourceManager*, u64, u32, u32, u32));
@@ -42,7 +42,7 @@ namespace TLAPI {
   TLFUNC(MonsterProcessAI,                      PVOID,       __thiscall, (CMonster*, float, PVOID));
   TLFUNC(PlayerSetAnimation,                    PVOID,       __thiscall, (CPlayer*, u32, bool, float, float, u32));
 
-  TLFUNC(PlayerDoAttack,                        PVOID,       __thiscall, (CPlayer*));
+  TLFUNC(CharacterAttack,                       PVOID,       __thiscall, (CCharacter*));
 
   TLFUNC(EquipmentInitialize,                   PVOID,    __thiscall, (CEquipment*, CItemSaveState*));
   TLFUNC(ResourceManagerCreateEquipment,  CEquipment*,    __thiscall, (CResourceManager*, u64, u32, u32, u32));
@@ -112,7 +112,7 @@ namespace TLAPI {
   TLFUNC(EquipmentUse,                          void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*));
   TLFUNC(EquipmentIdentify,                     void,     __thiscall, (CEquipment*));
 
-  TLFUNC(CharacterSetAttack,                    PVOID,    __thiscall, (CCharacter*, PVOID));
+  TLFUNC(CharacterSetTarget,                    PVOID,    __thiscall, (CCharacter*, CCharacter*));
 
   TLFUNC(LevelCreateAstarPathfinding,           CAstarPathfinder*,    __stdcall,  (float, float, u32, u32, PVOID, PVOID, float));
 

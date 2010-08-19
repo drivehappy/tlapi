@@ -12,13 +12,14 @@ namespace TLAPI
     PVOID       unk0;         // NULL -- is this the vtable?? if it is remove (defined in CRunicCore)
     CEquipment *pCEquipment;  // ptr to CEquipment
 
-    u32 unk1[2];        // 67h, 67h
+    s32 slot;         //
+    s32 slotother;    //
     u32 unk2[5];
 
 
     void dumpEquipmentRef()
     {
-      logColor(B_BLUE, "EquipmentRef: %i %i", unk1[0], unk1[1]);
+      logColor(B_BLUE, "EquipmentRef: slot = %i %i", slot, slotother);
     }
   };
 
