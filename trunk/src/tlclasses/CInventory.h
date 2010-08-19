@@ -57,7 +57,7 @@ namespace TLAPI
     //
     // Adds equipment to the given Inventory
     EVENT_DECL(CInventory, void, InventoryAddEquipment,
-      (CEquipment*, CInventory*, CEquipment*, u32, u32, bool&),
+      (CEquipment*, CInventory*, CEquipment*, u32&, u32, bool&),
       ((CEquipment*)e->retval, (CInventory*)e->_this, (CEquipment*)Pz[0], Pz[1], Pz[2], e->calloriginal));
 
     // Removes equipment from the given Inventory
