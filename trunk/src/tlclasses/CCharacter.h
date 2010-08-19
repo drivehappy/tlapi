@@ -26,6 +26,8 @@ namespace TLAPI
   TLFUNC(CharacterSetDestination, void, __thiscall, (CCharacter*, CLevel*, float, float));
   TLFUNC(CharacterPickupEquipment, PVOID, __thiscall, (CCharacter*, CEquipment*, CLevel*));
   TLFUNC(CharacterAddMinion, void, __thiscall, (CCharacter*, CCharacter*));
+  TLFUNC(CharacterSetAction, PVOID, __thiscall, (CCharacter*, u32));
+  TLFUNC(CharacterAttack, PVOID, __thiscall, (CCharacter*));
   
   // 
   struct CCharacter : CBaseUnit
@@ -49,7 +51,14 @@ namespace TLAPI
 
     u32 unk6;           // 80000000h
 
-    float unk7[5];      // 0, 1, 1, 1, 0
+    float unk7[4];      // 0, 1, 1, 1, 0
+
+    u8 moving;
+    u8 unkBool0;
+    u8 attacking;
+    u8 unkBool1;
+
+    // @ 0x20C
 
     CAstarPathfinder*   pCAstarPathfiner;
     CPath*              pCPath;
@@ -89,9 +98,17 @@ namespace TLAPI
 
     PVOID pOctree2;     // Diff
 
-    float unk13[4];     // 2.0, 0, 0, 1
+    u8   running1;
+    u8   running;
+    u8   running2;
+    u8   running3;
 
-    u32 unk14[6];       // 
+    float unk13[3];     // 2.0, 0, 0, 1
+
+    u32 unk14[3];       // 
+    CCharacter* target;
+
+    u32 unk1500[2];       // 
 
     float unk20[8];
 
@@ -170,9 +187,15 @@ namespace TLAPI
       (CCharacter*),
       ((CCharacter*)e->_this));
 
+    // Character Set Alignment
     EVENT_DECL(CCharacter, void, CharacterSetAlignment,
       (CCharacter*, u32),
       ((CCharacter*)e->_this, Pz[0]));
+    
+    // Character Use Skill
+    EVENT_DECL(CCharacter, void, CharacterUseSkill,
+      (CCharacter*, u64, bool&),
+      ((CCharacter*)e->_this, *(u64*)&Pz[0], e->calloriginal));
 
     // Character Set Destination
     EVENT_DECL(CCharacter, void, CharacterSetDestination,
@@ -181,8 +204,18 @@ namespace TLAPI
     
     // Character Set Action
     EVENT_DECL(CCharacter, void, CharacterSetAction,
-      (CCharacter*, u32),
-      ((CCharacter*)e->_this, Pz[0]));
+      (CCharacter*, u32, bool&),
+      ((CCharacter*)e->_this, Pz[0], e->calloriginal));
+        
+    // Character Set Target
+    EVENT_DECL(CCharacter, void, CharacterSetTarget,
+      (CCharacter*, CCharacter*, bool&),
+      ((CCharacter*)e->_this, (CCharacter*)Pz[0], e->calloriginal));
+
+    // Character Attack
+    EVENT_DECL(CCharacter, void, CharacterAttack,
+      (CCharacter*, bool&),
+      ((CCharacter*)e->_this, e->calloriginal));
 
     // Character Add Minion
     EVENT_DECL(CCharacter, void, CharacterAddMinion,
@@ -205,6 +238,12 @@ namespace TLAPI
     // Set Alignment
     void SetAlignment(u32 alignment) {
       CharacterSetAlignment(this, alignment);
+    }
+    void SetAction(u32 action) {
+      CharacterSetAction(this, action);
+    }
+    void Attack() {
+      CharacterAttack(this);
     }
     void SetDestination(CLevel* level, float x, float z) {
       CharacterSetDestination(this, level, x, z);

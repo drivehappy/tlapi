@@ -17,20 +17,20 @@ TLFUNCPTR(CharacterSetAlignment,                  void,         __thiscall, (CCh
 TLFUNCPTR(CharacterSetDestination,                void,         __thiscall, (CCharacter*, CLevel*, float, float),                           0x492AD0);     // CPlayer, CLevel, u32 x, u32 y
 TLFUNCPTR(GenericModelGetPosition,                PVOID,        __thiscall, (CGenericModel*, Vector3, u32),                                 0x50E3F0);     // CGenericModel, vector3 &, unk
 TLFUNCPTR(CharacterSetAction,                     PVOID,        __thiscall, (CCharacter*, u32),                                             0x489E50);     // CMonster, u32 action
-TLFUNCPTR(PlayerUseSkill,                         PVOID,        __thiscall, (CPlayer*, u64),                                                0x494E50);     // CPlayer, u64 skill
+TLFUNCPTR(CharacterUseSkill,                      PVOID,        __thiscall, (CCharacter*, u64),                                                0x494E50);     // CPlayer, u64 skill
 TLFUNCPTR(LayoutSetPosition,                      void,         __thiscall, (CLayout*, const Vector3),                                      0x50E450);     // CLayout, 
 TLFUNCPTR(CharacterAddMinion,                     void,         __thiscall, (CCharacter*, CCharacter*),                                     0x4A9B20);     // CMonster, CMonster
 
 TLFUNCPTR(ResourceManagerCreateBaseUnit,          CBaseUnit*,   __thiscall, (CResourceManager*, u64, u32, u32, u32),                        0x5FC170);     // CResourceManager
 
-TLFUNCPTR(CharacterSetAttack,                     PVOID,        __thiscall, (CCharacter*, PVOID),                                           0x492970);     // CMonster, NULL
+TLFUNCPTR(CharacterSetTarget,                     PVOID,        __thiscall, (CCharacter*, CCharacter*),                                           0x492970);     // CMonster, NULL
 
 TLFUNCPTR(CharacterStrike,                        PVOID,    __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32), 0x4A0190);  // 1.15  CMonster src, CLevel, CMonster dst, NULL, 0, 1.0, 1.0, 7
 
 TLFUNCPTR(MonsterProcessAI,                       PVOID,    __thiscall, (CMonster*, float, PVOID),                                          0x4D36F0);     // 1.15  CMonster, float unk (0.005), CLevel
 TLFUNCPTR(PlayerSetAnimation,                     PVOID,    __thiscall, (CPlayer*, u32, bool, float, float, u32),                           0x4841F0);     // 1.15  CPlayer, u32 unk, bool unk, float unk (0.2), float unk (1), u32(
 
-TLFUNCPTR(PlayerDoAttack,                         PVOID,    __thiscall, (CPlayer*),                                                         0x48FBD0);     // 1.15  CPlayer
+TLFUNCPTR(CharacterAttack,                        PVOID,    __thiscall, (CCharacter*),                                                         0x48FBD0);     // 1.15  CPlayer
 
 TLFUNCPTR(EquipmentInitialize,                    PVOID,    __thiscall, (CEquipment*, CItemSaveState*),                                     0x4BE250);     // 1.15  CEquipment, CItemSaveState
 TLFUNCPTR(LevelDropEquipment,                     PVOID,    __thiscall, (CLevel*, CEquipment*, Vector3 &, bool),                            0x4F3070);     // 1.15  CLevel, CEquipment, vector3 pos, bool unk
@@ -231,12 +231,14 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, CharacterSetAlignment, 1);
   EVENT_INIT(CCharacter, CharacterSetDestination, 3);
   EVENT_INIT(CCharacter, CharacterSetAction, 1);
+  EVENT_INIT(CCharacter, CharacterSetTarget, 1);
   EVENT_INIT(CCharacter, CharacterAddMinion, 1);
   EVENT_INIT(CCharacter, CharacterStrike, 7);
   EVENT_INIT(CCharacter, CharacterPickupEquipment, 2);
+  EVENT_INIT(CCharacter, CharacterAttack, 0);
 
   // Hook Player
-  EVENT_INIT(CPlayer, PlayerUseSkill, 2);
+  EVENT_INIT(CPlayer, CharacterUseSkill, 2);
 
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);

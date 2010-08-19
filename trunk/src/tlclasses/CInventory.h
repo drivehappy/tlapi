@@ -74,6 +74,28 @@ namespace TLAPI
       InventoryAddEquipment(this, equipment, slot, unk0);
     }
 
+    // Returns the slot number for the equipment in the inventory
+    //  If the Equipment isn't found -1 is returned
+    s32 GetEquipmentSlot(CEquipment* equipment) {
+      for (u32 i = 0; i < equipmentList.size; i++) {
+        if (equipmentList[i]->pCEquipment == equipment) {
+          return equipmentList[i]->slot;
+        }
+      }
+      return -1;
+    }
+
+    // Returns the equipment from the given slot number
+    //  If the Slot contains no equipment NULL is returned
+    CEquipment* GetEquipmentFromSlot(s32 slot) {
+      for (u32 i = 0; i < equipmentList.size; i++) {
+        if (equipmentList[i]->slot == slot) {
+          return equipmentList[i]->pCEquipment;
+        }
+      }
+      return NULL;
+    }
+
 
     /*
     void dumpInventory() {
