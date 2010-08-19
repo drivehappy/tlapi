@@ -29,7 +29,7 @@ namespace TLAPI
   TLFUNC(CharacterSetAction, PVOID, __thiscall, (CCharacter*, u32));
   TLFUNC(CharacterAttack, PVOID, __thiscall, (CCharacter*));
   
-  // 
+  // CBaseUnit Size = 0x190
   struct CCharacter : CBaseUnit
   {
     PVOID vtableIInventoryListener;
@@ -126,9 +126,9 @@ namespace TLAPI
     wstring  Skill1;    // "Heal All I"
     wstring  Skill2;    // "TOWN PORTAL"
     wstring  Skill3;    // "Summon Zombies III"
-    CString   Skill4;    // "HEAL SELF IV"
+    wstring  Skill4;    // "HEAL SELF IV"
 
-    u32      unk23[4];    // 1, 1, 1, 1
+    u32      unk23[3];    // 1, 1, 1, 1
     u32      unk24[3];
 
     CAttackDescription **pCAttackDescription2;
@@ -136,7 +136,11 @@ namespace TLAPI
     CAttackDescription *pCAttackDescriptionEnd0;
     CAttackDescription *pCAttackDescriptionEnd1;   // Same value as above
 
-    u32      unk16[14];
+    u32      unk16[3];
+    u32      health;
+    u32      unk016[8];
+    u32      mana;
+    u32      unk0016[1];
 
     u32      gold;
 
