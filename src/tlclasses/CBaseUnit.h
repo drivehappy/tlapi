@@ -12,7 +12,7 @@ namespace TLAPI
 
   struct CEffectManager;
 
-  // CPositionableObject size = 0xF0
+  // CBaseUnit Size = 0x190
   struct CBaseUnit : CPositionableObject
   {
     u32 unk1[18];

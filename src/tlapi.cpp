@@ -16,8 +16,11 @@ TLFUNCPTR(ResourceManagerCreateCharacterByName,   CCharacter*,  __thiscall, (CRe
 TLFUNCPTR(CharacterSetAlignment,                  void,         __thiscall, (CCharacter*, u32),                                             0x4839E0);     // CMonster, u32 alignment (2 = badguy, 0 = goodguy)
 TLFUNCPTR(CharacterSetDestination,                void,         __thiscall, (CCharacter*, CLevel*, float, float),                           0x492AD0);     // CPlayer, CLevel, u32 x, u32 y
 TLFUNCPTR(GenericModelGetPosition,                PVOID,        __thiscall, (CGenericModel*, Vector3, u32),                                 0x50E3F0);     // CGenericModel, vector3 &, unk
-TLFUNCPTR(CharacterSetAction,                     PVOID,        __thiscall, (CCharacter*, u32),                                             0x489E50);     // CMonster, u32 action
-TLFUNCPTR(CharacterUseSkill,                      PVOID,        __thiscall, (CCharacter*, u64),                                             0x494E50);     // CPlayer, u64 skill
+TLFUNCPTR(CharacterSetAction,                     PVOID,        __thiscall, (CCharacter*, u32),                                             0x489E50);     // CCharacter, u32 action
+TLFUNCPTR(CharacterUseSkill,                      PVOID,        __thiscall, (CCharacter*, u64),                                             0x494E50);     // CCharacter, u64 skill
+
+TLFUNCPTR(GameClientUpdateSkill,                  PVOID,        __thiscall, (CGameClient*, u64, u32, u32),                                  0x4145D0);     // CGameClient, u64 skill, u32 notFirstUse, u32
+
 TLFUNCPTR(LayoutSetPosition,                      void,         __thiscall, (CLayout*, const Vector3),                                      0x50E450);     // CLayout, 
 TLFUNCPTR(CharacterAddMinion,                     void,         __thiscall, (CCharacter*, CCharacter*),                                     0x4A9B20);     // CMonster, CMonster
 
@@ -137,6 +140,11 @@ TLFUNCPTR(CharacterSaveState_LoadFromFile,        void,     __thiscall, (CCharac
 
 TLFUNCPTR(MainMenu_Event,                         void,     __thiscall, (CMainMenu*, u32, wstring),                        0x5B6800);
 
+
+TLFUNCPTR(Equipment_UpdateRequirements,           void,     __thiscall, (CEquipment*),                                     0x4B3EA0);
+TLFUNCPTR(Equipment_UpdatePrice,                  void,     __thiscall, (CEquipment*),                                     0x4B3A10);
+
+
 void TLAPI::Initialize()
 {
   log("Initializing tlapi...");
@@ -236,9 +244,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, CharacterStrike, 7);
   EVENT_INIT(CCharacter, CharacterPickupEquipment, 2);
   EVENT_INIT(CCharacter, CharacterAttack, 0);
-
-  // Hook Player
-  EVENT_INIT(CPlayer, CharacterUseSkill, 2);
+  EVENT_INIT(CCharacter, CharacterUseSkill, 2);
 
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);

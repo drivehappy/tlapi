@@ -37,6 +37,8 @@ namespace TLAPI {
   TLFUNC(CharacterAddMinion,                    void,         __thiscall, (CCharacter*, CCharacter*));
   TLFUNC(ResourceManagerCreateBaseUnit,         CBaseUnit*,   __thiscall, (CResourceManager*, u64, u32, u32, u32));
 
+  TLFUNC(GameClientUpdateSkill,                 PVOID,        __thiscall, (CGameClient*, u64, u32, u32));
+
   TLFUNC(CharacterStrike,                       PVOID,        __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
 
   TLFUNC(MonsterProcessAI,                      PVOID,       __thiscall, (CMonster*, float, PVOID));
@@ -150,5 +152,8 @@ namespace TLAPI {
   TLFUNC(CharacterSaveState_LoadFromFile,       void,     __thiscall, (CCharacterSaveState*, PVOID, u32));
 
   TLFUNC(MainMenu_Event,                        void,     __thiscall, (CMainMenu*, u32, wstring));
+
+  TLFUNC(Equipment_UpdateRequirements,          void,     __thiscall, (CEquipment*));
+  TLFUNC(Equipment_UpdatePrice,                 void,     __thiscall, (CEquipment*));
 
 };
