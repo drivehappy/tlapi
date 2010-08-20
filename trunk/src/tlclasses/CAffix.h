@@ -24,17 +24,15 @@ namespace TLAPI {
 
     PVOID pCSkill;        // ptr to CSkill
 
-    u32 unk1[6];          // 18h, 0, FFFFFFFFh, 0, FFFFFFFFh, CB7581ABh
+    u32 unk1[5];          // 18h, 0, FFFFFFFFh, 0, FFFFFFFFh, CB7581ABh
 
-    CString pStringMediaAffixesSk;  // string = "MEDIA/AFFIXES/SKILLS/SKILL_SPELLCASTING_MASTERY.DAT"
+    wstring pStringMediaAffixesSk;  // string = "MEDIA/AFFIXES/SKILLS/SKILL_SPELLCASTING_MASTERY.DAT"
 
-    u32 unk2;             // 0
+    wstring pStringSkill_spellcast; // ptr string = "SKILL_SPELLCASTING_MASTERY"
 
-    CString pStringSkill_spellcast; // ptr string = "SKILL_SPELLCASTING_MASTERY"
+    u32 unk3[7];          // 80h, 0
 
-    u32 unk3[8];          // 80h, 0
-
-    CString name;         // "Expert [ITEM]"
+    wstring name;         // "Expert [ITEM]"
 
     u32 unk4[3];             // 0
 

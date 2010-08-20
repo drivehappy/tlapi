@@ -42,7 +42,7 @@ namespace TLAPI
     NONE = 0xFF,
   };
 
-  // 
+  // Size = 
   struct CEquipment : CItem
   {
     PVOID vtable_iMissle;
@@ -55,7 +55,7 @@ namespace TLAPI
     u32       unk0999[5];
 
     u32       unk1002[5];
-    u32       requirements[5];    // level  str  dex   unk/unk (magic/defense?)
+    u32       requirements[5];    // level  str  dex  magic  defense
 
     u32       unk0998[3];         // 0, 0, 10h
 
@@ -71,38 +71,33 @@ namespace TLAPI
 
     PVOID     pCEGUIPropertySheet;
 
-    //u32       unk1005;
-    //CString nameUnidentified;
-
     wstring nameUnidentified;
+    wstring namePrefix;
+    wstring nameSuffix;
 
-    CString namePrefix;         // Appears to crash, not quite right?
-    CString nameSuffix;
+    float unk1006[16];
+    u32   minimumPhysicalDamage;      // @ 0x2E4
+    u32   maximumPhysicalDamage;
 
-    u32   unk1006[23];
+    u32   unk1007[2];
+    u32   changeMeForDamageUpdate;    // Haven't looked at the code that alters this
+                                      //  but if it changes the min and max are updated correctly
 
     u32   enhancementCount;
 
-    u32   unk1008[4];
+    // New: Post std::vector change
+    u32   unk1008[1];
 
-    u32  *enchantTypeListStart;
-    u32  *enchantTypeListEnd;
+    std::vector<u32> enchantTypeList;
+    std::vector<u32> enchantList;
 
-    u32   unk1009[4];
-
-    u32  *enchantListStart;
-    u32  *enchantListEnd;
-
-    u32   unk1007[28];
+    u32   unk1010[27];
 
     u32                 socketCount;
     CList<CEquipment*>  gemList;
 
-    u32   unk1010[6];
-    
-    // Notes:
-    // Interesting 3 ptrs at offset 780
-    // Partial func for enchanting: @575F4A
+    u32   unk1011[6];
+
 
     // 
     // Function hooks
@@ -148,8 +143,39 @@ namespace TLAPI
       listAffixes->capacity = 0;
       listAffixes->growth = 1;
 
-      effectMgr->CreateAffix(0x5F, 0, 5, listAffixes);
+      // If we don't have an effect manager for this equipment, add one
+      // this is hacky, but I'm too lazy to recreate it myself
+      if (!pCEffectManager) {
+        logColor(B_RED, L"No EffectManager for Equipment, creating...");
+        effectMgr->CreateAffix(0x5F, 0, 5, listAffixes);
+        CAffix* affix = (*listAffixes)[0];
+        AddAffix(affix, 0, this, 1.0f);
+        pCEffectManager->effectList.size = 0;
+        pCEffectManager->affixList.size = 0;
+      }
 
+      // Change the effect type and value
+      // Add the unknowns, some weird effects are cropping up
+      logColor(B_RED, L" Add effect to Equipment EffectManager list: Type: %x, Value: %f", type, amount);
+      CEffect* effect = new CEffect;
+      effect->effectType = type;
+      effect->effectValue = amount;
+      effect->effectIndex = pCEffectManager->effectList.size;
+      effect->unk2 = 0;
+      effect->unk3 = -1000.0f;
+      effect->unk4[0] = 0;
+      effect->unk4[1] = 0;
+      effect->setup = 0x10001;
+      effect->unk8 = 0x1000100;
+      effect->unk9 = 1.0f;
+      effect->unk6[0] = 0x64;
+      effect->unk6[1] = 0x64;
+      effect->unk6[2] = 0;
+      effect->equipment = this;
+
+      pCEffectManager->effectList.push(effect);
+
+      /*
       if (listAffixes->size) {
         // Change the list of affixes to size 1
         listAffixes->size = 1;
@@ -171,6 +197,7 @@ namespace TLAPI
 
         delete listAffixes;
       }
+      */
     }
 
     // This is designed to encompass the above into an easily callable function
@@ -192,16 +219,8 @@ namespace TLAPI
       
       dumpItem();
 
-      /*
-      logColor(B_GREEN, "  SocketTest: unk1007:");
-      for (u32 i = 0; i < 30; i++) {
-        logColor(B_BLUE, "    unk1007[%i] = %i", i, unk1007[i]);
-      }
-      logColor(B_GREEN, "  SocketTest: unk1010:");
-      for (u32 i = 0; i < 10; i++) {
-        logColor(B_BLUE, "    unk1010[%i] = %i", i, unk1010[i]);
-      }
-      */
+      log(L"  enchantList sizeof: %i.", sizeof(enchantList));
+      log(L"  enchantTypeList sizeof: %i.", sizeof(enchantTypeList));
 
       logColor(B_GREEN, "  SocketCount: %i", socketCount);
       logColor(B_GREEN, "    Gems: %i", gemList.size);
@@ -212,10 +231,14 @@ namespace TLAPI
       logColor(B_GREEN, "  StackSize: %i", stackSize);
       logColor(B_GREEN, "  StackSize Max: %i", stackSizeMax);
 
-      logColor(B_GREEN, "  pCAttackDescriptor0 = %p", pCAttackDescriptor0);
-      pCAttackDescriptor0->dumpAttack();
-      logColor(B_GREEN, "  pCAttackDescriptor1 = %p", pCAttackDescriptor1);
-      pCAttackDescriptor1->dumpAttack();
+      if (pCAttackDescriptor0) {
+        logColor(B_GREEN, "  pCAttackDescriptor0 = %p", pCAttackDescriptor0);
+        pCAttackDescriptor0->dumpAttack();
+      }
+      if (pCAttackDescriptor1) {
+        logColor(B_GREEN, "  pCAttackDescriptor1 = %p", pCAttackDescriptor1);
+        pCAttackDescriptor1->dumpAttack();
+      }
 
       logColor(B_GREEN, "  pCGenericModel = %p", pCGenericModel);
       logColor(B_GREEN, "  unk1001 = %p", unk1001);
@@ -224,8 +247,11 @@ namespace TLAPI
       logColor(B_GREEN, "  CEGUIPropertySheet = %p", pCEGUIPropertySheet);
 
       logColor(B_GREEN, L"  nameUnidentified = %s", nameUnidentified.c_str());
-      //logColor(B_GREEN, L"  namePrefix = %s", namePrefix.getString());
-      //logColor(B_GREEN, L"  nameSuffix = %s", nameSuffix.getString());
+      logColor(B_GREEN, L"  namePrefix = %s", namePrefix.c_str());
+      logColor(B_GREEN, L"  nameSuffix = %s", nameSuffix.c_str());
+
+      logColor(B_GREEN, "  Max physical damage: %i", maximumPhysicalDamage);
+      logColor(B_GREEN, "  Min physical damage: %i", minimumPhysicalDamage);
 
       logColor(B_GREEN, "  Item Requirements:");
       logColor(B_GREEN, "     Level: %i", requirements[0]);
@@ -234,6 +260,17 @@ namespace TLAPI
       logColor(B_GREEN, "     Magic: %i", requirements[3]);
       logColor(B_GREEN, "     Defense: %i", requirements[4]);
 
+      // New
+      const char* EnchantTypeString[] = { "PHYSICAL", "UNKNOWN", "FIRE", "ICE", "ELECTRIC", "POISON" };
+
+      logColor(B_GREEN, "  Item Enchants:");
+      std::vector<u32>::iterator itr;
+      for (size_t index = 0; index < enchantList.size(); index++) {
+        logColor(B_GREEN, "     %s %i", EnchantTypeString[index], enchantList[index]);
+      }
+
+      // Old - pre std::vector change
+      /*
       u32 *itr = enchantListStart;
       u32 *itrType = enchantTypeListStart;
       const char* EnchantTypeString[] = { "PHYSICAL", "UNKNOWN", "FIRE", "ICE", "ELECTRIC", "POISON" };
@@ -245,6 +282,7 @@ namespace TLAPI
         itr++;
         itrType++;
       }
+      */
 
       if (pCEffectManager) {
         pCEffectManager->dumpEffectManager();

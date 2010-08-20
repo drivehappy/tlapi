@@ -33,15 +33,17 @@ namespace TLAPI {
     u32   unk2;
     float unk3;     // -900.0, -1000.0
 
-    u32   unk4[2];  //
+    u32   unk4[2];  // 0/1, 0
     u32   setup;    // 10001h
-    u32   unk6[3];  //
+    u32   unk8;     // 1000100
+    float unk9;     // -1
+    u32   unk6[3];  // 64h, 64h, 0
 
     CEquipment *equipment;
 
     u32   effectIndex;
 
-    u32   unk5[45];
+    u32   unk5[43];
 
     CAffix *unk7;
 
@@ -87,7 +89,11 @@ namespace TLAPI {
       //logColor(B_RED, "    Effect Unk0: %x %x %x %x", unk0[0], unk0[1], unk0[2], unk0[3]);
       logColor(B_RED, "    Effect Unk2: %x", unk2);
       logColor(B_RED, "    Effect Unk3: %f", unk3);
-      logColor(B_RED, "    Effect Unk4: %x %x %x %x %x %x %x %x", unk4[0], unk4[1], unk4[2], unk4[3], unk4[4], unk4[5], unk4[6], unk4[7]);
+      logColor(B_RED, "    Effect Unk4: %x %x", unk4[0], unk4[1]);
+      logColor(B_RED, "    Effect Setup: %x", setup);
+      logColor(B_RED, "    Effect Unk8: %x", unk8);
+      logColor(B_RED, "    Effect Unk9: %f", unk9);
+      logColor(B_RED, "    Effect Unk6: %x %x %x", unk6[0], unk6[1], unk6[2]);
       logColor(B_RED, "    Equipment: %p", equipment);
       logColor(B_RED, "    Effect Value: %f", effectValue);
 

@@ -7,6 +7,7 @@ namespace TLAPI
 
 #pragma pack(1)
 
+  // Size = 0x1E0
   struct CItem : CBaseUnit
   {
     PVOID pSoundBank;

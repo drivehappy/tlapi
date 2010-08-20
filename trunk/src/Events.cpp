@@ -80,9 +80,6 @@ EVENT_DEF(CCharacter, void, CharacterStrike, (CCharacter*, CLevel*, CCharacter*,
 EVENT_DEF(CCharacter, void, CharacterPickupEquipment, (CCharacter*, CEquipment*, CLevel*, bool&));
 EVENT_DEF(CCharacter, void, CharacterAttack, (CCharacter*, bool&));
 
-// Player
-EVENT_DEF(CPlayer, void, PlayerUseSkill, (u32 retVal, CPlayer* player, u64 skill));
-
 // GenericModel
 EVENT_DEF(CGenericModel, void, GenericModelGetPosition, (CGenericModel*, Vector3, u32));
 

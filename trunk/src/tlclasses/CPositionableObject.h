@@ -7,6 +7,7 @@ namespace TLAPI
 
 #pragma pack(1)
 
+  // CPositionableObject size = 0xF0
   struct CPositionableObject : CSceneNodeObject
   {
     u32 unk10;
