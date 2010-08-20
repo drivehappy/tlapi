@@ -28,6 +28,7 @@ namespace TLAPI
   TLFUNC(CharacterAddMinion, void, __thiscall, (CCharacter*, CCharacter*));
   TLFUNC(CharacterSetAction, PVOID, __thiscall, (CCharacter*, u32));
   TLFUNC(CharacterAttack, PVOID, __thiscall, (CCharacter*));
+  TLFUNC(CharacterUseSkill, PVOID, __thiscall, (CCharacter*, u64));
   
   // CBaseUnit Size = 0x190
   struct CCharacter : CBaseUnit
@@ -240,6 +241,9 @@ namespace TLAPI
 
 
     // Set Alignment
+    void UseSkill(u64 skill) {
+      CharacterUseSkill(this, skill);
+    }
     void SetAlignment(u32 alignment) {
       CharacterSetAlignment(this, alignment);
     }
