@@ -12,6 +12,10 @@ namespace TLAPI
     PVOID unk0;
 
     PVOID *ptrtomyself;     // Cyclic ptr to point to myself
+
+    u32   unk1[15];
+
+    CList<u32> listID;
   };
 
 #pragma pack()

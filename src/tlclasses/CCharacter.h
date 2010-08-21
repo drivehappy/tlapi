@@ -129,26 +129,34 @@ namespace TLAPI
     wstring  Skill3;    // "Summon Zombies III"
     wstring  Skill4;    // "HEAL SELF IV"
 
-    u32      unk23[3];    // 1, 1, 1, 1
-    u32      unk24[3];
+    u32      unk23[4];    // 1, 1, 1, 1
 
-    CAttackDescription **pCAttackDescription2;
+    vector<CAttackDescription*>  attackDescriptions;
 
-    CAttackDescription *pCAttackDescriptionEnd0;
-    CAttackDescription *pCAttackDescriptionEnd1;   // Same value as above
+    u32      unk16[1];
+    float    healthCurrent; // This is the same as healthMax
+    u32      unk016;        // 870h
+    u32      unk0016;       // 19h
+    float    healthMax;
+    u32      unk00016;       // 0h
 
-    u32      unk16[3];
-    u32      health;
-    u32      unk016[8];
-    u32      mana;
-    u32      unk0016[1];
+    u32      baseDexterity;
+    u32      baseStrength;
+    u32      baseDefense;
+    u32      baseMagic;
+
+    float    manaMax;       // This is wrong
+    u32      manaCurrent;
+    u32      unk000016[1];  // 0h
 
     u32      gold;
+    u32      experienceCurrent;
+    u32      fameCurrent;
 
-    u32      unk17[15];
+    u32      unk17[13];
 
     CInventory  *pCInventory;
-    CEquipment  *pCEquipment;
+    CEquipment  *pCEquipment;   // @: 170. (*4)
 
     u32      unk18;
     CList<CParticle*>  listParticles;
@@ -168,9 +176,13 @@ namespace TLAPI
 
     u32     unk33[29];
 
-    PVOID   pOgreShadowCaster;
+    PVOID   pOgreShadowCaster;  // @ 254. (*4)
 
-    u32     unk34[26];
+    u32     unk34[9];
+
+    PVOID   unkPtrForType;      // Interesting code @: 4B6165  (esi + 5B4h)
+
+    u32     unk034[16];
 
     CCharacter      **pCMinionStart;
     CCharacter      **pCMinionEnd;
@@ -183,6 +195,32 @@ namespace TLAPI
     u32     unk35[22];
 
     CAIManager    *pCAIManager;
+
+
+    void dumpCharacter() {
+      logColor(B_GREEN, L"Character Dump: %p (sizeof = %x)", this, sizeof(CCharacter));
+      logColor(B_GREEN, L"  Strength: %i", baseStrength);
+      logColor(B_GREEN, L"  Dexterity: %i", baseDexterity);
+      logColor(B_GREEN, L"  Defense: %i", baseDefense);
+      logColor(B_GREEN, L"  Magic: %i", baseMagic);
+      logColor(B_GREEN, L"  Health: %f / %f", healthCurrent, healthMax);
+      logColor(B_GREEN, L"  Mana: %f / %f", manaCurrent, manaMax);
+      logColor(B_GREEN, L"  Gold: %i", gold);
+      logColor(B_GREEN, L"  XP: %i", experienceCurrent);
+      logColor(B_GREEN, L"  Fame: %i", fameCurrent);
+      logColor(B_GREEN, L"  unk000016: %i", unk000016[0]);
+      logColor(B_GREEN, L"  Testmana: %i / %i", *(u32*)&manaCurrent, *(u32*)&manaMax);
+
+      logColor(B_GREEN, L"   unk16[1]: %i  (%f)", unk16[0], *(float*)&unk16[0]);
+      logColor(B_GREEN, L"   unk016: %i  (%f)", unk016, *(float*)&unk016);
+      logColor(B_GREEN, L"   unk0016: %i  (%f)", unk0016, *(float*)&unk0016);
+      logColor(B_GREEN, L"   unk00016: %i  (%f)", unk00016, *(float*)&unk00016);
+
+      logColor(B_GREEN, L"   unk17[13]:");
+      for (u32 i = 0; i < 13; i++) {
+        logColor(B_GREEN, L"    unk17[%i]: %i (%f)", i, unk17[i], *(float*)&unk17[i]);
+      }
+    }
 
     // 
     // Function hooks
