@@ -9,7 +9,7 @@ namespace TLAPI
 
   struct CEquipmentRef : CRunicCore
   {
-    PVOID       unk0;         // NULL -- is this the vtable?? if it is remove (defined in CRunicCore)
+    PVOID       unk0;
     CEquipment *pCEquipment;  // ptr to CEquipment
 
     s32 slot;         //

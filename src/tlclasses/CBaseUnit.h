@@ -15,7 +15,9 @@ namespace TLAPI
   // CBaseUnit Size = 0x190
   struct CBaseUnit : CPositionableObject
   {
-    u32 unk1[18];
+    u32 level;        // Level of Character/Unit
+
+    u32 unk1[17];
 
     u32 unk3[6];        // See below
                       /*
@@ -46,7 +48,22 @@ namespace TLAPI
 
     u32 unk8;         
 
-    u32 unk9;           // 68h    || 2ah || 1C
+
+    u32 type__;       // What is this? A type flag?
+      // 68h || 2ah || 1C
+      // 68h = Valeria
+      // AFh = Goldenrod
+      // 68h = Gar
+      // 68h = Horse
+      // 68h = Syl
+      // 1Ch = Server's Player - Drivehappy
+      // 57h = Server's Player's Pet
+      // 1Ch = Server created monster (player - Drivehappy)
+      // 2Dh = Ordrak's Wingblade
+      // 54h = Scale Haubergeon
+      // 50h = Scale Greaves
+      // 4Dh = Epic Leather Shoulders
+
 
     CDataGroup *pCDataGroup;
 
