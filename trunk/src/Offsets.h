@@ -99,7 +99,7 @@ namespace TLAPI {
   TLFUNC(GameClientCtor,                        void,     __thiscall, ());
   TLFUNC(GameCtor,                              void,     __thiscall, ());
   TLFUNC(CharacterCtor,                         void,     __thiscall, ());
-  TLFUNC(EquipmentCtor,                         void,     __thiscall, ());
+  TLFUNC(EquipmentDtor,                         void,     __thiscall, ());
 
   TLFUNC(PlayerCharacterSetAction,              void,     __thiscall, (CPlayer*));
   

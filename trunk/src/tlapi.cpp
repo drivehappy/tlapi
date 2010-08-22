@@ -87,9 +87,7 @@ TLFUNCPTR(PlayerCtor,                             void,     __thiscall, (),     
 TLFUNCPTR(GameClientCtor,                         void,     __thiscall, (),                                                0x40F7B0);     // 1.15
 TLFUNCPTR(GameCtor,                               void,     __thiscall, (),                                                0x4095A0);     // 1.15
 TLFUNCPTR(CharacterCtor,                          void,     __thiscall, (),                                                0x4A70A0);     // 1.15
-
-// Think this is really the dtor
-TLFUNCPTR(EquipmentCtor,                          void,     __thiscall, (),                                                0x4BA250);     // 1.15
+TLFUNCPTR(EquipmentDtor,                          void,     __thiscall, (),                                                0x4BA250);     // 1.15
 
 
 
@@ -203,7 +201,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CGameClient, GameClientProcessTitleScreen, 4);
 
   // Hook Equipment
-  EVENT_INIT(CEquipment, EquipmentCtor, 0);
+  EVENT_INIT(CEquipment, EquipmentDtor, 0);
   EVENT_INIT(CEquipment, EquipmentInitialize, 1);
   EVENT_INIT(CEquipment, EquipmentEnchant, 3);
   EVENT_INIT(CEquipment, Equipment_AddMagicModifier, 2);

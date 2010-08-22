@@ -45,7 +45,7 @@ EVENT_DEF(CGameClient, void, GameClient_LoadLevel, (CGameClient*));
 EVENT_DEF(CGameClient, void, GameClientProcessTitleScreen, (CGameClient*, float, PVOID, float, u32));
 
 // Equipment
-EVENT_DEF(CEquipment, void, EquipmentCtor, (CEquipment*));
+EVENT_DEF(CEquipment, void, EquipmentDtor, (CEquipment*));
 EVENT_DEF(CEquipment, void, EquipmentInitialize, (CEquipment*, CItemSaveState*));
 EVENT_DEF(CEquipment, void, EquipmentEnchant, (u32, CEquipment*, u32, u32, u32));
 EVENT_DEF(CEquipment, void, Equipment_AddMagicModifier, (CEquipment*, u32, u32));
