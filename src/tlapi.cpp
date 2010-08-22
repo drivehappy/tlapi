@@ -30,6 +30,8 @@ TLFUNCPTR(CharacterSetTarget,                     PVOID,        __thiscall, (CCh
 
 TLFUNCPTR(CharacterStrike,                        PVOID,    __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32), 0x4A0190);  // 1.15  CMonster src, CLevel, CMonster dst, NULL, 0, 1.0, 1.0, 7
 
+TLFUNCPTR(EquipmentAddStackCount,                 PVOID,    __thiscall, (CEquipment*, u32),                                                 0x4B0930);  // 1.15
+
 TLFUNCPTR(MonsterProcessAI,                       PVOID,    __thiscall, (CMonster*, float, PVOID),                                          0x4D36F0);     // 1.15  CMonster, float unk (0.005), CLevel
 TLFUNCPTR(PlayerSetAnimation,                     PVOID,    __thiscall, (CPlayer*, u32, bool, float, float, u32),                           0x4841F0);     // 1.15  CPlayer, u32 unk, bool unk, float unk (0.2), float unk (1), u32(
 
@@ -85,6 +87,8 @@ TLFUNCPTR(PlayerCtor,                             void,     __thiscall, (),     
 TLFUNCPTR(GameClientCtor,                         void,     __thiscall, (),                                                0x40F7B0);     // 1.15
 TLFUNCPTR(GameCtor,                               void,     __thiscall, (),                                                0x4095A0);     // 1.15
 TLFUNCPTR(CharacterCtor,                          void,     __thiscall, (),                                                0x4A70A0);     // 1.15
+
+// Think this is really the dtor
 TLFUNCPTR(EquipmentCtor,                          void,     __thiscall, (),                                                0x4BA250);     // 1.15
 
 
@@ -204,6 +208,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CEquipment, EquipmentEnchant, 3);
   EVENT_INIT(CEquipment, Equipment_AddMagicModifier, 2);
   EVENT_INIT(CEquipment, Equipment_AddAffix, 4);
+  EVENT_INIT(CEquipment, EquipmentAddStackCount, 1);
 
   // MainMenu
   EVENT_INIT(CMainMenu, MainMenu_Event, 8);
