@@ -17,6 +17,85 @@ namespace TLAPI {
     HEALTH_STOLEN = 0x31,
     MANA_STOLEN = 0x32,
     FASTER_CAST_SPEED = 0x1d,
+    MAGIC_FIND = 0x1b,
+    POTION_EFFECTIVENESS = 0x5a,
+    FIRE_RESIST = 0x25,
+    POISON_RESIST = 0x28,
+    ARMOR = 0x8,
+    FASTER_MOVEMENT_SPEED = 0x15,
+    MANA = 4,
+    HEALTH = 5,
+    ELECTRICAL_RESIST = 0x27,
+    ICE_RESIST = 0x26,
+    STRENGTH = 0x45,
+    MAGIC = 0x3,
+    EXPERIENCE_GAIN = 0x44,
+    ALL_DAMAGE = 0x19,
+    DAMAGE_REFLECTED = 0x30,
+  };
+
+  static const u32 EffectLookup[] = {
+    0xa,
+    0xc,
+    0x37,
+    0x36,
+    0x16,
+    0x52,
+    0x31,
+    0x32,
+    0x1d,
+    0x1b,
+    0x5a,
+    0x25,
+    0x28,
+    0x8,
+    0x15,
+    4,
+    5,
+    0x27,
+    0x26,
+    0x45,
+    0x3,
+    0x44,
+    0x19,
+    0x30,
+  };
+
+  static const char* EffectTypeName[] = {
+    "REGULAR",
+    "KNOCKBACK",
+    "CRITICAL_HIT",
+    "ARMOR_DEGRADED",
+    "FASTER_ATTACK",
+    "CHARM_SPELL_MASTERY",
+    "HEALTH_STOLEN",
+    "MANA_STOLEN",
+    "FASTER_CAST_SPEED",
+    "MAGIC_FIND",
+    "POTION_EFFECTIVENESS",
+    "FIRE_RESIST",
+    "POISON_RESIST",
+    "ARMOR",
+    "FASTER_MOVEMENT_SPEED",
+    "MANA",
+    "HEALTH",
+    "ELECTRICAL_RESIST",
+    "ICE_RESIST",
+    "STRENGTH",
+    "MAGIC",
+    "EXPERIENCE_GAIN",
+    "ALL_DAMAGE",
+    "DAMAGE_REFLECTED",
+  };
+
+  static const char* searchForEffectName(u32 index) {
+    u32 count = sizeof(EffectLookup) / sizeof(u32);
+    for (u32 i = 0; i < count; i++) {
+      if (EffectLookup[i] == index) {
+        return EffectTypeName[i];
+      }
+    }
+    return "";
   };
 
   // Forward decl
@@ -55,36 +134,7 @@ namespace TLAPI {
         return;
 
       logColor(B_RED, "  Effect Dump (%p)  size (%i)", this, sizeof(CEffect));
-      switch (effectType) {
-      case KNOCKBACK:
-        logColor(B_RED, "    Effect Type: KNOCKBACK");
-        break;
-      case CRITICAL_HIT:
-        logColor(B_RED, "    Effect Type: CRITICAL_HIT");
-        break;
-      case ARMOR_DEGRADED:
-        logColor(B_RED, "    Effect Type: ARMOR_DEGRADED");
-        break;
-      case FASTER_ATTACK:
-        logColor(B_RED, "    Effect Type: FASTER_ATTACK");
-        break;
-      case CHARM_SPELL_MASTERY:
-        logColor(B_RED, "    Effect Type: CHARM_SPELL_MASTERY");
-        break;
-      case MANA_STOLEN:
-        logColor(B_RED, "    Effect Type: MANA_STOLEN");
-        break;
-      case HEALTH_STOLEN:
-        logColor(B_RED, "    Effect Type: HEALTH_STOLEN");
-        break;
-      case FASTER_CAST_SPEED:
-        logColor(B_RED, "    Effect Type: FASTER_CAST_SPEED");
-        break;
-      default:
-        logColor(B_RED, "    Effect Type: UNKNOWN: %x", effectType);
-        break;
-      }
-      
+      logColor(B_RED, "    Effect Type: %s", searchForEffectName(effectType));
       logColor(B_RED, "    Effect Index: %i", effectIndex);
       //logColor(B_RED, "    Effect Unk0: %x %x %x %x", unk0[0], unk0[1], unk0[2], unk0[3]);
       logColor(B_RED, "    Effect Unk2: %x", unk2);
@@ -99,8 +149,8 @@ namespace TLAPI {
 
       /*
       logColor(B_RED, "    Effect Unk5:");
-      for (u32 i = 0; i < 44; i+=4) {
-        logColor(B_RED, "      %#8x %#8x %#8x %#8x", unk5[i+0], unk5[i+1], unk5[i+2], unk5[i+3]);
+      for (u32 i = 0; i < 43; i+=4) {
+        logColor(B_RED, "      %#x %#x %#x %#x", unk5[i+0], unk5[i+1], unk5[i+2], unk5[i+3]);
       }
       */
     }

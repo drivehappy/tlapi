@@ -39,12 +39,14 @@ namespace TLAPI {
 
   TLFUNC(GameClientUpdateSkill,                 PVOID,        __thiscall, (CGameClient*, u64, u32, u32));
 
+  TLFUNC(EquipmentAddStackCount,                PVOID,        __thiscall, (CEquipment*, u32));
+
   TLFUNC(CharacterStrike,                       PVOID,        __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
 
-  TLFUNC(MonsterProcessAI,                      PVOID,       __thiscall, (CMonster*, float, PVOID));
-  TLFUNC(PlayerSetAnimation,                    PVOID,       __thiscall, (CPlayer*, u32, bool, float, float, u32));
+  TLFUNC(MonsterProcessAI,                      PVOID,        __thiscall, (CMonster*, float, PVOID));
+  TLFUNC(PlayerSetAnimation,                    PVOID,        __thiscall, (CPlayer*, u32, bool, float, float, u32));
 
-  TLFUNC(CharacterAttack,                       PVOID,       __thiscall, (CCharacter*));
+  TLFUNC(CharacterAttack,                       PVOID,        __thiscall, (CCharacter*));
 
   TLFUNC(EquipmentInitialize,                   PVOID,    __thiscall, (CEquipment*, CItemSaveState*));
   TLFUNC(ResourceManagerCreateEquipment,  CEquipment*,    __thiscall, (CResourceManager*, u64, u32, u32, u32));

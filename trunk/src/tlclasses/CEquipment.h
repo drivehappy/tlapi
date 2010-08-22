@@ -52,7 +52,8 @@ namespace TLAPI
 
     PVOID     inventory;
 
-    u32       unk0999[5];
+    u32       stackable;
+    u32       unk0999[4];
 
     u32       unk1002[5];
     u32       requirements[5];    // level  str  dex  magic  defense
@@ -79,7 +80,8 @@ namespace TLAPI
     u32   minimumPhysicalDamage;      // @ 0x2E4
     u32   maximumPhysicalDamage;
 
-    u32   unk1007[2];
+    u32   unk1007;
+    u32   armor;
     u32   changeMeForDamageUpdate;    // Haven't looked at the code that alters this
                                       //  but if it changes the min and max are updated correctly
 
@@ -91,7 +93,9 @@ namespace TLAPI
     std::vector<u32> enchantTypeList;
     std::vector<u32> enchantList;
 
-    u32   unk1010[27];
+    vector<u32> enhancedDamage; // Electric, Ice, Fire, Posion
+
+    u32   unk1010[21];
 
     u32                 socketCount;
     CList<CEquipment*>  gemList;
@@ -124,6 +128,11 @@ namespace TLAPI
     EVENT_DECL(CEquipment, void, Equipment_AddAffix,
       (CEquipment*, CAffix*, u32, CEquipment*, float),
       ((CEquipment*)e->_this, (CAffix*)Pz[0], Pz[1], (CEquipment*)Pz[2], *(float*)&Pz[3]));
+
+    // Adds to the stack count
+    EVENT_DECL(CEquipment, void, EquipmentAddStackCount,
+      (CEquipment*, u32),
+      ((CEquipment*)e->_this, Pz[0]));
 
     
     u32 Enchant(u32 unk0, u32 unk1, u32 unk2) const {
@@ -253,6 +262,8 @@ namespace TLAPI
       logColor(B_GREEN, "  Max physical damage: %i", maximumPhysicalDamage);
       logColor(B_GREEN, "  Min physical damage: %i", minimumPhysicalDamage);
 
+      logColor(B_GREEN, "  Armor: %i", armor);
+
       logColor(B_GREEN, "  Item Requirements:");
       logColor(B_GREEN, "     Level: %i", requirements[0]);
       logColor(B_GREEN, "     Strength: %i", requirements[1]);
@@ -269,20 +280,31 @@ namespace TLAPI
         logColor(B_GREEN, "     %s %i", EnchantTypeString[index], enchantList[index]);
       }
 
-      // Old - pre std::vector change
-      /*
-      u32 *itr = enchantListStart;
-      u32 *itrType = enchantTypeListStart;
-      const char* EnchantTypeString[] = { "PHYSICAL", "UNKNOWN", "FIRE", "ICE", "ELECTRIC", "POISON" };
-
-      logColor(B_GREEN, "  Item Enchants:");
-      while (itr != enchantListEnd) {
-        logColor(B_GREEN, "     %s %i", EnchantTypeString[*itrType], (*itr));
-
-        itr++;
-        itrType++;
+      logColor(B_GREEN, "  Item Enhanced Damages: size = %i", enhancedDamage.size());
+      vector<u32>::iterator itr2;
+      for (itr2 = enhancedDamage.begin(); itr2 != enhancedDamage.end(); itr2++) {
+        logColor(B_GREEN, "    MaxDamage: %i", (*itr2));
       }
-      */
+
+      logColor(B_GREEN, "  unk0999[4]: %x %x %x %x",
+        unk0999[0], unk0999[1], unk0999[2], unk0999[3]);
+      logColor(B_GREEN, "  unk1002[5]: %x %x %x %x %x",
+        unk1002[0], unk1002[1], unk1002[2], unk1002[3], unk1002[4]);
+      logColor(B_GREEN, "  unk0998[3]: %x %x %f",
+        unk0998[0], unk0998[1], unk0998[2]);
+      logColor(B_GREEN, "  unk1007: %x",
+        unk1007);
+      logColor(B_GREEN, "  unk1008[1]: %f (%x)",
+        unk1008[0], unk1008[0]);
+
+      logColor(B_GREEN, "  unk1010:");
+      for (u32 i = 0; i < 21; i++) {
+        logColor(B_GREEN, "   %x", unk1010[i]);
+      }
+
+      logColor(B_GREEN, "  unk1011[6]: %f %f %f %f %f %f",
+        unk1011[0], unk1011[1], unk1011[2], unk1011[3], unk1011[4], unk1011[5]);
+      
 
       if (pCEffectManager) {
         pCEffectManager->dumpEffectManager();

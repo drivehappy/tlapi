@@ -50,6 +50,7 @@ EVENT_DEF(CEquipment, void, EquipmentInitialize, (CEquipment*, CItemSaveState*))
 EVENT_DEF(CEquipment, void, EquipmentEnchant, (u32, CEquipment*, u32, u32, u32));
 EVENT_DEF(CEquipment, void, Equipment_AddMagicModifier, (CEquipment*, u32, u32));
 EVENT_DEF(CEquipment, void, Equipment_AddAffix, (CEquipment*, CAffix*, u32, CEquipment*, float));
+EVENT_DEF(CEquipment, void, EquipmentAddStackCount, (CEquipment*, u32));
 
 // ResourceManager
 EVENT_DEF(CResourceManager, void, ResourceManagerInitializePlayer,      (CResourceManager*, u32, u32));
