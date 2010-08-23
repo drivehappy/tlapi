@@ -21,6 +21,7 @@ namespace TLAPI
   TLFUNC(EquipmentEnchant,           u32,  __thiscall, (CEquipment*, u32, u32, u32));
   TLFUNC(Equipment_AddMagicModifier, void, __thiscall, (CEquipment*, u32, u32));
   TLFUNC(Equipment_AddAffix,         void, __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float));
+  TLFUNC(Equipment_AddGem,           void, __thiscall, (CEquipment*, CEquipment*));
 
   // Enchantment Types
   enum EnchantType {
@@ -136,12 +137,15 @@ namespace TLAPI
 
     // Adds a gem
     EVENT_DECL(CEquipment, void, Equipment_AddGem,
-      (CEquipment*, CEquipment*),
-      ((CEquipment*)e->_this, (CEquipment*)Pz[0]));
+      (CEquipment*, CEquipment*, bool&),
+      ((CEquipment*)e->_this, (CEquipment*)Pz[0], e->calloriginal));
 
     
     u32 Enchant(u32 unk0, u32 unk1, u32 unk2) const {
       return EquipmentEnchant((CEquipment*)this, unk0, unk1, unk2);
+    }
+    void AddGem(CEquipment* gem) {
+      Equipment_AddGem(this, gem);
     }
     void AddMagicModifier(EnchantType type, u32 amount) {
       Equipment_AddMagicModifier(this, type, amount);
