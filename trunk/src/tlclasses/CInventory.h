@@ -25,6 +25,8 @@
   9:  Right Ring
   10: Amulet
 
+  14: Enchanting Slot (NPC Window)
+
   19-39: Equipment  Tab  (row-order)
   40-60: Spells     Tab
   61-81: Fish       Tab

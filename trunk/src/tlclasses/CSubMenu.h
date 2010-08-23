@@ -13,12 +13,14 @@ namespace TLAPI {
     PVOID unk0;
     PVOID vtable_iInventoryListener;
     PVOID CEGUISheetPropertySet[7];
+    PVOID CEGUIPushButton;
 
-    CPlayer   *player;
-    CLevel    *level;
-    u32        unk01;
-    CSettings *settings;
-    CGameUI   *gameUI;
+    CCharacter *npc;
+    CPlayer    *player;
+    CLevel     *level;
+    u32         unk01;
+    CSettings  *settings;
+    CGameUI    *gameUI;
 
     PVOID              pOctreeSM;
     PVOID              unk1;
