@@ -21,6 +21,7 @@
 #include "CMouseManager.h"
 #include "CCharacterSaveState.h"
 #include "CMainMenu.h"
+#include "CGameUI.h"
 
 namespace TLAPI {
 
@@ -157,5 +158,7 @@ namespace TLAPI {
 
   TLFUNC(Equipment_UpdateRequirements,          void,     __thiscall, (CEquipment*));
   TLFUNC(Equipment_UpdatePrice,                 void,     __thiscall, (CEquipment*));
+
+  TLFUNC(GameUI_TriggerPause,                   void,     __thiscall, (CGameUI*));
 
 };

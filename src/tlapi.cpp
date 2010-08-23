@@ -146,6 +146,10 @@ TLFUNCPTR(MainMenu_Event,                         void,     __thiscall, (CMainMe
 TLFUNCPTR(Equipment_UpdateRequirements,           void,     __thiscall, (CEquipment*),                                     0x4B3EA0);
 TLFUNCPTR(Equipment_UpdatePrice,                  void,     __thiscall, (CEquipment*),                                     0x4B3A10);
 
+TLFUNCPTR(GameUI_TriggerPause,                    void,     __thiscall, (CGameUI*),                                        0x53D6E0);
+
+
+
 
 void TLAPI::Initialize()
 {
@@ -199,6 +203,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CGameClient, GameClient_CreateLevel, 24);
   EVENT_INIT(CGameClient, GameClient_LoadLevel, 0);
   EVENT_INIT(CGameClient, GameClientProcessTitleScreen, 4);
+  EVENT_INIT(CGameClient, GameClientGamePaused, 0);
 
   // Hook Equipment
   EVENT_INIT(CEquipment, EquipmentDtor, 0);
@@ -213,6 +218,9 @@ void TLAPI::HookFunctions()
   
   // CharacterSaveState
   EVENT_INIT(CCharacterSaveState, CharacterSaveState_LoadFromFile, 2);
+
+  // GameUI
+  EVENT_INIT(CGameUI, GameUI_TriggerPause, 0);
 
   /*
   // Hook ResourceManager

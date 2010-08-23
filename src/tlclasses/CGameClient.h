@@ -121,6 +121,10 @@ namespace TLAPI
       (CGameClient*, float, PVOID, PVOID),
       ((CGameClient*)e->_this, *(float*)&Pz[0], (PVOID)Pz[1], (PVOID)Pz[2]));
 
+    EVENT_DECL(CGameClient, void, GameClientGamePaused,
+      (bool&, CGameClient*, bool&),
+      ((bool &)e->retval, (CGameClient*)e->_this, e->calloriginal));
+
 
     // Change level
     void ChangeLevel(s32 relativeLevel) {

@@ -30,6 +30,12 @@ namespace TLAPI
     CEGUI::Rect   rectBottomBlocker;
     CEGUI::Rect   rectBottom2Blocker;
 
+    //
+    // Hook
+    EVENT_DECL(CGameUI, void, GameUI_TriggerPause,
+      (CGameUI*, bool&),
+      ((CGameUI*)e->_this, e->calloriginal));
+
 
     void dumpGameUI() {
       log("CGameUI(%p) dump:", this);
