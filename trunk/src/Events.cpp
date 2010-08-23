@@ -30,6 +30,9 @@ EVENT_DEF(CMonster, void, MonsterIdle, (CMonster*, float, bool&));
 EVENT_DEF(CGame, void, GameCtor, (CGame*));
 EVENT_DEF(CGame, void, Game_CreateUI, (CGame*));
 
+// GameUI
+EVENT_DEF(CGameUI, void, GameUI_TriggerPause, (CGameUI*));
+
 // MouseManager
 EVENT_DEF(CMouseManager, void, MouseManagerInput, (CMouseManager*, u32, u32, bool*));
 
@@ -43,6 +46,7 @@ EVENT_DEF(CGameClient, void, GameClient_CreateLevel, (CGameClient*, u32, u32, u3
           CGameClient*, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32, u32));
 EVENT_DEF(CGameClient, void, GameClient_LoadLevel, (CGameClient*));
 EVENT_DEF(CGameClient, void, GameClientProcessTitleScreen, (CGameClient*, float, PVOID, float, u32));
+EVENT_DEF(CGameClient, void, GameClientGamePaused, (bool, CGameClient*, bool&));
 
 // Equipment
 EVENT_DEF(CEquipment, void, EquipmentDtor, (CEquipment*));
