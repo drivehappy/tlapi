@@ -8,8 +8,8 @@ namespace TLAPI {
 
   struct CEnchantMenu : CSubMenu
   {
-    u32    unk10[2];
     u32    EnchantType;
+    u32    unk11[32];
 
     
     // Enchant
