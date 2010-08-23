@@ -6,6 +6,8 @@ namespace TLAPI {
 
 #pragma pack(1)
 
+  //
+  // Unsure of the breakoff on the derived classes here
   struct CSubMenu : CRunicCore
   {
     PVOID unk0;
@@ -14,9 +16,30 @@ namespace TLAPI {
 
     CPlayer   *player;
     CLevel    *level;
-    u32        unk1;
+    u32        unk01;
     CSettings *settings;
     CGameUI   *gameUI;
+
+    PVOID              pOctreeSM;
+    PVOID              unk1;
+    u32                unk2;
+    CGenericModel     *pCGenericModel;
+    CResourceManager  *pCResourceManager;
+
+    u32 unk3;
+
+    PVOID  pCSoundBank;
+    u32 unk4[2];      // Eh, 0
+    
+    PVOID  pCEGUISheet[4];
+
+    u32 unk5[3];
+
+    PVOID  unk6;
+
+    PVOID  pCEGUISheet2;
+
+    u32    unk7;
   };
 
 #pragma pack()

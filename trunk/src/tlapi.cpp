@@ -148,7 +148,9 @@ TLFUNCPTR(Equipment_UpdatePrice,                  void,     __thiscall, (CEquipm
 
 TLFUNCPTR(GameUI_TriggerPause,                    void,     __thiscall, (CGameUI*),                                        0x53D6E0);
 
+TLFUNCPTR(Equipment_AddGem,                       void,     __thiscall, (CEquipment*, CEquipment*),                        0x4B6F80);
 
+TLFUNCPTR(EnchantMenu_EnchantItem,                void,     __thiscall, (CEnchantMenu*),                                   0x575740);
 
 
 void TLAPI::Initialize()
@@ -205,6 +207,9 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CGameClient, GameClientProcessTitleScreen, 4);
   EVENT_INIT(CGameClient, GameClientGamePaused, 0);
 
+  // Hook EnchantMenu
+  EVENT_INIT(CEnchantMenu, EnchantMenu_EnchantItem, 0);
+
   // Hook Equipment
   EVENT_INIT(CEquipment, EquipmentDtor, 0);
   EVENT_INIT(CEquipment, EquipmentInitialize, 1);
@@ -212,6 +217,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CEquipment, Equipment_AddMagicModifier, 2);
   EVENT_INIT(CEquipment, Equipment_AddAffix, 4);
   EVENT_INIT(CEquipment, EquipmentAddStackCount, 1);
+  EVENT_INIT(CEquipment, Equipment_AddGem, 1);
 
   // MainMenu
   EVENT_INIT(CMainMenu, MainMenu_Event, 8);
