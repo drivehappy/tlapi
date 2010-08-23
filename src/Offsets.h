@@ -22,6 +22,7 @@
 #include "CCharacterSaveState.h"
 #include "CMainMenu.h"
 #include "CGameUI.h"
+#include "CEnchantMenu.h"
 
 namespace TLAPI {
 
@@ -160,5 +161,9 @@ namespace TLAPI {
   TLFUNC(Equipment_UpdatePrice,                 void,     __thiscall, (CEquipment*));
 
   TLFUNC(GameUI_TriggerPause,                   void,     __thiscall, (CGameUI*));
+
+  TLFUNC(Equipment_AddGem,                      void,     __thiscall, (CEquipment*, CEquipment*));
+
+  TLFUNC(EnchantMenu_EnchantItem,               void,     __thiscall, (CEnchantMenu*));
 
 };

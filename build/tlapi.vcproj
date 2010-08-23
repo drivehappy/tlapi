@@ -601,6 +601,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\tlclasses\CEnchantMenu.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CEquipment.h"
 				>
 			</File>

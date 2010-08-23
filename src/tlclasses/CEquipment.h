@@ -42,7 +42,7 @@ namespace TLAPI
     NONE = 0xFF,
   };
 
-  // Size = 
+  // CItem Size = 0x1E0
   struct CEquipment : CItem
   {
     PVOID vtable_iMissle;
@@ -98,7 +98,7 @@ namespace TLAPI
     u32   unk1010[21];
 
     u32                 socketCount;
-    CList<CEquipment*>  gemList;
+    CList<CEquipment*>  gemList;      // @ 0x3A0
 
     u32   unk1011[6];
 
@@ -133,6 +133,11 @@ namespace TLAPI
     EVENT_DECL(CEquipment, void, EquipmentAddStackCount,
       (CEquipment*, u32),
       ((CEquipment*)e->_this, Pz[0]));
+
+    // Adds a gem
+    EVENT_DECL(CEquipment, void, Equipment_AddGem,
+      (CEquipment*, CEquipment*),
+      ((CEquipment*)e->_this, (CEquipment*)Pz[0]));
 
     
     u32 Enchant(u32 unk0, u32 unk1, u32 unk2) const {
