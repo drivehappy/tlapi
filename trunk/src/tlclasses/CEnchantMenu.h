@@ -14,8 +14,8 @@ namespace TLAPI {
     
     // Enchant
     EVENT_DECL(CEnchantMenu, void, EnchantMenu_EnchantItem,
-      (CEnchantMenu*),
-      ((CEnchantMenu*)e->_this));
+      (CEnchantMenu*, bool&),
+      ((CEnchantMenu*)e->_this, e->calloriginal));
 
 
   };
