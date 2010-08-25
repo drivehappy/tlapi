@@ -23,6 +23,7 @@
 #include "CMainMenu.h"
 #include "CGameUI.h"
 #include "CEnchantMenu.h"
+#include "CLayout.h"
 
 namespace TLAPI {
 

@@ -8,6 +8,12 @@
 #include "CResourceManager.h"
 #include "CAstarPathFinder.h"
 #include "CEquipment.h"
+#include "CLevelTemplateData.h"
+#include "CAutomap.h"
+#include "CChunk.h"
+#include "CLevelLayout.h"
+#include "CGameClient.h"
+#include "CParticle.h"
 
 namespace TLAPI
 {
@@ -43,28 +49,96 @@ namespace TLAPI
 
     CQuadtree          *pCQuadTree;       // ptr to CQuadTree
     CCollisionList     *pCCollisionList;  // ptr to CCollisionList
+
+    vector<u32>        vecUnk0;
+    /* Old replaced by vector
     u32 unk11;          // Cylic ptr to itself
-
     float unk12[2];     // 1, 1
-
     PVOID unk13[3];     // Odd structure
+    */
 
-    PVOID unk14[5];     // Another odd structure
+    PVOID unk14[4];     // Another odd structure
 
-    u32 unk15;          // 7
-    u32 unk16;          // 46h
-    u32 unk17;          // 0Ah
+    CList<CParticle*>   particleList;
 
-    PVOID unk18[4];
+    PVOID unk18[3];
 
-    float unk19[2];     // 1, 1
+    vector<u32>        vecUnk1;
 
-    PVOID* ppCPropertyNode;   // ptr ptr to CPropertyNode
+    u32   unk19[8];     // 3 dup(   0), 0Ah,3 dup(   0), 0Ah
 
-    PVOID unk20;
-    PVOID unk21;
+    vector<u32>        vecUnk2;
+
+
+    float unk20[22];
+
+                      /*
+                                           -31.981001
+                      debug293:1E0DE1C8 dd 0.79000199
+                      debug293:1E0DE1CC dd 17.153
+                      debug293:1E0DE1D0 dd 9.1789999
+                      debug293:1E0DE1D4 dd 0.0299982
+                      debug293:1E0DE1D8 dd 67.275902
+                      debug293:1E0DE1DC dd 27.368999
+                      debug293:1E0DE1E0 dd -4.4899998
+                      debug293:1E0DE1E4 dd 36.7458
+                      debug293:1E0DE1E8 dd 0.54463887
+                      debug293:1E0DE1EC dd 0.0
+                      debug293:1E0DE1F0 dd 0.83867079
+                      debug293:1E0DE1F4 dd 0.0
+                      debug293:1E0DE1F8 dd 0.0
+                      debug293:1E0DE1FC dd 0.0
+                      debug293:1E0DE200 dd 0.0
+                      debug293:1E0DE204 dd 0.0
+                      debug293:1E0DE208 dd 1.0
+                      debug293:1E0DE20C dd 0.0
+                      debug293:1E0DE210 dd 0.0
+                      debug293:1E0DE214 dd 0.0
+                      debug293:1E0DE218 dd 0.0
+
+                      */
 
     // ...
+
+    u32  unk21[5];
+
+                      /*
+                                           7
+                      debug293:1E0DE220 dd 0
+                      debug293:1E0DE224 dd offset unk_1D000001
+                      debug293:1E0DE228 dd 0
+                      debug293:1E0DE22C dd 1
+
+                      */
+
+    PVOID   pOctreeSM;
+    PVOID   pOgreStaticGeom[4];
+
+    CLevelTemplateData* pCLevelTemplateData;
+    CAutomap*           pCAutomap;
+
+    u32     unk22[3];
+
+    CChunk**  ppCChunk;
+
+    u32     unk23[6];
+
+    CLevelLayout*       pCLevelLayout;
+    CGameClient*        pCGameClient;
+
+    u32     unk24[2];
+
+    float   unk25[4];
+
+    u32     unk26[12];
+
+    CList<CLayout*>     layoutList;
+
+    float   unk27;      // 40.0
+
+    wstring levelName;
+
+
 
 
     // 
