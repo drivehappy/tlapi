@@ -1,8 +1,18 @@
 #pragma once
 
-// Size?: 
-// Inheritance: CRunicCore
-struct CAutomap : CRunicCore
+#include "CRunicCore.h"
+
+namespace TLAPI
 {
-  // TODO
+
+#pragma pack(1)
+
+  struct CAutomap : CRunicCore
+  {
+    // TODO
+  };
+
+#pragma pack()
+
 };
+
