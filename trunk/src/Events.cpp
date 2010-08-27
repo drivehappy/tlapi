@@ -31,7 +31,8 @@ EVENT_DEF(CGame, void, GameCtor, (CGame*));
 EVENT_DEF(CGame, void, Game_CreateUI, (CGame*));
 
 // GameUI
-EVENT_DEF(CGameUI, void, GameUI_TriggerPause, (CGameUI*));
+EVENT_DEF(CGameUI, void, GameUI_WindowResized, (CGameUI*, bool&));
+EVENT_DEF(CGameUI, void, GameUI_TriggerPause, (CGameUI*, bool&));
 EVENT_DEF(CGameUI, void, GameUI_HandleKeyboardInput, (CGameUI*, u32, u32, u32, bool&));
 
 // KeyManager

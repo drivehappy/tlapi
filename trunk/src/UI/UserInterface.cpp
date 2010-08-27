@@ -38,6 +38,8 @@ CEGUI::Window* UserInterface::createWindow(const char* name)
 
 CEGUI::WindowManager* UserInterface::getManager()
 {
+  g_pWm = CEGUI::WindowManager::getSingletonPtr();
+
   return g_pWm;
 }
 
