@@ -172,4 +172,6 @@ namespace TLAPI {
 
   TLFUNC(KeyManager_InjectKey,                  void,     __thiscall, (CKeyManager*, u32, u32));
 
+  TLFUNC(GameUI_WindowResized,                  void,     __thiscall, (CGameUI*));
+
 };

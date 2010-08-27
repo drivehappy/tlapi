@@ -156,6 +156,7 @@ TLFUNCPTR(GameUI_HandleKeyboardInput,             void,     __thiscall, (CGameUI
 
 TLFUNCPTR(KeyManager_InjectKey,                   void,     __thiscall, (CKeyManager*, u32, u32),                          0x4E45A0);
 
+TLFUNCPTR(GameUI_WindowResized,                   void,     __thiscall, (CGameUI*),                                        0x55A950);
 
 
 void TLAPI::Initialize()
@@ -236,6 +237,7 @@ void TLAPI::HookFunctions()
   // GameUI
   EVENT_INIT(CGameUI, GameUI_TriggerPause, 0);
   EVENT_INIT(CGameUI, GameUI_HandleKeyboardInput, 3);
+  EVENT_INIT(CGameUI, GameUI_WindowResized, 0);
 
   /*
   // Hook ResourceManager
@@ -274,6 +276,7 @@ void TLAPI::HookFunctions()
 
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);
+
 
   log("Done hooking.");
   /*
