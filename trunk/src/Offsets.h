@@ -24,6 +24,7 @@
 #include "CGameUI.h"
 #include "CEnchantMenu.h"
 #include "CLayout.h"
+#include "CKeyManager.h"
 
 namespace TLAPI {
 
@@ -166,5 +167,9 @@ namespace TLAPI {
   TLFUNC(Equipment_AddGem,                      void,     __thiscall, (CEquipment*, CEquipment*));
 
   TLFUNC(EnchantMenu_EnchantItem,               void,     __thiscall, (CEnchantMenu*));
+
+  TLFUNC(GameUI_HandleKeyboardInput,            void,     __thiscall, (CGameUI*, u32, u32, u32));
+
+  TLFUNC(KeyManager_InjectKey,                  void,     __thiscall, (CKeyManager*, u32, u32));
 
 };

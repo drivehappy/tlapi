@@ -36,6 +36,10 @@ namespace TLAPI
       (CGameUI*, bool&),
       ((CGameUI*)e->_this, e->calloriginal));
 
+    EVENT_DECL(CGameUI, void, GameUI_HandleKeyboardInput,
+      (CGameUI*, u32, u32, u32, bool&),
+      ((CGameUI*)e->_this, Pz[0], Pz[1], Pz[2], e->calloriginal));
+
 
     void dumpGameUI() {
       log("CGameUI(%p) dump:", this);

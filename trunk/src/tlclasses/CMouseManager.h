@@ -23,8 +23,8 @@ namespace TLAPI
 
     // MouseManager HandleInput
     EVENT_DECL(CMouseManager, void, MouseManagerInput,
-      (CMouseManager*, u32 wParam, u32 mouseButton, bool* calloriginal),
-      ((CMouseManager*)e->_this, Pz[0], Pz[1], (bool*)&e->calloriginal));
+      (CMouseManager*, u32 wParam, u32 mouseButton, bool& calloriginal),
+      ((CMouseManager*)e->_this, Pz[0], Pz[1], e->calloriginal));
 
 
 

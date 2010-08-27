@@ -152,6 +152,11 @@ TLFUNCPTR(Equipment_AddGem,                       void,     __thiscall, (CEquipm
 
 TLFUNCPTR(EnchantMenu_EnchantItem,                void,     __thiscall, (CEnchantMenu*),                                   0x575740);
 
+TLFUNCPTR(GameUI_HandleKeyboardInput,             void,     __thiscall, (CGameUI*, u32, u32, u32),                         0x53B8F0);
+
+TLFUNCPTR(KeyManager_InjectKey,                   void,     __thiscall, (CKeyManager*, u32, u32),                          0x4E45A0);
+
+
 
 void TLAPI::Initialize()
 {
@@ -192,6 +197,9 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CGame, GameCtor, 0);
   EVENT_INIT(CGame, Game_CreateUI, 0);
 
+  // KeyManager
+  EVENT_INIT(CKeyManager, KeyManager_InjectKey, 2);
+
   // Hook Monster
   EVENT_INIT(CMonster, MonsterProcessAI2, 3);
   EVENT_INIT(CMonster, MonsterIdle, 3);
@@ -227,6 +235,7 @@ void TLAPI::HookFunctions()
 
   // GameUI
   EVENT_INIT(CGameUI, GameUI_TriggerPause, 0);
+  EVENT_INIT(CGameUI, GameUI_HandleKeyboardInput, 3);
 
   /*
   // Hook ResourceManager
