@@ -32,9 +32,13 @@ EVENT_DEF(CGame, void, Game_CreateUI, (CGame*));
 
 // GameUI
 EVENT_DEF(CGameUI, void, GameUI_TriggerPause, (CGameUI*));
+EVENT_DEF(CGameUI, void, GameUI_HandleKeyboardInput, (CGameUI*, u32, u32, u32, bool&));
+
+// KeyManager
+EVENT_DEF(CKeyManager, void, KeyManager_InjectKey, (CKeyManager*, u32, u32, bool&));
 
 // MouseManager
-EVENT_DEF(CMouseManager, void, MouseManagerInput, (CMouseManager*, u32, u32, bool*));
+EVENT_DEF(CMouseManager, void, MouseManagerInput, (CMouseManager*, u32, u32, bool&));
 
 // GameClient
 EVENT_DEF(CGameClient, void, GameClientCtor, (CGameClient*));

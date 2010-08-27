@@ -669,6 +669,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\tlclasses\CKeyManager.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CLayout.h"
 				>
 			</File>
