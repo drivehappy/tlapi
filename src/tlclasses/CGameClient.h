@@ -63,7 +63,17 @@ namespace TLAPI
     s32                 level;              // Level change parameter, listed below
     s32                 levelUnk;           //
 
-    u32                 unkChunk3[1299];    //
+    // ^ 1006 *4
+
+    // @23 *4 + 1 = GameClient LoadingLevel flag?
+    u32                 unkChunk3[14];    //
+
+    u8                  unkFlag3;
+    u8                  flagLevelLoading;      /// Should be @1015h
+    u8                  unkFlag1;
+    u8                  unkFlag2;
+
+    u32                 unkChunk5[1284];    //
 
     u32                 inGame;             // @2314  
 

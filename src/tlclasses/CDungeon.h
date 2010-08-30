@@ -19,12 +19,11 @@ namespace TLAPI
 
     u32 unk2;
 
-    wstring name0;    // "HATCHCAVE", "TOWN"
+    wstring name0;    // "MAIN", "HATCHCAVE", "TOWN", "RANDOMDUNGEON"
 
-    wstring name1;    // "Forsaken Caverns"
+    wstring name1;    // "Forsaken Caverns", ""
 
-    float unk1;
-    u32   unk3[5];
+    u32   unk3[4];
 
     wstring name2;    // "Town"
 

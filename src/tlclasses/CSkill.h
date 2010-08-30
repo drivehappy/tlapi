@@ -84,6 +84,7 @@ namespace TLAPI {
       }
       */
 
+      logColor(B_RED, L"      Position: %f %f %f", position.x, position.y, position.z);
       logColor(B_RED, L"      pCSkillProperty0: %p", pCSkillProperty0);
       logColor(B_RED, L"      pCSkillProperty1: %p", pCSkillProperty1);
       logColor(B_RED, L"      skillPropertyList Size: %p", skillPropertyList.size);
