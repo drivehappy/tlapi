@@ -1,7 +1,8 @@
 #pragma once
 
 #include "CRunicCore.h"
-#include "CResourceManager.h"
+#include "CSkillProperty.h"
+#include "CSkillEffectAndAffixes.h"
 
 namespace TLAPI {
 
@@ -9,7 +10,10 @@ namespace TLAPI {
 
   // Forward decl
   struct CResourceManager;
-
+  struct CSkillManager;
+  struct CDataGroup;
+  struct CPlayer;
+  struct CSkillProperty;
 
   struct CSkill : CRunicCore
   {
@@ -22,20 +26,79 @@ namespace TLAPI {
     CResourceManager *pCResourceManager;
     CSkillManager    *pCSkillManager;
     CDataGroup       *pCDataGroup;
+    CPlayer          *pCPlayer;
 
-    u32 unk1[4];
+    u32   unk1[3];
 
-    PVOID unk2;
+    Vector3 position;
 
-    u32 unk3[7];
+    // byte ptr [this + 44h] = Skill in-flight?
+
+    u32   unk3[5];
 
     float unk4;
 
     u32 unk5[4];
 
-    PVOID pCSkillProperty0;
-    PVOID pCSkillProperty1;
-    PVOID pCSkillProperty2;
+    CSkillProperty *pCSkillProperty0;
+    CSkillProperty *pCSkillProperty1;
+    
+    CList<CSkillProperty*>   skillPropertyList;
+
+    u32 unk6[31];
+
+    CSkillEffectAndAffixes *pCSkillEffectAndAffixes;
+
+    float  unk7[13];
+
+    CList<PVOID>  unkList;
+
+    u32    unk8[12];
+
+    PVOID   vtable__iRandomWeight;
+    PVOID   vtable__iHighlight;
+
+    u32    unk9[4];
+
+    u64    GUID;
+
+
+
+
+    void dumpSkill() {
+      /*
+      logColor(B_RED, L"      unk1: %x %x %x",
+        unk1[0], unk1[1], unk1[2]);
+      logColor(B_RED, L"      position: %f %f %f",
+        position.x, position.y, position.z);
+      logColor(B_RED, L"      unk3: %x %x %x %x %x",
+        unk3[0], unk3[1], unk3[2], unk3[3], unk3[4]);
+      logColor(B_RED, L"      unk5: %x",
+        unk5[0]);
+      //logColor(B_RED, L"      listSkillProperties size: %i", 
+      //  listSkillProperties.size());
+
+      for (u32 i = 0; i < 35; i+=5) {
+        logColor(B_RED, L"      %x %x %x %x %x",
+           unk6[i+0], unk6[i+1], unk6[i+2], unk6[i+3], unk6[i+4]);
+      }
+
+      logColor(B_RED, L"      pCSkillProperty0: %p", pCSkillProperty0);
+      logColor(B_RED, L"      pCSkillProperty1: %p", pCSkillProperty1);
+      logColor(B_RED, L"      skillPropertyList Size: %p", skillPropertyList.size);
+      */
+
+      logColor(B_RED, L"      skillName: (%p) %s", pCSkillProperty0, pCSkillProperty0->skillName.c_str());
+      logColor(B_RED, L"      skillName2: (%p) %s", pCSkillProperty0, pCSkillProperty0->skillName2.c_str());
+      logColor(B_RED, L"      skillName2: (%p) %s", pCSkillProperty1, pCSkillProperty1->skillName2.c_str());
+      logColor(B_RED, L"      skillName: (%p) %s", pCSkillProperty1, pCSkillProperty1->skillName.c_str());
+
+      /*
+      for (u32 i = 0; i < skillPropertyList.size; i++) {
+        logColor(B_RED, L"      SkillName[%i]: %s", i, skillPropertyList[i]->skillName.c_str());
+      }
+      */
+    }
   };
 
 #pragma pack()

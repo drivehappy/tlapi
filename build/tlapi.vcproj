@@ -881,7 +881,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\tlclasses\CSkillEffectAndAffix.h"
+				RelativePath="..\src\tlclasses\CSkillEffectAndAffixes.h"
 				>
 			</File>
 			<File

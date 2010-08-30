@@ -9,7 +9,7 @@ using namespace TLAPI;
 u32 exeBaseReal = (u32)GetModuleHandle("Torchlight.exe");
 
 // Define the offset locations
-TLFUNCPTR(ResourceManagerCreatePlayer,            CPlayer*,     __thiscall, (CResourceManager*, u32, u32),                                  0x5FB7B0);     // CResourceManager, u32 unk0, u32 unk1
+TLFUNCPTR(ResourceManagerCreatePlayer,            CPlayer*,     __thiscall, (CResourceManager*, wchar_t*, u32),                             0x5FB7B0);     // CResourceManager, u32 unk0, u32 unk1
 TLFUNCPTR(ResourceManagerCreateMonster,           CMonster*,    __thiscall, (CResourceManager*, u64, u32, bool),                            0x5FBB70);     // CResourceManager, u64 guid, u32 level, bool noitems?
 TLFUNCPTR(LevelCharacterInitialize,               CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32),                          0x4F2EF0);     // CLevel, CMonster, vector3*, u32 unk
 TLFUNCPTR(ResourceManagerCreateCharacterByName,   CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32),  0x5FC600);     // CResourceManager, ...
@@ -18,6 +18,10 @@ TLFUNCPTR(CharacterSetDestination,                void,         __thiscall, (CCh
 TLFUNCPTR(GenericModelGetPosition,                PVOID,        __thiscall, (CGenericModel*, Vector3, u32),                                 0x50E3F0);     // CGenericModel, vector3 &, unk
 TLFUNCPTR(CharacterSetAction,                     PVOID,        __thiscall, (CCharacter*, u32),                                             0x489E50);     // CCharacter, u32 action
 TLFUNCPTR(CharacterUseSkill,                      PVOID,        __thiscall, (CCharacter*, u64),                                             0x494E50);     // CCharacter, u64 skill
+
+TLFUNCPTR(CharacterSetupSkills,                   void,         __thiscall, (CCharacter*, CDataGroup*, u32),                                0x480F00);     //
+TLFUNCPTR(CharacterAddSkill,                      void,         __thiscall, (CCharacter*, wstring*, u32),                                   0x47E930);
+TLFUNCPTR(SkillManagerAddSkill,                   void,         __thiscall, (CSkillManager*, CSkill*, u32, u32),                            0x5D7420);
 
 TLFUNCPTR(GameClientUpdateSkill,                  PVOID,        __thiscall, (CGameClient*, u64, u32, u32),                                  0x4145D0);     // CGameClient, u64 skill, u32 notFirstUse, u32
 
@@ -75,7 +79,6 @@ TLFUNCPTR(PlayerResurrect,                        void,     __thiscall, (CDieMen
 // -------------------------------------------------------------------------------- //
 // In-place definitions
 
-//TLFUNCPTR(GameClientProcessObjects,     void,     __thiscall, (PVOID, PVOID, PVOID, PVOID),                      0x41A790);     // 1.15  CGameClient
 TLFUNCPTR(GameClientProcessObjects,               void,     __thiscall, (CGameClient*, float, PVOID, PVOID),               0x41A790);     // 1.15  CGameClient
 
 TLFUNCPTR(MonsterProcessAI2,                      void,     __thiscall, (CMonster*, float),                                0x4D4450);     // 1.15  CMonster, float (0.002)
@@ -86,7 +89,7 @@ TLFUNCPTR(MonsterOnHit,                           void,     __thiscall, (CMonste
 TLFUNCPTR(PlayerCtor,                             void,     __thiscall, (),                                                0x4DA160);     // 1.15
 TLFUNCPTR(GameClientCtor,                         void,     __thiscall, (),                                                0x40F7B0);     // 1.15
 TLFUNCPTR(GameCtor,                               void,     __thiscall, (),                                                0x4095A0);     // 1.15
-TLFUNCPTR(CharacterCtor,                          void,     __thiscall, (),                                                0x4A70A0);     // 1.15
+TLFUNCPTR(CharacterDtor,                          void,     __thiscall, (),                                                0x4A70A0);     // 1.15
 TLFUNCPTR(EquipmentDtor,                          void,     __thiscall, (),                                                0x4BA250);     // 1.15
 
 
@@ -158,6 +161,10 @@ TLFUNCPTR(KeyManager_InjectKey,                   void,     __thiscall, (CKeyMan
 
 TLFUNCPTR(GameUI_WindowResized,                   void,     __thiscall, (CGameUI*),                                        0x55A950);
 
+TLFUNCPTR(Character_Update,                       void,     __thiscall, (CCharacter*),                                     0x4AC630);
+
+TLFUNCPTR(Character_SetOrientation,               void,     __thiscall, (CCharacter*, Vector3*, float),                    0x48B450);
+
 
 void TLAPI::Initialize()
 {
@@ -200,6 +207,9 @@ void TLAPI::HookFunctions()
 
   // KeyManager
   EVENT_INIT(CKeyManager, KeyManager_InjectKey, 2);
+
+  // SkillManager
+  EVENT_INIT(CSkillManager, SkillManagerAddSkill, 3);
 
   // Hook Monster
   EVENT_INIT(CMonster, MonsterProcessAI2, 3);
@@ -263,7 +273,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CMouseManager, MouseManagerInput, 2);
 
   // Hook Character
-  EVENT_INIT(CCharacter, CharacterCtor, 0);
+  EVENT_INIT(CCharacter, CharacterDtor, 0);
   EVENT_INIT(CCharacter, CharacterSetAlignment, 1);
   EVENT_INIT(CCharacter, CharacterSetDestination, 3);
   EVENT_INIT(CCharacter, CharacterSetAction, 1);
@@ -273,6 +283,10 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, CharacterPickupEquipment, 2);
   EVENT_INIT(CCharacter, CharacterAttack, 0);
   EVENT_INIT(CCharacter, CharacterUseSkill, 2);
+  EVENT_INIT(CCharacter, Character_Update, 3);
+  EVENT_INIT(CCharacter, Character_SetOrientation, 2);
+  EVENT_INIT(CCharacter, CharacterSetupSkills, 2);
+  EVENT_INIT(CCharacter, CharacterAddSkill, 2);
 
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);

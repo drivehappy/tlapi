@@ -20,7 +20,7 @@ namespace TLAPI
   struct CEquipment;
   TLFUNC(ResourceManagerCreateEquipment, CEquipment*, __thiscall, (CResourceManager*, u64, u32, u32, u32));
   TLFUNC(ResourceManagerCreateMonster,   CMonster*,   __thiscall, (CResourceManager*, u64, u32, bool));
-  TLFUNC(ResourceManagerCreatePlayer,    CPlayer*,    __thiscall, (CResourceManager*, u32, u32));
+  TLFUNC(ResourceManagerCreatePlayer,    CPlayer*,    __thiscall, (CResourceManager*, wchar_t*, u32));
 
   // 
   struct CResourceManager : CRunicCore
@@ -44,8 +44,8 @@ namespace TLAPI
 
     // Player Creation
     EVENT_DECL(CResourceManager, void, ResourceManagerCreatePlayer,
-      (CPlayer*, CResourceManager*, u32, u32),
-      ((CPlayer*)e->retval, (CResourceManager*)e->_this, Pz[0], Pz[1]));
+      (CPlayer*, CResourceManager*, wchar_t*, u32, bool&),
+      ((CPlayer*)e->retval, (CResourceManager*)e->_this, (wchar_t*)Pz[0], Pz[1], e->calloriginal));
 
     // Character Creation
     EVENT_DECL(CResourceManager, void, ResourceManagerCreateMonster,
@@ -77,8 +77,8 @@ namespace TLAPI
       return ResourceManagerCreateMonster(this, guid, level, removeDefaultInventory);
     }
     // Create Player
-    CPlayer* CreatePlayer(u32 unk0, u32 unk1) {
-      return ResourceManagerCreatePlayer(this, unk0, unk1);
+    CPlayer* CreatePlayer(wchar_t* type, u32 unk1) {
+      return ResourceManagerCreatePlayer(this, type, unk1);
     }
   };
 

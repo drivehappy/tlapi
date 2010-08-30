@@ -1,27 +1,37 @@
 #pragma once
 
-// Size?: 9Ch
-struct CSkillEvent : CRunicCore
+#include "CRunicCore.h"
+
+namespace TLAPI
 {
-  u32 unk0;
 
-  // ---------- Base type cutoff -----
+#pragma pack(1)
 
-  PVOID vtableIDamageShape;
-  PVOID vtableIMissle;
-  PVOID vtableIUnitSpawner;
+  struct CSkillEvent : CRunicCore
+  {
+    u32 unk0;
 
-  PVOID pCSkill;
-  PVOID pCResourceManager;
-  PVOID pCLayout;
+    // ---------- Base type cutoff -----
 
-  u32 unk1[11];
+    PVOID vtableIDamageShape;
+    PVOID vtableIMissle;
+    PVOID vtableIUnitSpawner;
 
-  PVOID pCSkillProperty;
+    PVOID pCSkill;
+    PVOID pCResourceManager;
+    PVOID pCLayout;
 
-  u32 unk2[5];
+    u32 unk1[11];
 
-  PVOID* ppCUnitSpawner;    // ptr ptr to CUnitSpawner
+    PVOID pCSkillProperty;
 
-  u32 unk3[13];
+    u32 unk2[5];
+
+    PVOID* ppCUnitSpawner;    // ptr ptr to CUnitSpawner
+
+    u32 unk3[13];
+  };
+
+#pragma pack()
+
 };
