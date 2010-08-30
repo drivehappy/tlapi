@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CRunicCore.h"
+#include "CUnitSpawner.h"
 
 namespace TLAPI
 {
@@ -34,7 +35,10 @@ namespace TLAPI
 
     void dumpSkillEvent() {
       logColor(B_GREEN, L"SkillEvent Dump: %p", this);
-      logColor(B_GREEN, L"  ppCUnitSpawner: %p", ppCUnitSpawner);
+      logColor(B_GREEN, L"  listUnitSpawner size: %i", listUnitSpawner.size);
+      for (u32 i = 0; i < listUnitSpawner.size; i++) {
+        logColor(B_GREEN, L"  listUnitSpawner[%i]: %p", i, listUnitSpawner[i]);
+      }
     }
   };
 
