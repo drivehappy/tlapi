@@ -27,9 +27,15 @@ namespace TLAPI
 
     u32 unk2[5];
 
-    PVOID* ppCUnitSpawner;    // ptr ptr to CUnitSpawner
+    CList<CUnitSpawner*> listUnitSpawner;
 
     u32 unk3[13];
+
+
+    void dumpSkillEvent() {
+      logColor(B_GREEN, L"SkillEvent Dump: %p", this);
+      logColor(B_GREEN, L"  ppCUnitSpawner: %p", ppCUnitSpawner);
+    }
   };
 
 #pragma pack()

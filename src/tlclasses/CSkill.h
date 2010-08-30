@@ -82,22 +82,18 @@ namespace TLAPI {
         logColor(B_RED, L"      %x %x %x %x %x",
            unk6[i+0], unk6[i+1], unk6[i+2], unk6[i+3], unk6[i+4]);
       }
+      */
 
       logColor(B_RED, L"      pCSkillProperty0: %p", pCSkillProperty0);
       logColor(B_RED, L"      pCSkillProperty1: %p", pCSkillProperty1);
       logColor(B_RED, L"      skillPropertyList Size: %p", skillPropertyList.size);
-      */
 
-      logColor(B_RED, L"      skillName: (%p) %s", pCSkillProperty0, pCSkillProperty0->skillName.c_str());
-      logColor(B_RED, L"      skillName2: (%p) %s", pCSkillProperty0, pCSkillProperty0->skillName2.c_str());
-      logColor(B_RED, L"      skillName2: (%p) %s", pCSkillProperty1, pCSkillProperty1->skillName2.c_str());
-      logColor(B_RED, L"      skillName: (%p) %s", pCSkillProperty1, pCSkillProperty1->skillName.c_str());
-
-      /*
+      pCSkillProperty0->dumpSkillProperty();
+      pCSkillProperty1->dumpSkillProperty();
       for (u32 i = 0; i < skillPropertyList.size; i++) {
-        logColor(B_RED, L"      SkillName[%i]: %s", i, skillPropertyList[i]->skillName.c_str());
+        skillPropertyList[i]->dumpSkillProperty();
       }
-      */
+      
     }
   };
 

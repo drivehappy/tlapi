@@ -67,6 +67,20 @@ namespace TLAPI
           */
 
 
+    void dumpSkillProperty() {
+      logColor(B_RED, L"      skillName: %s", skillName.c_str());
+      logColor(B_RED, L"      skillName2: %s", skillName2.c_str());
+
+      logColor(B_RED, L"      listOfListOfSkillEvents size: %i", listOfListOfSkillEvents.size);
+      for (u32 i = 0; i < listOfListOfSkillEvents.size; i++) {
+        logColor(B_RED, L"      listOfListOfSkillEvents[%i] size: %i", i, listOfListOfSkillEvents[i]->size);
+        for (u32 j = 0; j < listOfListOfSkillEvents[i]->size; j++) {
+          logColor(B_RED, L"      listOfListOfSkillEvents[%i][%i] SkillEvent Dump", i, j);
+          listOfListOfSkillEvents[i]->operator [](j)->dumpSkillEvent();
+        }
+      }
+    }
+
   };
 
 #pragma pack()

@@ -9,6 +9,17 @@ namespace TLAPI {
 
   struct CUnitSpawner : CShape
   {
+
+    u32 unk0[16];
+
+    PVOID vtable__iRandomWeight;
+    PVOID vtable__iUnitObserver;
+
+    u32 unk1[13];
+
+    wstring name;     // "Missles"
+    wstring name2;    // "QUAKECRACK"
+
     // TODO use below
 
     /*
