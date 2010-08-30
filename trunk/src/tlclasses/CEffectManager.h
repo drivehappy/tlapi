@@ -57,9 +57,9 @@ namespace TLAPI {
 
     float valPotionEffectiveness;
 
-    u32   unk8[69];
+    u32   unk8[68];
 
-    CString *stringEffect;
+    wstring stringEffect;
 
     // EffectManager effect creation
     EVENT_DECL(CEffectManager, void, EffectManagerCreateEffect,
@@ -76,8 +76,13 @@ namespace TLAPI {
       logColor(B_GREEN, "  Affix List Size: %i", affixList.size);
       logColor(B_GREEN, "  Effect List Size: %i", effectList.size);
 
+      /*
       for (u32 i = 0; i < effectList.size; i++) {
         effectList[i]->dumpEffect();
+      }
+      */
+      for (u32 i = 0; i < affixList.size; i++) {
+        affixList[i]->dumpAffix();
       }
 
       logColor(B_GREEN, "  Player: %p", player);
@@ -93,28 +98,6 @@ namespace TLAPI {
       logColor(B_GREEN, "  CriticalHitChance Value: %f", valCriticalHitChance);
       logColor(B_GREEN, "  ExperienceGain Value: %f", valExperienceGain);
       logColor(B_GREEN, "  PotionEffectiveness Value: %f", valPotionEffectiveness);
-
-      /* Old, bad sizes
-      logColor(B_BLUE, "  Unknowns unk1:");
-      for (u32 i = 0; i < 8; i++) {
-        logColor(B_BLUE, "     %x", unk1[i]);
-      }
-
-      logColor(B_BLUE, "  Unknowns unk2:");
-      for (u32 i = 0; i < 6; i++) {
-        logColor(B_BLUE, "     %x", unk2[i]);
-      }
-
-      logColor(B_BLUE, "  Unknowns unk4:");
-      for (u32 i = 0; i < 11; i++) {
-        logColor(B_BLUE, "     %x", unk4[i]);
-      }
-
-      logColor(B_BLUE, "  Unknowns unk5 partial:");
-      for (u32 i = 0; i < 69; i++) {
-        logColor(B_BLUE, "     %x", unk5[i]);
-      }
-      */
     };
   };
 

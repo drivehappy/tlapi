@@ -5,6 +5,7 @@
 
 #include "CRunicCore.h"
 #include "CEffect.h"
+#include "CSkill.h"
 
 namespace TLAPI {
 
@@ -22,7 +23,7 @@ namespace TLAPI {
 
     PVOID pCAffixNext;    // Linked list struct?
 
-    PVOID pCSkill;        // ptr to CSkill
+    CSkill *pCSkill;        // ptr to CSkill
 
     u32 unk1[5];          // 18h, 0, FFFFFFFFh, 0, FFFFFFFFh, CB7581ABh
 
@@ -51,6 +52,15 @@ namespace TLAPI {
     u32 unk7[4];
 
     CList<PVOID>  unkList;
+
+
+    void dumpAffix() {
+      logColor(B_GREEN, L"Affix Dump (%p)", this);
+      logColor(B_GREEN, L"  Skill: (%p)", pCSkill);
+      logColor(B_GREEN, L"    SkillName: (%s)", pCSkill->pCSkillProperty0->skillName.c_str());
+      logColor(B_GREEN, L"  pStringSkill_spellcast: (%s)", pStringSkill_spellcast.c_str());
+
+    }
   };
 
 #pragma pack()
