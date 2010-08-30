@@ -28,7 +28,7 @@
 
 namespace TLAPI {
 
-  TLFUNC(ResourceManagerCreatePlayer,           CPlayer*,     __thiscall, (CResourceManager*, u32, u32));
+  TLFUNC(ResourceManagerCreatePlayer,           CPlayer*,     __thiscall, (CResourceManager*, wchar_t*, u32));
   TLFUNC(ResourceManagerCreateMonster,          CMonster*,    __thiscall, (CResourceManager*, u64, u32, bool));
   TLFUNC(LevelCharacterInitialize,              CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
   TLFUNC(ResourceManagerCreateCharacterByName,  CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
@@ -40,6 +40,10 @@ namespace TLAPI {
   TLFUNC(LayoutSetPosition,                     void,         __thiscall, (CLayout*, const Vector3));
   TLFUNC(CharacterAddMinion,                    void,         __thiscall, (CCharacter*, CCharacter*));
   TLFUNC(ResourceManagerCreateBaseUnit,         CBaseUnit*,   __thiscall, (CResourceManager*, u64, u32, u32, u32));
+
+  TLFUNC(CharacterSetupSkills,                  void,         __thiscall, (CCharacter*, CDataGroup*, u32));
+  TLFUNC(CharacterAddSkill,                     void,         __thiscall, (CCharacter*, wstring*, u32));
+  TLFUNC(SkillManagerAddSkill,                  void,         __thiscall, (CSkillManager*, CSkill*, u32, u32));
 
   TLFUNC(GameClientUpdateSkill,                 PVOID,        __thiscall, (CGameClient*, u64, u32, u32));
 
@@ -102,7 +106,7 @@ namespace TLAPI {
   TLFUNC(PlayerCtor,                            void,     __thiscall, ());
   TLFUNC(GameClientCtor,                        void,     __thiscall, ());
   TLFUNC(GameCtor,                              void,     __thiscall, ());
-  TLFUNC(CharacterCtor,                         void,     __thiscall, ());
+  TLFUNC(CharacterDtor,                         void,     __thiscall, ());
   TLFUNC(EquipmentDtor,                         void,     __thiscall, ());
 
   TLFUNC(PlayerCharacterSetAction,              void,     __thiscall, (CPlayer*));
@@ -173,5 +177,9 @@ namespace TLAPI {
   TLFUNC(KeyManager_InjectKey,                  void,     __thiscall, (CKeyManager*, u32, u32));
 
   TLFUNC(GameUI_WindowResized,                  void,     __thiscall, (CGameUI*));
+
+  TLFUNC(Character_Update,                      void,     __thiscall, (CCharacter*));
+
+  TLFUNC(Character_SetOrientation,              void,     __thiscall, (CCharacter*, Vector3*, float));
 
 };

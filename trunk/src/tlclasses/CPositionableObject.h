@@ -14,7 +14,7 @@ namespace TLAPI
 
     Vector3 position;
     float unk2000[3];
-    float unk11[25];
+    float unk11[25];              // 5, 11, 17  -- 5 @9C
 
     PVOID pSharedPtrMaterial;     // ogre
 
@@ -26,7 +26,8 @@ namespace TLAPI
 
       log("  Position: %f, %f, %f", position.x, position.y, position.z);
 
-      /*
+      log("  unk10: %x", unk10);
+
       log("  unk2000:");
       for (u32 i = 0; i < 6; i++)
         log("    %i: %f", i, unk2000[i]);
@@ -34,7 +35,6 @@ namespace TLAPI
       log("  unk11:");
       for (u32 i = 0; i < 25; i++)
         log("    %i: %f", i, unk11[i]);
-      */
     }
   };
 

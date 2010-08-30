@@ -29,6 +29,8 @@ namespace TLAPI
   TLFUNC(CharacterSetAction, PVOID, __thiscall, (CCharacter*, u32));
   TLFUNC(CharacterAttack, PVOID, __thiscall, (CCharacter*));
   TLFUNC(CharacterUseSkill, PVOID, __thiscall, (CCharacter*, u64));
+  TLFUNC(Character_SetOrientation, void, __thiscall, (CCharacter*, Vector3*, float));
+  TLFUNC(CharacterAddSkill, void, __thiscall, (CCharacter*, wstring*, u32));
   
   // CBaseUnit Size = 0x190
   struct CCharacter : CBaseUnit
@@ -48,7 +50,9 @@ namespace TLAPI
 
     u32 unk4[2];        // 7,8
 
-    float unk5[7];      // 4.0, 0, 0.9842, 0,0,0,0
+    // @ 1D8 = Orientation
+    Vector3 orientation;    // Normalized vector
+    float unk5[4];      // 4.0, 0, 0.9842, 0,0,0,0
 
     u32 unk6;           // 80000000h
 
@@ -57,7 +61,7 @@ namespace TLAPI
     u8 moving;
     u8 unkBool0;
     u8 attacking;
-    u8 unkBool1;
+    u8 usingSkill;
 
     // @ 0x20C
 
@@ -90,7 +94,7 @@ namespace TLAPI
     PVOID pBoneOgre4;   // Diff
     PVOID pBoneOgre5;   // Diff
 
-    PVOID unk11;        // NULL
+    PVOID unk1111;        // NULL
 
     PVOID pOctree0;     // ptr Octree Node
     PVOID pOctree1;     // Diff
@@ -131,13 +135,14 @@ namespace TLAPI
 
     u32      unk23[4];    // 1, 1, 1, 1
 
+    // @378h
     vector<CAttackDescription*>  attackDescriptions;
 
     u32      unk16[1];
     float    healthCurrent; // This is the same as healthMax
-    u32      unk016;        // 870h
+    u32      healthMax;        // 870h
     u32      unk0016;       // 19h
-    float    healthMax;
+    float    unk016;
     u32      unk00016;       // 0h
 
     u32      baseDexterity;
@@ -145,8 +150,8 @@ namespace TLAPI
     u32      baseDefense;
     u32      baseMagic;
 
-    float    manaMax;       // This is wrong
-    u32      manaCurrent;
+    float    manaCurrent; 
+    u32      manaMax;
     u32      unk000016[1];  // 0h
 
     u32      gold;
@@ -203,13 +208,12 @@ namespace TLAPI
       logColor(B_GREEN, L"  Dexterity: %i", baseDexterity);
       logColor(B_GREEN, L"  Defense: %i", baseDefense);
       logColor(B_GREEN, L"  Magic: %i", baseMagic);
-      logColor(B_GREEN, L"  Health: %f / %f", healthCurrent, healthMax);
-      logColor(B_GREEN, L"  Mana: %f / %f", manaCurrent, manaMax);
+      logColor(B_GREEN, L"  Health: %f / %i", healthCurrent, healthMax);
+      logColor(B_GREEN, L"  Mana: %f / %i", manaCurrent, manaMax);
       logColor(B_GREEN, L"  Gold: %i", gold);
       logColor(B_GREEN, L"  XP: %i", experienceCurrent);
       logColor(B_GREEN, L"  Fame: %i", fameCurrent);
       logColor(B_GREEN, L"  unk000016: %i", unk000016[0]);
-      logColor(B_GREEN, L"  Testmana: %i / %i", *(u32*)&manaCurrent, *(u32*)&manaMax);
 
       logColor(B_GREEN, L"   unk16[1]: %i  (%f)", unk16[0], *(float*)&unk16[0]);
       logColor(B_GREEN, L"   unk016: %i  (%f)", unk016, *(float*)&unk016);
@@ -224,9 +228,19 @@ namespace TLAPI
 
     // 
     // Function hooks
+  
+    // Character Add Skill
+    EVENT_DECL(CCharacter, void, CharacterAddSkill,
+      (CCharacter*, wstring*, u32, bool&),
+      ((CCharacter*)e->_this, (wstring*)Pz[0], Pz[1], e->calloriginal));
+
+    // Character Setup Skills
+    EVENT_DECL(CCharacter, void, CharacterSetupSkills,
+      (CCharacter*, CDataGroup*, u32, bool&),
+      ((CCharacter*)e->_this, (CDataGroup*)Pz[0], Pz[1], e->calloriginal));
 
     // Character Initialization
-    EVENT_DECL(CCharacter, void, CharacterCtor,
+    EVENT_DECL(CCharacter, void, CharacterDtor,
       (CCharacter*),
       ((CCharacter*)e->_this));
 
@@ -275,10 +289,26 @@ namespace TLAPI
       (CCharacter*, CEquipment*, CLevel*, bool&),
       ((CCharacter*)e->_this, (CEquipment*)Pz[0], (CLevel*)Pz[1], e->calloriginal));
 
+    // This isn't a real update function, something odd
+    // Character Update
+    EVENT_DECL(CCharacter, void, Character_Update,
+      (CCharacter*, PVOID, float*, float, bool&),
+      ((CCharacter*)e->_this, (PVOID)Pz[0], (float*)Pz[1], *(float*)&Pz[2], e->calloriginal));
+
+    // Character Orientation
+    EVENT_DECL(CCharacter, void, Character_SetOrientation,
+      (CCharacter*, Vector3*, float, bool&),
+      ((CCharacter*)e->_this, (Vector3*)Pz[0], *(float*)&Pz[1], e->calloriginal));
 
 
 
-    // Set Alignment
+
+    void AddSkill(wstring* name, u32 unk0) {
+      CharacterAddSkill(this, name, unk0);
+    }
+    void SetOrientation(Vector3 direction) {
+      Character_SetOrientation(this, &direction, 1.0f);
+    }
     void UseSkill(u64 skill) {
       CharacterUseSkill(this, skill);
     }

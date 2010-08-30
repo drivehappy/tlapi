@@ -15,6 +15,9 @@ EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGro
 // MainMenu
 EVENT_DEF(CMainMenu, void, MainMenu_Event, (CMainMenu*, u32, wstring, bool&));
 
+// SkillManager
+EVENT_DEF(CSkillManager, void, SkillManagerAddSkill, (CSkillManager*, CSkill*, u32, u32, bool&));
+
 // EffectManager
 EVENT_DEF(CEffectManager, void, EffectManagerCreateEffect, (CEffect*, CEffectManager*));
 EVENT_DEF(CEffectManager, void, EffectManager_AddEffectToEquipment, (CEffectManager*, CEquipment*, CEffect*));
@@ -67,7 +70,7 @@ EVENT_DEF(CEnchantMenu, void, EnchantMenu_EnchantItem, (CEnchantMenu*));
 
 // ResourceManager
 EVENT_DEF(CResourceManager, void, ResourceManagerInitializePlayer,      (CResourceManager*, u32, u32));
-EVENT_DEF(CResourceManager, void, ResourceManagerCreatePlayer,          (CResourceManager*, u32, u32));
+EVENT_DEF(CResourceManager, void, ResourceManagerCreatePlayer,          (CPlayer*, CResourceManager*, wchar_t*, u32, bool&));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateMonster,         (CMonster*, CResourceManager*, u64, u32, bool, bool&));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateCharacterByName, (CCharacter*, CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateBaseUnit,        (CResourceManager*, u64, u32, u32, u32));
@@ -83,7 +86,7 @@ EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u3
 EVENT_DEF(CInventory, void, InventoryRemoveEquipment, (CInventory*, CEquipment*));
 
 // Character
-EVENT_DEF(CCharacter, void, CharacterCtor, (CCharacter*));
+EVENT_DEF(CCharacter, void, CharacterDtor, (CCharacter*));
 EVENT_DEF(CCharacter, void, CharacterSetAlignment, (CCharacter*, u32));
 EVENT_DEF(CCharacter, void, CharacterSetDestination, (CCharacter*, CLevel*, float, float));
 EVENT_DEF(CCharacter, void, CharacterSetAction, (CCharacter*, u32, bool&));
@@ -93,6 +96,11 @@ EVENT_DEF(CCharacter, void, CharacterAddMinion, (CCharacter*, CCharacter*));
 EVENT_DEF(CCharacter, void, CharacterStrike, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
 EVENT_DEF(CCharacter, void, CharacterPickupEquipment, (CCharacter*, CEquipment*, CLevel*, bool&));
 EVENT_DEF(CCharacter, void, CharacterAttack, (CCharacter*, bool&));
+EVENT_DEF(CCharacter, void, Character_Update, (CCharacter*, PVOID, float*, float, bool&));
+EVENT_DEF(CCharacter, void, Character_SetOrientation, (CCharacter*, Vector3*, float, bool&));
+EVENT_DEF(CCharacter, void, CharacterSetupSkills, (CCharacter*, CDataGroup*, u32, bool&));
+EVENT_DEF(CCharacter, void, CharacterAddSkill, (CCharacter*, wstring*, u32, bool&));
+
 
 // GenericModel
 EVENT_DEF(CGenericModel, void, GenericModelGetPosition, (CGenericModel*, Vector3, u32));

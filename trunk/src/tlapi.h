@@ -14,6 +14,9 @@
 
 #include "CEffectManager.h"
 
+#include "CSkill.h"
+#include "CSkillManager.h"
+
 #include "CDynamicPropertyFile.h"
 #include "CSettings.h"
 #include "CResourceSettings.h"
