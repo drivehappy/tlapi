@@ -765,6 +765,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\CParticlePreloader.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CPath.h"
 				>
 			</File>

@@ -28,6 +28,14 @@
 
 namespace TLAPI {
 
+  static u32* Seed1 = (u32*)0xEB4830;
+  static u32* Seed2 = (u32*)0xEB4834;
+  static u32* Seed3 = (u32*)0xEB4838;
+  static u32* Seed4 = (u32*)0xEB483C;
+
+  TLFUNC(SetSeedValue0,                         void,         __stdcall,  (u32));
+  TLFUNC(SetSeedValue2,                         void,         __stdcall,  (u32));
+
   TLFUNC(ResourceManagerCreatePlayer,           CPlayer*,     __thiscall, (CResourceManager*, wchar_t*, u32));
   TLFUNC(ResourceManagerCreateMonster,          CMonster*,    __thiscall, (CResourceManager*, u64, u32, bool));
   TLFUNC(LevelCharacterInitialize,              CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
@@ -64,7 +72,7 @@ namespace TLAPI {
   TLFUNC(LevelDropEquipment,                    PVOID,    __thiscall, (CLevel*, CEquipment*, Vector3 &, bool));
   TLFUNC(LevelHideEquipment,                    PVOID,    __thiscall, (CLevel*, CEquipment*, u32));
 
-  TLFUNC(ChangeLevel,                           PVOID,    __thiscall, (CGameClient*, wstring, u32, u32, u32, wstring, u32));
+  TLFUNC(GameClient_ChangeLevel,                PVOID,    __thiscall, (CGameClient*, wstring, s32, u32, u32, wstring, u32));
 
   TLFUNC(PlayerAddGold,                         PVOID,    __thiscall, (CPlayer*, u32));
 

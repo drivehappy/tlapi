@@ -31,6 +31,8 @@
 #include "CEquipment.h"
 #include "CEquipmentRef.h"
 
+#include "CWarper.h"
+
 #include "CLevel.h"
 #include "CResourceManager.h"
 

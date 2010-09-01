@@ -27,6 +27,7 @@ namespace TLAPI
   struct CGameClient;
   TLFUNC(GameClient_LoadLevel, void, __thiscall, (CGameClient*));
   TLFUNC(GameClientProcessTitleScreen, void, __thiscall, (CGameClient*, float, PVOID, PVOID));
+  TLFUNC(GameClient_ChangeLevel, PVOID, __thiscall, (CGameClient*, wstring, s32, u32, u32, wstring, u32));
 
   struct CGameClient : CRunicCore
   {
@@ -135,11 +136,20 @@ namespace TLAPI
       (bool&, CGameClient*, bool&),
       ((bool &)e->retval, (CGameClient*)e->_this, e->calloriginal));
 
+    EVENT_DECL(CGameClient, void, GameClient_ChangeLevel,
+      (CGameClient*, wstring, s32, u32, u32, wstring, u32, bool&),
+      ((CGameClient*)e->_this, *(wstring*)&Pz[0], Pz[7], Pz[8], Pz[9], *(wstring*)&Pz[10], Pz[17], e->calloriginal));
+
+
+
 
     // Change level
     void ChangeLevel(s32 relativeLevel) {
       this->level = relativeLevel;
       GameClient_LoadLevel(this);
+    }
+    void ChangeLevel(wstring dungeonName, s32 relativeLevel, u32 unk0, u32 unk1, wstring unkString, u32 unk2) {
+      GameClient_ChangeLevel(this, dungeonName, relativeLevel, unk0, unk1, unkString, unk2);
     }
     
   public:
