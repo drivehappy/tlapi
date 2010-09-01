@@ -8,6 +8,9 @@ using namespace TLAPI;
 
 u32 exeBaseReal = (u32)GetModuleHandle("Torchlight.exe");
 
+TLFUNCPTR(SetSeedValue0,                          void,         __stdcall,  (u32),                                                          0x5BA710);
+TLFUNCPTR(SetSeedValue2,                          void,         __stdcall,  (u32),                                                          0x5BA740);
+
 // Define the offset locations
 TLFUNCPTR(ResourceManagerCreatePlayer,            CPlayer*,     __thiscall, (CResourceManager*, wchar_t*, u32),                             0x5FB7B0);     // CResourceManager, u32 unk0, u32 unk1
 TLFUNCPTR(ResourceManagerCreateMonster,           CMonster*,    __thiscall, (CResourceManager*, u64, u32, bool),                            0x5FBB70);     // CResourceManager, u64 guid, u32 level, bool noitems?
@@ -30,7 +33,7 @@ TLFUNCPTR(CharacterAddMinion,                     void,         __thiscall, (CCh
 
 TLFUNCPTR(ResourceManagerCreateBaseUnit,          CBaseUnit*,   __thiscall, (CResourceManager*, u64, u32, u32, u32),                        0x5FC170);     // CResourceManager
 
-TLFUNCPTR(CharacterSetTarget,                     PVOID,        __thiscall, (CCharacter*, CCharacter*),                                           0x492970);     // CMonster, NULL
+TLFUNCPTR(CharacterSetTarget,                     PVOID,        __thiscall, (CCharacter*, CCharacter*),                                     0x492970);     // CMonster, NULL
 
 TLFUNCPTR(CharacterStrike,                        PVOID,    __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32), 0x4A0190);  // 1.15  CMonster src, CLevel, CMonster dst, NULL, 0, 1.0, 1.0, 7
 
@@ -39,7 +42,7 @@ TLFUNCPTR(EquipmentAddStackCount,                 PVOID,    __thiscall, (CEquipm
 TLFUNCPTR(MonsterProcessAI,                       PVOID,    __thiscall, (CMonster*, float, PVOID),                                          0x4D36F0);     // 1.15  CMonster, float unk (0.005), CLevel
 TLFUNCPTR(PlayerSetAnimation,                     PVOID,    __thiscall, (CPlayer*, u32, bool, float, float, u32),                           0x4841F0);     // 1.15  CPlayer, u32 unk, bool unk, float unk (0.2), float unk (1), u32(
 
-TLFUNCPTR(CharacterAttack,                        PVOID,    __thiscall, (CCharacter*),                                                         0x48FBD0);     // 1.15  CPlayer
+TLFUNCPTR(CharacterAttack,                        PVOID,    __thiscall, (CCharacter*),                                                      0x48FBD0);     // 1.15  CPlayer
 
 TLFUNCPTR(EquipmentInitialize,                    PVOID,    __thiscall, (CEquipment*, CItemSaveState*),                                     0x4BE250);     // 1.15  CEquipment, CItemSaveState
 TLFUNCPTR(LevelDropEquipment,                     PVOID,    __thiscall, (CLevel*, CEquipment*, Vector3 &, bool),                            0x4F3070);     // 1.15  CLevel, CEquipment, vector3 pos, bool unk
@@ -49,7 +52,7 @@ TLFUNCPTR(InventoryAddEquipment,                  PVOID,    __thiscall, (CInvent
 TLFUNCPTR(InventoryRemoveEquipment,               PVOID,    __thiscall, (CInventory*, CEquipment*),                                         0x4E7610);     // 1.15  CInventory, CEquipment
 TLFUNCPTR(LevelHideEquipment,                     PVOID,    __thiscall, (CLevel*, CEquipment*, u32),                                        0x4F48C0);     // 1.15  CLevel, CEquipment, int unk
 
-TLFUNCPTR(ChangeLevel,                            PVOID,    __thiscall, (CGameClient*, wstring, u32, u32, u32, wstring, u32),               0x40CF60);     // 1.15  CGameClient, 
+TLFUNCPTR(GameClient_ChangeLevel,                 PVOID,    __thiscall, (CGameClient*, wstring, s32, u32, u32, wstring, u32),               0x40CF60);     // 1.15  CGameClient, 
 
 TLFUNCPTR(PlayerAddGold,                          PVOID,    __thiscall, (CPlayer*, u32),                                                    0x4860B0);     // 1.15  CPlayer, u32 amount
 
@@ -200,6 +203,8 @@ void TLAPI::HookFunctions()
 
   // Hook WndProc
   EVENT_INIT(_GLOBAL, WndProc, 5);
+  EVENT_INIT(_GLOBAL, SetSeedValue0, 0);
+  EVENT_INIT(_GLOBAL, SetSeedValue2, 0);
 
   // Hook Game
   EVENT_INIT(CGame, GameCtor, 0);
@@ -225,6 +230,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CGameClient, GameClient_LoadLevel, 0);
   EVENT_INIT(CGameClient, GameClientProcessTitleScreen, 4);
   EVENT_INIT(CGameClient, GameClientGamePaused, 0);
+  EVENT_INIT(CGameClient, GameClient_ChangeLevel, 18);
 
   // Hook EnchantMenu
   EVENT_INIT(CEnchantMenu, EnchantMenu_EnchantItem, 0);

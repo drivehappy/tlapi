@@ -75,6 +75,10 @@ namespace TLAPI
     u32 unk13;          // 1
 
 
+    void Destroy() {
+      destroy = true;
+    }
+
     //
     void dumpBaseUnit()
     {

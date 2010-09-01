@@ -8,6 +8,8 @@ using namespace TLAPI;
 // Global
 // Setup a dummy class to setup the WndProc event
 EVENT_DEF(_GLOBAL, LRESULT, WndProc, (HWND, UINT, WPARAM, LPARAM));
+EVENT_DEF(_GLOBAL, void, SetSeedValue0, (u32));
+EVENT_DEF(_GLOBAL, void, SetSeedValue2, (u32));
 
 // EffectGroupManager
 EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGroupManager*, u32, u32, u32, CList<CAffix*>&));
@@ -55,6 +57,7 @@ EVENT_DEF(CGameClient, void, GameClient_CreateLevel, (CGameClient*, u32, u32, u3
 EVENT_DEF(CGameClient, void, GameClient_LoadLevel, (CGameClient*));
 EVENT_DEF(CGameClient, void, GameClientProcessTitleScreen, (CGameClient*, float, PVOID, float, u32));
 EVENT_DEF(CGameClient, void, GameClientGamePaused, (bool, CGameClient*, bool&));
+EVENT_DEF(CGameClient, void, GameClient_ChangeLevel, (CGameClient*, wstring, u32, u32, u32, wstring, u32, bool&));
 
 // Equipment
 EVENT_DEF(CEquipment, void, EquipmentDtor, (CEquipment*));

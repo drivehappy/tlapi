@@ -14,15 +14,10 @@ namespace TLAPI
     PVOID pAnimationTrack;        // ptr to Ogre Animation Track
     PVOID pCParticleTechWrapper;  // ptr to Particle Tech Wrapper
 
-    //PVOID unk0;
-    //CString name;                 // ptr string "Base Glow", Also contains CPlayer's class name
-                                  // i.e. "Destroyer"
+    // "Base Glow", Also contains CPlayer's class name
+    // i.e. "Destroyer"
     wstring name;
     
-    //u32 unk4[5];
-
-    //PVOID pCLayout;               // ptr to CLayout
-    //PVOID pCLayout;               // ptr to CLayout (same layout as above)
     PVOID pCEditorScene0;
     PVOID pCEditorScene1;
 

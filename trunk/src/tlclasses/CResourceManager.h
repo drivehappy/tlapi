@@ -27,10 +27,10 @@ namespace TLAPI
   {
     u32 unk0;
 
-    PVOID         pOctreeSM;      // ptr to Octree scenemanager
-    CLevel       *pCLevel;        // ptr to CLevel
-    CHierarchy   *pCHierarchy;    // ptr to CHierarchy
-    CGameClient **ppCGameClient; // ptr ptr to CGameClient
+    PVOID         pOctreeSM;            // ptr to Octree scenemanager
+    CLevel       *pCLevel;              // ptr to CLevel
+    CHierarchy   *pCHierarchy;          // ptr to CHierarchy
+    CList<CGameClient*> *pCGameClient;  // CGameClient list
 
     u32 unk1[4];
 
