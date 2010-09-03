@@ -68,6 +68,10 @@ namespace TLAPI
       ((CBaseUnit*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], Pz[3], Pz[4], e->calloriginal));
     
 
+    // Create item
+    CItem* CreateItem(u64 guid, u32 level, u32 unk1, u32 unk2) {
+      return ResourceManagerCreateItem(this, guid, level, unk1, unk2);
+    }
     // Create equipment
     CEquipment* CreateEquipment(u64 guid, u32 level, u32 unk1, u32 unk2) {
       return (CEquipment*)ResourceManagerCreateItem(this, guid, level, unk1, unk2);

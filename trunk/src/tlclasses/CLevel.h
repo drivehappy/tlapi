@@ -160,7 +160,11 @@ namespace TLAPI
       ((CLevel*)e->_this, (CItem*)Pz[0], *(Vector3*)Pz[1], (bool)Pz[2], e->calloriginal));
 
 
-    // Equipment drop
+    // Item drop
+    void ItemDrop(CItem* item, Vector3 & position, bool unk) {
+      LevelDropItem(this, item, position, unk0);
+    }
+    // Equipment drop ^^ Same call, just diff name
     void EquipmentDrop(CItem* item, Vector3 & position, bool unk) {
       LevelDropItem(this, item, position, unk0);
     }

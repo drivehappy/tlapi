@@ -1,14 +1,28 @@
 #pragma once
 
+#include "CItem.h"
+
 namespace TLAPI {
 
 #pragma pack(1)
 
-  // Size?: 
-  // Inheritance: CItem
+  //
+  struct CBreakable;
+  TLFUNC(BreakableTriggered, PVOID, __thiscall, (CBreakable*, CPlayer*));
+
+  // 
   struct CBreakable : CItem
   {
-    // TODO
+    // Breakable
+    EVENT_DECL(CBreakable, void, BreakableTriggered,
+      (CBreakable*, CPlayer*, bool&),
+      ((CBreakable*)e->_this, (CPlayer*)Pz[0], e->calloriginal));
+
+
+
+    void Break(CPlayer *player) {
+      BreakableTriggered(this, player);
+    }
   };
 
 #pragma pack()
