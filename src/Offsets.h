@@ -48,6 +48,7 @@ namespace TLAPI {
   TLFUNC(LayoutSetPosition,                     void,         __thiscall, (CLayout*, const Vector3));
   TLFUNC(CharacterAddMinion,                    void,         __thiscall, (CCharacter*, CCharacter*));
   TLFUNC(ResourceManagerCreateBaseUnit,         CBaseUnit*,   __thiscall, (CResourceManager*, u64, u32, u32, u32));
+  TLFUNC(CharacterUpdateHealth,                 PVOID,        __thiscall, (CCharacter*, float));
 
   TLFUNC(CharacterSetupSkills,                  void,         __thiscall, (CCharacter*, CDataGroup*, u32));
   TLFUNC(CharacterAddSkill,                     void,         __thiscall, (CCharacter*, wstring*, u32));

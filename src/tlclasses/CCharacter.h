@@ -31,6 +31,7 @@ namespace TLAPI
   TLFUNC(CharacterUseSkill, PVOID, __thiscall, (CCharacter*, u64));
   TLFUNC(Character_SetOrientation, void, __thiscall, (CCharacter*, Vector3*, float));
   TLFUNC(CharacterAddSkill, void, __thiscall, (CCharacter*, wstring*, u32));
+  TLFUNC(CharacterUpdateHealth, PVOID, __thiscall, (CCharacter*, float));
   
   // CBaseUnit Size = 0x190
   struct CCharacter : CBaseUnit
@@ -139,11 +140,11 @@ namespace TLAPI
     vector<CAttackDescription*>  attackDescriptions;
 
     u32      unk16[1];
-    float    healthCurrent; // This is the same as healthMax
-    u32      healthMax;        // 870h
+    float    healthCurrent; // @394
+    u32      healthMax;     //
     u32      unk0016;       // 19h
     float    unk016;
-    u32      unk00016;       // 0h
+    u32      unk00016;      // 0h
 
     u32      baseDexterity;
     u32      baseStrength;
@@ -229,6 +230,11 @@ namespace TLAPI
     // 
     // Function hooks
   
+    // Character Update Health
+    EVENT_DECL(CCharacter, void, CharacterUpdateHealth,
+      (CCharacter*, float, bool&),
+      ((CCharacter*)e->_this, *(float*)&Pz[0], e->calloriginal));
+
     // Character Add Skill
     EVENT_DECL(CCharacter, void, CharacterAddSkill,
       (CCharacter*, wstring*, u32, bool&),
@@ -302,7 +308,9 @@ namespace TLAPI
 
 
 
-
+    void UpdateHealth(float amount) {
+      CharacterUpdateHealth(this, amount);
+    }
     void AddSkill(wstring* name, u32 unk0) {
       CharacterAddSkill(this, name, unk0);
     }

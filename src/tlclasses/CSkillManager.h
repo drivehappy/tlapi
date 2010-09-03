@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CRunicCore.h"
+#include "CBaseUnit.h"
 #include "CSkill.h"
 
 namespace TLAPI
@@ -25,7 +26,7 @@ namespace TLAPI
 
     u32 unk2[3];
 
-    CPlayer *pCPlayer;
+    CBaseUnit *pCBaseUnit;
 
 
     //
