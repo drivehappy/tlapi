@@ -77,12 +77,12 @@ EVENT_DEF(CResourceManager, void, ResourceManagerCreatePlayer,          (CPlayer
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateMonster,         (CMonster*, CResourceManager*, u64, u32, bool, bool&));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateCharacterByName, (CCharacter*, CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateBaseUnit,        (CResourceManager*, u64, u32, u32, u32));
-EVENT_DEF(CResourceManager, void, ResourceManagerCreateEquipment,       (CEquipment*, CResourceManager*, u64, u32, u32, u32));
+EVENT_DEF(CResourceManager, void, ResourceManagerCreateItem,            (CItem*, CResourceManager*, u64, u32, u32, u32));
 
 // Level
 EVENT_DEF(CLevel, void, LevelCharacterInitialize, (CLevel*, CCharacter*, Vector3*, u32, bool&));
 EVENT_DEF(CLevel, void, LevelCreateAstarPathfinding, (CAstarPathfinder*, float unk0, float unk1, u32 unk2, u32 unk3, PVOID unk4, PVOID unk5, float unk6));
-EVENT_DEF(CLevel, void, LevelDropEquipment, (CLevel*, CEquipment*, Vector3 &, bool));
+EVENT_DEF(CLevel, void, LevelDropItem, (CLevel*, CItem*, Vector3 &, bool));
 
 // Inventory
 EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u32, u32));
@@ -104,6 +104,9 @@ EVENT_DEF(CCharacter, void, Character_SetOrientation, (CCharacter*, Vector3*, fl
 EVENT_DEF(CCharacter, void, CharacterSetupSkills, (CCharacter*, CDataGroup*, u32, bool&));
 EVENT_DEF(CCharacter, void, CharacterAddSkill, (CCharacter*, wstring*, u32, bool&));
 EVENT_DEF(CCharacter, void, CharacterUpdateHealth, (CCharacter*, float));
+
+// TriggerUnit
+EVENT_DEF(CTriggerUnit, void, TriggerUnitTriggered, (CTriggerUnit*, CPlayer*, bool&));
 
 // GenericModel
 EVENT_DEF(CGenericModel, void, GenericModelGetPosition, (CGenericModel*, Vector3, u32));

@@ -24,7 +24,7 @@ namespace TLAPI
   struct CLayout;
   struct CResourceManager;
   struct CLevel;
-  TLFUNC(LevelDropEquipment,       PVOID,       __thiscall, (CLevel*, CEquipment*, Vector3 &, bool));
+  TLFUNC(LevelDropItem, PVOID, __thiscall, (CLevel*, CItem*, Vector3 &, bool));
   TLFUNC(LevelCharacterInitialize, CCharacter*, __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
 
   //
@@ -155,14 +155,14 @@ namespace TLAPI
       ((CAstarPathfinder*)e->retval, *(float*)&Pz[0], *(float*)&Pz[1], Pz[2], Pz[3], (PVOID)Pz[4], (PVOID)Pz[5], *(float*)&Pz[6]));
 
     // Drop Equipment
-    EVENT_DECL(CLevel, void, LevelDropEquipment,
-      (CLevel*, CEquipment*, Vector3 &, bool, bool&),
-      ((CLevel*)e->_this, (CEquipment*)Pz[0], *(Vector3*)Pz[1], (bool)Pz[2], e->calloriginal));
+    EVENT_DECL(CLevel, void, LevelDropItem,
+      (CLevel*, CItem*, Vector3 &, bool, bool&),
+      ((CLevel*)e->_this, (CItem*)Pz[0], *(Vector3*)Pz[1], (bool)Pz[2], e->calloriginal));
 
 
     // Equipment drop
-    void EquipmentDrop(CEquipment* equipment, Vector3 & position, bool unk) {
-      LevelDropEquipment(this, equipment, position, unk0);
+    void EquipmentDrop(CItem* item, Vector3 & position, bool unk) {
+      LevelDropItem(this, item, position, unk0);
     }
     void CharacterInitialize(CCharacter* character, Vector3* position, u32 unk0) {
       LevelCharacterInitialize(this, character, position, unk0);
