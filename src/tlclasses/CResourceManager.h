@@ -18,7 +18,7 @@ namespace TLAPI
   struct CMonster;
   struct CResourceManager;
   struct CEquipment;
-  TLFUNC(ResourceManagerCreateEquipment, CEquipment*, __thiscall, (CResourceManager*, u64, u32, u32, u32));
+  TLFUNC(ResourceManagerCreateItem,      CItem*,      __thiscall, (CResourceManager*, u64, u32, u32, u32));
   TLFUNC(ResourceManagerCreateMonster,   CMonster*,   __thiscall, (CResourceManager*, u64, u32, bool));
   TLFUNC(ResourceManagerCreatePlayer,    CPlayer*,    __thiscall, (CResourceManager*, wchar_t*, u32));
 
@@ -58,9 +58,9 @@ namespace TLAPI
       ((CCharacter*)e->retval, (CResourceManager*)e->_this, (const wchar_t*)Pz[0], (const wchar_t*)Pz[1], Pz[2], Pz[3]));
 
     // Equipment Creation
-    EVENT_DECL(CResourceManager, void, ResourceManagerCreateEquipment,
-      (CEquipment*, CResourceManager*, u64, u32, u32, u32, bool&),
-      ((CEquipment*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], Pz[3], Pz[4], e->calloriginal));
+    EVENT_DECL(CResourceManager, void, ResourceManagerCreateItem,
+      (CItem*, CResourceManager*, u64, u32, u32, u32, bool&),
+      ((CItem*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], Pz[3], Pz[4], e->calloriginal));
     
     // Create Base Unit
     EVENT_DECL(CResourceManager, void, ResourceManagerCreateBaseUnit,
@@ -70,7 +70,7 @@ namespace TLAPI
 
     // Create equipment
     CEquipment* CreateEquipment(u64 guid, u32 level, u32 unk1, u32 unk2) {
-      return ResourceManagerCreateEquipment(this, guid, level, unk1, unk2);
+      return (CEquipment*)ResourceManagerCreateItem(this, guid, level, unk1, unk2);
     }
     // Create Character
     CMonster* CreateMonster(u64 guid, u32 level, bool removeDefaultInventory) {

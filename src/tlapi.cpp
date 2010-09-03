@@ -46,8 +46,8 @@ TLFUNCPTR(PlayerSetAnimation,                     PVOID,    __thiscall, (CPlayer
 TLFUNCPTR(CharacterAttack,                        PVOID,    __thiscall, (CCharacter*),                                                      0x48FBD0);     // 1.15  CPlayer
 
 TLFUNCPTR(EquipmentInitialize,                    PVOID,    __thiscall, (CEquipment*, CItemSaveState*),                                     0x4BE250);     // 1.15  CEquipment, CItemSaveState
-TLFUNCPTR(LevelDropEquipment,                     PVOID,    __thiscall, (CLevel*, CEquipment*, Vector3 &, bool),                            0x4F3070);     // 1.15  CLevel, CEquipment, vector3 pos, bool unk
-TLFUNCPTR(ResourceManagerCreateEquipment,   CEquipment*,    __thiscall, (CResourceManager*, u64, u32, u32, u32),                            0x5FB6D0);     // 1.15  CResourceManager, u64 guid, u32 level, u32 unk, u32 unk
+TLFUNCPTR(LevelDropItem,                          PVOID,    __thiscall, (CLevel*, CItem*, Vector3 &, bool),                                 0x4F3070);     // 1.15  CLevel, CItem, vector3 pos, bool unk
+TLFUNCPTR(ResourceManagerCreateItem,             CItem*,    __thiscall, (CResourceManager*, u64, u32, u32, u32),                            0x5FB6D0);     // 1.15  CResourceManager, u64 guid, u32 level, u32 unk, u32 unk
 TLFUNCPTR(CharacterPickupEquipment,               PVOID,    __thiscall, (CCharacter*, CEquipment*, CLevel*),                                0x4969B0);     // 1.15  CPlayer, CEquipment, CLevel
 TLFUNCPTR(InventoryAddEquipment,                  PVOID,    __thiscall, (CInventory*, CEquipment*, u32, u32),                               0x4E6CE0);     // 1.15  CInventory, CEquipment, int slot, int unk
 TLFUNCPTR(InventoryRemoveEquipment,               PVOID,    __thiscall, (CInventory*, CEquipment*),                                         0x4E7610);     // 1.15  CInventory, CEquipment
@@ -245,6 +245,9 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CEquipment, EquipmentAddStackCount, 1);
   EVENT_INIT(CEquipment, Equipment_AddGem, 1);
 
+  // TriggerUnit
+  EVENT_INIT(CTriggerUnit, TriggerUnitTriggered, 1);
+
   // MainMenu
   EVENT_INIT(CMainMenu, MainMenu_Event, 8);
   
@@ -265,12 +268,12 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CResourceManager, ResourceManagerCreatePlayer, 2);
   EVENT_INIT(CResourceManager, ResourceManagerCreateBaseUnit, 5);
   EVENT_INIT(CResourceManager, ResourceManagerCreateMonster, 4);
-  EVENT_INIT(CResourceManager, ResourceManagerCreateEquipment, 5);
+  EVENT_INIT(CResourceManager, ResourceManagerCreateItem, 5);
   
   // Hook Level
   EVENT_INIT(CLevel, LevelCharacterInitialize, 3);
   EVENT_INIT(CLevel, LevelCreateAstarPathfinding, 7);
-  EVENT_INIT(CLevel, LevelDropEquipment, 3);
+  EVENT_INIT(CLevel, LevelDropItem, 3);
 
   // Hook 
   EVENT_INIT(CInventory, InventoryAddEquipment, 3);

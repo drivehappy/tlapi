@@ -66,11 +66,11 @@ namespace TLAPI {
   TLFUNC(CharacterAttack,                       PVOID,        __thiscall, (CCharacter*));
 
   TLFUNC(EquipmentInitialize,                   PVOID,    __thiscall, (CEquipment*, CItemSaveState*));
-  TLFUNC(ResourceManagerCreateEquipment,  CEquipment*,    __thiscall, (CResourceManager*, u64, u32, u32, u32));
+  TLFUNC(ResourceManagerCreateEquipmentItem,   CItem*,    __thiscall, (CResourceManager*, u64, u32, u32, u32));
   TLFUNC(CharacterPickupEquipment,              PVOID,    __thiscall, (CCharacter*, CEquipment*, CLevel*));
   TLFUNC(InventoryAddEquipment,                 PVOID,    __thiscall, (CInventory*, CEquipment*, u32, u32));
   TLFUNC(InventoryRemoveEquipment,              PVOID,    __thiscall, (CInventory*, CEquipment*));
-  TLFUNC(LevelDropEquipment,                    PVOID,    __thiscall, (CLevel*, CEquipment*, Vector3 &, bool));
+  TLFUNC(LevelDropItem,                         PVOID,    __thiscall, (CLevel*, CItem*, Vector3 &, bool));
   TLFUNC(LevelHideEquipment,                    PVOID,    __thiscall, (CLevel*, CEquipment*, u32));
 
   TLFUNC(GameClient_ChangeLevel,                PVOID,    __thiscall, (CGameClient*, wstring, s32, u32, u32, wstring, u32));
