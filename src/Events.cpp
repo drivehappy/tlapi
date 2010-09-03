@@ -108,6 +108,9 @@ EVENT_DEF(CCharacter, void, CharacterUpdateHealth, (CCharacter*, float));
 // TriggerUnit
 EVENT_DEF(CTriggerUnit, void, TriggerUnitTriggered, (CTriggerUnit*, CPlayer*, bool&));
 
+// Breakable
+EVENT_DEF(CBreakable, void, BreakableTriggered, (CBreakable*, CPlayer*, bool&));
+
 // GenericModel
 EVENT_DEF(CGenericModel, void, GenericModelGetPosition, (CGenericModel*, Vector3, u32));
 

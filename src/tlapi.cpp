@@ -248,6 +248,9 @@ void TLAPI::HookFunctions()
   // TriggerUnit
   EVENT_INIT(CTriggerUnit, TriggerUnitTriggered, 1);
 
+  // Breakable
+  EVENT_INIT(CBreakable, BreakableTriggered, 1);
+
   // MainMenu
   EVENT_INIT(CMainMenu, MainMenu_Event, 8);
   
