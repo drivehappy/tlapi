@@ -21,6 +21,7 @@ TLFUNCPTR(CharacterSetDestination,                void,         __thiscall, (CCh
 TLFUNCPTR(GenericModelGetPosition,                PVOID,        __thiscall, (CGenericModel*, Vector3, u32),                                 0x50E3F0);     // CGenericModel, vector3 &, unk
 TLFUNCPTR(CharacterSetAction,                     PVOID,        __thiscall, (CCharacter*, u32),                                             0x489E50);     // CCharacter, u32 action
 TLFUNCPTR(CharacterUseSkill,                      PVOID,        __thiscall, (CCharacter*, u64),                                             0x494E50);     // CCharacter, u64 skill
+TLFUNCPTR(CharacterUpdateHealth,                  PVOID,        __thiscall, (CCharacter*, float),                                           0x490880);     //
 
 TLFUNCPTR(CharacterSetupSkills,                   void,         __thiscall, (CCharacter*, CDataGroup*, u32),                                0x480F00);     //
 TLFUNCPTR(CharacterAddSkill,                      void,         __thiscall, (CCharacter*, wstring*, u32),                                   0x47E930);
@@ -293,6 +294,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, Character_SetOrientation, 2);
   EVENT_INIT(CCharacter, CharacterSetupSkills, 2);
   EVENT_INIT(CCharacter, CharacterAddSkill, 2);
+  EVENT_INIT(CCharacter, CharacterUpdateHealth, 1);
 
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);
