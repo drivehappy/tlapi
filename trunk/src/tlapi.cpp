@@ -169,6 +169,9 @@ TLFUNCPTR(Character_Update,                       void,     __thiscall, (CCharac
 
 TLFUNCPTR(Character_SetOrientation,               void,     __thiscall, (CCharacter*, Vector3*, float),                    0x48B450);
 
+TLFUNCPTR(TriggerUnit_Ctor,              CTriggerUnit*,     __thiscall, (CLayout*),                                        0x4DDD70);
+
+
 
 void TLAPI::Initialize()
 {
@@ -247,6 +250,7 @@ void TLAPI::HookFunctions()
 
   // TriggerUnit
   EVENT_INIT(CTriggerUnit, TriggerUnitTriggered, 1);
+  EVENT_INIT(CTriggerUnit, TriggerUnit_Ctor, 1);
 
   // Breakable
   EVENT_INIT(CBreakable, BreakableTriggered, 1);
