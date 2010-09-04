@@ -107,6 +107,7 @@ EVENT_DEF(CCharacter, void, CharacterUpdateHealth, (CCharacter*, float));
 
 // TriggerUnit
 EVENT_DEF(CTriggerUnit, void, TriggerUnitTriggered, (CTriggerUnit*, CPlayer*, bool&));
+EVENT_DEF(CTriggerUnit, void, TriggerUnit_Ctor, (CTriggerUnit*, CLayout*, bool&));
 
 // Breakable
 EVENT_DEF(CBreakable, void, BreakableTriggered, (CBreakable*, CPlayer*, bool&));
