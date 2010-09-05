@@ -25,6 +25,7 @@
 #include "CEnchantMenu.h"
 #include "CLayout.h"
 #include "CKeyManager.h"
+#include "CItemGold.h"
 
 namespace TLAPI {
 
@@ -192,5 +193,7 @@ namespace TLAPI {
   TLFUNC(Character_SetOrientation,              void,     __thiscall, (CCharacter*, Vector3*, float));
 
   TLFUNC(TriggerUnit_Ctor,             CTriggerUnit*,     __thiscall, (CLayout*));
+
+  TLFUNC(ItemGold_Ctor,                   CItemGold*,     __thiscall, (CResourceManager*, u32));
 
 };
