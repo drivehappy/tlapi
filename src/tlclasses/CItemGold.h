@@ -24,6 +24,13 @@ namespace TLAPI
     CParticle      *pCParticle;
 
 
+
+    // Character Update Health
+    EVENT_DECL(CItemGold, void, ItemGold_Ctor,
+      (CItemGold*, CResourceManager*, u32, bool&),
+      ((CItemGold*)e->retval, (CResourceManager*)Pz[0], Pz[1], e->calloriginal));
+
+
     void dumpItemGold()
     {
       log("CItemGold Dump: %p (size: %i)", this, sizeof(CItemGold));

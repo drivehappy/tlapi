@@ -171,6 +171,8 @@ TLFUNCPTR(Character_SetOrientation,               void,     __thiscall, (CCharac
 
 TLFUNCPTR(TriggerUnit_Ctor,              CTriggerUnit*,     __thiscall, (CLayout*),                                        0x4DDD70);
 
+TLFUNCPTR(ItemGold_Ctor,                    CItemGold*,     __thiscall, (CResourceManager*, u32),                          0x4CFFC0);
+
 
 
 void TLAPI::Initialize()
@@ -247,6 +249,9 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CEquipment, Equipment_AddAffix, 4);
   EVENT_INIT(CEquipment, EquipmentAddStackCount, 1);
   EVENT_INIT(CEquipment, Equipment_AddGem, 1);
+
+  // ItemGold
+  EVENT_INIT(CItemGold, ItemGold_Ctor, 2);
 
   // TriggerUnit
   EVENT_INIT(CTriggerUnit, TriggerUnitTriggered, 1);

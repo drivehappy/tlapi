@@ -20,4 +20,3 @@ namespace TLAPI {
 #pragma pack()
 
 };
-
