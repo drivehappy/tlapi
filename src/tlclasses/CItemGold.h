@@ -10,6 +10,11 @@ namespace TLAPI
 
 #pragma pack(1)
 
+  // Forward
+  struct CItemGold;
+  TLFUNC(ItemGold_Ctor, CItemGold*, __thiscall, (PVOID, CResourceManager*, u32));
+
+  // Size: 0x238
   struct CItemGold : CItem
   {
     u32 amount;
@@ -23,12 +28,19 @@ namespace TLAPI
 
     CParticle      *pCParticle;
 
+    u32 unk1002;
 
 
     // Character Update Health
     EVENT_DECL(CItemGold, void, ItemGold_Ctor,
-      (CItemGold*, CResourceManager*, u32, bool&),
-      ((CItemGold*)e->retval, (CResourceManager*)Pz[0], Pz[1], e->calloriginal));
+      (CItemGold*, PVOID, CResourceManager*, u32, bool&),
+      ((CItemGold*)e->retval, (PVOID)e->_this, (CResourceManager*)Pz[0], Pz[1], e->calloriginal));
+
+
+
+    CItemGold* ItemCtor(CResourceManager* resourceManager, u32 amount) {
+      return ItemGold_Ctor(this, resourceManager, amount);
+    }
 
 
     void dumpItemGold()

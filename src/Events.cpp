@@ -83,6 +83,7 @@ EVENT_DEF(CResourceManager, void, ResourceManagerCreateItem,            (CItem*,
 EVENT_DEF(CLevel, void, LevelCharacterInitialize, (CLevel*, CCharacter*, Vector3*, u32, bool&));
 EVENT_DEF(CLevel, void, LevelCreateAstarPathfinding, (CAstarPathfinder*, float unk0, float unk1, u32 unk2, u32 unk3, PVOID unk4, PVOID unk5, float unk6));
 EVENT_DEF(CLevel, void, LevelDropItem, (CLevel*, CItem*, Vector3 &, bool));
+EVENT_DEF(CLevel, void, Level_CharacterKilledCharacter, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32, bool&));
 
 // Inventory
 EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u32, u32));
@@ -106,7 +107,7 @@ EVENT_DEF(CCharacter, void, CharacterAddSkill, (CCharacter*, wstring*, u32, bool
 EVENT_DEF(CCharacter, void, CharacterUpdateHealth, (CCharacter*, float));
 
 // ItemGold
-EVENT_DEF(CItemGold, void, ItemGold_Ctor, (CItemGold*, CResourceManager*, u32, bool&));
+EVENT_DEF(CItemGold, void, ItemGold_Ctor, (CItemGold*, PVOID, CResourceManager*, u32, bool&));
 
 // TriggerUnit
 EVENT_DEF(CTriggerUnit, void, TriggerUnitTriggered, (CTriggerUnit*, CPlayer*, bool&));

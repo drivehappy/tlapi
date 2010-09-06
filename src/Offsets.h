@@ -194,6 +194,8 @@ namespace TLAPI {
 
   TLFUNC(TriggerUnit_Ctor,             CTriggerUnit*,     __thiscall, (CLayout*));
 
-  TLFUNC(ItemGold_Ctor,                   CItemGold*,     __thiscall, (CResourceManager*, u32));
+  TLFUNC(ItemGold_Ctor,                   CItemGold*,     __thiscall, (PVOID, CResourceManager*, u32));
+
+  TLFUNC(Level_CharacterKilledCharacter,        void,     __thiscall, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32));
 
 };
