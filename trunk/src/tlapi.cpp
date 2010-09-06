@@ -171,7 +171,10 @@ TLFUNCPTR(Character_SetOrientation,               void,     __thiscall, (CCharac
 
 TLFUNCPTR(TriggerUnit_Ctor,              CTriggerUnit*,     __thiscall, (CLayout*),                                        0x4DDD70);
 
-TLFUNCPTR(ItemGold_Ctor,                    CItemGold*,     __thiscall, (CResourceManager*, u32),                          0x4CFFC0);
+TLFUNCPTR(ItemGold_Ctor,                    CItemGold*,     __thiscall, (PVOID, CResourceManager*, u32),                   0x4CFFC0);
+
+TLFUNCPTR(Level_CharacterKilledCharacter,         void,     __thiscall, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32),0x4F4DE0);
+
 
 
 
@@ -286,6 +289,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CLevel, LevelCharacterInitialize, 3);
   EVENT_INIT(CLevel, LevelCreateAstarPathfinding, 7);
   EVENT_INIT(CLevel, LevelDropItem, 3);
+  EVENT_INIT(CLevel, Level_CharacterKilledCharacter, 4);
 
   // Hook 
   EVENT_INIT(CInventory, InventoryAddEquipment, 3);

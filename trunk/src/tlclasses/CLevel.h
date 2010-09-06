@@ -26,6 +26,7 @@ namespace TLAPI
   struct CLevel;
   TLFUNC(LevelDropItem, PVOID, __thiscall, (CLevel*, CItem*, Vector3 &, bool));
   TLFUNC(LevelCharacterInitialize, CCharacter*, __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
+  TLFUNC(Level_CharacterKilledCharacter, void, __thiscall, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32));
 
   //
   struct CLevel : CRunicCore
@@ -159,7 +160,17 @@ namespace TLAPI
       (CLevel*, CItem*, Vector3 &, bool, bool&),
       ((CLevel*)e->_this, (CItem*)Pz[0], *(Vector3*)Pz[1], (bool)Pz[2], e->calloriginal));
 
+    // Character Killed
+    EVENT_DECL(CLevel, void, Level_CharacterKilledCharacter,
+      (CLevel*, CCharacter*, CCharacter*, Vector3*, u32, bool&),
+      ((CLevel*)e->_this, (CCharacter*)Pz[0], (CCharacter*)Pz[1], (Vector3*)Pz[2], Pz[3], e->calloriginal));
+    
+  
 
+    // Character Killed
+    void CharacterKill(CCharacter* attacker, CCharacter* killed, Vector3* position, u32 unk0) {
+      Level_CharacterKilledCharacter(this, attacker, killed, position, unk0);
+    }
     // Item drop
     void ItemDrop(CItem* item, Vector3 & position, bool unk) {
       LevelDropItem(this, item, position, unk0);
