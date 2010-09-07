@@ -111,7 +111,9 @@ namespace TLAPI
 
     float unk13[3];     // 2.0, 0, 0, 1
 
-    u32 unk14[3];       // 
+    u32 unk14[2];       // 
+
+    u32 alignment;
     CCharacter* target;
 
     u32 unk1500[2];       // 
@@ -252,8 +254,8 @@ namespace TLAPI
 
     // Character Set Alignment
     EVENT_DECL(CCharacter, void, CharacterSetAlignment,
-      (CCharacter*, u32),
-      ((CCharacter*)e->_this, Pz[0]));
+      (CCharacter*, u32, bool&),
+      ((CCharacter*)e->_this, Pz[0], e->calloriginal));
     
     // Character Use Skill
     EVENT_DECL(CCharacter, void, CharacterUseSkill,
@@ -287,8 +289,8 @@ namespace TLAPI
     
     // Character Strike
     EVENT_DECL(CCharacter, void, CharacterStrike,
-      (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32),
-      ((CCharacter*)e->_this, (CLevel*)Pz[0], (CCharacter*)Pz[1], (PVOID)Pz[2], Pz[3], *(float*)&Pz[4], *(float*)&Pz[5], Pz[6]));
+      (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32, bool&),
+      ((CCharacter*)e->_this, (CLevel*)Pz[0], (CCharacter*)Pz[1], (PVOID)Pz[2], Pz[3], *(float*)&Pz[4], *(float*)&Pz[5], Pz[6], e->calloriginal));
 
     // Character Pickup Equipment
     EVENT_DECL(CCharacter, void, CharacterPickupEquipment,

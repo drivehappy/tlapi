@@ -91,7 +91,7 @@ EVENT_DEF(CInventory, void, InventoryRemoveEquipment, (CInventory*, CEquipment*)
 
 // Character
 EVENT_DEF(CCharacter, void, CharacterDtor, (CCharacter*));
-EVENT_DEF(CCharacter, void, CharacterSetAlignment, (CCharacter*, u32));
+EVENT_DEF(CCharacter, void, CharacterSetAlignment, (CCharacter*, u32, bool& calloriginal));
 EVENT_DEF(CCharacter, void, CharacterSetDestination, (CCharacter*, CLevel*, float, float));
 EVENT_DEF(CCharacter, void, CharacterSetAction, (CCharacter*, u32, bool&));
 EVENT_DEF(CCharacter, void, CharacterSetTarget, (CCharacter*, u32, bool&));
