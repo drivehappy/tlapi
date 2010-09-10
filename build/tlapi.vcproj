@@ -373,6 +373,10 @@
 			Name="TL Classes"
 			>
 			<File
+				RelativePath="..\src\tlclasses\_CLinkedListNode.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\_CList.h"
 				>
 			</File>
@@ -765,11 +769,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\CParticlePreloader.h"
+				RelativePath="..\src\tlclasses\CParticlePreloader.h"
 				>
 			</File>
 			<File
-				RelativePath="..\src\tlclasses\CParticlePreloader.h"
+				RelativePath="..\src\CParticlePreloader.h"
 				>
 			</File>
 			<File

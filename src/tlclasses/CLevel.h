@@ -1,6 +1,7 @@
 #pragma once
 
 #include "_CList.h"
+#include "_CLinkedListNode.h"
 
 #include "CQuadTree.h"
 #include "CCollisionList.h"
@@ -51,24 +52,21 @@ namespace TLAPI
     CQuadtree          *pCQuadTree;       // ptr to CQuadTree
     CCollisionList     *pCCollisionList;  // ptr to CCollisionList
 
-    vector<u32>        vecUnk0;
-    /* Old replaced by vector
-    u32 unk11;          // Cylic ptr to itself
-    float unk12[2];     // 1, 1
-    PVOID unk13[3];     // Odd structure
-    */
+    vector<u32>         vecUnk0;
 
-    PVOID unk14[4];     // Another odd structure
+    LinkedListNode    **ppCBaseUnits; // LinkedList of CBaseUnits
+
+    PVOID               unk14[3];     // Another odd structure
 
     CList<CParticle*>   particleList;
 
     PVOID unk18[3];
 
-    vector<u32>        vecUnk1;
+    vector<u32>         vecUnk1;
 
-    u32   unk19[8];     // 3 dup(   0), 0Ah,3 dup(   0), 0Ah
+    u32                 unk19[8];     // 3 dup(   0), 0Ah,3 dup(   0), 0Ah
 
-    vector<u32>        vecUnk2;
+    vector<u32>         vecUnk2;
 
 
     float unk20[22];
