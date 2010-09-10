@@ -52,11 +52,18 @@ namespace TLAPI
     CQuadtree          *pCQuadTree;       // ptr to CQuadTree
     CCollisionList     *pCCollisionList;  // ptr to CCollisionList
 
-    vector<u32>         vecUnk0;
+    u32                 unk11[3];
 
-    LinkedListNode    **ppCBaseUnits; // LinkedList of CBaseUnits
+    LinkedListNode    **ppCCharacters1;  // LinkedList of Monsters
+
+    LinkedListNode    **ppCTriggerUnits;  // LinkedList of ??
+    
+    LinkedListNode    **ppCCharacters2;  // LinkedList of Monsters
+
+    LinkedListNode    **ppCItems;        // LinkedList of CItem
 
     PVOID               unk14[3];     // Another odd structure
+    //PVOID               unk14[2];     // Another odd structure
 
     CList<CParticle*>   particleList;
 
@@ -163,7 +170,15 @@ namespace TLAPI
       (CLevel*, CCharacter*, CCharacter*, Vector3*, u32, bool&),
       ((CLevel*)e->_this, (CCharacter*)Pz[0], (CCharacter*)Pz[1], (Vector3*)Pz[2], Pz[3], e->calloriginal));
     
-  
+    // Level Dtor
+    EVENT_DECL(CLevel, void, Level_Dtor,
+      (CLevel*, u32, bool&),
+      ((CLevel*)e->_this, Pz[0], e->calloriginal));
+    
+    // Level Ctor
+    EVENT_DECL(CLevel, void, Level_Ctor,
+      (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32, bool&),
+      (*(wstring*)&Pz[0], (CSettings*)Pz[7], (CGameClient*)Pz[8], (CResourceManager*)Pz[9], (PVOID)Pz[10], (CSoundManager*)Pz[11], Pz[12], Pz[13], e->calloriginal));
 
     // Character Killed
     void CharacterKill(CCharacter* attacker, CCharacter* killed, Vector3* position, u32 unk0) {
@@ -179,6 +194,50 @@ namespace TLAPI
     }
     void CharacterInitialize(CCharacter* character, Vector3* position, u32 unk0) {
       LevelCharacterInitialize(this, character, position, unk0);
+    }
+
+
+
+    void DumpCharacters1() {
+      /*
+      LinkedListNode* itr = *ppCCharacters1;
+      while (itr != NULL) {
+        CCharacter* character = (CCharacter*)itr->pCBaseUnit;
+        logColor(B_GREEN, L"  Level Character1: (itr = %p) %p %s", itr, character, character->characterName.c_str());
+        //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, character, character->characterName.c_str());
+        itr = itr->pNext;
+      }
+      */
+    }
+
+    void DumpTriggerUnits() {
+      LinkedListNode* itr = *ppCTriggerUnits;
+      while (itr != NULL) {
+        CTriggerUnit* triggerUnit = (CTriggerUnit*)itr->pCBaseUnit;
+        logColor(B_GREEN, L"  Level TriggerUnit: (itr = %p) %p %s", itr, triggerUnit, triggerUnit->nameReal.c_str());
+        //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, character, character->characterName.c_str());
+        itr = itr->pNext;
+      }
+    }
+
+    void DumpCharacters2() {
+      LinkedListNode* itr = *ppCCharacters2;
+      while (itr != NULL) {
+        CCharacter* character = (CCharacter*)itr->pCBaseUnit;
+        logColor(B_GREEN, L"  Level Character2: (itr = %p) %p %s", itr, character, character->characterName.c_str());
+        //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, character, character->characterName.c_str());
+        itr = itr->pNext;
+      }
+    }
+
+    void DumpItems() {
+      LinkedListNode* itr = *ppCItems;
+      while (itr != NULL) {
+        CItem* item = (CItem*)itr->pCBaseUnit;
+        logColor(B_GREEN, L"  Level Item: (itr = %p) %p %s", itr, item, item->nameReal.c_str());
+        //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, item, item->nameReal.c_str());
+        itr = itr->pNext;
+      }
     }
   };
 

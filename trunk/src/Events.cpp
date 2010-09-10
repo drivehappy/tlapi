@@ -84,6 +84,8 @@ EVENT_DEF(CLevel, void, LevelCharacterInitialize, (CLevel*, CCharacter*, Vector3
 EVENT_DEF(CLevel, void, LevelCreateAstarPathfinding, (CAstarPathfinder*, float unk0, float unk1, u32 unk2, u32 unk3, PVOID unk4, PVOID unk5, float unk6));
 EVENT_DEF(CLevel, void, LevelDropItem, (CLevel*, CItem*, Vector3 &, bool));
 EVENT_DEF(CLevel, void, Level_CharacterKilledCharacter, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32, bool&));
+EVENT_DEF(CLevel, void, Level_Dtor, (CLevel*, u32, bool&));
+EVENT_DEF(CLevel, void, Level_Ctor, (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32, bool&));
 
 // Inventory
 EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u32, u32));

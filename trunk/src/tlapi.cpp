@@ -175,6 +175,11 @@ TLFUNCPTR(ItemGold_Ctor,                    CItemGold*,     __thiscall, (PVOID, 
 
 TLFUNCPTR(Level_CharacterKilledCharacter,         void,     __thiscall, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32),0x4F4DE0);
 
+TLFUNCPTR(Level_Dtor,                             void,     __thiscall, (CLevel*, u32),                                    0x4F94C0);
+TLFUNCPTR(Level_Ctor,                             void,     __thiscall, (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32), 0x4F8FB0);
+
+
+
 
 
 
@@ -290,6 +295,8 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CLevel, LevelCreateAstarPathfinding, 7);
   EVENT_INIT(CLevel, LevelDropItem, 3);
   EVENT_INIT(CLevel, Level_CharacterKilledCharacter, 4);
+  EVENT_INIT(CLevel, Level_Dtor, 1);
+  EVENT_INIT(CLevel, Level_Ctor, 14);
 
   // Hook 
   EVENT_INIT(CInventory, InventoryAddEquipment, 3);

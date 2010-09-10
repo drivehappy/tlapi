@@ -198,4 +198,8 @@ namespace TLAPI {
 
   TLFUNC(Level_CharacterKilledCharacter,        void,     __thiscall, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32));
 
+  TLFUNC(Level_Dtor,                            void,     __thiscall, (CLevel*, u32));
+  TLFUNC(Level_Ctor,                            void,     __thiscall, (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32));
+
+
 };
