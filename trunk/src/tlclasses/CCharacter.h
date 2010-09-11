@@ -32,6 +32,7 @@ namespace TLAPI
   TLFUNC(Character_SetOrientation, void, __thiscall, (CCharacter*, Vector3*, float));
   TLFUNC(CharacterAddSkill, void, __thiscall, (CCharacter*, wstring*, u32));
   TLFUNC(CharacterUpdateHealth, PVOID, __thiscall, (CCharacter*, float));
+  TLFUNC(CharacterSetTarget, PVOID, __thiscall, (CCharacter*, CCharacter*));
   
   // CBaseUnit Size = 0x190
   struct CCharacter : CBaseUnit
@@ -309,7 +310,9 @@ namespace TLAPI
       ((CCharacter*)e->_this, (Vector3*)Pz[0], *(float*)&Pz[1], e->calloriginal));
 
 
-
+    void SetTarget(CCharacter* target) {
+      CharacterSetTarget(this, target);
+    }
     void UpdateHealth(float amount) {
       CharacterUpdateHealth(this, amount);
     }
