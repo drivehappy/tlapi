@@ -1,6 +1,7 @@
 #pragma once
 
 #pragma comment(lib, "../externallibs/cegui/lib/CEGUIBase.lib")
+#pragma comment(lib, "../externallibs/ogre/lib/OgreMain.lib")
 
 #include "Common.h"
 

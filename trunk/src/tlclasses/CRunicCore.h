@@ -8,7 +8,7 @@ namespace TLAPI {
 
 #pragma pack(1)
 
-  struct CRunicCore
+  struct CRunicCore : Ogre::AllocatedObject<Ogre::CategorisedAllocPolicy<Ogre::MEMCATEGORY_GENERAL>>
   {
     PVOID vtable;
   };
