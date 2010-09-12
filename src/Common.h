@@ -12,6 +12,8 @@
 #pragma comment(lib, "user32.lib")
 #pragma comment(lib, "winmm.lib")
 
+#include "Ogre.h"
+
 #include <string>
 #include <stack>
 #include <vector>
