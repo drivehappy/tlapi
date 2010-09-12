@@ -111,7 +111,7 @@ TLFUNCPTR(LevelDestroyMonster,                    void,     __thiscall, (CLevel*
 TLFUNCPTR(MonsterReadProp,                        void,     __thiscall, (CMonster*),                                       0x47EAF0);     // 1.15  CMonster
 
 TLFUNCPTR(EquipmentUse,                           void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*),                 0x4B4FB0);     // 1.15  CEquipment, CPlayer, CPlayer
-TLFUNCPTR(EquipmentIdentify,                      void,     __thiscall, (CEquipment*),                                     0x4B0200);     // 1.15  CEquipment
+TLFUNCPTR(EquipmentIdentify,                      void,     __thiscall, (CEquipment*, CPlayer*, CEquipment*),              0x4B4FB0);     // 1.15  CEquipment
 
 TLFUNCPTR(LevelCreateAstarPathfinding,            CAstarPathfinder*,    __stdcall,  (float, float, u32, u32, PVOID, PVOID, float),  0x421700);
 
@@ -257,6 +257,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CEquipment, Equipment_AddAffix, 4);
   EVENT_INIT(CEquipment, EquipmentAddStackCount, 1);
   EVENT_INIT(CEquipment, Equipment_AddGem, 1);
+  EVENT_INIT(CEquipment, EquipmentIdentify, 2);
 
   // ItemGold
   EVENT_INIT(CItemGold, ItemGold_Ctor, 2);

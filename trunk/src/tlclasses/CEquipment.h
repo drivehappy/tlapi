@@ -22,6 +22,7 @@ namespace TLAPI
   TLFUNC(Equipment_AddMagicModifier, void, __thiscall, (CEquipment*, u32, u32));
   TLFUNC(Equipment_AddAffix,         void, __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float));
   TLFUNC(Equipment_AddGem,           void, __thiscall, (CEquipment*, CEquipment*));
+  TLFUNC(EquipmentIdentify,          void, __thiscall, (CEquipment*, CPlayer*, CEquipment*));
 
   // Enchantment Types
   enum EnchantType {
@@ -88,8 +89,8 @@ namespace TLAPI
 
     u32   enhancementCount;
 
-    // New: Post std::vector change
-    u32   unk1008[1];
+    u8    identified;
+    u8    unk1008[3];
 
     std::vector<u32> enchantTypeList;
     std::vector<u32> enchantList;
@@ -106,6 +107,13 @@ namespace TLAPI
 
     // 
     // Function hooks
+
+    // Equipment Identify
+    EVENT_DECL(CEquipment, void, EquipmentIdentify,
+      (CEquipment*, CPlayer*, CEquipment*, bool&),
+      ((CEquipment*)e->_this, (CPlayer*)Pz[0], (CEquipment*)Pz[1], e->calloriginal));
+
+    // Equipment Dtor
     EVENT_DECL(CEquipment, void, EquipmentDtor,
       (CEquipment*),
       ((CEquipment*)e->_this));
@@ -140,7 +148,7 @@ namespace TLAPI
       (CEquipment*, CEquipment*, bool&),
       ((CEquipment*)e->_this, (CEquipment*)Pz[0], e->calloriginal));
 
-    
+
     u32 Enchant(u32 unk0, u32 unk1, u32 unk2) const {
       return EquipmentEnchant((CEquipment*)this, unk0, unk1, unk2);
     }
@@ -303,8 +311,6 @@ namespace TLAPI
         unk0998[0], unk0998[1], unk0998[2]);
       logColor(B_GREEN, "  unk1007: %x",
         unk1007);
-      logColor(B_GREEN, "  unk1008[1]: %f (%x)",
-        unk1008[0], unk1008[0]);
 
       logColor(B_GREEN, "  unk1010:");
       for (u32 i = 0; i < 21; i++) {

@@ -132,7 +132,7 @@ namespace TLAPI {
   TLFUNC(MonsterReadProp,                       void,     __thiscall, (CMonster*));
 
   TLFUNC(EquipmentUse,                          void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*));
-  TLFUNC(EquipmentIdentify,                     void,     __thiscall, (CEquipment*));
+  TLFUNC(EquipmentIdentify,                     void,     __thiscall, (CEquipment*, CPlayer*, CEquipment*));
 
   TLFUNC(CharacterSetTarget,                    PVOID,    __thiscall, (CCharacter*, CCharacter*));
 
