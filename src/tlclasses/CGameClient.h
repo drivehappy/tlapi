@@ -62,7 +62,7 @@ namespace TLAPI
     wstring             dungeonName;
 
     s32                 level;              // Level change parameter, listed below
-    s32                 levelUnk;           //
+    s32                 levelAbsolute;           //
 
     // ^ 1006 *4
 
@@ -144,9 +144,8 @@ namespace TLAPI
 
 
     // Change level
-    void ChangeLevel(s32 relativeLevel) {
-      this->level = relativeLevel;
-      GameClient_LoadLevel(this);
+    void ForceToTown() {
+      GameClient_ChangeLevel(this, L"TOWN", 0, 0, 0, L"", 0);
     }
     void ChangeLevel(wstring dungeonName, s32 relativeLevel, u32 unk0, u32 unk1, wstring unkString, u32 unk2) {
       GameClient_ChangeLevel(this, dungeonName, relativeLevel, unk0, unk1, unkString, unk2);
