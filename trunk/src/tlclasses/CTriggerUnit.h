@@ -2,6 +2,8 @@
 
 #include "CItem.h"
 #include "CLayout.h"
+#include "CGenericModel.h"
+#include "CCollisionModel.h"
 
 namespace TLAPI {
 
@@ -15,7 +17,19 @@ namespace TLAPI {
   //
   struct CTriggerUnit : CItem
   {
-    // TODO
+    CGenericModel   *pCGenericModel;
+    CCollisionModel *pCCollisionModel;
+    u32              unk0[7];
+
+    wstring          name;
+    CList<u32>       unkList0;
+    CList<PVOID>     unkList1;
+    CList<PVOID>     unkList2;
+    CList<CLayout*>  layoutList;
+
+    u32              unk1;
+    wstring          name2;
+
 
 
     // TriggerUnit Ctor
