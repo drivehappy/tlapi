@@ -78,7 +78,7 @@ TLFUNCPTR(WndProc,                                LRESULT,  __thiscall, (HWND, U
 
 TLFUNCPTR(GetPlayer,                              PVOID,    __thiscall, (void),                                                             0x5FB330);     // 1.15  Name misnomer - returns a ptr to CUnitResourceList
 TLFUNCPTR(PlayerDied,                             void,     __thiscall, (void),                                                             0x548270);     // 1.15
-TLFUNCPTR(PlayerResurrect,                        void,     __thiscall, (CDieMenu*, u32),                                                   0x56E000);     // 1.15  CDieMenu, u32 (0xF = @level, 0x10 = @town, 0xe = @body)
+TLFUNCPTR(PlayerResurrect,                        void,     __thiscall, (CCharacter*),                                                      0x4D6810);     // 1.15  CPlayer
 
 // -------------------------------------------------------------------------------- //
 // In-place definitions
@@ -322,6 +322,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, CharacterSetupSkills, 2);
   EVENT_INIT(CCharacter, CharacterAddSkill, 2);
   EVENT_INIT(CCharacter, CharacterUpdateHealth, 1);
+  EVENT_INIT(CCharacter, PlayerResurrect, 0);
 
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);
