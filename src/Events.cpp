@@ -108,6 +108,7 @@ EVENT_DEF(CCharacter, void, Character_SetOrientation, (CCharacter*, Vector3*, fl
 EVENT_DEF(CCharacter, void, CharacterSetupSkills, (CCharacter*, CDataGroup*, u32, bool&));
 EVENT_DEF(CCharacter, void, CharacterAddSkill, (CCharacter*, wstring*, u32, bool&));
 EVENT_DEF(CCharacter, void, CharacterUpdateHealth, (CCharacter*, float));
+EVENT_DEF(CCharacter, void, PlayerResurrect, (CCharacter*, bool&));
 
 // ItemGold
 EVENT_DEF(CItemGold, void, ItemGold_Ctor, (CItemGold*, PVOID, CResourceManager*, u32, bool&));

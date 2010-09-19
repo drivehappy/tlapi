@@ -100,7 +100,7 @@ namespace TLAPI {
   // Do these still work?
   TLFUNC(GetPlayer,                             PVOID,    __thiscall, (void));
   TLFUNC(PlayerDied,                            void,     __thiscall, (void));
-  TLFUNC(PlayerResurrect,                       void,     __thiscall, (CDieMenu*, u32));
+  TLFUNC(PlayerResurrect,                       void,     __thiscall, (CCharacter*));
 
   // -------------------------------------------------------------------------------- //
   // In-place definitions

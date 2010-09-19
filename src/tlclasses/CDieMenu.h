@@ -8,7 +8,7 @@ namespace TLAPI {
 
   struct CDieMenu : CDropdownMenu
   {
-    // TODO
+
   };
 
 #pragma pack()

@@ -33,6 +33,7 @@ namespace TLAPI
   TLFUNC(CharacterAddSkill, void, __thiscall, (CCharacter*, wstring*, u32));
   TLFUNC(CharacterUpdateHealth, PVOID, __thiscall, (CCharacter*, float));
   TLFUNC(CharacterSetTarget, PVOID, __thiscall, (CCharacter*, CCharacter*));
+  TLFUNC(PlayerResurrect, void, __thiscall, (CCharacter*));
   
   // CBaseUnit Size = 0x190
   struct CCharacter : CBaseUnit
@@ -233,6 +234,11 @@ namespace TLAPI
     // 
     // Function hooks
   
+    // Character Resurrect
+    EVENT_DECL(CCharacter, void, PlayerResurrect,
+      (CCharacter*, bool&),
+      ((CCharacter*)e->_this, e->calloriginal));
+
     // Character Update Health
     EVENT_DECL(CCharacter, void, CharacterUpdateHealth,
       (CCharacter*, float, bool&),
@@ -310,6 +316,9 @@ namespace TLAPI
       ((CCharacter*)e->_this, (Vector3*)Pz[0], *(float*)&Pz[1], e->calloriginal));
 
 
+    void Resurrect() {
+      PlayerResurrect(this);
+    }
     void SetTarget(CCharacter* target) {
       CharacterSetTarget(this, target);
     }
