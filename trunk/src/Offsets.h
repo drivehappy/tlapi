@@ -29,10 +29,22 @@
 
 namespace TLAPI {
 
-  static u32* Seed1 = (u32*)0xEB4830;
-  static u32* Seed2 = (u32*)0xEB4834;
-  static u32* Seed3 = (u32*)0xEB4838;
-  static u32* Seed4 = (u32*)0xEB483C;
+  static u32 SeedOffset1 = 0xEB4830;
+  static u32 SeedOffset2 = 0xEB4834;
+  static u32 SeedOffset3 = 0xEB4838;
+  static u32 SeedOffset4 = 0xEB483C;
+
+  /*
+  static u32* Seed1 = (u32*)EXEOFFSET(0xEB4830);
+  static u32* Seed2 = (u32*)EXEOFFSET(0xEB4834);
+  static u32* Seed3 = (u32*)EXEOFFSET(0xEB4838);
+  static u32* Seed4 = (u32*)EXEOFFSET(0xEB483C);
+  */
+
+  static u32* Seed1 = NULL;
+  static u32* Seed2 = NULL;
+  static u32* Seed3 = NULL;
+  static u32* Seed4 = NULL;
 
   TLFUNC(SetSeedValue0,                         void,         __stdcall,  (u32));
   TLFUNC(SetSeedValue2,                         void,         __stdcall,  (u32));
