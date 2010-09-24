@@ -239,6 +239,17 @@ namespace TLAPI
         itr = itr->pNext;
       }
     }
+
+    bool containsItem(CItem* itemSearch) {
+      LinkedListNode* itr = *ppCItems;
+      while (itr != NULL) {
+        CItem* item = (CItem*)itr->pCBaseUnit;
+        if (item == itemSearch)
+          return true;
+        itr = itr->pNext;
+      }
+      return false;
+    }
   };
 
 #pragma pack()
