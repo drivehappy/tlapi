@@ -36,23 +36,14 @@ namespace TLAPI
     
     CList<CLayout*>    CLayoutsList;
 
-    u32 unk1;           // 3
-    u32 unk2;           // 0Ah
-    u32 unk3;           // 0Ah
-    PVOID unk4;         // ptr to unk struct
+    CList<float>        unkFloatList;
 
-    u32 unk5;           // 3
-    u32 unk6;           // 0Ah
-    u32 unk7;           // 0Ah
-    PVOID unk8;         // ptr to unk struct
-    PVOID unk9;         // ptr to unk struct
-
-    u32 unk10[3];       // 195h, 186h, 3C81h
+    u32 unk5[5];
 
     CQuadtree          *pCQuadTree;       // ptr to CQuadTree
     CCollisionList     *pCCollisionList;  // ptr to CCollisionList
 
-    u32                 unk11[3];
+    u32                 unk11[6];
 
     LinkedListNode    **ppCCharacters1;  // LinkedList of Monsters
 
@@ -61,9 +52,6 @@ namespace TLAPI
     LinkedListNode    **ppCCharacters2;  // LinkedList of Monsters
 
     LinkedListNode    **ppCItems;        // LinkedList of CItem
-
-    PVOID               unk14[3];     // Another odd structure
-    //PVOID               unk14[2];     // Another odd structure
 
     CList<CParticle*>   particleList;
 
@@ -75,47 +63,8 @@ namespace TLAPI
 
     vector<u32>         vecUnk2;
 
-
     float unk20[22];
-
-                      /*
-                                           -31.981001
-                      debug293:1E0DE1C8 dd 0.79000199
-                      debug293:1E0DE1CC dd 17.153
-                      debug293:1E0DE1D0 dd 9.1789999
-                      debug293:1E0DE1D4 dd 0.0299982
-                      debug293:1E0DE1D8 dd 67.275902
-                      debug293:1E0DE1DC dd 27.368999
-                      debug293:1E0DE1E0 dd -4.4899998
-                      debug293:1E0DE1E4 dd 36.7458
-                      debug293:1E0DE1E8 dd 0.54463887
-                      debug293:1E0DE1EC dd 0.0
-                      debug293:1E0DE1F0 dd 0.83867079
-                      debug293:1E0DE1F4 dd 0.0
-                      debug293:1E0DE1F8 dd 0.0
-                      debug293:1E0DE1FC dd 0.0
-                      debug293:1E0DE200 dd 0.0
-                      debug293:1E0DE204 dd 0.0
-                      debug293:1E0DE208 dd 1.0
-                      debug293:1E0DE20C dd 0.0
-                      debug293:1E0DE210 dd 0.0
-                      debug293:1E0DE214 dd 0.0
-                      debug293:1E0DE218 dd 0.0
-
-                      */
-
-    // ...
-
-    u32  unk21[5];
-
-                      /*
-                                           7
-                      debug293:1E0DE220 dd 0
-                      debug293:1E0DE224 dd offset unk_1D000001
-                      debug293:1E0DE228 dd 0
-                      debug293:1E0DE22C dd 1
-
-                      */
+    u32  unk21[6];
 
     PVOID   pOctreeSM;
     PVOID   pOgreStaticGeom[4];
@@ -179,6 +128,11 @@ namespace TLAPI
     EVENT_DECL(CLevel, void, Level_Ctor,
       (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32, bool&),
       (*(wstring*)&Pz[0], (CSettings*)Pz[7], (CGameClient*)Pz[8], (CResourceManager*)Pz[9], (PVOID)Pz[10], (CSoundManager*)Pz[11], Pz[12], Pz[13], e->calloriginal));
+
+    // Level Update
+    EVENT_DECL(CLevel, void, Level_Update,
+      (CLevel*, Vector3*, u32, float, bool&),
+      ((CLevel*)e->_this, (Vector3*)Pz[0], Pz[1], *(float*)&Pz[2], e->calloriginal));
 
     // Character Killed
     void CharacterKill(CCharacter* attacker, CCharacter* killed, Vector3* position, u32 unk0) {

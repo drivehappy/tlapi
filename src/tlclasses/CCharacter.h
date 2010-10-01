@@ -310,11 +310,24 @@ namespace TLAPI
       (CCharacter*, PVOID, float*, float, bool&),
       ((CCharacter*)e->_this, (PVOID)Pz[0], (float*)Pz[1], *(float*)&Pz[2], e->calloriginal));
 
+    // Doesn't work
     // Character Orientation
     EVENT_DECL(CCharacter, void, Character_SetOrientation,
       (CCharacter*, Vector3*, float, bool&),
       ((CCharacter*)e->_this, (Vector3*)Pz[0], *(float*)&Pz[1], e->calloriginal));
 
+    // Character Update Level
+    EVENT_DECL(CCharacter, void, Character_Update_Level,
+      (CCharacter*, CLevel*, float, bool&),
+      ((CCharacter*)e->_this, (CLevel*)Pz[0], *(float*)&Pz[1], e->calloriginal));
+
+    // Character Update Character
+    EVENT_DECL(CCharacter, void, Character_Update_Character,
+      (CCharacter*, CCharacter*, bool&),
+      ((CCharacter*)e->_this, (CCharacter*)Pz[0], e->calloriginal));
+
+
+    
 
     void Resurrect() {
       PlayerResurrect(this);

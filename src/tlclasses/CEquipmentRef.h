@@ -16,6 +16,12 @@ namespace TLAPI
     s32 slotother;    //
     u32 unk2[5];
 
+    
+    // EquipmentRef Dtor
+    EVENT_DECL(CEquipmentRef, void, EquipmentRef_Dtor,
+      (CEquipmentRef*, u32),
+      ((CEquipmentRef*)e->_this, Pz[0]));
+
 
     void dumpEquipmentRef()
     {

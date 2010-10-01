@@ -40,7 +40,6 @@ TLFUNCPTR(CharacterStrike,                        PVOID,    __thiscall, (CCharac
 
 TLFUNCPTR(EquipmentAddStackCount,                 PVOID,    __thiscall, (CEquipment*, u32),                                                 0x4B0930);  // 1.15
 
-TLFUNCPTR(MonsterProcessAI,                       PVOID,    __thiscall, (CMonster*, float, PVOID),                                          0x4D36F0);     // 1.15  CMonster, float unk (0.005), CLevel
 TLFUNCPTR(PlayerSetAnimation,                     PVOID,    __thiscall, (CPlayer*, u32, bool, float, float, u32),                           0x4841F0);     // 1.15  CPlayer, u32 unk, bool unk, float unk (0.2), float unk (1), u32(
 
 TLFUNCPTR(CharacterAttack,                        PVOID,    __thiscall, (CCharacter*),                                                      0x48FBD0);     // 1.15  CPlayer
@@ -85,10 +84,13 @@ TLFUNCPTR(PlayerResurrect,                        void,     __thiscall, (CCharac
 
 TLFUNCPTR(GameClientProcessObjects,               void,     __thiscall, (CGameClient*, float, PVOID, PVOID),               0x41A790);     // 1.15  CGameClient
 
-TLFUNCPTR(MonsterProcessAI2,                      void,     __thiscall, (CMonster*, float),                                0x4D4450);     // 1.15  CMonster, float (0.002)
+TLFUNCPTR(MonsterProcessAI,                       PVOID,    __thiscall, (CMonster*, float, u32),                           0x4D36F0);     // 1.15  CMonster, float unk (0.005), CLevel
+TLFUNCPTR(MonsterProcessAI2,                      void,     __thiscall, (CMonster*, float, u32, u32),                      0x4D4450);     // 1.15  CMonster, float (0.002)
 TLFUNCPTR(MonsterProcessAI3,                      void,     __thiscall, (CMonster*, u32),                                  0x498670);     // 1.15  CMonster, u32 unk (0)
 TLFUNCPTR(MonsterIdle,                            void,     __thiscall, (CMonster*, float),                                0x4D4950);     // 1.15  CMonster, float dtime (0.02)
 TLFUNCPTR(MonsterOnHit,                           void,     __thiscall, (CMonster*, CMonster*),                            0x4D29E0);     // 1.15  CMonster, CMonster
+
+TLFUNCPTR(MonsterGetCharacterClose,               void,     __thiscall, (CMonster*, float, u32),                           0x486FB0);
   
 TLFUNCPTR(PlayerCtor,                             void,     __thiscall, (),                                                0x4DA160);     // 1.15
 TLFUNCPTR(GameClientCtor,                         void,     __thiscall, (),                                                0x40F7B0);     // 1.15
@@ -166,6 +168,10 @@ TLFUNCPTR(KeyManager_InjectKey,                   void,     __thiscall, (CKeyMan
 TLFUNCPTR(GameUI_WindowResized,                   void,     __thiscall, (CGameUI*),                                        0x55A950);
 
 TLFUNCPTR(Character_Update,                       void,     __thiscall, (CCharacter*),                                     0x4AC630);
+TLFUNCPTR(Character_Update_Level,                 void,     __thiscall, (CCharacter*, CLevel*, float),                     0x490CB0);
+TLFUNCPTR(Character_Update_Character,             void,     __thiscall, (CCharacter*, CCharacter*),                        0x4A33C0);
+
+
 
 TLFUNCPTR(Character_SetOrientation,               void,     __thiscall, (CCharacter*, Vector3*, float),                    0x48B450);
 
@@ -178,6 +184,9 @@ TLFUNCPTR(Level_CharacterKilledCharacter,         void,     __thiscall, (CLevel*
 TLFUNCPTR(Level_Dtor,                             void,     __thiscall, (CLevel*, u32),                                    0x4F94C0);
 TLFUNCPTR(Level_Ctor,                             void,     __thiscall, (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32), 0x4F8FB0);
 
+TLFUNCPTR(EquipmentRef_Dtor,                      void,     __thiscall, (CEquipmentRef*, u32),                             0x4E4A20);
+
+TLFUNCPTR(Level_Update,	                          void,     __thiscall, (CLevel*, Vector3*, u32, float),	                 0x4F5C60);
 
 
 
@@ -231,8 +240,11 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CSkillManager, SkillManagerAddSkill, 3);
 
   // Hook Monster
+  EVENT_INIT(CMonster, MonsterProcessAI, 2);
   EVENT_INIT(CMonster, MonsterProcessAI2, 3);
+  EVENT_INIT(CMonster, MonsterProcessAI3, 1);
   EVENT_INIT(CMonster, MonsterIdle, 3);
+  EVENT_INIT(CMonster, MonsterGetCharacterClose, 2);
 
   // Hook GameClient
   EVENT_INIT(CGameClient, GameClientCtor, 8);
@@ -258,6 +270,9 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CEquipment, EquipmentAddStackCount, 1);
   EVENT_INIT(CEquipment, Equipment_AddGem, 1);
   EVENT_INIT(CEquipment, EquipmentIdentify, 2);
+
+  // EquipmentRef
+  EVENT_INIT(CEquipmentRef, EquipmentRef_Dtor, 1);
 
   // ItemGold
   EVENT_INIT(CItemGold, ItemGold_Ctor, 2);
@@ -298,6 +313,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CLevel, Level_CharacterKilledCharacter, 4);
   EVENT_INIT(CLevel, Level_Dtor, 1);
   EVENT_INIT(CLevel, Level_Ctor, 14);
+  EVENT_INIT(CLevel, Level_Update, 4);
 
   // Hook 
   EVENT_INIT(CInventory, InventoryAddEquipment, 3);
@@ -323,6 +339,8 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, CharacterAddSkill, 2);
   EVENT_INIT(CCharacter, CharacterUpdateHealth, 1);
   EVENT_INIT(CCharacter, PlayerResurrect, 0);
+  EVENT_INIT(CCharacter, Character_Update_Level, 2);
+  EVENT_INIT(CCharacter, Character_Update_Character, 1);
 
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);

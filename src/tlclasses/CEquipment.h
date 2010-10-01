@@ -62,7 +62,7 @@ namespace TLAPI
 
     u32       unk0998[3];         // 0, 0, 10h
 
-    // Correct, first corresponds to Left hand or Main hand attack
+    // First corresponds to Left hand or Main hand attack
     // second corresponds to Right hand attack
     CAttackDescription *pCAttackDescriptor0;
     CAttackDescription *pCAttackDescriptor1;

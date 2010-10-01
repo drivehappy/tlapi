@@ -23,10 +23,25 @@ namespace TLAPI
     // 
     // Function hooks
 
+    // Monster Get Character Close
+    EVENT_DECL(CMonster, void, MonsterGetCharacterClose,
+      (CCharacter*, CMonster*, float, u32, bool&),
+      ((CCharacter*)e->retval, (CMonster*)e->_this, *(float*)&Pz[0], Pz[1], e->calloriginal));
+
+    // Monster Process AI
+    EVENT_DECL(CMonster, void, MonsterProcessAI,
+      (CMonster*, float, u32, bool&),
+      ((CMonster*)e->_this, *(float*)&Pz[0], Pz[1], e->calloriginal));
+
     // Monster Process AI
     EVENT_DECL(CMonster, void, MonsterProcessAI2,
-      (CMonster*, float, bool&),
-      ((CMonster*)e->_this, *(float*)&Pz[0], e->calloriginal));
+      (CMonster*, float, u32, u32, bool&),
+      ((CMonster*)e->_this, *(float*)&Pz[0], Pz[1], Pz[2], e->calloriginal));
+
+    // Monster Process AI
+    EVENT_DECL(CMonster, void, MonsterProcessAI3,
+      (CMonster*, u32, bool&),
+      ((CMonster*)e->_this, Pz[0], e->calloriginal));
 
     // Monster Idle
     EVENT_DECL(CMonster, void, MonsterIdle,
