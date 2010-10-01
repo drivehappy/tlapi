@@ -1,7 +1,11 @@
 #pragma once
 
+#if (_MSC_VER == 1500)
 #pragma comment(lib, "../externallibs/cegui/lib/CEGUIBase.lib")
 #pragma comment(lib, "../externallibs/ogre/lib/OgreMain.lib")
+#else
+#error Your compiler isn't supported - the libraries to build will need to be built manually.
+#endif
 
 #include "Common.h"
 

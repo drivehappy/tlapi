@@ -28,8 +28,11 @@ EVENT_DEF(CEffectManager, void, EffectManager_AddEffectToEquipment, (CEffectMana
 EVENT_DEF(CCharacterSaveState, void, CharacterSaveState_LoadFromFile, (CCharacterSaveState*, PVOID, u32));
 
 // Monster
-EVENT_DEF(CMonster, void, MonsterProcessAI2, (CMonster*, float, bool&));
+EVENT_DEF(CMonster, void, MonsterProcessAI, (CMonster*, float, u32, bool&));
+EVENT_DEF(CMonster, void, MonsterProcessAI2, (CMonster*, float, u32, u32, bool&));
+EVENT_DEF(CMonster, void, MonsterProcessAI3, (CMonster*, u32, bool&));
 EVENT_DEF(CMonster, void, MonsterIdle, (CMonster*, float, bool&));
+EVENT_DEF(CMonster, void, MonsterGetCharacterClose, (CCharacter*, CMonster*, float, u32, bool&));
 
 // Game
 EVENT_DEF(CGame, void, GameCtor, (CGame*));
@@ -69,6 +72,9 @@ EVENT_DEF(CEquipment, void, EquipmentAddStackCount, (CEquipment*, u32));
 EVENT_DEF(CEquipment, void, Equipment_AddGem, (CEquipment*, CEquipment*, bool&));
 EVENT_DEF(CEquipment, void, EquipmentIdentify, (CEquipment*, CPlayer*, CEquipment*, bool&));
 
+// EquipmentRef
+EVENT_DEF(CEquipmentRef, void, EquipmentRef_Dtor, (CEquipmentRef*, u32));
+
 // Enchant Menu
 EVENT_DEF(CEnchantMenu, void, EnchantMenu_EnchantItem, (CEnchantMenu*));
 
@@ -87,6 +93,7 @@ EVENT_DEF(CLevel, void, LevelDropItem, (CLevel*, CItem*, Vector3 &, bool));
 EVENT_DEF(CLevel, void, Level_CharacterKilledCharacter, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32, bool&));
 EVENT_DEF(CLevel, void, Level_Dtor, (CLevel*, u32, bool&));
 EVENT_DEF(CLevel, void, Level_Ctor, (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32, bool&));
+EVENT_DEF(CLevel, void, Level_Update, (CLevel*, CVector3*, u32, float, bool&));
 
 // Inventory
 EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u32, u32));
@@ -109,6 +116,8 @@ EVENT_DEF(CCharacter, void, CharacterSetupSkills, (CCharacter*, CDataGroup*, u32
 EVENT_DEF(CCharacter, void, CharacterAddSkill, (CCharacter*, wstring*, u32, bool&));
 EVENT_DEF(CCharacter, void, CharacterUpdateHealth, (CCharacter*, float));
 EVENT_DEF(CCharacter, void, PlayerResurrect, (CCharacter*, bool&));
+EVENT_DEF(CCharacter, void, Character_Update_Level, (CCharacter*, CLevel*, float, bool&));
+EVENT_DEF(CCharacter, void, Character_Update_Character, (CCharacter*, CCharacter*, bool&));
 
 // ItemGold
 EVENT_DEF(CItemGold, void, ItemGold_Ctor, (CItemGold*, PVOID, CResourceManager*, u32, bool&));

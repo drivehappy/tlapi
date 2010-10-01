@@ -34,13 +34,6 @@ namespace TLAPI {
   static u32 SeedOffset3 = 0xEB4838;
   static u32 SeedOffset4 = 0xEB483C;
 
-  /*
-  static u32* Seed1 = (u32*)EXEOFFSET(0xEB4830);
-  static u32* Seed2 = (u32*)EXEOFFSET(0xEB4834);
-  static u32* Seed3 = (u32*)EXEOFFSET(0xEB4838);
-  static u32* Seed4 = (u32*)EXEOFFSET(0xEB483C);
-  */
-
   static u32* Seed1 = NULL;
   static u32* Seed2 = NULL;
   static u32* Seed3 = NULL;
@@ -73,7 +66,6 @@ namespace TLAPI {
 
   TLFUNC(CharacterStrike,                       PVOID,        __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
 
-  TLFUNC(MonsterProcessAI,                      PVOID,        __thiscall, (CMonster*, float, PVOID));
   TLFUNC(PlayerSetAnimation,                    PVOID,        __thiscall, (CPlayer*, u32, bool, float, float, u32));
 
   TLFUNC(CharacterAttack,                       PVOID,        __thiscall, (CCharacter*));
@@ -120,10 +112,13 @@ namespace TLAPI {
   //TLFUNC(GameClientProcessObjects,           void,     __thiscall, (PVOID, PVOID, PVOID, PVOID));
   TLFUNC(GameClientProcessObjects,              void,     __thiscall, (CGameClient*, float, PVOID, PVOID));
 
-  TLFUNC(MonsterProcessAI2,                     void,     __thiscall, (CMonster*, float));
+  TLFUNC(MonsterProcessAI,                      PVOID,    __thiscall, (CMonster*, float, u32));
+  TLFUNC(MonsterProcessAI2,                     void,     __thiscall, (CMonster*, float, u32, u32));
   TLFUNC(MonsterProcessAI3,                     void,     __thiscall, (CMonster*, u32));
   TLFUNC(MonsterIdle,                           void,     __thiscall, (CMonster*, float));
   TLFUNC(MonsterOnHit,                          void,     __thiscall, (CMonster*, CMonster*));
+
+  TLFUNC(MonsterGetCharacterClose,              void,     __thiscall, (CMonster*, float, u32));
     
   TLFUNC(PlayerCtor,                            void,     __thiscall, ());
   TLFUNC(GameClientCtor,                        void,     __thiscall, ());
@@ -201,6 +196,8 @@ namespace TLAPI {
   TLFUNC(GameUI_WindowResized,                  void,     __thiscall, (CGameUI*));
 
   TLFUNC(Character_Update,                      void,     __thiscall, (CCharacter*));
+  TLFUNC(Character_Update_Level,                void,     __thiscall, (CCharacter*, CLevel*, float));
+  TLFUNC(Character_Update_Character,            void,     __thiscall, (CCharacter*, CCharacter*));
 
   TLFUNC(Character_SetOrientation,              void,     __thiscall, (CCharacter*, Vector3*, float));
 
@@ -213,5 +210,8 @@ namespace TLAPI {
   TLFUNC(Level_Dtor,                            void,     __thiscall, (CLevel*, u32));
   TLFUNC(Level_Ctor,                            void,     __thiscall, (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32));
 
+  TLFUNC(EquipmentRef_Dtor,                     void,     __thiscall, (CEquipmentRef*, u32));
+
+  TLFUNC(Level_Update,	                        void,     __thiscall, (CLevel*, Vector3*, u32, float));
 
 };
