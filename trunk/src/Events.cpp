@@ -14,6 +14,9 @@ EVENT_DEF(_GLOBAL, void, SetSeedValue2, (u32));
 // EffectGroupManager
 EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGroupManager*, u32, u32, u32, CList<CAffix*>&));
 
+// Effect
+EVENT_DEF(CEffect, void, Effect_Effect_Something, (CEffect*, CEffect*, bool&));
+
 // MainMenu
 EVENT_DEF(CMainMenu, void, MainMenu_Event, (CMainMenu*, u32, wstring, bool&));
 

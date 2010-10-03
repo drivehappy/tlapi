@@ -197,7 +197,7 @@ namespace TLAPI
       effect->unk6[0] = 0x64;
       effect->unk6[1] = 0x64;
       effect->unk6[2] = 0;
-      effect->equipment = this;
+      effect->pCBaseUnit = this;
 
       pCEffectManager->effectList.push(effect);
 

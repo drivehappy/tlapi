@@ -214,4 +214,6 @@ namespace TLAPI {
 
   TLFUNC(Level_Update,	                        void,     __thiscall, (CLevel*, Vector3*, u32, float));
 
+  TLFUNC(Effect_Effect_Something,               void,     __thiscall, (CEffect*, CEffect*));
+
 };

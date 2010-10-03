@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CRunicCore.h"
+#include "CBaseUnit.h"
 
 namespace TLAPI {
 
@@ -118,7 +119,7 @@ namespace TLAPI {
     float unk9;     // -1
     u32   unk6[3];  // 64h, 64h, 0
 
-    CEquipment *equipment;
+    CBaseUnit *pCBaseUnit;
 
     u32   effectIndex;
 
@@ -128,13 +129,20 @@ namespace TLAPI {
 
     float effectValue;
 
+
+    
+    // Effect - Function is crashing the client, seeing what it is
+    EVENT_DECL(CEffect, void, Effect_Effect_Something,
+      (CEffect*, CEffect*, bool&),
+      ((CEffect*)e->_this, (CEffect*)Pz[0], e->calloriginal));
+
     
     void dumpEffect() {
       if (effectIndex == 0x80000000)
         return;
 
       logColor(B_RED, "  Effect Dump (%p)  size (%i)", this, sizeof(CEffect));
-      logColor(B_RED, "    Effect Type: %s", searchForEffectName(effectType));
+      logColor(B_RED, "    Effect Type: %s (%x)", searchForEffectName(effectType), effectType);
       logColor(B_RED, "    Effect Index: %i", effectIndex);
       //logColor(B_RED, "    Effect Unk0: %x %x %x %x", unk0[0], unk0[1], unk0[2], unk0[3]);
       logColor(B_RED, "    Effect Unk2: %x", unk2);
@@ -144,7 +152,7 @@ namespace TLAPI {
       logColor(B_RED, "    Effect Unk8: %x", unk8);
       logColor(B_RED, "    Effect Unk9: %f", unk9);
       logColor(B_RED, "    Effect Unk6: %x %x %x", unk6[0], unk6[1], unk6[2]);
-      logColor(B_RED, "    Equipment: %p", equipment);
+      logColor(B_RED, "    BaseUnit: %p", pCBaseUnit);
       logColor(B_RED, "    Effect Value: %f", effectValue);
 
       /*

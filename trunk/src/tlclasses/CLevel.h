@@ -184,14 +184,26 @@ namespace TLAPI
       }
     }
 
+    int GetCharacterCount() {
+      int count = 0;
+      LinkedListNode* itr = *ppCCharacters2;
+      while (itr != NULL) {
+        count++;
+        itr = itr->pNext;
+      }
+      return count;
+    }
+
     void DumpItems() {
       LinkedListNode* itr = *ppCItems;
       while (itr != NULL) {
         CItem* item = (CItem*)itr->pCBaseUnit;
-        logColor(B_GREEN, L"  Level Item: (itr = %p) %p %s", itr, item, item->nameReal.c_str());
+        logColor(B_GREEN, L"  Level Item: (itr = %p Next: %p) %p", itr, itr->pNext, item);
+        logColor(B_BLUE, L"     %s", item->nameReal.c_str());
         //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, item, item->nameReal.c_str());
         itr = itr->pNext;
       }
+      log(L"Done Dumping.");
     }
 
     bool containsItem(CItem* itemSearch) {

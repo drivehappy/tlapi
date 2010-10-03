@@ -53,7 +53,7 @@ private:
 class Timer {
 public:
     Timer();
-    Timer(const Timer&);
+    //Timer(const Timer&);
     //Timer& operator=(const Timer&);
     ~Timer();
 
