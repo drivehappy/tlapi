@@ -11,6 +11,7 @@ namespace TLAPI
 
   struct CSkill;
   struct CPlayer;
+  struct CBaseUnit;
 
   // Size?: 30h
   struct CSkillManager : CRunicCore

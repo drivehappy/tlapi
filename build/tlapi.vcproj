@@ -104,7 +104,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions="-Zm512"
-				Optimization="2"
+				Optimization="0"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="..\externallibs\ogre\include;..\externallibs\cegui\include;&quot;..\externallibs\udis86-1.7\&quot;;..\src\;..\src\hook;..\src\tlclasses;..\src\UI"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"

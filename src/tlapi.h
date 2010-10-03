@@ -13,6 +13,8 @@
 #include "_CList.h"
 
 #include "CRunicCore.h"
+#include "CBaseUnit.h"
+
 #include "CAffix.h"
 #include "CEffect.h"
 #include "CHierarchy.h"
@@ -31,7 +33,6 @@
 #include "CPositionableObject.h"
 
 #include "CInventory.h"
-#include "CBaseUnit.h"
 #include "CItem.h"
 #include "CEquipment.h"
 #include "CEquipmentRef.h"

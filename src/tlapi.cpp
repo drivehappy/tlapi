@@ -188,6 +188,7 @@ TLFUNCPTR(EquipmentRef_Dtor,                      void,     __thiscall, (CEquipm
 
 TLFUNCPTR(Level_Update,	                          void,     __thiscall, (CLevel*, Vector3*, u32, float),	                 0x4F5C60);
 
+TLFUNCPTR(Effect_Effect_Something,                void,     __thiscall, (CEffect*, CEffect*),           	                 0x47A060);
 
 
 
@@ -223,6 +224,9 @@ void TLAPI::HookFunctions()
   // Hook EffectManager
   EVENT_INIT(CEffectManager, EffectManagerCreateEffect, 0);
   EVENT_INIT(CEffectManager, EffectManager_AddEffectToEquipment, 2);
+
+  // Effect
+  EVENT_INIT(CEffect, Effect_Effect_Something, 1);
 
   // Hook WndProc
   EVENT_INIT(_GLOBAL, WndProc, 5);
