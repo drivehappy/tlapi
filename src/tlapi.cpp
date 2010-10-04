@@ -190,6 +190,11 @@ TLFUNCPTR(Level_Update,	                          void,     __thiscall, (CLevel*
 
 TLFUNCPTR(Effect_Effect_Something,                void,     __thiscall, (CEffect*, CEffect*),           	                 0x47A060);
 
+TLFUNCPTR(Level_Cleanup,                          void,     __thiscall, (CLevel*, u32, u32),           	                   0x4ECC00);
+
+TLFUNCPTR(Player_KillMonsterExperience,           void,     __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32),     0x48E4A0);
+
+
 
 
 
@@ -318,6 +323,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CLevel, Level_Dtor, 1);
   EVENT_INIT(CLevel, Level_Ctor, 14);
   EVENT_INIT(CLevel, Level_Update, 4);
+  EVENT_INIT(CLevel, Level_Cleanup, 2);
 
   // Hook 
   EVENT_INIT(CInventory, InventoryAddEquipment, 3);
@@ -345,6 +351,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, PlayerResurrect, 0);
   EVENT_INIT(CCharacter, Character_Update_Level, 2);
   EVENT_INIT(CCharacter, Character_Update_Character, 1);
+  EVENT_INIT(CCharacter, Player_KillMonsterExperience, 4);
 
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);
