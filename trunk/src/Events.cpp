@@ -97,6 +97,7 @@ EVENT_DEF(CLevel, void, Level_CharacterKilledCharacter, (CLevel*, CCharacter*, C
 EVENT_DEF(CLevel, void, Level_Dtor, (CLevel*, u32, bool&));
 EVENT_DEF(CLevel, void, Level_Ctor, (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32, bool&));
 EVENT_DEF(CLevel, void, Level_Update, (CLevel*, CVector3*, u32, float, bool&));
+EVENT_DEF(CLevel, void, Level_Cleanup, (CLevel*, u32, u32, bool&));
 
 // Inventory
 EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u32, u32));
@@ -121,6 +122,7 @@ EVENT_DEF(CCharacter, void, CharacterUpdateHealth, (CCharacter*, float));
 EVENT_DEF(CCharacter, void, PlayerResurrect, (CCharacter*, bool&));
 EVENT_DEF(CCharacter, void, Character_Update_Level, (CCharacter*, CLevel*, float, bool&));
 EVENT_DEF(CCharacter, void, Character_Update_Character, (CCharacter*, CCharacter*, bool&));
+EVENT_DEF(CCharacter, void, Player_KillMonsterExperience, (CCharacter*, CLevel*, CCharacter*, u32, u32, bool&));
 
 // ItemGold
 EVENT_DEF(CItemGold, void, ItemGold_Ctor, (CItemGold*, PVOID, CResourceManager*, u32, bool&));

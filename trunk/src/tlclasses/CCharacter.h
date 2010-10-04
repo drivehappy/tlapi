@@ -34,6 +34,7 @@ namespace TLAPI
   TLFUNC(CharacterUpdateHealth, PVOID, __thiscall, (CCharacter*, float));
   TLFUNC(CharacterSetTarget, PVOID, __thiscall, (CCharacter*, CCharacter*));
   TLFUNC(PlayerResurrect, void, __thiscall, (CCharacter*));
+  TLFUNC(Player_KillMonsterExperience, void, __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32));
   
   // CBaseUnit Size = 0x190
   struct CCharacter : CBaseUnit
@@ -144,7 +145,7 @@ namespace TLAPI
     vector<CAttackDescription*>  attackDescriptions;
 
     u32      unk16[1];
-    float    healthCurrent; // @394
+    float    healthCurrent; // @394h
     u32      healthMax;     //
     u32      unk0016;       // 19h
     float    unk016;
@@ -159,9 +160,9 @@ namespace TLAPI
     u32      manaMax;
     u32      unk000016[1];  // 0h
 
-    u32      gold;
-    u32      experienceCurrent;
-    u32      fameCurrent;
+    u32      gold;              
+    u32      experienceCurrent; // @3C8h
+    u32      fameCurrent;       // @3CCh
 
     u32      unk17[13];
 
@@ -326,9 +327,15 @@ namespace TLAPI
       (CCharacter*, CCharacter*, bool&),
       ((CCharacter*)e->_this, (CCharacter*)Pz[0], e->calloriginal));
 
+    // Player Kill Monster, with Experience
+    EVENT_DECL(CCharacter, void, Player_KillMonsterExperience,
+      (CCharacter*, CLevel*, CCharacter*, u32, u32, bool&),
+      ((CCharacter*)e->_this, (CLevel*)Pz[0], (CCharacter*)Pz[1], Pz[2], Pz[3], e->calloriginal));
 
     
-
+    void KillMonsterExperience(CLevel* level, CCharacter* monster, u32 experience, u32 unk0) {
+      Player_KillMonsterExperience(this, level, monster, experience, unk0);
+    }
     void Resurrect() {
       PlayerResurrect(this);
     }

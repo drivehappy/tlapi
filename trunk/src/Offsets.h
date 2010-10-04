@@ -216,4 +216,9 @@ namespace TLAPI {
 
   TLFUNC(Effect_Effect_Something,               void,     __thiscall, (CEffect*, CEffect*));
 
+  TLFUNC(Level_Cleanup,                         void,     __thiscall, (CLevel*, u32, u32));
+  
+  TLFUNC(Player_KillMonsterExperience,          void,     __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32));
+
+
 };

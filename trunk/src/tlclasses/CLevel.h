@@ -134,6 +134,12 @@ namespace TLAPI
       (CLevel*, Vector3*, u32, float, bool&),
       ((CLevel*)e->_this, (Vector3*)Pz[0], Pz[1], *(float*)&Pz[2], e->calloriginal));
 
+    // Level Cleanup
+    EVENT_DECL(CLevel, void, Level_Cleanup,
+      (CLevel*, u32, u32, bool&),
+      ((CLevel*)e->_this, Pz[0], Pz[1], e->calloriginal));
+
+
     // Character Killed
     void CharacterKill(CCharacter* attacker, CCharacter* killed, Vector3* position, u32 unk0) {
       Level_CharacterKilledCharacter(this, attacker, killed, position, unk0);
