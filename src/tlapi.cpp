@@ -194,7 +194,7 @@ TLFUNCPTR(Level_Cleanup,                          void,     __thiscall, (CLevel*
 
 TLFUNCPTR(Player_KillMonsterExperience,           void,     __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32),     0x48E4A0);
 
-
+TLFUNCPTR(Character_Killed,                       void,     __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32), 0x4A7570);
 
 
 
@@ -352,6 +352,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, Character_Update_Level, 2);
   EVENT_INIT(CCharacter, Character_Update_Character, 1);
   EVENT_INIT(CCharacter, Player_KillMonsterExperience, 4);
+  EVENT_INIT(CCharacter, Character_Killed, 4);
 
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);

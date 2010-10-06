@@ -220,5 +220,6 @@ namespace TLAPI {
   
   TLFUNC(Player_KillMonsterExperience,          void,     __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32));
 
+  TLFUNC(Character_Killed,                      void,     __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32));
 
 };
