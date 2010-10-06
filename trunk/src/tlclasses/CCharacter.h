@@ -35,6 +35,7 @@ namespace TLAPI
   TLFUNC(CharacterSetTarget, PVOID, __thiscall, (CCharacter*, CCharacter*));
   TLFUNC(PlayerResurrect, void, __thiscall, (CCharacter*));
   TLFUNC(Player_KillMonsterExperience, void, __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32));
+  TLFUNC(Character_Killed, void, __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32));
   
   // CBaseUnit Size = 0x190
   struct CCharacter : CBaseUnit
@@ -331,6 +332,13 @@ namespace TLAPI
     EVENT_DECL(CCharacter, void, Player_KillMonsterExperience,
       (CCharacter*, CLevel*, CCharacter*, u32, u32, bool&),
       ((CCharacter*)e->_this, (CLevel*)Pz[0], (CCharacter*)Pz[1], Pz[2], Pz[3], e->calloriginal));
+
+    //
+    EVENT_DECL(CCharacter, void, Character_Killed,
+      (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32, bool&),
+      ((CCharacter*)e->_this, (CCharacter*)Pz[0], (Ogre::Vector3*)Pz[1], *(float*)&Pz[2], Pz[3], e->calloriginal));
+
+    
 
     
     void KillMonsterExperience(CLevel* level, CCharacter* monster, u32 experience, u32 unk0) {

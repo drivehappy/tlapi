@@ -123,6 +123,7 @@ EVENT_DEF(CCharacter, void, PlayerResurrect, (CCharacter*, bool&));
 EVENT_DEF(CCharacter, void, Character_Update_Level, (CCharacter*, CLevel*, float, bool&));
 EVENT_DEF(CCharacter, void, Character_Update_Character, (CCharacter*, CCharacter*, bool&));
 EVENT_DEF(CCharacter, void, Player_KillMonsterExperience, (CCharacter*, CLevel*, CCharacter*, u32, u32, bool&));
+EVENT_DEF(CCharacter, void, Character_Killed, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32, bool&));
 
 // ItemGold
 EVENT_DEF(CItemGold, void, ItemGold_Ctor, (CItemGold*, PVOID, CResourceManager*, u32, bool&));
