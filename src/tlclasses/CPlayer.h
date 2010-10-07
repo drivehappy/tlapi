@@ -11,6 +11,7 @@ namespace TLAPI
 
   struct CPlayer: CCharacter
   {
+    CAIManager    *pCAIManager;
 
     // Character Set Action
     EVENT_DECL(CPlayer, void, PlayerUseSkill,
@@ -29,7 +30,7 @@ namespace TLAPI
       log(L"  Feet Texture: %s", playerTextureFeet.c_str());
       log(L"  Chest Texture: %s", playerTextureChest.c_str());
       log("");
-      log("  AIManager: %p", pCAIManager);
+      //log("  AIManager: %p", pCAIManager);
     }
   };
 

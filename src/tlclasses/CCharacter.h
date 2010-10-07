@@ -36,6 +36,22 @@ namespace TLAPI
   TLFUNC(PlayerResurrect, void, __thiscall, (CCharacter*));
   TLFUNC(Player_KillMonsterExperience, void, __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32));
   TLFUNC(Character_Killed, void, __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32));
+
+  // 
+  enum CharacterState {
+    PLAYER_STATE = 0,
+    UNKNOWN = 1,
+    IDLE = 2,
+    ATTACK1 = 3,
+    TARGETTING = 4,
+    BOSS_DEAD = 5,
+    VISIBLE_DEAD = 6,
+    BOSS_ATTACKING = 0x0E,
+    BOSS_TARGETTING = 0x0F,
+    HIDDEN = 0x23,
+    PET_MOVING_TO_TOWN = 0x29,
+    PET_IN_TOWN = 0x2A,
+  };
   
   // CBaseUnit Size = 0x190
   struct CCharacter : CBaseUnit
@@ -115,7 +131,9 @@ namespace TLAPI
 
     float unk13[3];     // 2.0, 0, 0, 1
 
-    u32 unk14[2];       // 
+    u32 state; // @A1 State
+
+    u32 unk14;            
 
     u32 alignment;
     CCharacter* target;
@@ -206,11 +224,43 @@ namespace TLAPI
 
     u32     unk35[22];
 
-    CAIManager    *pCAIManager;
+    // Cutoff here or before for Monster / Player
 
+    void dumpCharacter(u32* & dataCopy, u32& size) {
+      u32 org = sizeof(CBaseUnit);
+      u32 sizeDiff = sizeof(CCharacter) - sizeof(CBaseUnit);
+      u32 *ptr = (u32*)this;
 
-    void dumpCharacter() {
-      logColor(B_GREEN, L"Character Dump: %p (sizeof = %x)", this, sizeof(CCharacter));
+      bool dumpChanges = size != 0;
+
+      if (size == 0) {
+        size = sizeDiff / sizeof(u32);
+        dataCopy = new u32[size];
+      }
+
+      logColor(B_GREEN, L"Character Dump: %p (sizeof: %x - basesizeof: %x)", this, sizeof(CCharacter), sizeof(CBaseUnit));
+      logColor(B_GREEN, L"  size = %x", size);
+
+      logColor(B_GREEN, L"  visibility_test2   = %x  Offset: %x", state, (u32*)&state - (u32*)this);
+    
+      // Dump the raw data, trying to find the visibility flag
+      for (u32 i = 0; i < sizeof(CCharacter) / sizeof(u32); i++) {
+        // If we're dumping changes, see if the data is different, if so dump it out
+        if (dumpChanges) {
+          if (dataCopy[i] != *ptr) {
+            log("Diff: @OFFSET: %x  Old: %x  New: %x", i * sizeof(u32), dataCopy[i], *ptr);
+          }
+        } else {
+          printf("%08X ", *ptr);
+          if ((i+1) % 16 == 0)
+            printf("\n");
+        }
+
+        dataCopy[i] = *ptr;
+        ptr++;
+      }
+
+      /*
       logColor(B_GREEN, L"  Strength: %i", baseStrength);
       logColor(B_GREEN, L"  Dexterity: %i", baseDexterity);
       logColor(B_GREEN, L"  Defense: %i", baseDefense);
@@ -231,6 +281,7 @@ namespace TLAPI
       for (u32 i = 0; i < 13; i++) {
         logColor(B_GREEN, L"    unk17[%i]: %i (%f)", i, unk17[i], *(float*)&unk17[i]);
       }
+      */
     }
 
     // 
