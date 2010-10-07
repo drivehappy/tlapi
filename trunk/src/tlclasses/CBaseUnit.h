@@ -17,7 +17,9 @@ namespace TLAPI
   {
     u32 level;        // Level of Character/Unit
 
-    u32 unk1[17];
+    u32 unk1[3]; 
+    u32 visibility_test;  // @0x1a4  [3] = Visibility flag?
+    u32 unk2[13];
 
     u32 unk3[6];        // See below
                       /*

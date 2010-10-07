@@ -11,7 +11,9 @@ namespace TLAPI
   //
   struct CMonster: CCharacter
   {
-    float   unk18[3];
+    u32     stance;     // @65C: Pet: 2 Defensive, 1 Aggresive, 0 Passive     write_code@:0549627
+
+    float   unk18[2];
 
     CList<PVOID>        listParticleAnimationTrigger;   // Type: CCharacter::CParticleAnimationTrigger
 
