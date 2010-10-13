@@ -12,13 +12,20 @@ namespace TLAPI {
 
     // SetSeedValue0
     EVENT_DECL(_GLOBAL, void, SetSeedValue0,
-      (u32),
-      (Pz[0]));
+      (u32, bool&),
+      (Pz[0], e->calloriginal));
 
     // SetSeedValue2
     EVENT_DECL(_GLOBAL, void, SetSeedValue2,
       (u32),
       (Pz[0]));
+
+
+
+    static void SetSeed0(u32 seed)
+    {
+      SetSeedValue0(seed);
+    }
   };
 
 };
