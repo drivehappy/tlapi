@@ -17,11 +17,14 @@ EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGro
 // Effect
 EVENT_DEF(CEffect, void, Effect_Effect_Something, (CEffect*, CEffect*, bool&));
 
+// BaseUnit
+EVENT_DEF(CBaseUnit, void, BaseUnit_AddSkill, (CBaseUnit*, wstring*, u32, bool&));
+
 // MainMenu
 EVENT_DEF(CMainMenu, void, MainMenu_Event, (CMainMenu*, u32, wstring, bool&));
 
 // SkillManager
-EVENT_DEF(CSkillManager, void, SkillManagerAddSkill, (CSkillManager*, CSkill*, u32, u32, bool&));
+EVENT_DEF(CSkillManager, void, SkillManagerAddSkill, (CSkillManager*, CSkill*, bool, u32, bool&));
 
 // EffectManager
 EVENT_DEF(CEffectManager, void, EffectManagerCreateEffect, (CEffect*, CEffectManager*));

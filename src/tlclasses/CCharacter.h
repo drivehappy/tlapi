@@ -40,7 +40,7 @@ namespace TLAPI
   // 
   enum CharacterState {
     PLAYER_STATE = 0,
-    UNKNOWN = 1,
+    OUTSIDE_OF_UPDATE_RANGE = 1,
     IDLE = 2,
     ATTACK1 = 3,
     TARGETTING = 4,
@@ -241,10 +241,10 @@ namespace TLAPI
       logColor(B_GREEN, L"Character Dump: %p (sizeof: %x - basesizeof: %x)", this, sizeof(CCharacter), sizeof(CBaseUnit));
       logColor(B_GREEN, L"  size = %x", size);
 
-      logColor(B_GREEN, L"  visibility_test2   = %x  Offset: %x", state, (u32*)&state - (u32*)this);
+      //logColor(B_GREEN, L"  visibility_test2   = %x  Offset: %x", state, (u32*)&state - (u32*)this);
     
       // Dump the raw data, trying to find the visibility flag
-      for (u32 i = 0; i < sizeof(CCharacter) / sizeof(u32); i++) {
+      for (u32 i = 0; i < sizeDiff / sizeof(u32); i++) {
         // If we're dumping changes, see if the data is different, if so dump it out
         if (dumpChanges) {
           if (dataCopy[i] != *ptr) {

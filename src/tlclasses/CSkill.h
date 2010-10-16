@@ -15,6 +15,7 @@ namespace TLAPI {
   struct CPlayer;
   struct CSkillProperty;
 
+  // Size: 190h
   struct CSkill : CRunicCore
   {
     PVOID unk0;
@@ -61,6 +62,8 @@ namespace TLAPI {
     u32    unk9[4];
 
     u64    GUID;
+
+    u32    unk10[3];
 
 
 

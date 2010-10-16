@@ -10,7 +10,7 @@ namespace TLAPI
   // CPositionableObject size = 0xF0
   struct CPositionableObject : CSceneNodeObject
   {
-    u32 unk10;
+    u8 unkPositionable[4];
 
     Vector3 position;
     float unk2000[3];
@@ -26,7 +26,7 @@ namespace TLAPI
 
       log("  Position: %f, %f, %f", position.x, position.y, position.z);
 
-      log("  unk10: %x", unk10);
+      log("  unkPositionable: %x", unkPositionable[0]);
 
       log("  unk2000:");
       for (u32 i = 0; i < 6; i++)

@@ -11,6 +11,7 @@ namespace TLAPI
 #pragma pack(1)
 
   struct CEffectManager;
+  TLFUNC(BaseUnit_AddSkill, void, __thiscall, (CBaseUnit*, wstring*, u32));
 
   // CBaseUnit Size = 0x190
   struct CBaseUnit : CPositionableObject
@@ -31,20 +32,20 @@ namespace TLAPI
                         0FFFFFFFFh
                       */
 
-    u32 unk6;           // 1010101
-    u32 unk06[1];          // 1000101h
+    u32 unk6;           
+    u8 unk06[4];          // [1]
 
     u8 destroy;
     u8 destroy1;
     u8 destroy2;
     u8 destroy3;
 
-    u32 unk7[3];        /*
-                        69740000h
-                        0.30000001
-                        1010101h
-                        656D6101h
-                        */
+    float unk7;           // 0.3
+    
+    u8  unkFlags[4];           // Early out test for [3] in CharacterUpdate
+
+    u8  visibility_test2; // @164h
+    u8  unk10[3];
 
     u64 GUID;        // 0F59522DA8B7A11DEh
 
@@ -76,6 +77,16 @@ namespace TLAPI
     float unk12;        // 0.5
     u32 unk13;          // 1
 
+
+    EVENT_DECL(CBaseUnit, void, BaseUnit_AddSkill,
+      (CBaseUnit*, wstring*, u32, bool&),
+      ((CBaseUnit*)e->_this, (wstring*)Pz[0], Pz[1], e->calloriginal));
+    
+
+    void addSkill(wstring* name, u32 unk0)
+    {
+      BaseUnit_AddSkill(this, name, unk0);
+    }
 
     void Destroy() {
       destroy = true;

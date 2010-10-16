@@ -34,7 +34,7 @@ namespace TLAPI
     // Function Hooks
     // Add Skill
     EVENT_DECL(CSkillManager, void, SkillManagerAddSkill,
-      (CSkillManager*, CSkill*, u32, u32, bool&),
+      (CSkillManager*, CSkill*, bool, u32, bool&),
       ((CSkillManager*)e->_this, (CSkill*)Pz[0], Pz[1], Pz[2], e->calloriginal));
     
 

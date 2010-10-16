@@ -102,6 +102,7 @@ namespace TLAPI {
   // Forward decl
   struct CAffix;
   struct CEquipment;
+  struct CResourceManager;
   enum EnchantType;
 
   struct CEffect : CRunicCore
@@ -123,11 +124,20 @@ namespace TLAPI {
 
     u32   effectIndex;
 
-    u32   unk5[43];
+    u32   unk5[11];
+
+    wstring name;
+
+    u32   unk10[25];
 
     CAffix *unk7;
 
     float effectValue;
+    float effectValue2;
+
+    u32 unk11[15];
+
+    CResourceManager *pCResourceManager;
 
 
     
