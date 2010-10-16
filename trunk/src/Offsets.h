@@ -58,7 +58,7 @@ namespace TLAPI {
 
   TLFUNC(CharacterSetupSkills,                  void,         __thiscall, (CCharacter*, CDataGroup*, u32));
   TLFUNC(CharacterAddSkill,                     void,         __thiscall, (CCharacter*, wstring*, u32));
-  TLFUNC(SkillManagerAddSkill,                  void,         __thiscall, (CSkillManager*, CSkill*, u32, u32));
+  TLFUNC(SkillManagerAddSkill,                  void,         __thiscall, (CSkillManager*, CSkill*, bool, u32));
 
   TLFUNC(GameClientUpdateSkill,                 PVOID,        __thiscall, (CGameClient*, u64, u32, u32));
 
@@ -221,5 +221,7 @@ namespace TLAPI {
   TLFUNC(Player_KillMonsterExperience,          void,     __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32));
 
   TLFUNC(Character_Killed,                      void,     __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32));
+
+  TLFUNC(BaseUnit_AddSkill,                     void,     __thiscall, (CBaseUnit*, wstring*, u32));
 
 };

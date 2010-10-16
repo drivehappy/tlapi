@@ -12,8 +12,6 @@ namespace TLAPI
   {
     u32 unk0;
 
-    // ---------- Base type cutoff -----
-
     PVOID vtableIDamageShape;
     PVOID vtableIMissle;
     PVOID vtableIUnitSpawner;

@@ -25,7 +25,7 @@ TLFUNCPTR(CharacterUpdateHealth,                  PVOID,        __thiscall, (CCh
 
 TLFUNCPTR(CharacterSetupSkills,                   void,         __thiscall, (CCharacter*, CDataGroup*, u32),                                0x480F00);     //
 TLFUNCPTR(CharacterAddSkill,                      void,         __thiscall, (CCharacter*, wstring*, u32),                                   0x47E930);
-TLFUNCPTR(SkillManagerAddSkill,                   void,         __thiscall, (CSkillManager*, CSkill*, u32, u32),                            0x5D7420);
+TLFUNCPTR(SkillManagerAddSkill,                   void,         __thiscall, (CSkillManager*, CSkill*, bool, u32),                           0x5D7420);
 
 TLFUNCPTR(GameClientUpdateSkill,                  PVOID,        __thiscall, (CGameClient*, u64, u32, u32),                                  0x4145D0);     // CGameClient, u64 skill, u32 notFirstUse, u32
 
@@ -196,6 +196,9 @@ TLFUNCPTR(Player_KillMonsterExperience,           void,     __thiscall, (CCharac
 
 TLFUNCPTR(Character_Killed,                       void,     __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32), 0x4A7570);
 
+TLFUNCPTR(BaseUnit_AddSkill,                      void,     __thiscall, (CBaseUnit*, wstring*, u32),                       0x47E930);
+
+
 
 
 void TLAPI::Initialize()
@@ -229,6 +232,9 @@ void TLAPI::HookFunctions()
   // Hook EffectManager
   EVENT_INIT(CEffectManager, EffectManagerCreateEffect, 0);
   EVENT_INIT(CEffectManager, EffectManager_AddEffectToEquipment, 2);
+
+  // BaseUnit
+  EVENT_INIT(CBaseUnit, BaseUnit_AddSkill, 2);
 
   // Effect
   EVENT_INIT(CEffect, Effect_Effect_Something, 1);
