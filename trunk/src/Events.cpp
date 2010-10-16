@@ -9,7 +9,7 @@ using namespace TLAPI;
 // Setup a dummy class to setup the WndProc event
 EVENT_DEF(_GLOBAL, LRESULT, WndProc, (HWND, UINT, WPARAM, LPARAM));
 EVENT_DEF(_GLOBAL, void, SetSeedValue0, (u32, bool&));
-EVENT_DEF(_GLOBAL, void, SetSeedValue2, (u32));
+EVENT_DEF(_GLOBAL, void, SetSeedValue2, (u32, bool&));
 
 // EffectGroupManager
 EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGroupManager*, u32, u32, u32, CList<CAffix*>&));
