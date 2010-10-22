@@ -119,8 +119,6 @@ TLFUNCPTR(LevelCreateAstarPathfinding,            CAstarPathfinder*,    __stdcal
 
 TLFUNCPTR(EquipmentGetEnchantPrice,               u32,      __thiscall, (CEquipment*),                                     0x4B0230);
 
-TLFUNCPTR(PlayerRemoveGold,                       void,     __thiscall, (CPlayer*, u32 amount),                            0x4860B0);
-
 TLFUNCPTR(GetGameGlobals,                         CGameGlobals*, __thiscall, (),                                           0x5219B0);
 
 TLFUNCPTR(EquipmentEnchant,                       u32,      __thiscall, (CEquipment*, u32, u32, u32),                      0x4BF560);
@@ -198,6 +196,7 @@ TLFUNCPTR(Player_KillMonsterExperience,           void,     __thiscall, (CCharac
 
 TLFUNCPTR(Character_Killed,                       void,     __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32), 0x4A7570);
 
+// Same as Character_AddSkill
 TLFUNCPTR(BaseUnit_AddSkill,                      void,     __thiscall, (CBaseUnit*, wstring*, u32),                       0x47E930);
 
 
@@ -365,6 +364,9 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, Character_Update_Character, 1);
   EVENT_INIT(CCharacter, Player_KillMonsterExperience, 4);
   EVENT_INIT(CCharacter, Character_Killed, 4);
+
+  // Player
+  EVENT_INIT(CPlayer, PlayerLevelUp, 0);
 
   // Hook Layout
   EVENT_INIT(CLayout, LayoutSetPosition, 1);
