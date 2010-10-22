@@ -13,10 +13,15 @@ namespace TLAPI
   {
     CAIManager    *pCAIManager;
 
-    // Character Set Action
+    // Player Use Skill
     EVENT_DECL(CPlayer, void, PlayerUseSkill,
       (u32, CPlayer*, u64),
       (e->retval, (CPlayer*)e->_this, *(u64*)&Pz[0]));
+
+    // Player Level Up
+    EVENT_DECL(CPlayer, void, PlayerLevelUp,
+      (CPlayer*, bool&),
+      ((CPlayer*)e->_this, e->calloriginal));
 
     
     void dumpPlayer()
