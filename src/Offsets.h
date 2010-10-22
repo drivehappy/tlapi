@@ -200,6 +200,7 @@ namespace TLAPI {
   TLFUNC(Character_Update_Character,            void,     __thiscall, (CCharacter*, CCharacter*));
 
   TLFUNC(Character_SetOrientation,              void,     __thiscall, (CCharacter*, Vector3*, float));
+  TLFUNC(Character_UpdateOrientation,           void,     __thiscall, (CCharacter*, float, float));
 
   TLFUNC(TriggerUnit_Ctor,             CTriggerUnit*,     __thiscall, (CLayout*));
 
@@ -223,5 +224,7 @@ namespace TLAPI {
   TLFUNC(Character_Killed,                      void,     __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32));
 
   TLFUNC(BaseUnit_AddSkill,                     void,     __thiscall, (CBaseUnit*, wstring*, u32));
+
+  TLFUNC(Path_GetNextNode,                      void,     __thiscall, (CPath*, Vector3*, float));
 
 };
