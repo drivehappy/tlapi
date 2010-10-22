@@ -174,6 +174,8 @@ TLFUNCPTR(Character_Update_Character,             void,     __thiscall, (CCharac
 
 
 TLFUNCPTR(Character_SetOrientation,               void,     __thiscall, (CCharacter*, Vector3*, float),                    0x48B450);
+TLFUNCPTR(Character_UpdateOrientation,            void,     __thiscall, (CCharacter*, float, float),                       0x484390);
+TLFUNCPTR(Path_GetNextNode,                       void,     __thiscall, (CPath*, Vector3*, float),                         0x5B8670);
 
 TLFUNCPTR(TriggerUnit_Ctor,              CTriggerUnit*,     __thiscall, (CLayout*),                                        0x4DDD70);
 
@@ -235,6 +237,9 @@ void TLAPI::HookFunctions()
 
   // BaseUnit
   EVENT_INIT(CBaseUnit, BaseUnit_AddSkill, 2);
+
+  // Path
+  EVENT_INIT(CPath, Path_GetNextNode, 2);
 
   // Effect
   EVENT_INIT(CEffect, Effect_Effect_Something, 1);
@@ -351,6 +356,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, CharacterUseSkill, 2);
   EVENT_INIT(CCharacter, Character_Update, 3);
   EVENT_INIT(CCharacter, Character_SetOrientation, 2);
+  EVENT_INIT(CCharacter, Character_UpdateOrientation, 2);
   EVENT_INIT(CCharacter, CharacterSetupSkills, 2);
   EVENT_INIT(CCharacter, CharacterAddSkill, 2);
   EVENT_INIT(CCharacter, CharacterUpdateHealth, 1);

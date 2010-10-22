@@ -11,6 +11,9 @@ EVENT_DEF(_GLOBAL, LRESULT, WndProc, (HWND, UINT, WPARAM, LPARAM));
 EVENT_DEF(_GLOBAL, void, SetSeedValue0, (u32, bool&));
 EVENT_DEF(_GLOBAL, void, SetSeedValue2, (u32, bool&));
 
+// Path
+EVENT_DEF(CPath, void, Path_GetNextNode, (CPath*, Vector3*, float));
+
 // EffectGroupManager
 EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGroupManager*, u32, u32, u32, CList<CAffix*>&));
 
@@ -119,6 +122,7 @@ EVENT_DEF(CCharacter, void, CharacterPickupEquipment, (CCharacter*, CEquipment*,
 EVENT_DEF(CCharacter, void, CharacterAttack, (CCharacter*, bool&));
 EVENT_DEF(CCharacter, void, Character_Update, (CCharacter*, PVOID, float*, float, bool&));
 EVENT_DEF(CCharacter, void, Character_SetOrientation, (CCharacter*, Vector3*, float, bool&));
+EVENT_DEF(CCharacter, void, Character_UpdateOrientation, (CCharacter*, float, float, bool&));
 EVENT_DEF(CCharacter, void, CharacterSetupSkills, (CCharacter*, CDataGroup*, u32, bool&));
 EVENT_DEF(CCharacter, void, CharacterAddSkill, (CCharacter*, wstring*, u32, bool&));
 EVENT_DEF(CCharacter, void, CharacterUpdateHealth, (CCharacter*, float));

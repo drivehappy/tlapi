@@ -36,6 +36,7 @@ namespace TLAPI
   TLFUNC(PlayerResurrect, void, __thiscall, (CCharacter*));
   TLFUNC(Player_KillMonsterExperience, void, __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32));
   TLFUNC(Character_Killed, void, __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32));
+  TLFUNC(Character_UpdateOrientation, void, __thiscall, (CCharacter*, float, float));
 
   // 
   enum CharacterState {
@@ -67,12 +68,17 @@ namespace TLAPI
     CGenericModel     *pCGenericModel0;
     CGenericModel     *pCGenericModel1;
 
-    float unk3[7];      // -25.59, 0.0727, 33.62, -25.59, 0.81, 33.62, 0
+    float unk3[3];      // -25.59, 0.0727, 33.62, -25.59, 0.81, 33.62, 0
 
-    u32 unk4[2];        // 7,8
+    u32 unk4[3];        // 7,8
+
+    // @ 1CC - 1D4
+    Vector3            orientation;
+
+    
 
     // @ 1D8 = Orientation
-    Vector3 orientation;    // Normalized vector
+    Vector3 orientationNormalized;    // Normalized vector
     float unk5[4];      // 4.0, 0, 0.9842, 0,0,0,0
 
     u32 unk6;           // 80000000h
@@ -248,7 +254,7 @@ namespace TLAPI
         // If we're dumping changes, see if the data is different, if so dump it out
         if (dumpChanges) {
           if (dataCopy[i] != *ptr) {
-            log("Diff: @OFFSET: %x  Old: %x  New: %x", i * sizeof(u32), dataCopy[i], *ptr);
+            log("Diff: @OFFSET: %x  Old: %x  New: %x  (%f %f)", i * sizeof(u32), dataCopy[i], *ptr, ((float*)dataCopy)[i], *(float*)ptr);
           }
         } else {
           printf("%08X ", *ptr);
@@ -369,6 +375,12 @@ namespace TLAPI
       (CCharacter*, Vector3*, float, bool&),
       ((CCharacter*)e->_this, (Vector3*)Pz[0], *(float*)&Pz[1], e->calloriginal));
 
+    // Real orientation update
+    // Character Orientation
+    EVENT_DECL(CCharacter, void, Character_UpdateOrientation,
+      (CCharacter*, float, float, bool&),
+      ((CCharacter*)e->_this, *(float*)&Pz[0], *(float*)&Pz[1], e->calloriginal));
+
     // Character Update Level
     EVENT_DECL(CCharacter, void, Character_Update_Level,
       (CCharacter*, CLevel*, float, bool&),
@@ -391,7 +403,9 @@ namespace TLAPI
 
     
 
-    
+    void UpdateOrientation(float x, float z) {
+      Character_UpdateOrientation(this, x, z);
+    }
     void KillMonsterExperience(CLevel* level, CCharacter* monster, u32 experience, u32 unk0) {
       Player_KillMonsterExperience(this, level, monster, experience, unk0);
     }
