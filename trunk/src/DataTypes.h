@@ -70,9 +70,4 @@ typedef be_v<u32> nu32;
 
 typedef void* PVOID;
 
-__declspec(align(1))
-struct Vector3 {
-  float x, y, z;
-};
-
 #define NULL 0

@@ -98,6 +98,17 @@ namespace TLAPI
       return NULL;
     }
 
+    // Returns the equipmentRef from a given equipment if it exists
+    //   in the inventory
+    CEquipmentRef* GetEquipmentRefFromEquipment(CEquipment* equipment) {
+      for (u32 i = 0; i < equipmentList.size; i++) {
+        if (equipmentList[i]->pCEquipment == equipment) {
+          return equipmentList[i];
+        }
+      }
+      return NULL;
+    }
+
 
     /*
     void dumpInventory() {

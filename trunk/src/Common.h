@@ -13,6 +13,7 @@
 #pragma comment(lib, "winmm.lib")
 
 #include "Ogre.h"
+using Ogre::Vector3;
 
 #include <string>
 #include <stack>
