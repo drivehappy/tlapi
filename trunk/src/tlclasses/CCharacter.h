@@ -37,6 +37,7 @@ namespace TLAPI
   TLFUNC(Player_KillMonsterExperience, void, __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32));
   TLFUNC(Character_Killed, void, __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32));
   TLFUNC(Character_UpdateOrientation, void, __thiscall, (CCharacter*, float, float));
+  TLFUNC(Player_SwapWeapons, void, __thiscall, (CCharacter*));
 
   // 
   enum CharacterState {
@@ -396,13 +397,20 @@ namespace TLAPI
       (CCharacter*, CLevel*, CCharacter*, u32, u32, bool&),
       ((CCharacter*)e->_this, (CLevel*)Pz[0], (CCharacter*)Pz[1], Pz[2], Pz[3], e->calloriginal));
 
-    //
+    // Doesn't appear to work in TLMP
     EVENT_DECL(CCharacter, void, Character_Killed,
       (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32, bool&),
       ((CCharacter*)e->_this, (CCharacter*)Pz[0], (Ogre::Vector3*)Pz[1], *(float*)&Pz[2], Pz[3], e->calloriginal));
 
-    
+    // Player swap weapons
+    EVENT_DECL(CCharacter, void, Player_SwapWeapons,
+      (CCharacter*, bool&),
+      ((CCharacter*)e->_this, e->calloriginal));
 
+
+    void WeaponSwap() {
+      Player_SwapWeapons(this);
+    }
     void UpdateOrientation(float x, float z) {
       Character_UpdateOrientation(this, x, z);
     }

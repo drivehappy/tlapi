@@ -227,4 +227,6 @@ namespace TLAPI {
 
   TLFUNC(Path_GetNextNode,                      void,     __thiscall, (CPath*, Vector3*, float));
 
+  TLFUNC(Player_SwapWeapons,                    void,     __thiscall, (CCharacter*));
+
 };
