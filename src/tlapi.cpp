@@ -199,6 +199,7 @@ TLFUNCPTR(Character_Killed,                       void,     __thiscall, (CCharac
 // Same as Character_AddSkill
 TLFUNCPTR(BaseUnit_AddSkill,                      void,     __thiscall, (CBaseUnit*, wstring*, u32),                       0x47E930);
 
+TLFUNCPTR(Player_SwapWeapons,                     void,     __thiscall, (CCharacter*),                                     0x4838E0);
 
 
 
@@ -364,6 +365,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CCharacter, Character_Update_Character, 1);
   EVENT_INIT(CCharacter, Player_KillMonsterExperience, 4);
   EVENT_INIT(CCharacter, Character_Killed, 4);
+  EVENT_INIT(CCharacter, Player_SwapWeapons, 0);
 
   // Player
   EVENT_INIT(CPlayer, PlayerLevelUp, 0);
