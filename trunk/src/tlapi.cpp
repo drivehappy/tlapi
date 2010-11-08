@@ -201,6 +201,8 @@ TLFUNCPTR(BaseUnit_AddSkill,                      void,     __thiscall, (CBaseUn
 
 TLFUNCPTR(Player_SwapWeapons,                     void,     __thiscall, (CCharacter*),                                     0x4838E0);
 
+TLFUNCPTR(Effect_Something0,                      void,     __thiscall, (CEffect*, u32),                                   0x477D74);
+
 
 
 void TLAPI::Initialize()

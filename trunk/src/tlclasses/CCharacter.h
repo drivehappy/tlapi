@@ -173,9 +173,9 @@ namespace TLAPI
     u32      unk16[1];
     float    healthCurrent; // @394h
     u32      healthMax;     //
-    u32      unk0016;       // 19h
-    float    unk016;
-    u32      unk00016;      // 0h
+    u32      healthMax2;    // 19h
+    float    healthMax4;
+    u32      healthMax3;    // 0h
 
     u32      baseDexterity;
     u32      baseStrength;

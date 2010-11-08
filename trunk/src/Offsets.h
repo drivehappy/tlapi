@@ -229,4 +229,6 @@ namespace TLAPI {
 
   TLFUNC(Player_SwapWeapons,                    void,     __thiscall, (CCharacter*));
 
+  TLFUNC(Effect_Something0,                     void,     __thiscall, (CEffect*, u32));
+
 };
