@@ -19,6 +19,7 @@ EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGro
 
 // Effect
 EVENT_DEF(CEffect, void, Effect_Effect_Something, (CEffect*, CEffect*, bool&));
+EVENT_DEF(CEffect, void, Effect_Something0, (CEffect*, u32, bool&));
 
 // BaseUnit
 EVENT_DEF(CBaseUnit, void, BaseUnit_AddSkill, (CBaseUnit*, wstring*, u32, bool&));

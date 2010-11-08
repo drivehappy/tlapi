@@ -103,8 +103,13 @@ namespace TLAPI {
   struct CAffix;
   struct CEquipment;
   struct CResourceManager;
+  struct CEffect;
   enum EnchantType;
 
+  //
+  TLFUNC(Effect_Something0, void, __thiscall, (CEffect*, u32));
+
+  //
   struct CEffect : CRunicCore
   {
     u32   unk0;
@@ -139,12 +144,20 @@ namespace TLAPI {
 
     CResourceManager *pCResourceManager;
 
+    u32 unk12;
+
+    PVOID unkEquipment;
 
     
     // Effect - Function is crashing the client, seeing what it is
     EVENT_DECL(CEffect, void, Effect_Effect_Something,
       (CEffect*, CEffect*, bool&),
       ((CEffect*)e->_this, (CEffect*)Pz[0], e->calloriginal));
+
+    // Effect = Function is crashing client when player levels up
+    EVENT_DECL(CEffect, void, Effect_Something0,
+      (CEffect*, u32, bool&),
+      ((CEffect*)e->_this, Pz[0], e->calloriginal));
 
     
     void dumpEffect() {
