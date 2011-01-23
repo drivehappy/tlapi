@@ -46,7 +46,11 @@ namespace TLAPI {
     
     CList<CSkillProperty*>   skillPropertyList;
 
-    u32 unk6[31];
+    //
+    u32 unk6[12];
+    u32 skillLevel;   // @A4h
+    u32 unk61[18];
+    //u32 unk6[31];
 
     CSkillEffectAndAffixes *pCSkillEffectAndAffixes;
 

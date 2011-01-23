@@ -22,22 +22,24 @@ namespace TLAPI
 
   struct CLevel;
   struct CCharacter;
-  TLFUNC(CharacterSetAlignment, void,  __thiscall, (CCharacter*, u32));
-  TLFUNC(CharacterSetDestination, void, __thiscall, (CCharacter*, CLevel*, float, float));
-  TLFUNC(CharacterPickupEquipment, PVOID, __thiscall, (CCharacter*, CEquipment*, CLevel*));
-  TLFUNC(CharacterAddMinion, void, __thiscall, (CCharacter*, CCharacter*));
-  TLFUNC(CharacterSetAction, PVOID, __thiscall, (CCharacter*, u32));
-  TLFUNC(CharacterAttack, PVOID, __thiscall, (CCharacter*));
-  TLFUNC(CharacterUseSkill, PVOID, __thiscall, (CCharacter*, u64));
-  TLFUNC(Character_SetOrientation, void, __thiscall, (CCharacter*, Vector3*, float));
-  TLFUNC(CharacterAddSkill, void, __thiscall, (CCharacter*, wstring*, u32));
-  TLFUNC(CharacterUpdateHealth, PVOID, __thiscall, (CCharacter*, float));
-  TLFUNC(CharacterSetTarget, PVOID, __thiscall, (CCharacter*, CCharacter*));
-  TLFUNC(PlayerResurrect, void, __thiscall, (CCharacter*));
-  TLFUNC(Player_KillMonsterExperience, void, __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32));
-  TLFUNC(Character_Killed, void, __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32));
-  TLFUNC(Character_UpdateOrientation, void, __thiscall, (CCharacter*, float, float));
-  TLFUNC(Player_SwapWeapons, void, __thiscall, (CCharacter*));
+  TLFUNC(CharacterSetAlignment,         void,  __thiscall, (CCharacter*, u32));
+  TLFUNC(CharacterSetDestination,       void,  __thiscall, (CCharacter*, CLevel*, float, float));
+  TLFUNC(CharacterPickupEquipment,      PVOID, __thiscall, (CCharacter*, CEquipment*, CLevel*));
+  TLFUNC(CharacterAddMinion,            void,  __thiscall, (CCharacter*, CCharacter*));
+  TLFUNC(CharacterSetAction,            PVOID, __thiscall, (CCharacter*, u32));
+  TLFUNC(CharacterAttack,               PVOID, __thiscall, (CCharacter*));
+  TLFUNC(CharacterUseSkill,             PVOID, __thiscall, (CCharacter*, u64));
+  TLFUNC(Character_SetOrientation,      void,  __thiscall, (CCharacter*, Vector3*, float));
+  TLFUNC(CharacterAddSkill,             void,  __thiscall, (CCharacter*, wstring*, u32));
+  TLFUNC(CharacterAddSkill2,            void,  __thiscall, (CCharacter*, wstring));
+  TLFUNC(CharacterUpdateHealth,         PVOID, __thiscall, (CCharacter*, float));
+  TLFUNC(CharacterSetTarget,            PVOID, __thiscall, (CCharacter*, CCharacter*));
+  TLFUNC(PlayerResurrect,               void,  __thiscall, (CCharacter*));
+  TLFUNC(Player_KillMonsterExperience,  void,  __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32));
+  TLFUNC(Character_Killed,              void,  __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32));
+  TLFUNC(Character_UpdateOrientation,   void,  __thiscall, (CCharacter*, float, float));
+  TLFUNC(Player_SwapWeapons,            void,  __thiscall, (CCharacter*));
+  TLFUNC(CharacterGetAvailableSkillPoints, u32,__thiscall, (CCharacter*));
 
   // 
   enum CharacterState {
@@ -309,6 +311,11 @@ namespace TLAPI
       (CCharacter*, wstring*, u32, bool&),
       ((CCharacter*)e->_this, (wstring*)Pz[0], Pz[1], e->calloriginal));
 
+    // Character Add Skill 2
+    EVENT_DECL(CCharacter, void, CharacterAddSkill2,
+      (CCharacter*, wstring, bool&),
+      ((CCharacter*)e->_this, *(wstring*)&Pz[0], e->calloriginal));
+
     // Character Setup Skills
     EVENT_DECL(CCharacter, void, CharacterSetupSkills,
       (CCharacter*, CDataGroup*, u32, bool&),
@@ -408,6 +415,9 @@ namespace TLAPI
       ((CCharacter*)e->_this, e->calloriginal));
 
 
+    u32 GetAvailableSkillPoints() {
+      return CharacterGetAvailableSkillPoints(this);
+    }
     void WeaponSwap() {
       Player_SwapWeapons(this);
     }

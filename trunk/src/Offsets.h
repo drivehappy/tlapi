@@ -58,7 +58,12 @@ namespace TLAPI {
 
   TLFUNC(CharacterSetupSkills,                  void,         __thiscall, (CCharacter*, CDataGroup*, u32));
   TLFUNC(CharacterAddSkill,                     void,         __thiscall, (CCharacter*, wstring*, u32));
-  TLFUNC(SkillManagerAddSkill,                  void,         __thiscall, (CSkillManager*, CSkill*, bool, u32));
+  TLFUNC(CharacterAddSkill2,                    void,         __thiscall, (CCharacter*, wstring));
+  TLFUNC(CharacterGetAvailableSkillPoints,      u32,          __thiscall, (CCharacter*));
+
+  TLFUNC(SkillManagerAddSkill,                  void,            __thiscall, (CSkillManager*, CSkill*, bool, u32));
+  TLFUNC(SkillManagerSetSkillLevel,             CSkillProperty*, __thiscall, (CSkillManager*, CSkill*, u32));
+  TLFUNC(SkillManagerGetSkillFromGUID,          CSkill*,         __thiscall, (CSkillManager*, u64));
 
   TLFUNC(GameClientUpdateSkill,                 PVOID,        __thiscall, (CGameClient*, u64, u32, u32));
 
@@ -230,5 +235,7 @@ namespace TLAPI {
   TLFUNC(Player_SwapWeapons,                    void,     __thiscall, (CCharacter*));
 
   TLFUNC(Effect_Something0,                     void,     __thiscall, (CEffect*, u32));
+
+  TLFUNC(Equipment_UpdateTooltip,               void,     __thiscall, ());
 
 };
