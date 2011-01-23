@@ -29,6 +29,7 @@ EVENT_DEF(CMainMenu, void, MainMenu_Event, (CMainMenu*, u32, wstring, bool&));
 
 // SkillManager
 EVENT_DEF(CSkillManager, void, SkillManagerAddSkill, (CSkillManager*, CSkill*, bool, u32, bool&));
+EVENT_DEF(CSkillManager, CSkillProperty*, SkillManagerSetSkillLevel, (CSkillManager*, CSkill*, u32, bool&));
 
 // EffectManager
 EVENT_DEF(CEffectManager, void, EffectManagerCreateEffect, (CEffect*, CEffectManager*));
@@ -126,6 +127,7 @@ EVENT_DEF(CCharacter, void, Character_SetOrientation, (CCharacter*, Vector3*, fl
 EVENT_DEF(CCharacter, void, Character_UpdateOrientation, (CCharacter*, float, float, bool&));
 EVENT_DEF(CCharacter, void, CharacterSetupSkills, (CCharacter*, CDataGroup*, u32, bool&));
 EVENT_DEF(CCharacter, void, CharacterAddSkill, (CCharacter*, wstring*, u32, bool&));
+EVENT_DEF(CCharacter, void, CharacterAddSkill2, (CCharacter*, wstring, bool&));
 EVENT_DEF(CCharacter, void, CharacterUpdateHealth, (CCharacter*, float));
 EVENT_DEF(CCharacter, void, PlayerResurrect, (CCharacter*, bool&));
 EVENT_DEF(CCharacter, void, Character_Update_Level, (CCharacter*, CLevel*, float, bool&));

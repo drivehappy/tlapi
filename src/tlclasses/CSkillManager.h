@@ -3,6 +3,7 @@
 #include "CRunicCore.h"
 #include "CBaseUnit.h"
 #include "CSkill.h"
+//#include "CResourceManager.h"
 
 namespace TLAPI
 {
@@ -13,21 +14,26 @@ namespace TLAPI
   struct CPlayer;
   struct CBaseUnit;
 
-  // Size?: 30h
+  //
+  TLFUNC(SkillManagerGetSkillFromGUID,          CSkill*,      __thiscall, (CSkillManager*, u64));
+  TLFUNC(SkillManagerSetSkillLevel,             CSkillProperty*, __thiscall, (CSkillManager*, CSkill*, u32));
+
+  //
   struct CSkillManager : CRunicCore
   {
-    u32 unk0;
+    u32               unk0;
 
-    PVOID pCResourceManager;
+    //CResourceManager *pCResourceManager;
+    PVOID             pCResourceManager;
 
-    u32 unk1[8];
+    u32               unk1[8];
 
-    CList<CSkill*>   listSkills0;
-    CList<CSkill*>   listSkills1;
+    CList<CSkill*>    listSkills0;
+    CList<CSkill*>    listSkills1;
 
-    u32 unk2[3];
+    u32               unk2[3];
 
-    CBaseUnit *pCBaseUnit;
+    CBaseUnit        *pCBaseUnit;
 
 
     //
@@ -37,7 +43,23 @@ namespace TLAPI
       (CSkillManager*, CSkill*, bool, u32, bool&),
       ((CSkillManager*)e->_this, (CSkill*)Pz[0], Pz[1], Pz[2], e->calloriginal));
     
+    // Set Skill Level
+    EVENT_DECL(CSkillManager, void, SkillManagerSetSkillLevel,
+      (CSkillManager*, CSkill*, u32, bool&),
+      ((CSkillManager*)e->_this, (CSkill*)Pz[0], Pz[1], e->calloriginal));
 
+
+    //
+    // Methods
+    CSkillProperty* setSkillLevel(CSkill* skill, u32 level)
+    {
+      return SkillManagerSetSkillLevel(this, skill, level);
+    }
+
+    CSkill* getSkillFromGUID(u64 guid)
+    {
+      return SkillManagerGetSkillFromGUID(this, guid);
+    }
 
 
     void dumpSkillManager() {

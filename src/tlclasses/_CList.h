@@ -1,9 +1,7 @@
 #pragma once
 
-// This isn't explicitly defined as a runic structure, but from the common list structures encountered,
-// it's structure is working
-
-// Note: dengus already figured this out, underneath old List.h (c_runic_list)
+// This isn't explicitly defined as a runic structure, but from the common list 
+// structures encountered its structure is working
 
 template<typename T>
 struct CList

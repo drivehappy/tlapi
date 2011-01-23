@@ -80,6 +80,9 @@ namespace TLAPI
 
     CDungeon           *pCDungeon;          // @2308
 
+    u32                 unk200[10];
+
+    u32                 difficulty;         // 0 - EASY, 1 - MEDIUM, 2 - HARD, 3 - VERY HARD
     
 
     /*
