@@ -31,6 +31,9 @@ EVENT_DEF(CMainMenu, void, MainMenu_Event, (CMainMenu*, u32, wstring, bool&));
 EVENT_DEF(CSkillManager, void, SkillManagerAddSkill, (CSkillManager*, CSkill*, bool, u32, bool&));
 EVENT_DEF(CSkillManager, CSkillProperty*, SkillManagerSetSkillLevel, (CSkillManager*, CSkill*, u32, bool&));
 
+// QuestManager
+EVENT_DEF(CQuestManager, void, QuestManagerSetQuestCompleted, (CQuestManager*, CQuest*, CCharacter*, u32, bool&));
+
 // EffectManager
 EVENT_DEF(CEffectManager, void, EffectManagerCreateEffect, (CEffect*, CEffectManager*));
 EVENT_DEF(CEffectManager, void, EffectManager_AddEffectToEquipment, (CEffectManager*, CEquipment*, CEffect*));

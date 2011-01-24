@@ -9,7 +9,7 @@ namespace TLAPI
 
 #pragma pack(1)
 
-  struct CQuestDialog : CRunicCore
+  struct CQuestRewards : CRunicCore
   {
     PVOID   unk0;
 

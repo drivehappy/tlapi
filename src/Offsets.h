@@ -26,6 +26,7 @@
 #include "CLayout.h"
 #include "CKeyManager.h"
 #include "CItemGold.h"
+#include "CQuestManager.h"
 
 namespace TLAPI {
 
@@ -60,10 +61,13 @@ namespace TLAPI {
   TLFUNC(CharacterAddSkill,                     void,         __thiscall, (CCharacter*, wstring*, u32));
   TLFUNC(CharacterAddSkill2,                    void,         __thiscall, (CCharacter*, wstring));
   TLFUNC(CharacterGetAvailableSkillPoints,      u32,          __thiscall, (CCharacter*));
+  TLFUNC(CharacterIsEffectPresent,              bool,         __thiscall, (CCharacter*, wstring*));
 
   TLFUNC(SkillManagerAddSkill,                  void,            __thiscall, (CSkillManager*, CSkill*, bool, u32));
   TLFUNC(SkillManagerSetSkillLevel,             CSkillProperty*, __thiscall, (CSkillManager*, CSkill*, u32));
   TLFUNC(SkillManagerGetSkillFromGUID,          CSkill*,         __thiscall, (CSkillManager*, u64));
+
+  TLFUNC(QuestManagerSetQuestCompleted,         void,         __thiscall, (CQuestManager*, CQuest*, CCharacter*, u32));
 
   TLFUNC(GameClientUpdateSkill,                 PVOID,        __thiscall, (CGameClient*, u64, u32, u32));
 

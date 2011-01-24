@@ -27,10 +27,14 @@ TLFUNCPTR(CharacterSetupSkills,                   void,         __thiscall, (CCh
 TLFUNCPTR(CharacterAddSkill,                      void,         __thiscall, (CCharacter*, wstring*, u32),                                   0x47E930);     // Called before AddSkill2 from 0x567EB0 (CConsole_AddSkill)
 TLFUNCPTR(CharacterAddSkill2,                     void,         __thiscall, (CCharacter*, wstring),                                         0x486910);     // 
 TLFUNCPTR(CharacterGetAvailableSkillPoints,       u32,          __thiscall, (CCharacter*),                                                  0x4865C0);     // 
+TLFUNCPTR(CharacterIsEffectPresent,               bool,         __thiscall, (CCharacter*, wstring*),                                        0x47F9D0);     // 
 
 TLFUNCPTR(SkillManagerAddSkill,                   void,         __thiscall, (CSkillManager*, CSkill*, bool, u32),                           0x5D7420);
 TLFUNCPTR(SkillManagerSetSkillLevel,           CSkillProperty*, __thiscall, (CSkillManager*, CSkill*, u32),                                 0x5D8000);     //
 TLFUNCPTR(SkillManagerGetSkillFromGUID,           CSkill*,      __thiscall, (CSkillManager*, u64),                                          0x5D5E80);     //
+
+TLFUNCPTR(QuestManagerSetQuestCompleted,          void,         __thiscall, (CQuestManager*, CQuest*, CCharacter*, u32),                    0x5EBF40);     //
+
 
 TLFUNCPTR(GameClientUpdateSkill,                  PVOID,        __thiscall, (CGameClient*, u64, u32, u32),                                  0x4145D0);     // CGameClient, u64 skill, u32 notFirstUse, u32
 
@@ -211,6 +215,7 @@ TLFUNCPTR(Effect_Something0,                      void,     __thiscall, (CEffect
 TLFUNCPTR(Equipment_UpdateTooltip,                void,     __thiscall, (),                                                0x4CF410);
 
 
+// CLevel_CreateLevel   @4FC9F0     (CLevelTemplateData*, int, int, void*, 
 
 void TLAPI::Initialize()
 {
@@ -264,6 +269,9 @@ void TLAPI::HookFunctions()
 
   // KeyManager
   EVENT_INIT(CKeyManager, KeyManager_InjectKey, 2);
+
+  // QuestManager
+  EVENT_INIT(CQuestManager, QuestManagerSetQuestCompleted, 3);
 
   // SkillManager
   EVENT_INIT(CSkillManager, SkillManagerAddSkill, 3);
