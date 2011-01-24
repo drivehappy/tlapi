@@ -40,6 +40,7 @@ namespace TLAPI
   TLFUNC(Character_UpdateOrientation,   void,  __thiscall, (CCharacter*, float, float));
   TLFUNC(Player_SwapWeapons,            void,  __thiscall, (CCharacter*));
   TLFUNC(CharacterGetAvailableSkillPoints, u32,__thiscall, (CCharacter*));
+  TLFUNC(CharacterIsEffectPresent,      bool,  __thiscall, (CCharacter*, wstring*));
 
   // 
   enum CharacterState {
@@ -192,7 +193,10 @@ namespace TLAPI
     u32      experienceCurrent; // @3C8h
     u32      fameCurrent;       // @3CCh
 
-    u32      unk17[13];
+    u32      unk17[3];
+    u32      availableStatPoints;   // @3DCh
+    u32      availableSkillPoints;  // @3E0h
+    u32      unk171[8];
 
     CInventory  *pCInventory;
     CEquipment  *pCEquipment;   // @: 170. (*4)
@@ -223,6 +227,7 @@ namespace TLAPI
 
     u32     unk034[16];
 
+    // TODO: Move these to vector<CCharacter*>
     CCharacter      **pCMinionStart;
     CCharacter      **pCMinionEnd;
     CCharacter      **pCMinionEnd2;
@@ -415,6 +420,12 @@ namespace TLAPI
       ((CCharacter*)e->_this, e->calloriginal));
 
 
+
+    //
+    //
+    bool IsEffectPresent(wstring* effectName) {
+      return CharacterIsEffectPresent(this, effectName);
+    }
     u32 GetAvailableSkillPoints() {
       return CharacterGetAvailableSkillPoints(this);
     }

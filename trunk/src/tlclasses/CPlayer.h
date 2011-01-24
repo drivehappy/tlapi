@@ -13,6 +13,12 @@ namespace TLAPI
   {
     CAIManager    *pCAIManager;
 
+
+    // TODO sort out:
+    // @6D0 - bool - GodMode
+
+
+
     // Player Use Skill
     EVENT_DECL(CPlayer, void, PlayerUseSkill,
       (u32, CPlayer*, u64),
