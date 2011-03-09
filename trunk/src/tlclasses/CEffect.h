@@ -152,7 +152,7 @@ namespace TLAPI {
 
     u32 unk11[7];
     CList<u32>        listUnknown;
-    u32 unk111[4];
+    CList<float>      listUnknown2;
     //u32 unk11[15];
 
     CResourceManager *pCResourceManager;
@@ -222,15 +222,34 @@ namespace TLAPI {
       logColor(B_RED, "  Effect Dump (%p)  size (%i)", this, sizeof(CEffect));
       logColor(B_RED, "    Effect Type: %s (%x)", searchForEffectName(effectType), effectType);
       logColor(B_RED, "    Effect Index: %i", effectIndex);
-      logColor(B_RED, "    Effect Unk2: %x", unk2);
-      logColor(B_RED, "    Effect Unk3: %f", unk3);
-      logColor(B_RED, "    Effect Unk4: %x %x", unk4[0], unk4[1]);
+      //logColor(B_RED, "    Effect Unk2: %x", unk2);
+      //logColor(B_RED, "    Effect Unk3: %f", unk3);
+      //logColor(B_RED, "    Effect Unk4: %x %x", unk4[0], unk4[1]);
       logColor(B_RED, "    Effect Setup: %x", setup);
-      logColor(B_RED, "    Effect Unk8: %x", unk8);
-      logColor(B_RED, "    Effect Unk9: %f", unk9);
-      logColor(B_RED, "    Effect Unk6: %x %x %x", unk6[0], unk6[1], unk6[2]);
+      //logColor(B_RED, "    Effect Unk8: %x", unk8);
+      //logColor(B_RED, "    Effect Unk9: %f", unk9);
+      //logColor(B_RED, "    Effect Unk6: %x %x %x", unk6[0], unk6[1], unk6[2]);
       logColor(B_RED, "    BaseUnit: %p", pCBaseUnit);
       logColor(B_RED, "    Effect Value: %f", effectValue);
+
+      // Dump the unknown lists
+      {
+        logColor(B_RED, "    Effect List Unknown (u32): %p", &listUnknown);
+        logColor(B_RED, "      size: %i, capacity: %i", listUnknown.size, listUnknown.capacity);
+        logColor(B_RED, "      elements: ");
+        for (u32 i = 0; i < listUnknown.size; ++i) {
+          logColor(B_RED, "        [%i]: %i", i, listUnknown[i]);
+        }
+      }
+
+      {
+        logColor(B_RED, "    Effect List Unknown2 (u32): %p", &listUnknown2);
+        logColor(B_RED, "      size: %i, capacity: %i", listUnknown2.size, listUnknown2.capacity);
+        logColor(B_RED, "      elements: ");
+        for (u32 i = 0; i < listUnknown2.size; ++i) {
+          logColor(B_RED, "        [%i]: %f", i, listUnknown2[i]);
+        }
+      }
     }
   };
 
