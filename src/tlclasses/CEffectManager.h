@@ -16,14 +16,21 @@ namespace TLAPI {
   struct CEquipment;
   struct CPlayer;
 
+  //
+  TLFUNC(EffectManagerCreateEffect,        CEffect*,      __thiscall, (CEffectManager*));
+
+  //
   struct CEffectManager : CRunicCore
   {
     u32 unk0;
 
     CList<CAffix*>  affixList;
-    CList<CEffect*> effectList;
 
-    u32 unk1[8];    // 3 dup(   0),   1,3 dup(   0),   1
+    // Not a vector<T> structure, first list contained 1 element, 2nd contained 3
+    CList<CEffect*> effectList;
+    CList<CEffect*> effectList2;
+
+    u32 unk1[5];    // 1, 0, 0, 0, 1
 
     CPlayer*     player;    // Equipment* too???
 
@@ -70,6 +77,11 @@ namespace TLAPI {
       (CEffectManager*, CEquipment*, CEffect*),
       ((CEffectManager*)e->_this, (CEquipment*)Pz[0], (CEffect*)Pz[1]));
 
+
+    CEffect* CreateEffect()
+    {
+      return EffectManagerCreateEffect(this);
+    }
     
     void dumpEffectManager() {
       logColor(B_GREEN, "EffectManager(%p)  size (%i)", this, sizeof(CEffectManager));

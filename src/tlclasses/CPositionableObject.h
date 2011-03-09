@@ -12,13 +12,13 @@ namespace TLAPI
   {
     u8 unkPositionable[4];
 
-    Vector3 position;
+    Vector3 position;             // @0xF4
     float unk2000[3];
     float unk11[25];              // 5, 11, 17  -- 5 @9C
 
     PVOID pSharedPtrMaterial;     // ogre
 
-
+    //
     void dumpPosObj()
     {
       log("CPositionableObject Dump: %p (size: %i)", this, sizeof(CPositionableObject));

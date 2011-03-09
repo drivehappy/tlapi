@@ -23,7 +23,7 @@ namespace TLAPI
   TLFUNC(Equipment_AddAffix,         void, __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float));
   TLFUNC(Equipment_AddGem,           void, __thiscall, (CEquipment*, CEquipment*));
   TLFUNC(EquipmentIdentify,          void, __thiscall, (CEquipment*, CPlayer*, CEquipment*));
-  TLFUNC(Equipment_UpdateTooltip,    void, __thiscall, ());
+  TLFUNC(Equipment_UpdateTooltip,    void, __thiscall, (CEquipment*));
 
   // Enchantment Types
   enum EnchantType {
@@ -151,7 +151,7 @@ namespace TLAPI
 
 
     void UpdateTooltip() {
-      Equipment_UpdateTooltip();
+      Equipment_UpdateTooltip((CEquipment*)this);
     }
     u32 Enchant(u32 unk0, u32 unk1, u32 unk2) const {
       return EquipmentEnchant((CEquipment*)this, unk0, unk1, unk2);
@@ -187,7 +187,10 @@ namespace TLAPI
       // Change the effect type and value
       // Add the unknowns, some weird effects are cropping up
       logColor(B_RED, L" Add effect to Equipment EffectManager list: Type: %x, Value: %f", type, amount);
-      CEffect* effect = new CEffect;
+      
+      CEffect* effect = pCEffectManager->CreateEffect();
+      //CEffect* effect = new CEffect();
+
       effect->effectType = type;
       effect->effectValue = amount;
       effect->effectIndex = pCEffectManager->effectList.size;
@@ -204,30 +207,6 @@ namespace TLAPI
       effect->pCBaseUnit = this;
 
       pCEffectManager->effectList.push(effect);
-
-      /*
-      if (listAffixes->size) {
-        // Change the list of affixes to size 1
-        listAffixes->size = 1;
-
-        // Change the first effect list to size 1
-        CAffix* affix = (*listAffixes)[0];
-        CList<CEffect*> *effectList = &affix->effectList;
-        effectList->size = 1;
-
-        // Change the effect type and value
-        CEffect* effect = (*effectList)[0];
-        effect->effectType = type;
-
-        // Add the modified Affix to the Equipment
-        AddAffix(affix, 0, this, 1.0f);
-
-        // Set the value after it's added, as this is changed as it's added
-        effect->effectValue = amount;
-
-        delete listAffixes;
-      }
-      */
     }
 
     // This is designed to encompass the above into an easily callable function
@@ -241,6 +220,8 @@ namespace TLAPI
         // KNOCKBACK, FASTER ATTACK, etc.
         AddOtherModifier(type, amount);
       }
+
+      UpdateTooltip();
     }
 
     //

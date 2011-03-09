@@ -174,8 +174,10 @@ namespace TLAPI
       LinkedListNode* itr = *ppCTriggerUnits;
       while (itr != NULL) {
         CTriggerUnit* triggerUnit = (CTriggerUnit*)itr->pCBaseUnit;
-        logColor(B_GREEN, L"  Level TriggerUnit: (itr = %p) %p %s", itr, triggerUnit, triggerUnit->nameReal.c_str());
+
+        log(L"  Level TriggerUnit: (itr = %p) %p %s", itr, triggerUnit, triggerUnit->nameReal.c_str());
         //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, character, character->characterName.c_str());
+
         itr = itr->pNext;
       }
     }
@@ -203,10 +205,13 @@ namespace TLAPI
     void DumpItems() {
       LinkedListNode* itr = *ppCItems;
       while (itr != NULL) {
+        log(L"  Level Item: itr = %p", itr);
+
         CItem* item = (CItem*)itr->pCBaseUnit;
-        logColor(B_GREEN, L"  Level Item: (itr = %p Next: %p) %p", itr, itr->pNext, item);
-        logColor(B_BLUE, L"     %s", item->nameReal.c_str());
+        
+        log(L"  itrNext: %p, Item: %p, Name: %s", itr->pNext, item, item->nameReal.c_str());
         //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, item, item->nameReal.c_str());
+
         itr = itr->pNext;
       }
       log(L"Done Dumping.");

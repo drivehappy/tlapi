@@ -19,7 +19,10 @@ EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGro
 
 // Effect
 EVENT_DEF(CEffect, void, Effect_Effect_Something, (CEffect*, CEffect*, bool&));
-EVENT_DEF(CEffect, void, Effect_Something0, (CEffect*, u32, bool&));
+EVENT_DEF(CEffect, void, Effect_Something0,       (CEffect*, u32, bool&));
+EVENT_DEF(CEffect, void, Effect_ParamCtor,        (CEffect*, u32, bool, float, float, float, float, bool));
+EVENT_DEF(CEffect, void, Effect_CopyCtor,         (CEffect*));
+EVENT_DEF(CEffect, void, Effect_Character_Unk0,   (CEffect*, CCharacter*, bool));
 
 // BaseUnit
 EVENT_DEF(CBaseUnit, void, BaseUnit_AddSkill, (CBaseUnit*, wstring*, u32, bool&));
@@ -149,6 +152,7 @@ EVENT_DEF(CItemGold, void, ItemGold_Ctor, (CItemGold*, PVOID, CResourceManager*,
 // TriggerUnit
 EVENT_DEF(CTriggerUnit, void, TriggerUnitTriggered, (CTriggerUnit*, CPlayer*, bool&));
 EVENT_DEF(CTriggerUnit, void, TriggerUnit_Ctor, (CTriggerUnit*, CLayout*, bool&));
+EVENT_DEF(CTriggerUnit, void, TriggerUnit_Triggered2, (CTriggerUnit*, CCharacter*, bool&));
 
 // Breakable
 EVENT_DEF(CBreakable, void, BreakableTriggered, (CBreakable*, CPlayer*, bool&));

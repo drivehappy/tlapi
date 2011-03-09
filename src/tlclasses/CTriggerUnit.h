@@ -11,10 +11,11 @@ namespace TLAPI {
 
   //
   struct CTriggerUnit;
-  TLFUNC(TriggerUnitTriggered, PVOID, __thiscall, (CTriggerUnit*, CPlayer*));
-  TLFUNC(TriggerUnit_Ctor, CTriggerUnit*, __thiscall, (CLayout*));
+  TLFUNC(TriggerUnitTriggered,    PVOID,         __thiscall, (CTriggerUnit*, CPlayer*));
+  TLFUNC(TriggerUnit_Triggered2,  void,          __thiscall, (CTriggerUnit*, CCharacter*));
+  TLFUNC(TriggerUnit_Ctor,        CTriggerUnit*, __thiscall, (CLayout*));
 
-  //
+  // Size: 2D0h
   struct CTriggerUnit : CItem
   {
     CGenericModel   *pCGenericModel;
@@ -30,6 +31,8 @@ namespace TLAPI {
     u32              unk1;
     wstring          name2;
 
+    u32              unk2[20];
+
 
 
     // TriggerUnit Ctor
@@ -41,6 +44,11 @@ namespace TLAPI {
     EVENT_DECL(CTriggerUnit, void, TriggerUnitTriggered,
       (CTriggerUnit*, CPlayer*, bool&),
       ((CTriggerUnit*)e->_this, (CPlayer*)Pz[0], e->calloriginal));
+
+    // TriggerUnit Triggered
+    EVENT_DECL(CTriggerUnit, void, TriggerUnit_Triggered2,
+      (CTriggerUnit*, CCharacter*, bool&),
+      ((CTriggerUnit*)e->_this, (CCharacter*)Pz[0], e->calloriginal));
 
     
   

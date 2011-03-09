@@ -70,7 +70,7 @@ namespace TLAPI
 
     CDataGroup *pCDataGroup;
 
-    CEffectManager *pCEffectManager;
+    CEffectManager *pCEffectManager;    // @17Ch
     CCullingBounds *pCCullingBounds;
     CSkillManager  *pCSkillManager;
 

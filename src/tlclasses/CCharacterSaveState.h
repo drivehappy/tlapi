@@ -22,8 +22,6 @@ namespace TLAPI
 
     u32 unk1[2];
     float unk2;
-    //float unk3;
-    //CString name;                 // "Drivehappy"
     wstring name;
 
     u32 unk6[9];                  // 1, 0, 4 dup (FFFFFFFFh), 302DBE98h, 1, 22h

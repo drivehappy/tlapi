@@ -53,7 +53,6 @@ TLFUNCPTR(PlayerSetAnimation,                     PVOID,    __thiscall, (CPlayer
 
 TLFUNCPTR(CharacterAttack,                        PVOID,    __thiscall, (CCharacter*),                                                      0x48FBD0);     // 1.15  CPlayer
 
-TLFUNCPTR(EquipmentInitialize,                    PVOID,    __thiscall, (CEquipment*, CItemSaveState*),                                     0x4BE250);     // 1.15  CEquipment, CItemSaveState
 TLFUNCPTR(LevelDropItem,                          PVOID,    __thiscall, (CLevel*, CItem*, Vector3 &, bool),                                 0x4F3070);     // 1.15  CLevel, CItem, vector3 pos, bool unk
 TLFUNCPTR(ResourceManagerCreateItem,             CItem*,    __thiscall, (CResourceManager*, u64, u32, u32, u32),                            0x5FB6D0);     // 1.15  CResourceManager, u64 guid, u32 level, u32 unk, u32 unk
 TLFUNCPTR(CharacterPickupEquipment,               PVOID,    __thiscall, (CCharacter*, CEquipment*, CLevel*),                                0x4969B0);     // 1.15  CPlayer, CEquipment, CLevel
@@ -69,8 +68,6 @@ TLFUNCPTR(PlayerLevelUp,                          PVOID,    __thiscall, (CPlayer
 TLFUNCPTR(PlayerLevelUpSilent,                    PVOID,    __thiscall, (CPlayer*),                                                         0x48E730);     // 1.15  CPlayer
 
 TLFUNCPTR(CharacterPetawayTimer,                  PVOID,    __thiscall, (CCharacter*, float, CLevel*),                                      0x4924E0);     // 1.15  CMonster, float(0.0181999), CLevel
-
-TLFUNCPTR(TriggerUnitTriggered,                   PVOID,    __thiscall, (CTriggerUnit*, CPlayer*),                                          0x4DE6C0);     // 1.15  CTriggerUnit, CPlayer
 
 // !!! THIS COULD BE WRONG, THERE'S A BUNCH MATCHING -- I NEED TO DOUBLE CHECK THIS FUNC ANYWAYS - drivehappy
 TLFUNCPTR(ObjectCreate,                           PVOID,    __thiscall, (PVOID, u64),                                                       0x446390);     // 1.15
@@ -105,7 +102,7 @@ TLFUNCPTR(PlayerCtor,                             void,     __thiscall, (),     
 TLFUNCPTR(GameClientCtor,                         void,     __thiscall, (),                                                0x40F7B0);     // 1.15
 TLFUNCPTR(GameCtor,                               void,     __thiscall, (),                                                0x4095A0);     // 1.15
 TLFUNCPTR(CharacterDtor,                          void,     __thiscall, (),                                                0x4A70A0);     // 1.15
-TLFUNCPTR(EquipmentDtor,                          void,     __thiscall, (),                                                0x4BA250);     // 1.15
+
 
 
 
@@ -118,39 +115,46 @@ TLFUNCPTR(GameClientLoadMap,                      void,     __thiscall, (CGameCl
 TLFUNCPTR(Random,                                 void,     __thiscall, (),                                                0x5BA660);     // 1.15
 
 TLFUNCPTR(LevelDestroyMonster,                    void,     __thiscall, (CLevel*, CMonster*),                              0x4F5AA0);     // 1.15  CLevel, CMonster
+TLFUNCPTR(LevelCreateAstarPathfinding,            CAstarPathfinder*,    __stdcall,  (float, float, u32, u32, PVOID, PVOID, float),  0x421700);
 
 TLFUNCPTR(MonsterReadProp,                        void,     __thiscall, (CMonster*),                                       0x47EAF0);     // 1.15  CMonster
 
-TLFUNCPTR(EquipmentUse,                           void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*),                 0x4B4FB0);     // 1.15  CEquipment, CPlayer, CPlayer
-TLFUNCPTR(EquipmentIdentify,                      void,     __thiscall, (CEquipment*, CPlayer*, CEquipment*),              0x4B4FB0);     // 1.15  CEquipment
-
-TLFUNCPTR(LevelCreateAstarPathfinding,            CAstarPathfinder*,    __stdcall,  (float, float, u32, u32, PVOID, PVOID, float),  0x421700);
-
-TLFUNCPTR(EquipmentGetEnchantPrice,               u32,      __thiscall, (CEquipment*),                                     0x4B0230);
-
 TLFUNCPTR(GetGameGlobals,                         CGameGlobals*, __thiscall, (),                                           0x5219B0);
 
-TLFUNCPTR(EquipmentEnchant,                       u32,      __thiscall, (CEquipment*, u32, u32, u32),                      0x4BF560);
-
 TLFUNCPTR(EffectManagerCreateEffect,              CEffect*, __thiscall, (CEffectManager*),                                 0x47D300);
-
 TLFUNCPTR(EffectManager_AddEffectToEquipment,     void,     __thiscall, (CEffectManager*, CEquipment*, CEffect*),          0x47E3A0);
-
-TLFUNCPTR(Equipment_AddMagicModifier,             void,     __thiscall, (CEquipment*, u32, u32),                           0x4BC7C0);
 
 TLFUNCPTR(EffectGroupManager_CreateAffix,         void,     __thiscall, (CEffectGroupManager*, u32, u32, u32, CList<CAffix*>*),   0x47BB50);
 
-TLFUNCPTR(GameClient_SaveGame,                    void,     __thiscall, (CGameClient*, u32, u32, bool*),                   0x417110);
-
+TLFUNCPTR(EquipmentInitialize,                    PVOID,    __thiscall, (CEquipment*, CItemSaveState*),                    0x4BE250);     // 1.15  CEquipment, CItemSaveState
+TLFUNCPTR(EquipmentDtor,                          void,     __thiscall, (),                                                0x4BA250);     // 1.15
+TLFUNCPTR(EquipmentUse,                           void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*),                 0x4B4FB0);     // 1.15  CEquipment, CPlayer, CPlayer
+TLFUNCPTR(EquipmentIdentify,                      void,     __thiscall, (CEquipment*, CPlayer*, CEquipment*),              0x4B4FB0);     // 1.15  CEquipment
+TLFUNCPTR(Equipment_AddMagicModifier,             void,     __thiscall, (CEquipment*, u32, u32),                           0x4BC7C0);
 TLFUNCPTR(Equipment_AddAffix,                     void,     __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float),   0x47F940);
+TLFUNCPTR(Equipment_UpdateRequirements,           void,     __thiscall, (CEquipment*),                                     0x4B3EA0);
+TLFUNCPTR(Equipment_UpdatePrice,                  void,     __thiscall, (CEquipment*),                                     0x4B3A10);
+TLFUNCPTR(Equipment_UpdateTooltip,                void,     __thiscall, (CEquipment*),                                     0x4CF410);
+TLFUNCPTR(EquipmentEnchant,                       u32,      __thiscall, (CEquipment*, u32, u32, u32),                      0x4BF560);
+TLFUNCPTR(EquipmentGetEnchantPrice,               u32,      __thiscall, (CEquipment*),                                     0x4B0230);
+TLFUNCPTR(Equipment_AddGem,                       void,     __thiscall, (CEquipment*, CEquipment*),                        0x4B6F80);
+
+TLFUNCPTR(Effect_CopyCtor,                        void,     __thiscall, (CEffect*),                                        0x47A2F0);
+TLFUNCPTR(Effect_DataGroupCtor,                   void,     __thiscall, (CDataGroup*, u32),                                0x5D5276);
+TLFUNCPTR(Effect_ParamCtor,                       void,     __thiscall, (CEffect*, u32, bool, float, float, float, float, bool),     0x479710);
+TLFUNCPTR(Effect_Effect_Something,                void,     __thiscall, (CEffect*, CEffect*),           	                 0x47A060);
+TLFUNCPTR(Effect_Something0,                      void,     __thiscall, (CEffect*, u32),                                   0x477D74);
+TLFUNCPTR(Effect_Character_Unk0,                  void,     __thiscall, (CEffect*, CCharacter*, bool),                     0x4798A0);
+
 
 TLFUNCPTR(GetMasterResourceManager, CMasterResourceManager*,__thiscall, (void),                                            0x524EC0);
 
+TLFUNCPTR(GameClient_SaveGame,                    void,     __thiscall, (CGameClient*, u32, u32, bool*),                   0x417110);
 TLFUNCPTR(GameClient_SetupUI,                     void,     __thiscall, (CGameClient*, u32, u32),                          0x40C9A0);
-TLFUNCPTR(Game_CreateUI,                          void,     __thiscall, (CGame*),                                          0x402070);
-
 TLFUNCPTR(GameClient_CreateLevel,                 void,     __thiscall, (CGameClient*, wstring, wstring, u32, u32, u32, wstring), 0x415820);
 TLFUNCPTR(GameClient_LoadLevel,                   void,     __thiscall, (CGameClient*),                                    0x4197E0);
+
+TLFUNCPTR(Game_CreateUI,                          void,     __thiscall, (CGame*),                                          0x402070);
 
 TLFUNCPTR(MouseManagerInput,                      void,     __thiscall, (CMouseManager*, u32, u32),                        0x4E47F0);
 
@@ -159,12 +163,9 @@ TLFUNCPTR(CharacterSaveState_LoadFromFile,        void,     __thiscall, (CCharac
 TLFUNCPTR(MainMenu_Event,                         void,     __thiscall, (CMainMenu*, u32, wstring),                        0x5B6800);
 
 
-TLFUNCPTR(Equipment_UpdateRequirements,           void,     __thiscall, (CEquipment*),                                     0x4B3EA0);
-TLFUNCPTR(Equipment_UpdatePrice,                  void,     __thiscall, (CEquipment*),                                     0x4B3A10);
-
 TLFUNCPTR(GameUI_TriggerPause,                    void,     __thiscall, (CGameUI*),                                        0x53D6E0);
+TLFUNCPTR(GameUI_WindowResized,                   void,     __thiscall, (CGameUI*),                                        0x55A950);
 
-TLFUNCPTR(Equipment_AddGem,                       void,     __thiscall, (CEquipment*, CEquipment*),                        0x4B6F80);
 
 TLFUNCPTR(EnchantMenu_EnchantItem,                void,     __thiscall, (CEnchantMenu*),                                   0x575740);
 
@@ -172,47 +173,45 @@ TLFUNCPTR(GameUI_HandleKeyboardInput,             void,     __thiscall, (CGameUI
 
 TLFUNCPTR(KeyManager_InjectKey,                   void,     __thiscall, (CKeyManager*, u32, u32),                          0x4E45A0);
 
-TLFUNCPTR(GameUI_WindowResized,                   void,     __thiscall, (CGameUI*),                                        0x55A950);
+
 
 TLFUNCPTR(Character_Update,                       void,     __thiscall, (CCharacter*),                                     0x4AC630);
 TLFUNCPTR(Character_Update_Level,                 void,     __thiscall, (CCharacter*, CLevel*, float),                     0x490CB0);
 TLFUNCPTR(Character_Update_Character,             void,     __thiscall, (CCharacter*, CCharacter*),                        0x4A33C0);
-
-
-
 TLFUNCPTR(Character_SetOrientation,               void,     __thiscall, (CCharacter*, Vector3*, float),                    0x48B450);
 TLFUNCPTR(Character_UpdateOrientation,            void,     __thiscall, (CCharacter*, float, float),                       0x484390);
+TLFUNCPTR(Character_Killed,                       void,     __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32), 0x4A7570);
+
 TLFUNCPTR(Path_GetNextNode,                       void,     __thiscall, (CPath*, Vector3*, float),                         0x5B8670);
 
 TLFUNCPTR(TriggerUnit_Ctor,              CTriggerUnit*,     __thiscall, (CLayout*),                                        0x4DDD70);
+TLFUNCPTR(TriggerUnitTriggered,                   PVOID,    __thiscall, (CTriggerUnit*, CPlayer*),                         0x4DE6C0);     // 1.15  CTriggerUnit, CPlayer
+TLFUNCPTR(TriggerUnit_Triggered2,                 void,     __thiscall, (CTriggerUnit*, CCharacter*),                      0x4DF190);
+
 
 TLFUNCPTR(ItemGold_Ctor,                    CItemGold*,     __thiscall, (PVOID, CResourceManager*, u32),                   0x4CFFC0);
 
 TLFUNCPTR(Level_CharacterKilledCharacter,         void,     __thiscall, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32),0x4F4DE0);
-
 TLFUNCPTR(Level_Dtor,                             void,     __thiscall, (CLevel*, u32),                                    0x4F94C0);
 TLFUNCPTR(Level_Ctor,                             void,     __thiscall, (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32), 0x4F8FB0);
+TLFUNCPTR(Level_Update,	                          void,     __thiscall, (CLevel*, Vector3*, u32, float),	                 0x4F5C60);
+TLFUNCPTR(Level_Cleanup,                          void,     __thiscall, (CLevel*, u32, u32),           	                   0x4ECC00);
+//TLFUNCPTR(Level_LoadLevel,                        void,     __thiscall, (CLevel*, CLevelTemplateData*, u32, u32, PVOID, ), 0x4FC9F0);
+
 
 TLFUNCPTR(EquipmentRef_Dtor,                      void,     __thiscall, (CEquipmentRef*, u32),                             0x4E4A20);
 
-TLFUNCPTR(Level_Update,	                          void,     __thiscall, (CLevel*, Vector3*, u32, float),	                 0x4F5C60);
-
-TLFUNCPTR(Effect_Effect_Something,                void,     __thiscall, (CEffect*, CEffect*),           	                 0x47A060);
-
-TLFUNCPTR(Level_Cleanup,                          void,     __thiscall, (CLevel*, u32, u32),           	                   0x4ECC00);
-
 TLFUNCPTR(Player_KillMonsterExperience,           void,     __thiscall, (CCharacter*, CLevel*, CCharacter*, u32, u32),     0x48E4A0);
-
-TLFUNCPTR(Character_Killed,                       void,     __thiscall, (CCharacter*, CCharacter*, Ogre::Vector3*, float, u32), 0x4A7570);
+TLFUNCPTR(Player_SwapWeapons,                     void,     __thiscall, (CCharacter*),                                     0x4838E0);
 
 // Same as Character_AddSkill
 TLFUNCPTR(BaseUnit_AddSkill,                      void,     __thiscall, (CBaseUnit*, wstring*, u32),                       0x47E930);
 
-TLFUNCPTR(Player_SwapWeapons,                     void,     __thiscall, (CCharacter*),                                     0x4838E0);
 
-TLFUNCPTR(Effect_Something0,                      void,     __thiscall, (CEffect*, u32),                                   0x477D74);
 
-TLFUNCPTR(Equipment_UpdateTooltip,                void,     __thiscall, (),                                                0x4CF410);
+
+
+
 
 
 // CLevel_CreateLevel   @4FC9F0     (CLevelTemplateData*, int, int, void*, 
@@ -257,6 +256,9 @@ void TLAPI::HookFunctions()
 
   // Effect
   EVENT_INIT(CEffect, Effect_Effect_Something, 1);
+  EVENT_INIT(CEffect, Effect_ParamCtor, 7);
+  EVENT_INIT(CEffect, Effect_CopyCtor, 1);
+  EVENT_INIT(CEffect, Effect_Character_Unk0, 2);
 
   // Hook WndProc
   EVENT_INIT(_GLOBAL, WndProc, 5);
@@ -318,6 +320,7 @@ void TLAPI::HookFunctions()
   // TriggerUnit
   EVENT_INIT(CTriggerUnit, TriggerUnitTriggered, 1);
   EVENT_INIT(CTriggerUnit, TriggerUnit_Ctor, 1);
+  EVENT_INIT(CTriggerUnit, TriggerUnit_Triggered2, 1);
 
   // Breakable
   EVENT_INIT(CBreakable, BreakableTriggered, 1);
