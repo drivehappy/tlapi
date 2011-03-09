@@ -188,8 +188,8 @@ namespace TLAPI
       // Add the unknowns, some weird effects are cropping up
       logColor(B_RED, L" Add effect to Equipment EffectManager list: Type: %x, Value: %f", type, amount);
       
-      CEffect* effect = pCEffectManager->CreateEffect();
-      //CEffect* effect = new CEffect();
+      //CEffect* effect = pCEffectManager->CreateEffect();
+      CEffect* effect = new CEffect();
 
       effect->effectType = type;
       effect->effectValue = amount;
