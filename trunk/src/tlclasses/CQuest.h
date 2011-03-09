@@ -21,12 +21,12 @@ namespace TLAPI
 
     u32 unk1[6];
 
-    wstring            name0;    // "RANDOMDUNGEON"
-    wstring            unk2;     // ""
-    wstring            unk21;    // ""
-    wstring            location; // "MEDIA/QUESTS/VASMANRANDOM/ANOTHERPIECECAVES.DAT"
-    wstring            name1;    // "ANOTHERPIECECAVES"
-    wstring            name2;    // "|cFFFFBA00Another Piece|u"
+    wstring            dungeon;   // "RANDOMDUNGEON"
+    wstring            unk2;      // ""
+    wstring            unk21;     // ""
+    wstring            location;  // "MEDIA/QUESTS/VASMANRANDOM/ANOTHERPIECECAVES.DAT"
+    wstring            name;      // "ANOTHERPIECECAVES"
+    wstring            displayName;     // "|cFFFFBA00Another Piece|u"
 
     CList<CQuestDialog *>    CQuestDialogList0;
     CList<CQuestDialog *>    CQuestDialogList1;

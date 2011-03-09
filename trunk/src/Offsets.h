@@ -97,6 +97,7 @@ namespace TLAPI {
   TLFUNC(CharacterPetawayTimer,                 PVOID,    __thiscall, (CCharacter*, float, CLevel*));
 
   TLFUNC(TriggerUnitTriggered,                  PVOID,    __thiscall, (CTriggerUnit*, CPlayer*));
+  TLFUNC(TriggerUnit_Triggered2,                void,     __thiscall, (CTriggerUnit*, CCharacter*));
 
   // Check what this is
   TLFUNC(ObjectCreate,                          PVOID,    __thiscall, (PVOID, u64));
@@ -108,7 +109,7 @@ namespace TLAPI {
 
   TLFUNC(ResourceManagerInitializePlayer,       void,     __thiscall, (CResourceManager*, u32, u32));
 
-  TLFUNC(WndProc,                               LRESULT,  __thiscall, (HWND, UINT, WPARAM, LPARAM));
+  TLFUNC(WndProc,                            LRESULT,     __thiscall, (HWND, UINT, WPARAM, LPARAM));
 
   // Do these still work?
   TLFUNC(GetPlayer,                             PVOID,    __thiscall, (void));
@@ -121,7 +122,7 @@ namespace TLAPI {
   //TLFUNC(GameClientProcessObjects,           void,     __thiscall, (PVOID, PVOID, PVOID, PVOID));
   TLFUNC(GameClientProcessObjects,              void,     __thiscall, (CGameClient*, float, PVOID, PVOID));
 
-  TLFUNC(MonsterProcessAI,                      PVOID,    __thiscall, (CMonster*, float, u32));
+  TLFUNC(MonsterProcessAI,                     PVOID,     __thiscall, (CMonster*, float, u32));
   TLFUNC(MonsterProcessAI2,                     void,     __thiscall, (CMonster*, float, u32, u32));
   TLFUNC(MonsterProcessAI3,                     void,     __thiscall, (CMonster*, u32));
   TLFUNC(MonsterIdle,                           void,     __thiscall, (CMonster*, float));
@@ -150,7 +151,7 @@ namespace TLAPI {
   TLFUNC(EquipmentUse,                          void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*));
   TLFUNC(EquipmentIdentify,                     void,     __thiscall, (CEquipment*, CPlayer*, CEquipment*));
 
-  TLFUNC(CharacterSetTarget,                    PVOID,    __thiscall, (CCharacter*, CCharacter*));
+  TLFUNC(CharacterSetTarget,                   PVOID,     __thiscall, (CCharacter*, CCharacter*));
 
   TLFUNC(LevelCreateAstarPathfinding,           CAstarPathfinder*,    __stdcall,  (float, float, u32, u32, PVOID, PVOID, float));
 
@@ -159,13 +160,17 @@ namespace TLAPI {
 
   TLFUNC(PlayerRemoveGold,                      void,     __thiscall, (CPlayer*, u32 amount));
 
-  TLFUNC(GetGameGlobals,                        CGameGlobals*, __thiscall, (void));
+  TLFUNC(GetGameGlobals,               CGameGlobals*,     __thiscall, (void));
 
   TLFUNC(EquipmentEnchant,                      u32,      __thiscall, (CEquipment*, u32, u32, u32));
 
-  TLFUNC(EffectManagerCreateEffect,             CEffect*, __thiscall, (CEffectManager*));
-
+  TLFUNC(EffectManagerCreateEffect,        CEffect*,      __thiscall, (CEffectManager*));
   TLFUNC(EffectManager_AddEffectToEquipment,    void,     __thiscall, (CEffectManager*, CEquipment*, CEffect*));
+  
+  TLFUNC(Effect_CopyCtor,                       void,     __thiscall, (CEffect*));
+  TLFUNC(Effect_DataGroupCtor,                  void,     __thiscall, (CDataGroup*, u32));
+  TLFUNC(Effect_ParamCtor,                      void,     __thiscall, (CEffect*, u32, bool, float, float, float, float, bool));
+  TLFUNC(Effect_Character_Unk0,                 void,     __thiscall, (CEffect*, CCharacter*, bool));
 
   TLFUNC(Equipment_AddMagicModifier,            void,     __thiscall, (CEquipment*, u32, u32));
 
@@ -240,6 +245,6 @@ namespace TLAPI {
 
   TLFUNC(Effect_Something0,                     void,     __thiscall, (CEffect*, u32));
 
-  TLFUNC(Equipment_UpdateTooltip,               void,     __thiscall, ());
+  TLFUNC(Equipment_UpdateTooltip,               void,     __thiscall, (CEquipment*));
 
 };

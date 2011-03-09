@@ -33,6 +33,8 @@ namespace TLAPI {
     EXPERIENCE_GAIN = 0x44,
     ALL_DAMAGE = 0x19,
     DAMAGE_REFLECTED = 0x30,
+    DEFENSE = 0x2,
+    CHANCE_REFLECT_MISSILE_DAMAGE,
   };
 
   static const u32 EffectLookup[] = {
@@ -60,6 +62,8 @@ namespace TLAPI {
     0x44,
     0x19,
     0x30,
+    2,
+    0x3c,
   };
 
   static const char* EffectTypeName[] = {
@@ -87,6 +91,8 @@ namespace TLAPI {
     "EXPERIENCE_GAIN",
     "ALL_DAMAGE",
     "DAMAGE_REFLECTED",
+    "DEFENSE",
+    "CHANCE_REFLECT_MISSILE_DAMAGE",
   };
 
   static const char* searchForEffectName(u32 index) {
@@ -104,12 +110,16 @@ namespace TLAPI {
   struct CEquipment;
   struct CResourceManager;
   struct CEffect;
+  struct CCharacter;
   enum EnchantType;
 
   //
-  TLFUNC(Effect_Something0, void, __thiscall, (CEffect*, u32));
+  TLFUNC(Effect_Something0,     void, __thiscall, (CEffect*, u32));
+  TLFUNC(Effect_CopyCtor,       void, __thiscall, (CEffect*));
+  TLFUNC(Effect_ParamCtor,      void, __thiscall, (CEffect*, u32, bool, float, float, float, float, bool));
+  TLFUNC(Effect_Character_Unk0, void, __thiscall, (CEffect*, CCharacter*, bool));
 
-  //
+  // Size: 144h
   struct CEffect : CRunicCore
   {
     u32   unk0;
@@ -138,17 +148,36 @@ namespace TLAPI {
     CAffix *unk7;
 
     float effectValue;
-    float effectValue2;
+    float effectValue2;   //@(63. * 4)
 
-    u32 unk11[15];
+    u32 unk11[7];
+    CList<u32>        listUnknown;
+    u32 unk111[4];
+    //u32 unk11[15];
 
     CResourceManager *pCResourceManager;
 
     u32 unk12;
 
-    PVOID unkEquipment;
+    //PVOID unkEquipment;
 
     
+    // Parameterized Ctor
+    EVENT_DECL(CEffect, void, Effect_ParamCtor,
+      (CEffect*, u32, bool, float, float, float, float, bool, bool&),
+      ((CEffect*)e->_this, Pz[0], (bool)Pz[1], *(float*)&Pz[2], *(float*)&Pz[3], *(float*)&Pz[4], *(float*)&Pz[5], (bool)Pz[6], e->calloriginal));
+
+    //
+    EVENT_DECL(CEffect, void, Effect_CopyCtor,
+      (CEffect*),
+      ((CEffect*)e->_this));
+
+    //
+    EVENT_DECL(CEffect, void, Effect_Character_Unk0,
+      (CEffect*, CCharacter*, bool),
+      ((CEffect*)e->_this, (CCharacter*)Pz[0], (bool)Pz[1]));
+    
+
     // Effect - Function is crashing the client, seeing what it is
     EVENT_DECL(CEffect, void, Effect_Effect_Something,
       (CEffect*, CEffect*, bool&),
@@ -159,7 +188,33 @@ namespace TLAPI {
       (CEffect*, u32, bool&),
       ((CEffect*)e->_this, Pz[0], e->calloriginal));
 
-    
+    /*
+    CEffect()
+    {
+      Effect_Ctor(this);
+    }
+    */
+
+    void EffectCtor(CEffect *other)
+    {
+      Effect_CopyCtor(other);
+    }
+
+    //
+    void EffectParamCtor(u32 unk1, bool unk2, float unk3, float unk4, float unk5, float unk6, bool unk7)
+    {
+      Effect_ParamCtor(this, unk1, unk2, unk3, unk4, unk5, unk6, unk7);
+    }
+
+    /*
+    //
+    void EffectCtor()
+    {
+      Effect_Ctor(this);
+    }
+    */
+
+    //
     void dumpEffect() {
       if (effectIndex == 0x80000000)
         return;
@@ -167,7 +222,6 @@ namespace TLAPI {
       logColor(B_RED, "  Effect Dump (%p)  size (%i)", this, sizeof(CEffect));
       logColor(B_RED, "    Effect Type: %s (%x)", searchForEffectName(effectType), effectType);
       logColor(B_RED, "    Effect Index: %i", effectIndex);
-      //logColor(B_RED, "    Effect Unk0: %x %x %x %x", unk0[0], unk0[1], unk0[2], unk0[3]);
       logColor(B_RED, "    Effect Unk2: %x", unk2);
       logColor(B_RED, "    Effect Unk3: %f", unk3);
       logColor(B_RED, "    Effect Unk4: %x %x", unk4[0], unk4[1]);
@@ -177,13 +231,6 @@ namespace TLAPI {
       logColor(B_RED, "    Effect Unk6: %x %x %x", unk6[0], unk6[1], unk6[2]);
       logColor(B_RED, "    BaseUnit: %p", pCBaseUnit);
       logColor(B_RED, "    Effect Value: %f", effectValue);
-
-      /*
-      logColor(B_RED, "    Effect Unk5:");
-      for (u32 i = 0; i < 43; i+=4) {
-        logColor(B_RED, "      %#x %#x %#x %#x", unk5[i+0], unk5[i+1], unk5[i+2], unk5[i+3]);
-      }
-      */
     }
   };
 

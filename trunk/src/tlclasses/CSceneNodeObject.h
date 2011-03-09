@@ -32,6 +32,16 @@ namespace TLAPI
 
 
     //
+    wstring* GetName()
+    {
+      DWORD SceneNodeObject_GetName = 0x481CA0;
+
+      __asm {
+        call SceneNodeObject_GetName
+      }
+    }
+
+    //
     void dumpSceneNodeObject()
     {
       log("CSceneNodeObject: %p (size: %i) (sizeof CString: %i)", this, sizeof(CSceneNodeObject), sizeof(CString));
