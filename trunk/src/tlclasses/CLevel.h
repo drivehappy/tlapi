@@ -25,9 +25,10 @@ namespace TLAPI
   struct CLayout;
   struct CResourceManager;
   struct CLevel;
-  TLFUNC(LevelDropItem, PVOID, __thiscall, (CLevel*, CItem*, Vector3 &, bool));
-  TLFUNC(LevelCharacterInitialize, CCharacter*, __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
-  TLFUNC(Level_CharacterKilledCharacter, void, __thiscall, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32));
+  TLFUNC(LevelDropItem,                   PVOID,        __thiscall, (CLevel*, CItem*, Vector3 &, bool));
+  TLFUNC(LevelCharacterInitialize,        CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
+  TLFUNC(Level_CharacterKilledCharacter,  void,         __thiscall, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32));
+  TLFUNC(Level_RemoveEquipment,           void,         __thiscall, (CLevel*, CEquipment*));
 
   //
   struct CLevel : CRunicCore
@@ -139,6 +140,10 @@ namespace TLAPI
       (CLevel*, u32, u32, bool&),
       ((CLevel*)e->_this, Pz[0], Pz[1], e->calloriginal));
 
+    // Level Remove Equipment
+    EVENT_DECL(CLevel, void, Level_RemoveEquipment,
+      (CLevel*, CEquipment*, bool&),
+      ((CLevel*)e->_this, (CEquipment*)Pz[0], e->calloriginal));
 
     // Character Killed
     void CharacterKill(CCharacter* attacker, CCharacter* killed, Vector3* position, u32 unk0) {

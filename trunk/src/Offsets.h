@@ -84,6 +84,9 @@ namespace TLAPI {
   TLFUNC(CharacterPickupEquipment,              PVOID,    __thiscall, (CCharacter*, CEquipment*, CLevel*));
   TLFUNC(InventoryAddEquipment,                 PVOID,    __thiscall, (CInventory*, CEquipment*, u32, u32));
   TLFUNC(InventoryRemoveEquipment,              PVOID,    __thiscall, (CInventory*, CEquipment*));
+  TLFUNC(InventoryGetEquipmentFromSlot,         void,     __thiscall, (CEquipment*, CInventory*, int));
+  TLFUNC(InventoryGetEquipmentRefFromSlot,      void,     __thiscall, (CEquipmentRef*, CInventory*, int));
+
   TLFUNC(LevelDropItem,                         PVOID,    __thiscall, (CLevel*, CItem*, Vector3 &, bool));
   TLFUNC(LevelHideEquipment,                    PVOID,    __thiscall, (CLevel*, CEquipment*, u32));
 
@@ -97,7 +100,7 @@ namespace TLAPI {
   TLFUNC(CharacterPetawayTimer,                 PVOID,    __thiscall, (CCharacter*, float, CLevel*));
 
   TLFUNC(TriggerUnitTriggered,                  PVOID,    __thiscall, (CTriggerUnit*, CPlayer*));
-  TLFUNC(TriggerUnit_Triggered2,                void,     __thiscall, (CTriggerUnit*, CCharacter*));
+  //TLFUNC(TriggerUnit_Triggered2,                void,     __thiscall, (CTriggerUnit*, CCharacter*));
 
   // Check what this is
   TLFUNC(ObjectCreate,                          PVOID,    __thiscall, (PVOID, u64));
@@ -140,7 +143,7 @@ namespace TLAPI {
   
   TLFUNC(GameClientProcessTitleScreen,          void,     __thiscall, (CGameClient*, float, PVOID, PVOID));
 
-  TLFUNC(GameClientLoadMap,                     void,     __thiscall, (CGameClient*, u32));
+  TLFUNC(GameClient_LoadMap,                    void,     __thiscall, (CGameClient*, u32, u32));
 
   TLFUNC(Random,                                void,     __thiscall, ());
 
@@ -167,10 +170,12 @@ namespace TLAPI {
   TLFUNC(EffectManagerCreateEffect,        CEffect*,      __thiscall, (CEffectManager*));
   TLFUNC(EffectManager_AddEffectToEquipment,    void,     __thiscall, (CEffectManager*, CEquipment*, CEffect*));
   
+  /*
   TLFUNC(Effect_CopyCtor,                       void,     __thiscall, (CEffect*));
   TLFUNC(Effect_DataGroupCtor,                  void,     __thiscall, (CDataGroup*, u32));
   TLFUNC(Effect_ParamCtor,                      void,     __thiscall, (CEffect*, u32, bool, float, float, float, float, bool));
   TLFUNC(Effect_Character_Unk0,                 void,     __thiscall, (CEffect*, CCharacter*, bool));
+  */
 
   TLFUNC(Equipment_AddMagicModifier,            void,     __thiscall, (CEquipment*, u32, u32));
 
@@ -245,6 +250,8 @@ namespace TLAPI {
 
   TLFUNC(Effect_Something0,                     void,     __thiscall, (CEffect*, u32));
 
-  TLFUNC(Equipment_UpdateTooltip,               void,     __thiscall, (CEquipment*));
+  TLFUNC(Equipment_UpdateTooltip,               void,     __thiscall, ());
+
+  TLFUNC(Level_RemoveEquipment,                 void,     __thiscall, (CLevel*, CEquipment*));
 
 };

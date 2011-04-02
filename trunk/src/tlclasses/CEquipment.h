@@ -23,7 +23,7 @@ namespace TLAPI
   TLFUNC(Equipment_AddAffix,         void, __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float));
   TLFUNC(Equipment_AddGem,           void, __thiscall, (CEquipment*, CEquipment*));
   TLFUNC(EquipmentIdentify,          void, __thiscall, (CEquipment*, CPlayer*, CEquipment*));
-  TLFUNC(Equipment_UpdateTooltip,    void, __thiscall, (CEquipment*));
+  TLFUNC(Equipment_UpdateTooltip,    void, __thiscall, ());
 
   // Enchantment Types
   enum EnchantType {
@@ -151,7 +151,7 @@ namespace TLAPI
 
 
     void UpdateTooltip() {
-      Equipment_UpdateTooltip((CEquipment*)this);
+      Equipment_UpdateTooltip();
     }
     u32 Enchant(u32 unk0, u32 unk1, u32 unk2) const {
       return EquipmentEnchant((CEquipment*)this, unk0, unk1, unk2);
@@ -221,7 +221,7 @@ namespace TLAPI
         AddOtherModifier(type, amount);
       }
 
-      UpdateTooltip();
+      //UpdateTooltip();
     }
 
     //

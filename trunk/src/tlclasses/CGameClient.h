@@ -25,9 +25,10 @@ namespace TLAPI
 #pragma pack(1)
 
   struct CGameClient;
-  TLFUNC(GameClient_LoadLevel, void, __thiscall, (CGameClient*));
-  TLFUNC(GameClientProcessTitleScreen, void, __thiscall, (CGameClient*, float, PVOID, PVOID));
-  TLFUNC(GameClient_ChangeLevel, PVOID, __thiscall, (CGameClient*, wstring, s32, u32, u32, wstring, u32));
+  TLFUNC(GameClient_LoadLevel,          void,   __thiscall, (CGameClient*));
+  TLFUNC(GameClientProcessTitleScreen,  void,   __thiscall, (CGameClient*, float, PVOID, PVOID));
+  TLFUNC(GameClient_ChangeLevel,        PVOID,  __thiscall, (CGameClient*, wstring, s32, u32, u32, wstring, u32));
+  TLFUNC(GameClient_LoadMap,            void,   __thiscall, (CGameClient*, u32, u32));
 
   struct CGameClient : CRunicCore
   {
@@ -78,11 +79,16 @@ namespace TLAPI
 
     u32                 inGame;             // @2314  
 
-    CDungeon           *pCDungeon;          // @2308
+    CDungeon           *pCDungeon;          // @90Bh - This is correct
 
     u32                 unk200[10];
 
     u32                 difficulty;         // 0 - EASY, 1 - MEDIUM, 2 - HARD, 3 - VERY HARD
+
+    u32                 unk201[0x1B11];     // Unknown chunk, haven't looked at this
+
+    u8                  inGame2;            // @2428h - This is correct
+    u8                  unk202[3];          //   bool padding
     
 
     /*
@@ -107,9 +113,9 @@ namespace TLAPI
       (CGameClient*),
       ((CGameClient*)e->_this));
 
-    EVENT_DECL(CGameClient, void, GameClientLoadMap,
-      (PVOID, CGameClient*, u32, bool&),
-      ((PVOID)e->retval, (CGameClient *)e->_this, Pz[0], e->calloriginal));
+    EVENT_DECL(CGameClient, void, GameClient_LoadMap,
+      (CGameClient*, u32, u32, bool&),
+      ((CGameClient *)e->_this, Pz[0], Pz[1], e->calloriginal));
 
     EVENT_DECL(CGameClient, void, GameClientProcessObjects,
       (CGameClient*, float, PVOID, PVOID),
@@ -147,15 +153,15 @@ namespace TLAPI
 
 
     // Change level
+    void LoadGameMap(u32 unk0, u32 unk1) {
+      GameClient_LoadMap(this, unk0, unk1);
+    }
     void ForceToTown() {
       GameClient_ChangeLevel(this, L"TOWN", 0, 0, 0, L"", 0);
     }
     void ChangeLevel(wstring dungeonName, s32 relativeLevel, u32 unk0, u32 unk1, wstring unkString, u32 unk2) {
       GameClient_ChangeLevel(this, dungeonName, relativeLevel, unk0, unk1, unkString, unk2);
     }
-    
-  public:
-    void GameClientLoadMap(u32 unk);
   };
 
 #pragma pack()

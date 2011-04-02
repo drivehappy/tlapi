@@ -20,9 +20,9 @@ EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGro
 // Effect
 EVENT_DEF(CEffect, void, Effect_Effect_Something, (CEffect*, CEffect*, bool&));
 EVENT_DEF(CEffect, void, Effect_Something0,       (CEffect*, u32, bool&));
-EVENT_DEF(CEffect, void, Effect_ParamCtor,        (CEffect*, u32, bool, float, float, float, float, bool));
-EVENT_DEF(CEffect, void, Effect_CopyCtor,         (CEffect*));
-EVENT_DEF(CEffect, void, Effect_Character_Unk0,   (CEffect*, CCharacter*, bool));
+//EVENT_DEF(CEffect, void, Effect_ParamCtor,        (CEffect*, u32, bool, float, float, float, float, bool));
+//EVENT_DEF(CEffect, void, Effect_CopyCtor,         (CEffect*));
+//EVENT_DEF(CEffect, void, Effect_Character_Unk0,   (CEffect*, CCharacter*, bool));
 
 // BaseUnit
 EVENT_DEF(CBaseUnit, void, BaseUnit_AddSkill, (CBaseUnit*, wstring*, u32, bool&));
@@ -68,7 +68,7 @@ EVENT_DEF(CMouseManager, void, MouseManagerInput, (CMouseManager*, u32, u32, boo
 
 // GameClient
 EVENT_DEF(CGameClient, void, GameClientCtor, (CGameClient*));
-EVENT_DEF(CGameClient, void, GameClientLoadMap, (CGameClient*, u32));
+EVENT_DEF(CGameClient, void, GameClient_LoadMap, (CGameClient*, u32, u32, bool&));
 EVENT_DEF(CGameClient, void, GameClientProcessObjects, (CGameClient*, float, PVOID, PVOID));
 EVENT_DEF(CGameClient, void, GameClient_SaveGame, (CGameClient*, u32, u32, bool*));
 EVENT_DEF(CGameClient, void, GameClient_SetupUI, (CGameClient*, u32, u32));
@@ -112,10 +112,13 @@ EVENT_DEF(CLevel, void, Level_Dtor, (CLevel*, u32, bool&));
 EVENT_DEF(CLevel, void, Level_Ctor, (wstring name, CSettings*, CGameClient*, CResourceManager*, PVOID OctreeSM, CSoundManager*, u32, u32, bool&));
 EVENT_DEF(CLevel, void, Level_Update, (CLevel*, CVector3*, u32, float, bool&));
 EVENT_DEF(CLevel, void, Level_Cleanup, (CLevel*, u32, u32, bool&));
+EVENT_DEF(CLevel, void, Level_RemoveEquipment, (CLevel*, CEquipment*, bool&));
 
 // Inventory
 EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u32, u32));
 EVENT_DEF(CInventory, void, InventoryRemoveEquipment, (CInventory*, CEquipment*));
+EVENT_DEF(CInventory, void, InventoryGetEquipmentFromSlot, (CEquipment*, CInventory*, int));
+EVENT_DEF(CInventory, void, InventoryGetEquipmentRefFromSlot, (CEquipmentRef*, CInventory*, int));
 
 // Character
 EVENT_DEF(CCharacter, void, CharacterDtor, (CCharacter*));
@@ -152,7 +155,7 @@ EVENT_DEF(CItemGold, void, ItemGold_Ctor, (CItemGold*, PVOID, CResourceManager*,
 // TriggerUnit
 EVENT_DEF(CTriggerUnit, void, TriggerUnitTriggered, (CTriggerUnit*, CPlayer*, bool&));
 EVENT_DEF(CTriggerUnit, void, TriggerUnit_Ctor, (CTriggerUnit*, CLayout*, bool&));
-EVENT_DEF(CTriggerUnit, void, TriggerUnit_Triggered2, (CTriggerUnit*, CCharacter*, bool&));
+//EVENT_DEF(CTriggerUnit, void, TriggerUnit_Triggered2, (CTriggerUnit*, CCharacter*, bool&));
 
 // Breakable
 EVENT_DEF(CBreakable, void, BreakableTriggered, (CBreakable*, CPlayer*, bool&));
