@@ -38,8 +38,10 @@ namespace TLAPI
   struct CEffectManager;
   struct CCharacter;
   struct CInventory;
-  TLFUNC(InventoryRemoveEquipment, PVOID, __thiscall, (CInventory*, CEquipment*));
-  TLFUNC(InventoryAddEquipment,    PVOID, __thiscall, (CInventory*, CEquipment*, u32, u32));
+  TLFUNC(InventoryRemoveEquipment,          PVOID,  __thiscall, (CInventory*, CEquipment*));
+  TLFUNC(InventoryAddEquipment,             PVOID,  __thiscall, (CInventory*, CEquipment*, u32, u32));
+  TLFUNC(InventoryGetEquipmentFromSlot,     void,   __thiscall, (CEquipment*, CInventory*, int));
+  TLFUNC(InventoryGetEquipmentRefFromSlot,  void,   __thiscall, (CEquipmentRef*, CInventory*, int));
 
 #pragma pack(1)
 
@@ -66,6 +68,16 @@ namespace TLAPI
     EVENT_DECL(CInventory, void, InventoryRemoveEquipment,
       (CInventory*, CEquipment*),
       ((CInventory*)e->_this, (CEquipment*)Pz[0]));
+    
+    // Get Equipment from slot
+    EVENT_DECL(CInventory, void, InventoryGetEquipmentFromSlot,
+      (CEquipment*, CInventory*, int),
+      ((CEquipment*)e->retval, (CInventory*)e->_this, Pz[0]));
+
+    // Get EquipmentRef from slot
+    EVENT_DECL(CInventory, void, InventoryGetEquipmentRefFromSlot,
+      (CEquipmentRef**, CInventory*, int),
+      ((CEquipmentRef**)e->retval, (CInventory*)e->_this, Pz[0]));
     
     
     // Remove equipment from inventory

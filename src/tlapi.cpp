@@ -58,6 +58,9 @@ TLFUNCPTR(ResourceManagerCreateItem,             CItem*,    __thiscall, (CResour
 TLFUNCPTR(CharacterPickupEquipment,               PVOID,    __thiscall, (CCharacter*, CEquipment*, CLevel*),                                0x4969B0);     // 1.15  CPlayer, CEquipment, CLevel
 TLFUNCPTR(InventoryAddEquipment,                  PVOID,    __thiscall, (CInventory*, CEquipment*, u32, u32),                               0x4E6CE0);     // 1.15  CInventory, CEquipment, int slot, int unk
 TLFUNCPTR(InventoryRemoveEquipment,               PVOID,    __thiscall, (CInventory*, CEquipment*),                                         0x4E7610);     // 1.15  CInventory, CEquipment
+TLFUNCPTR(InventoryGetEquipmentFromSlot,          void,     __thiscall, (CEquipment*, CInventory*, int),                                    0x4E4DD0);
+TLFUNCPTR(InventoryGetEquipmentRefFromSlot,       void,     __thiscall, (CEquipmentRef*, CInventory*, int),                                 0x4E4E10);
+
 TLFUNCPTR(LevelHideEquipment,                     PVOID,    __thiscall, (CLevel*, CEquipment*, u32),                                        0x4F48C0);     // 1.15  CLevel, CEquipment, int unk
 
 TLFUNCPTR(GameClient_ChangeLevel,                 PVOID,    __thiscall, (CGameClient*, wstring, s32, u32, u32, wstring, u32),               0x40CF60);     // 1.15  CGameClient, 
@@ -110,7 +113,7 @@ TLFUNCPTR(PlayerCharacterSetAction,               void,     __thiscall, (CPlayer
 
 TLFUNCPTR(GameClientProcessTitleScreen,           void,     __thiscall, (CGameClient*, float, PVOID, PVOID),               0x40DF70);     // 1.15  CGameClient, float (0.005) / (0.1), u32 unk, float (0), u32 unk(0)
 
-TLFUNCPTR(GameClientLoadMap,                      void,     __thiscall, (CGameClient*, u32),                               0x4188E0);     // 1.15  CGameClient, u32 unk (0)
+TLFUNCPTR(GameClient_LoadMap,                     void,     __thiscall, (CGameClient*, u32, u32),                          0x4188E0);     // 1.15  CGameClient, u32 unk (0)
 
 TLFUNCPTR(Random,                                 void,     __thiscall, (),                                                0x5BA660);     // 1.15
 
@@ -134,13 +137,13 @@ TLFUNCPTR(Equipment_AddMagicModifier,             void,     __thiscall, (CEquipm
 TLFUNCPTR(Equipment_AddAffix,                     void,     __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float),   0x47F940);
 TLFUNCPTR(Equipment_UpdateRequirements,           void,     __thiscall, (CEquipment*),                                     0x4B3EA0);
 TLFUNCPTR(Equipment_UpdatePrice,                  void,     __thiscall, (CEquipment*),                                     0x4B3A10);
-TLFUNCPTR(Equipment_UpdateTooltip,                void,     __thiscall, (CEquipment*),                                     0x4CF410);
+TLFUNCPTR(Equipment_UpdateTooltip,                void,     __thiscall, (),                                                0x4CF410);
 TLFUNCPTR(EquipmentEnchant,                       u32,      __thiscall, (CEquipment*, u32, u32, u32),                      0x4BF560);
 TLFUNCPTR(EquipmentGetEnchantPrice,               u32,      __thiscall, (CEquipment*),                                     0x4B0230);
 TLFUNCPTR(Equipment_AddGem,                       void,     __thiscall, (CEquipment*, CEquipment*),                        0x4B6F80);
 
 TLFUNCPTR(Effect_CopyCtor,                        void,     __thiscall, (CEffect*),                                        0x47A2F0);
-TLFUNCPTR(Effect_DataGroupCtor,                   void,     __thiscall, (CDataGroup*, u32),                                0x5D5276);
+//TLFUNCPTR(Effect_DataGroupCtor,                   void,     __thiscall, (CDataGroup*, u32),                                0x5D5276);
 TLFUNCPTR(Effect_ParamCtor,                       void,     __thiscall, (CEffect*, u32, bool, float, float, float, float, bool),     0x479710);
 TLFUNCPTR(Effect_Effect_Something,                void,     __thiscall, (CEffect*, CEffect*),           	                 0x47A060);
 TLFUNCPTR(Effect_Something0,                      void,     __thiscall, (CEffect*, u32),                                   0x477D74);
@@ -186,7 +189,7 @@ TLFUNCPTR(Path_GetNextNode,                       void,     __thiscall, (CPath*,
 
 TLFUNCPTR(TriggerUnit_Ctor,              CTriggerUnit*,     __thiscall, (CLayout*),                                        0x4DDD70);
 TLFUNCPTR(TriggerUnitTriggered,                   PVOID,    __thiscall, (CTriggerUnit*, CPlayer*),                         0x4DE6C0);     // 1.15  CTriggerUnit, CPlayer
-TLFUNCPTR(TriggerUnit_Triggered2,                 void,     __thiscall, (CTriggerUnit*, CCharacter*),                      0x4DF190);
+//TLFUNCPTR(TriggerUnit_Triggered2,                 void,     __thiscall, (CTriggerUnit*, CCharacter*),                      0x4DF190);
 
 
 TLFUNCPTR(ItemGold_Ctor,                    CItemGold*,     __thiscall, (PVOID, CResourceManager*, u32),                   0x4CFFC0);
@@ -207,6 +210,7 @@ TLFUNCPTR(Player_SwapWeapons,                     void,     __thiscall, (CCharac
 // Same as Character_AddSkill
 TLFUNCPTR(BaseUnit_AddSkill,                      void,     __thiscall, (CBaseUnit*, wstring*, u32),                       0x47E930);
 
+TLFUNCPTR(Level_RemoveEquipment,                  void,     __thiscall, (CLevel*, CEquipment*),        	                   0x4F5350);
 
 
 
@@ -256,9 +260,9 @@ void TLAPI::HookFunctions()
 
   // Effect
   EVENT_INIT(CEffect, Effect_Effect_Something, 1);
-  EVENT_INIT(CEffect, Effect_ParamCtor, 7);
-  EVENT_INIT(CEffect, Effect_CopyCtor, 1);
-  EVENT_INIT(CEffect, Effect_Character_Unk0, 2);
+  //EVENT_INIT(CEffect, Effect_ParamCtor, 7);
+  //EVENT_INIT(CEffect, Effect_CopyCtor, 1);
+  //EVENT_INIT(CEffect, Effect_Character_Unk0, 2);
 
   // Hook WndProc
   EVENT_INIT(_GLOBAL, WndProc, 5);
@@ -288,7 +292,7 @@ void TLAPI::HookFunctions()
 
   // Hook GameClient
   EVENT_INIT(CGameClient, GameClientCtor, 8);
-  EVENT_INIT(CGameClient, GameClientLoadMap, 2);
+  EVENT_INIT(CGameClient, GameClient_LoadMap, 2);
   EVENT_INIT(CGameClient, GameClientProcessObjects, 4);
   EVENT_INIT(CGameClient, GameClient_SaveGame, 2);
   EVENT_INIT(CGameClient, GameClient_SetupUI, 2);
@@ -320,7 +324,7 @@ void TLAPI::HookFunctions()
   // TriggerUnit
   EVENT_INIT(CTriggerUnit, TriggerUnitTriggered, 1);
   EVENT_INIT(CTriggerUnit, TriggerUnit_Ctor, 1);
-  EVENT_INIT(CTriggerUnit, TriggerUnit_Triggered2, 1);
+  //EVENT_INIT(CTriggerUnit, TriggerUnit_Triggered2, 1);
 
   // Breakable
   EVENT_INIT(CBreakable, BreakableTriggered, 1);
@@ -356,10 +360,13 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CLevel, Level_Ctor, 14);
   EVENT_INIT(CLevel, Level_Update, 4);
   EVENT_INIT(CLevel, Level_Cleanup, 2);
+  EVENT_INIT(CLevel, Level_RemoveEquipment, 1);
 
   // Hook 
   EVENT_INIT(CInventory, InventoryAddEquipment, 3);
   EVENT_INIT(CInventory, InventoryRemoveEquipment, 1);
+  EVENT_INIT(CInventory, InventoryGetEquipmentFromSlot, 1);
+  EVENT_INIT(CInventory, InventoryGetEquipmentRefFromSlot, 1);
   
   // Hook MouseManager
   EVENT_INIT(CMouseManager, MouseManagerInput, 2);

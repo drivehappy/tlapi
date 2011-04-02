@@ -30,7 +30,7 @@ namespace TLAPI {
     CList<CEffect*> effectList;
     CList<CEffect*> effectList2;
 
-    u32 unk1[5];    // 1, 0, 0, 0, 1
+    u32 unk1[4];    // 0, 0, 0, 1
 
     CPlayer*     player;    // Equipment* too???
 

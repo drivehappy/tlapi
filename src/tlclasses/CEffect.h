@@ -161,7 +161,7 @@ namespace TLAPI {
 
     //PVOID unkEquipment;
 
-    
+    /*
     // Parameterized Ctor
     EVENT_DECL(CEffect, void, Effect_ParamCtor,
       (CEffect*, u32, bool, float, float, float, float, bool, bool&),
@@ -176,7 +176,7 @@ namespace TLAPI {
     EVENT_DECL(CEffect, void, Effect_Character_Unk0,
       (CEffect*, CCharacter*, bool),
       ((CEffect*)e->_this, (CCharacter*)Pz[0], (bool)Pz[1]));
-    
+    */
 
     // Effect - Function is crashing the client, seeing what it is
     EVENT_DECL(CEffect, void, Effect_Effect_Something,
@@ -195,6 +195,7 @@ namespace TLAPI {
     }
     */
 
+    /*
     void EffectCtor(CEffect *other)
     {
       Effect_CopyCtor(other);
@@ -205,6 +206,7 @@ namespace TLAPI {
     {
       Effect_ParamCtor(this, unk1, unk2, unk3, unk4, unk5, unk6, unk7);
     }
+    */
 
     /*
     //

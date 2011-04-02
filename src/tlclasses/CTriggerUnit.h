@@ -12,7 +12,7 @@ namespace TLAPI {
   //
   struct CTriggerUnit;
   TLFUNC(TriggerUnitTriggered,    PVOID,         __thiscall, (CTriggerUnit*, CPlayer*));
-  TLFUNC(TriggerUnit_Triggered2,  void,          __thiscall, (CTriggerUnit*, CCharacter*));
+  //TLFUNC(TriggerUnit_Triggered2,  void,          __thiscall, (CTriggerUnit*, CCharacter*));
   TLFUNC(TriggerUnit_Ctor,        CTriggerUnit*, __thiscall, (CLayout*));
 
   // Size: 2D0h
@@ -45,11 +45,12 @@ namespace TLAPI {
       (CTriggerUnit*, CPlayer*, bool&),
       ((CTriggerUnit*)e->_this, (CPlayer*)Pz[0], e->calloriginal));
 
+    /*
     // TriggerUnit Triggered
     EVENT_DECL(CTriggerUnit, void, TriggerUnit_Triggered2,
       (CTriggerUnit*, CCharacter*, bool&),
       ((CTriggerUnit*)e->_this, (CCharacter*)Pz[0], e->calloriginal));
-
+    */
     
   
     void Trigger(CPlayer *player) {
