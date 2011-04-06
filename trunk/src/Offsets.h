@@ -168,14 +168,15 @@ namespace TLAPI {
   TLFUNC(EquipmentEnchant,                      u32,      __thiscall, (CEquipment*, u32, u32, u32));
 
   TLFUNC(EffectManagerCreateEffect,        CEffect*,      __thiscall, (CEffectManager*));
+  TLFUNC(EffectManager_UpdateEffects,           void,     __thiscall, (CEffectManager*));
   TLFUNC(EffectManager_AddEffectToEquipment,    void,     __thiscall, (CEffectManager*, CEquipment*, CEffect*));
   
   /*
   TLFUNC(Effect_CopyCtor,                       void,     __thiscall, (CEffect*));
   TLFUNC(Effect_DataGroupCtor,                  void,     __thiscall, (CDataGroup*, u32));
-  TLFUNC(Effect_ParamCtor,                      void,     __thiscall, (CEffect*, u32, bool, float, float, float, float, bool));
   TLFUNC(Effect_Character_Unk0,                 void,     __thiscall, (CEffect*, CCharacter*, bool));
   */
+  TLFUNC(Effect_ParamCtor,                      void,     __thiscall, (CEffect*, u32, bool, bool, float, float, float, bool));
 
   TLFUNC(Equipment_AddMagicModifier,            void,     __thiscall, (CEquipment*, u32, u32));
 
@@ -253,5 +254,7 @@ namespace TLAPI {
   TLFUNC(Equipment_UpdateTooltip,               void,     __thiscall, ());
 
   TLFUNC(Level_RemoveEquipment,                 void,     __thiscall, (CLevel*, CEquipment*));
+
+  TLFUNC(EffectManager_RemoveAffix,             bool,     __thiscall, (CEffectManager*, CAffix*));
 
 };

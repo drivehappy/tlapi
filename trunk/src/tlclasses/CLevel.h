@@ -214,7 +214,8 @@ namespace TLAPI
 
         CItem* item = (CItem*)itr->pCBaseUnit;
         
-        log(L"  itrNext: %p, Item: %p, Name: %s", itr->pNext, item, item->nameReal.c_str());
+        log(L"   itrNext: %p, Item: %p, Name: %s", itr->pNext, item, item->nameReal.c_str());
+        log(L"     vtable: %p dtor: %p", *(u32*)(itr->pCBaseUnit), **(u32**)(itr->pCBaseUnit));
         //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, item, item->nameReal.c_str());
 
         itr = itr->pNext;
