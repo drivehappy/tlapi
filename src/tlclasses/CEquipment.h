@@ -1,5 +1,9 @@
 #pragma once
 
+// DEBUGGING
+#include <stdio.h>
+//
+
 #include "CItem.h"
 #include "CAttackDescription.h"
 #include "CMasterResourceManager.h"
@@ -9,7 +13,6 @@
 
 namespace TLAPI
 {
-
   // Forward decl CInventory
   struct CItemSaveState;
   struct CGenericModel;
@@ -165,7 +168,7 @@ namespace TLAPI
     void AddAffix(CAffix* affix, u32 unk0, CEquipment* equipment2, float unk1) {
       Equipment_AddAffix(this, affix, unk0, equipment2, unk1);
     }
-    void AddOtherModifier(EffectType type, float amount) {
+    void AddOtherModifier(EffectType type, float amount_min, float amount_max) {
       CMasterResourceManager *masterResMgr = CMasterResourceManager::GetInstance();
       CEffectGroupManager *effectMgr = masterResMgr->pCEffectGroupManager;
       CList<CAffix*> *listAffixes = new CList<CAffix*>();
@@ -173,10 +176,23 @@ namespace TLAPI
       listAffixes->capacity = 0;
       listAffixes->growth = 1;
 
+      //CEffectManager *playerEffectManager = gameClient->pCPlayer->pCEffectManager;
+
       // If we don't have an effect manager for this equipment, add one
       // this is hacky, but I'm too lazy to recreate it myself
       if (!pCEffectManager) {
         logColor(B_RED, L"No EffectManager for Equipment, creating...");
+
+        // DEBUGGING
+        FILE* fp = fopen("debug.txt", "w+");
+        if (fp) {
+          fprintf(fp, "No EffectManager for Equipment %p (%016I64X), creating...", this, GUID);
+          fclose(fp);
+        }
+        //multiplayerLogger.WriteLine(Info, L"No EffectManager for Equipment %p (%016I64X), creating...", this, guid);
+        //__asm int 3;
+        // --
+
         effectMgr->CreateAffix(0x5F, 0, 5, listAffixes);
         CAffix* affix = (*listAffixes)[0];
         AddAffix(affix, 0, this, 1.0f);
@@ -186,14 +202,21 @@ namespace TLAPI
 
       // Change the effect type and value
       // Add the unknowns, some weird effects are cropping up
-      logColor(B_RED, L" Add effect to Equipment EffectManager list: Type: %x, Value: %f", type, amount);
+      logColor(B_RED, L" Add effect to Equipment EffectManager list: Type: %x, Value: %f / %f", type, amount_min, amount_max);
       
-      //CEffect* effect = pCEffectManager->CreateEffect();
-      CEffect* effect = new CEffect();
+      // Working method:
+      CEffect* effect = new CEffect(type, true, false, -1000.0, 0, 1.0f, true);
 
+      // Testing:
+      //CEffect *effect = pCEffectManager->CreateEffect();
+      //pCEffectManager->UpdateEffects();
+
+      //effect->listUnknown.size = 0;
+      //effect->listUnknown2.size = 0;
       effect->effectType = type;
-      effect->effectValue = amount;
-      effect->effectIndex = pCEffectManager->effectList.size;
+      effect->effectValueMin = amount_min;
+      effect->effectValueMax = amount_max;
+      //effect->effectIndex = pCEffectManager->effectList.size;
       effect->unk2 = 0;
       effect->unk3 = -1000.0f;
       effect->unk4[0] = 0;
@@ -211,14 +234,15 @@ namespace TLAPI
 
     // This is designed to encompass the above into an easily callable function
     // for creating the exact item enchants requested (i.e. network item copy)
-    void AddEnchant(EffectType type, EnchantType subType, float amount) {
+    void AddEnchant(EffectType type, EnchantType subType, float amount_min, float amount_max) {
       // Special case for regular type
-      if (type == REGULAR) {
+      // -- Probably not a special case -- TODO Rework this
+      if (type == KEFFECT_TYPE_DAMAGE_BONUS) {
         // PHYSICAL, FIRE, ICE, POISON, ELECTRIC
-        Equipment_AddMagicModifier(this, subType, (u32)amount);
+        Equipment_AddMagicModifier(this, subType, (u32)amount_min);
       } else {
         // KNOCKBACK, FASTER ATTACK, etc.
-        AddOtherModifier(type, amount);
+        AddOtherModifier(type, amount_min, amount_max);
       }
 
       //UpdateTooltip();

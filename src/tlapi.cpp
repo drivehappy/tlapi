@@ -125,6 +125,7 @@ TLFUNCPTR(MonsterReadProp,                        void,     __thiscall, (CMonste
 TLFUNCPTR(GetGameGlobals,                         CGameGlobals*, __thiscall, (),                                           0x5219B0);
 
 TLFUNCPTR(EffectManagerCreateEffect,              CEffect*, __thiscall, (CEffectManager*),                                 0x47D300);
+TLFUNCPTR(EffectManager_UpdateEffects,            void,     __thiscall, (CEffectManager*),                                 0x47CD90);
 TLFUNCPTR(EffectManager_AddEffectToEquipment,     void,     __thiscall, (CEffectManager*, CEquipment*, CEffect*),          0x47E3A0);
 
 TLFUNCPTR(EffectGroupManager_CreateAffix,         void,     __thiscall, (CEffectGroupManager*, u32, u32, u32, CList<CAffix*>*),   0x47BB50);
@@ -144,9 +145,9 @@ TLFUNCPTR(Equipment_AddGem,                       void,     __thiscall, (CEquipm
 
 TLFUNCPTR(Effect_CopyCtor,                        void,     __thiscall, (CEffect*),                                        0x47A2F0);
 //TLFUNCPTR(Effect_DataGroupCtor,                   void,     __thiscall, (CDataGroup*, u32),                                0x5D5276);
-TLFUNCPTR(Effect_ParamCtor,                       void,     __thiscall, (CEffect*, u32, bool, float, float, float, float, bool),     0x479710);
+TLFUNCPTR(Effect_ParamCtor,                       void,     __thiscall, (CEffect*, u32, bool, bool, float, float, float, bool),     0x479710);  // CEffect, EffectType, unk..
 TLFUNCPTR(Effect_Effect_Something,                void,     __thiscall, (CEffect*, CEffect*),           	                 0x47A060);
-TLFUNCPTR(Effect_Something0,                      void,     __thiscall, (CEffect*, u32),                                   0x477D74);
+TLFUNCPTR(Effect_Something0,                      void,     __thiscall, (CEffect*, u32),                                   0x477CF0);
 TLFUNCPTR(Effect_Character_Unk0,                  void,     __thiscall, (CEffect*, CCharacter*, bool),                     0x4798A0);
 
 
@@ -212,7 +213,7 @@ TLFUNCPTR(BaseUnit_AddSkill,                      void,     __thiscall, (CBaseUn
 
 TLFUNCPTR(Level_RemoveEquipment,                  void,     __thiscall, (CLevel*, CEquipment*),        	                   0x4F5350);
 
-
+TLFUNCPTR(EffectManager_RemoveAffix,              bool,     __thiscall, (CEffectManager*, CAffix*),                        0x47DA40);
 
 
 
@@ -251,7 +252,8 @@ void TLAPI::HookFunctions()
   // Hook EffectManager
   EVENT_INIT(CEffectManager, EffectManagerCreateEffect, 0);
   EVENT_INIT(CEffectManager, EffectManager_AddEffectToEquipment, 2);
-
+  EVENT_INIT(CEffectManager, EffectManager_RemoveAffix, 1);
+  
   // BaseUnit
   EVENT_INIT(CBaseUnit, BaseUnit_AddSkill, 2);
 
@@ -260,7 +262,7 @@ void TLAPI::HookFunctions()
 
   // Effect
   EVENT_INIT(CEffect, Effect_Effect_Something, 1);
-  //EVENT_INIT(CEffect, Effect_ParamCtor, 7);
+  EVENT_INIT(CEffect, Effect_ParamCtor, 7);
   //EVENT_INIT(CEffect, Effect_CopyCtor, 1);
   //EVENT_INIT(CEffect, Effect_Character_Unk0, 2);
 

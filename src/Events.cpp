@@ -20,7 +20,7 @@ EVENT_DEF(CEffectGroupManager, void, EffectGroupManager_CreateAffix, (CEffectGro
 // Effect
 EVENT_DEF(CEffect, void, Effect_Effect_Something, (CEffect*, CEffect*, bool&));
 EVENT_DEF(CEffect, void, Effect_Something0,       (CEffect*, u32, bool&));
-//EVENT_DEF(CEffect, void, Effect_ParamCtor,        (CEffect*, u32, bool, float, float, float, float, bool));
+EVENT_DEF(CEffect, void, Effect_ParamCtor,        (CEffect*, u32, bool, bool, float, float, float, bool, bool&));
 //EVENT_DEF(CEffect, void, Effect_CopyCtor,         (CEffect*));
 //EVENT_DEF(CEffect, void, Effect_Character_Unk0,   (CEffect*, CCharacter*, bool));
 
@@ -38,8 +38,9 @@ EVENT_DEF(CSkillManager, CSkillProperty*, SkillManagerSetSkillLevel, (CSkillMana
 EVENT_DEF(CQuestManager, void, QuestManagerSetQuestCompleted, (CQuestManager*, CQuest*, CCharacter*, u32, bool&));
 
 // EffectManager
-EVENT_DEF(CEffectManager, void, EffectManagerCreateEffect, (CEffect*, CEffectManager*));
+EVENT_DEF(CEffectManager, void, EffectManagerCreateEffect,          (CEffect*, CEffectManager*));
 EVENT_DEF(CEffectManager, void, EffectManager_AddEffectToEquipment, (CEffectManager*, CEquipment*, CEffect*));
+EVENT_DEF(CEffectManager, void, EffectManager_RemoveAffix,          (bool, CEffectManager*, CAffix*, bool&));
 
 // CharacterSaveState
 EVENT_DEF(CCharacterSaveState, void, CharacterSaveState_LoadFromFile, (CCharacterSaveState*, PVOID, u32));

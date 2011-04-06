@@ -17,7 +17,9 @@ namespace TLAPI {
   struct CPlayer;
 
   //
-  TLFUNC(EffectManagerCreateEffect,        CEffect*,      __thiscall, (CEffectManager*));
+  TLFUNC(EffectManagerCreateEffect,        CEffect*,  __thiscall, (CEffectManager*));
+  TLFUNC(EffectManager_UpdateEffects,      void,      __thiscall, (CEffectManager*));
+  TLFUNC(EffectManager_RemoveAffix,        bool,      __thiscall, (CEffectManager*, CAffix*));
 
   //
   struct CEffectManager : CRunicCore
@@ -77,10 +79,21 @@ namespace TLAPI {
       (CEffectManager*, CEquipment*, CEffect*),
       ((CEffectManager*)e->_this, (CEquipment*)Pz[0], (CEffect*)Pz[1]));
 
+    EVENT_DECL(CEffectManager, void, EffectManager_RemoveAffix,
+      (bool, CEffectManager*, CAffix*, bool&),
+      ((bool)e->retval, (CEffectManager*)e->_this, (CAffix*)Pz[0], e->calloriginal));
 
     CEffect* CreateEffect()
     {
       return EffectManagerCreateEffect(this);
+    }
+    void UpdateEffects()
+    {
+      return EffectManager_UpdateEffects(this);
+    }
+    bool RemoveAffix(CAffix* affix)
+    {
+      return EffectManager_RemoveAffix(this, affix);
     }
     
     void dumpEffectManager() {
