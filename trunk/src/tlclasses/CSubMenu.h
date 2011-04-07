@@ -6,19 +6,25 @@ namespace TLAPI {
 
 #pragma pack(1)
 
+  struct CGameUI;
+
   //
   // Unsure of the breakoff on the derived classes here
   struct CSubMenu : CRunicCore
   {
     PVOID unk0;
     PVOID vtable_iInventoryListener;
-    PVOID CEGUISheetPropertySet[7];
-    PVOID CEGUIPushButton;
 
-    CCharacter *npc;
+    PVOID CEGUISheetPropertySet[7];
+
+    //PVOID CEGUIPushButton;
+    //CCharacter *npc;
+
     CPlayer    *player;
     CLevel     *level;
-    u32         unk01;
+
+    bool         unk01[4];
+
     CSettings  *settings;
     CGameUI    *gameUI;
 

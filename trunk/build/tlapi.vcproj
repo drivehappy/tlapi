@@ -655,6 +655,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\tlclasses\CInventoryMenu.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\tlclasses\CItem.h"
 				>
 			</File>

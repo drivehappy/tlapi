@@ -5,6 +5,7 @@
 #include "CRunicCore.h"
 #include "CSettings.h"
 #include "CPlayer.h"
+#include "CSubMenu.h"
 
 namespace TLAPI
 {
@@ -18,11 +19,38 @@ namespace TLAPI
     PVOID pCSoundManager;   // ptr to CSoundManager
     CPlayer* pCPlayer;         // ptr to CPlayer
 
-    u32   unk1[7];
+    u32   unk10[3];
+
+    CCharacter* pCTargetCharacter;
+
+    u32   unk1[3];
 
     CSettings*    pCSettings;
 
-    u32   unk2[1473];       // A lot of stuff I haven't looked at yet
+    u32   unk4[14];
+
+    CEGUI::GUISheet *sheetTargetName;
+
+    u32   unk3[1423];       // A lot of stuff I haven't looked at yet
+
+    CSubMenu** beginSubMenu;    // @16B8h Ptr to beginning of an array of menus... Inventory, Enchant, everything
+                               /*
+                               CInventoryMenu
+                               CSkillMenu
+                               CJournalMenu
+                               CMerchantMenu
+                               CEnchantMenu
+                               CCombineMenu
+                               CStashMenu
+                               CStatsMenu
+                               CPetMenu
+                               ceguibase::GUISheet
+                               ceguibase::GUISheet
+                               ceguibase::GUISheet
+                                */
+    CSubMenu** endSubMenu;      // @16BCh
+
+    u32   unk2[33];       // A lot of stuff I haven't looked at yet
 
     CEGUI::Rect   rectLeftPaneBlocker;
     CEGUI::Rect   rectRightPaneBlocker;
@@ -44,6 +72,22 @@ namespace TLAPI
       (CGameUI*, bool&),
       ((CGameUI*)e->_this, e->calloriginal));
 
+
+    void dumpSubMenuPtrs()
+    {
+      CSubMenu** itr = beginSubMenu;
+
+      log(L"dumpSubMenuPtrs:");
+      while (itr != endSubMenu) {
+        //log(L"  CSubMenu base: %p", (*itr));
+
+        // Check InventoryMenu vtable
+        if (*(u32*)(*itr) == 0xA8E530) {
+          log(L" InventoryMenu found: %p", (*itr));
+        }
+        itr++;
+      }
+    }
 
     void dumpGameUI() {
       log("CGameUI(%p) dump:", this);
