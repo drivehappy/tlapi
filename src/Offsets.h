@@ -27,6 +27,7 @@
 #include "CKeyManager.h"
 #include "CItemGold.h"
 #include "CQuestManager.h"
+#include "CInventoryMenu.h"
 
 namespace TLAPI {
 
@@ -256,5 +257,7 @@ namespace TLAPI {
   TLFUNC(Level_RemoveEquipment,                 void,     __thiscall, (CLevel*, CEquipment*));
 
   TLFUNC(EffectManager_RemoveAffix,             bool,     __thiscall, (CEffectManager*, CAffix*));
+
+  TLFUNC(InventoryMenu_OpenClose,               void,     __thiscall, (CInventoryMenu*, bool));
 
 };

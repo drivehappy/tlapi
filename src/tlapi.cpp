@@ -215,6 +215,8 @@ TLFUNCPTR(Level_RemoveEquipment,                  void,     __thiscall, (CLevel*
 
 TLFUNCPTR(EffectManager_RemoveAffix,              bool,     __thiscall, (CEffectManager*, CAffix*),                        0x47DA40);
 
+TLFUNCPTR(InventoryMenu_OpenClose,                void,     __thiscall, (CInventoryMenu*, bool),                           0x5788B0);
+
 
 
 
@@ -245,6 +247,9 @@ void TLAPI::PatchProcess()
 void TLAPI::HookFunctions()
 {
   log("Hooking functions...");
+
+  // InventoryMenu
+  EVENT_INIT(CInventoryMenu, InventoryMenu_OpenClose, 1);
 
   // Hook EffectGroupManager
   EVENT_INIT(CEffectGroupManager, EffectGroupManager_CreateAffix, 4);

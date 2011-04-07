@@ -11,6 +11,9 @@ EVENT_DEF(_GLOBAL, LRESULT, WndProc, (HWND, UINT, WPARAM, LPARAM));
 EVENT_DEF(_GLOBAL, void, SetSeedValue0, (u32, bool&));
 EVENT_DEF(_GLOBAL, void, SetSeedValue2, (u32, bool&));
 
+// InventoryMenu
+EVENT_DEF(CInventoryMenu, void, InventoryMenu_OpenClose, (CInventoryMenu*, bool&));
+
 // Path
 EVENT_DEF(CPath, void, Path_GetNextNode, (CPath*, Vector3*, float));
 
