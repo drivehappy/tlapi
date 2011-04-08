@@ -83,7 +83,7 @@ namespace TLAPI
     wstring nameSuffix;
 
     float unk1006[16];
-    u32   minimumPhysicalDamage;      // @ 0x2E4
+    u32   minimumPhysicalDamage;      // @2E4h
     u32   maximumPhysicalDamage;
 
     u32   unk1007;
@@ -93,7 +93,7 @@ namespace TLAPI
 
     u32   enhancementCount;
 
-    u8    identified;
+    u8    identified;                 // @2FCh
     u8    unk1008[3];
 
     std::vector<u32> enchantTypeList;

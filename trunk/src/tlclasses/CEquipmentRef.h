@@ -14,7 +14,10 @@ namespace TLAPI
 
     s32 slot;         //
     s32 slotother;    //
-    u32 unk2[5];
+    
+    bool unk1[4];
+
+    PVOID       vtable__iSelected;
 
     
     // EquipmentRef Dtor

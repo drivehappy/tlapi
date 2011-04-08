@@ -30,18 +30,20 @@
   19-39: Equipment  Tab  (row-order)
   40-60: Spells     Tab
   61-81: Fish       Tab
+
+  57B769
 */
 
 namespace TLAPI
 {
-
   struct CEffectManager;
   struct CCharacter;
   struct CInventory;
   TLFUNC(InventoryRemoveEquipment,          PVOID,  __thiscall, (CInventory*, CEquipment*));
   TLFUNC(InventoryAddEquipment,             PVOID,  __thiscall, (CInventory*, CEquipment*, u32, u32));
-  TLFUNC(InventoryGetEquipmentFromSlot,     void,   __thiscall, (CEquipment*, CInventory*, int));
-  TLFUNC(InventoryGetEquipmentRefFromSlot,  void,   __thiscall, (CEquipmentRef*, CInventory*, int));
+  TLFUNC(InventoryGetEquipmentFromSlot,     void,   __thiscall, (CEquipment*, CInventory*, u32));
+  TLFUNC(InventoryGetEquipmentRefFromSlot,  void,   __thiscall, (CEquipmentRef*, CInventory*, u32));
+  TLFUNC(InventoryAddTabSize,               void,   __thiscall, (CInventory*, u32, u32));
 
 #pragma pack(1)
 
@@ -53,10 +55,15 @@ namespace TLAPI
     CEffectManager       *pCEffectManager;
     CCharacter           *pCCharacter;
 
-    u32                   unk10;
+    u32                   maxSize;
 
     CList<CEquipmentRef*> equipmentList;
-    CList<PVOID>          iInventoryListenerList;
+    CList<CRunicCore*>    unkList;        // CPlayer, CEnchantMenu, odd list...
+
+    u32                   unk1[2];
+
+    vector<PVOID>         pOctreeSM;      // Size 1
+    vector<u32>           tabIndices;     // Beginning of tabs to seperate out equipment tabs: 13h, 28h, 3Dh ===> 19., 40., 61.
 
     //
     // Adds equipment to the given Inventory
@@ -78,6 +85,12 @@ namespace TLAPI
     EVENT_DECL(CInventory, void, InventoryGetEquipmentRefFromSlot,
       (CEquipmentRef**, CInventory*, int),
       ((CEquipmentRef**)e->retval, (CInventory*)e->_this, Pz[0]));
+
+    // Adds a new "tab" to the inventory at the appropriate index with the size of the tab
+    // The size of the tab is simply added to the maximum inventory size
+    EVENT_DECL(CInventory, void, InventoryAddTabSize,
+      (CInventory*, u32, u32),
+      ((CInventory*)e->_this, Pz[0], Pz[1]));
     
     
     // Remove equipment from inventory
@@ -86,6 +99,9 @@ namespace TLAPI
     }
     void AddEquipment(CEquipment* equipment, u32 slot, u32 unk0) {
       InventoryAddEquipment(this, equipment, slot, unk0);
+    }
+    void AddTabSize(u32 index, u32 size) {
+      InventoryAddTabSize(this, index, size);
     }
 
     // Returns the slot number for the equipment in the inventory

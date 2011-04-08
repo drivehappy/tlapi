@@ -58,8 +58,10 @@ TLFUNCPTR(ResourceManagerCreateItem,             CItem*,    __thiscall, (CResour
 TLFUNCPTR(CharacterPickupEquipment,               PVOID,    __thiscall, (CCharacter*, CEquipment*, CLevel*),                                0x4969B0);     // 1.15  CPlayer, CEquipment, CLevel
 TLFUNCPTR(InventoryAddEquipment,                  PVOID,    __thiscall, (CInventory*, CEquipment*, u32, u32),                               0x4E6CE0);     // 1.15  CInventory, CEquipment, int slot, int unk
 TLFUNCPTR(InventoryRemoveEquipment,               PVOID,    __thiscall, (CInventory*, CEquipment*),                                         0x4E7610);     // 1.15  CInventory, CEquipment
-TLFUNCPTR(InventoryGetEquipmentFromSlot,          void,     __thiscall, (CEquipment*, CInventory*, int),                                    0x4E4DD0);
-TLFUNCPTR(InventoryGetEquipmentRefFromSlot,       void,     __thiscall, (CEquipmentRef*, CInventory*, int),                                 0x4E4E10);
+TLFUNCPTR(InventoryGetEquipmentFromSlot,          void,     __thiscall, (CEquipment*, CInventory*, u32),                                    0x4E4DD0);
+TLFUNCPTR(InventoryGetEquipmentRefFromSlot,       void,     __thiscall, (CEquipmentRef*, CInventory*, u32),                                 0x4E4E10);
+TLFUNCPTR(InventoryAddTabSize,                    void,     __thiscall, (CInventory*, u32, u32),                                            0x4E7370);     // 1.15   CInventory, TabIndex, AdditionalSize
+
 
 TLFUNCPTR(LevelHideEquipment,                     PVOID,    __thiscall, (CLevel*, CEquipment*, u32),                                        0x4F48C0);     // 1.15  CLevel, CEquipment, int unk
 
@@ -217,7 +219,7 @@ TLFUNCPTR(EffectManager_RemoveAffix,              bool,     __thiscall, (CEffect
 
 TLFUNCPTR(InventoryMenu_OpenClose,                void,     __thiscall, (CInventoryMenu*, bool),                           0x5788B0);
 
-
+// 579660 - InventoryMenu_UpdateBackpack
 
 
 
@@ -374,6 +376,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CInventory, InventoryRemoveEquipment, 1);
   EVENT_INIT(CInventory, InventoryGetEquipmentFromSlot, 1);
   EVENT_INIT(CInventory, InventoryGetEquipmentRefFromSlot, 1);
+  EVENT_INIT(CInventory, InventoryAddTabSize, 2);
   
   // Hook MouseManager
   EVENT_INIT(CMouseManager, MouseManagerInput, 2);

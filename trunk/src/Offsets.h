@@ -85,8 +85,9 @@ namespace TLAPI {
   TLFUNC(CharacterPickupEquipment,              PVOID,    __thiscall, (CCharacter*, CEquipment*, CLevel*));
   TLFUNC(InventoryAddEquipment,                 PVOID,    __thiscall, (CInventory*, CEquipment*, u32, u32));
   TLFUNC(InventoryRemoveEquipment,              PVOID,    __thiscall, (CInventory*, CEquipment*));
-  TLFUNC(InventoryGetEquipmentFromSlot,         void,     __thiscall, (CEquipment*, CInventory*, int));
-  TLFUNC(InventoryGetEquipmentRefFromSlot,      void,     __thiscall, (CEquipmentRef*, CInventory*, int));
+  TLFUNC(InventoryGetEquipmentFromSlot,         void,     __thiscall, (CEquipment*, CInventory*, u32));
+  TLFUNC(InventoryGetEquipmentRefFromSlot,      void,     __thiscall, (CEquipmentRef*, CInventory*, u32));
+  TLFUNC(InventoryAddTabSize,                   void,     __thiscall, (CInventory*, u32, u32));
 
   TLFUNC(LevelDropItem,                         PVOID,    __thiscall, (CLevel*, CItem*, Vector3 &, bool));
   TLFUNC(LevelHideEquipment,                    PVOID,    __thiscall, (CLevel*, CEquipment*, u32));

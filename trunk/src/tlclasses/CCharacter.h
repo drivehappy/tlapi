@@ -120,28 +120,34 @@ namespace TLAPI
     PVOID pBoneOgre2;   // Diff
     PVOID pBoneOgre3;   // Diff
 
-    PVOID unk10[2];     // NULL, NULL
+    PVOID unk10[2];       // NULL, NULL
 
-    PVOID pBoneOgre4;   // Diff
-    PVOID pBoneOgre5;   // Diff
+    PVOID pBoneOgre4;     // Diff
+    PVOID pBoneOgre5;     // Diff
 
     PVOID unk1111;        // NULL
 
-    PVOID pOctree0;     // ptr Octree Node
-    PVOID pOctree1;     // Diff
+    PVOID pOctree0;       // ptr Octree Node
+    PVOID pOctree1;       // Diff
 
-    PVOID unk12[2];     // NULL, NULL
+    PVOID unk12[2];       // NULL, NULL
 
-    PVOID pOctree2;     // Diff
+    PVOID pOctree2;       // Diff
 
     u8   running1;
     u8   running;
     u8   running2;
     u8   running3;
 
-    float unk13[3];     // 2.0, 0, 0, 1
+    float unk13[3];       // 2.0, 0, 0, 1
 
-    u32 state; // @A1 State
+    u32 state;            // @284h State      sub_483980 checks for state 5, 6
+                          /*
+                            14h - Trading with NPC
+                            0Eh - Casting spell attack
+                            00h - Idle
+                            
+                          */
 
     u32 unk14;            
 
@@ -198,8 +204,8 @@ namespace TLAPI
     u32      availableSkillPoints;  // @3E0h
     u32      unk171[8];
 
-    CInventory  *pCInventory;
-    CEquipment  *pCEquipment;   // @: 170. (*4)
+    CInventory  *pCInventory;   // @404h
+    CEquipment  *pCEquipment;   // @408h
 
     u32      unk18;
     CList<CParticle*>  listParticles;
