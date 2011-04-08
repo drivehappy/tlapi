@@ -192,7 +192,7 @@ namespace TLAPI
       while (itr != NULL) {
         CCharacter* character = (CCharacter*)itr->pCBaseUnit;
         logColor(B_GREEN, L"  Level Character2: (itr = %p) %p %s", itr, character, character->characterName.c_str());
-        //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, character, character->characterName.c_str());
+
         itr = itr->pNext;
       }
     }

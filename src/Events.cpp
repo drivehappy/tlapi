@@ -121,8 +121,9 @@ EVENT_DEF(CLevel, void, Level_RemoveEquipment, (CLevel*, CEquipment*, bool&));
 // Inventory
 EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u32, u32));
 EVENT_DEF(CInventory, void, InventoryRemoveEquipment, (CInventory*, CEquipment*));
-EVENT_DEF(CInventory, void, InventoryGetEquipmentFromSlot, (CEquipment*, CInventory*, int));
-EVENT_DEF(CInventory, void, InventoryGetEquipmentRefFromSlot, (CEquipmentRef*, CInventory*, int));
+EVENT_DEF(CInventory, void, InventoryGetEquipmentFromSlot, (CEquipment*, CInventory*, u32));
+EVENT_DEF(CInventory, void, InventoryGetEquipmentRefFromSlot, (CEquipmentRef*, CInventory*, u32));
+EVENT_DEF(CInventory, void, InventoryAddTabSize, (CInventory*, u32, u32));
 
 // Character
 EVENT_DEF(CCharacter, void, CharacterDtor, (CCharacter*));

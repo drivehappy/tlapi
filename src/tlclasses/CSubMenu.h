@@ -23,7 +23,8 @@ namespace TLAPI {
     CPlayer    *player;
     CLevel     *level;
 
-    bool         unk01[4];
+    u8          isMenuVisible;
+    u8          unk01[3];
 
     CSettings  *settings;
     CGameUI    *gameUI;
