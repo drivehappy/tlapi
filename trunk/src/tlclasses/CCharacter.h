@@ -225,7 +225,7 @@ namespace TLAPI
 
     u32     unk33[29];
 
-    PVOID   pOgreShadowCaster;  // @ 254. (*4)
+    PVOID   pOgreShadowCaster;  // @ 254. (*4)  (@3f8h)
 
     u32     unk34[9];
 
@@ -242,7 +242,11 @@ namespace TLAPI
 
     CWeaponTrail  *pCWeaponTrail;
 
-    u32     unk35[22];
+    u32     unk35[21];
+
+    u8      unk37[2];
+    u8      weaponSetToggle;  // @65Ah
+    u8      unk38;
 
     // Cutoff here or before for Monster / Player
 

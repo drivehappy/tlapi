@@ -129,8 +129,8 @@ namespace TLAPI
 
     // Enchant
     EVENT_DECL(CEquipment, void, EquipmentEnchant,
-      (u32, CEquipment*, u32, u32, u32),
-      (e->retval, (CEquipment*)e->_this, Pz[0], Pz[1], Pz[2]));
+      (u32, CEquipment*, u32, u32, u32, bool&),
+      (e->retval, (CEquipment*)e->_this, Pz[0], Pz[1], Pz[2], e->calloriginal));
 
     // Add only the magic modifier (PHYSICAL, ICE, FIRE, etc. [Not: CRIT, KNOCKBACK, etc])
     EVENT_DECL(CEquipment, void, Equipment_AddMagicModifier,

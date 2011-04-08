@@ -197,6 +197,20 @@ namespace TLAPI
       }
     }
 
+    vector<CCharacter*>& GetCharacters() {
+      vector<CCharacter*>* retval = new vector<CCharacter*>();
+
+      LinkedListNode* itr = *ppCCharacters2;
+      while (itr != NULL) {
+        CCharacter* character = (CCharacter*)itr->pCBaseUnit;
+        retval->push_back(character);
+
+        itr = itr->pNext;
+      }
+
+      return *retval;
+    }
+
     int GetCharacterCount() {
       int count = 0;
       LinkedListNode* itr = *ppCCharacters2;

@@ -218,9 +218,10 @@ TLFUNCPTR(Level_RemoveEquipment,                  void,     __thiscall, (CLevel*
 TLFUNCPTR(EffectManager_RemoveAffix,              bool,     __thiscall, (CEffectManager*, CAffix*),                        0x47DA40);
 
 TLFUNCPTR(InventoryMenu_OpenClose,                void,     __thiscall, (CInventoryMenu*, bool),                           0x5788B0);
+TLFUNCPTR(InventoryMenu_MouseEvent,               void,     __thiscall, (CInventoryMenu*, const CEGUI::MouseEventArgs&),   0x578EF0);
+
 
 // 579660 - InventoryMenu_UpdateBackpack
-
 
 
 // CLevel_CreateLevel   @4FC9F0     (CLevelTemplateData*, int, int, void*, 
@@ -252,6 +253,7 @@ void TLAPI::HookFunctions()
 
   // InventoryMenu
   EVENT_INIT(CInventoryMenu, InventoryMenu_OpenClose, 1);
+  EVENT_INIT(CInventoryMenu, InventoryMenu_MouseEvent, 1);
 
   // Hook EffectGroupManager
   EVENT_INIT(CEffectGroupManager, EffectGroupManager_CreateAffix, 4);

@@ -260,5 +260,6 @@ namespace TLAPI {
   TLFUNC(EffectManager_RemoveAffix,             bool,     __thiscall, (CEffectManager*, CAffix*));
 
   TLFUNC(InventoryMenu_OpenClose,               void,     __thiscall, (CInventoryMenu*, bool));
+  TLFUNC(InventoryMenu_MouseEvent,              void,     __thiscall, (CInventoryMenu*, const CEGUI::MouseEventArgs&));
 
 };
