@@ -60,10 +60,8 @@ namespace TLAPI
     CList<CEquipmentRef*> equipmentList;
     CList<CRunicCore*>    unkList;        // CPlayer, CEnchantMenu, odd list...
 
-    u32                   unk1[2];
-
-    vector<PVOID>         pOctreeSM;      // Size 1
-    vector<u32>           tabIndices;     // Beginning of tabs to seperate out equipment tabs: 13h, 28h, 3Dh ===> 19., 40., 61.
+    vector<u32>           tabIndices;     // Tab group indicies: 1, 2, 3
+    vector<u32>           tabSizes;       // Tab group sizes for indicies: 13h, 28h, 3Dh ===> 19., 40., 61.
 
     //
     // Adds equipment to the given Inventory

@@ -12,7 +12,8 @@ EVENT_DEF(_GLOBAL, void, SetSeedValue0, (u32, bool&));
 EVENT_DEF(_GLOBAL, void, SetSeedValue2, (u32, bool&));
 
 // InventoryMenu
-EVENT_DEF(CInventoryMenu, void, InventoryMenu_OpenClose, (CInventoryMenu*, bool&));
+EVENT_DEF(CInventoryMenu, void, InventoryMenu_OpenClose,  (CInventoryMenu*, bool&));
+EVENT_DEF(CInventoryMenu, void, InventoryMenu_MouseEvent, (CInventoryMenu*, const CEGUI::MouseEventArgs*, bool&));
 
 // Path
 EVENT_DEF(CPath, void, Path_GetNextNode, (CPath*, Vector3*, float));
@@ -86,7 +87,7 @@ EVENT_DEF(CGameClient, void, GameClient_ChangeLevel, (CGameClient*, wstring, u32
 // Equipment
 EVENT_DEF(CEquipment, void, EquipmentDtor, (CEquipment*));
 EVENT_DEF(CEquipment, void, EquipmentInitialize, (CEquipment*, CItemSaveState*));
-EVENT_DEF(CEquipment, void, EquipmentEnchant, (u32, CEquipment*, u32, u32, u32));
+EVENT_DEF(CEquipment, void, EquipmentEnchant, (u32, CEquipment*, u32, u32, u32, bool&));
 EVENT_DEF(CEquipment, void, Equipment_AddMagicModifier, (CEquipment*, u32, u32));
 EVENT_DEF(CEquipment, void, Equipment_AddAffix, (CEquipment*, CAffix*, u32, CEquipment*, float));
 EVENT_DEF(CEquipment, void, EquipmentAddStackCount, (CEquipment*, u32));
@@ -97,7 +98,7 @@ EVENT_DEF(CEquipment, void, EquipmentIdentify, (CEquipment*, CPlayer*, CEquipmen
 EVENT_DEF(CEquipmentRef, void, EquipmentRef_Dtor, (CEquipmentRef*, u32));
 
 // Enchant Menu
-EVENT_DEF(CEnchantMenu, void, EnchantMenu_EnchantItem, (CEnchantMenu*));
+EVENT_DEF(CEnchantMenu, void, EnchantMenu_EnchantItem, (CEnchantMenu*, bool&));
 
 // ResourceManager
 EVENT_DEF(CResourceManager, void, ResourceManagerInitializePlayer,      (CResourceManager*, u32, u32));
