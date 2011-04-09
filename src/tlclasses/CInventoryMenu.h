@@ -42,7 +42,12 @@ namespace TLAPI {
 
     u32    unk7;
 
-    u32               unk100[0x1EAC];
+    //u32               unk100[0x1EAC];
+    u32               unk100[0x1EA2];
+
+    Ogre::Viewport   *paperDollViewport;        //@7B10h
+
+    u32               unk102[9];
 
     CEGUI::Checkbox  *weaponSwapCheckBox;       //@7B38h 
     PVOID             pCSkillTooltip;

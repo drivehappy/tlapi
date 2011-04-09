@@ -169,7 +169,7 @@ namespace TLAPI
       Equipment_AddAffix(this, affix, unk0, equipment2, unk1);
     }
     void AddOtherModifier(EffectType type, float amount_min, float amount_max) {
-      CMasterResourceManager *masterResMgr = CMasterResourceManager::GetInstance();
+      CMasterResourceManager *masterResMgr = CMasterResourceManager::getInstance();
       CEffectGroupManager *effectMgr = masterResMgr->pCEffectGroupManager;
       CList<CAffix*> *listAffixes = new CList<CAffix*>();
       listAffixes->size = 0;
@@ -183,6 +183,7 @@ namespace TLAPI
       if (!pCEffectManager) {
         logColor(B_RED, L"No EffectManager for Equipment, creating...");
 
+        /*
         // DEBUGGING
         FILE* fp = fopen("debug.txt", "w+");
         if (fp) {
@@ -192,6 +193,7 @@ namespace TLAPI
         //multiplayerLogger.WriteLine(Info, L"No EffectManager for Equipment %p (%016I64X), creating...", this, guid);
         //__asm int 3;
         // --
+        */
 
         effectMgr->CreateAffix(0x5F, 0, 5, listAffixes);
         CAffix* affix = (*listAffixes)[0];

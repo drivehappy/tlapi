@@ -15,7 +15,6 @@ namespace TLAPI {
 
 #pragma pack(1)
 
-  // Forward decls... stupid C++
   struct CMasterResourceManager;
   TLFUNC(GetMasterResourceManager, CMasterResourceManager*,__thiscall, (void));
 
@@ -48,12 +47,12 @@ namespace TLAPI {
     PVOID unk3;
     PVOID pCFileSystem;
     
-    u32 unk4;                       // 100h
+    u32 unk4;
 
-    PVOID pOctreeSM0;
-    PVOID pOctreeSM1;
-    PVOID pOctreeSM2;
-    PVOID pOctreeSM3;
+    Ogre::SceneManager          *pOctreeSM0;
+    Ogre::SceneManager          *sceneManagerPlayerInventory;   // @68h
+    Ogre::SceneManager          *sceneManagerPetInventory;      // @6Ch
+    Ogre::SceneManager          *pOctreeSM3;
 
     CRoomPieceDataInformation   *pCRoomPieceDataInformation;
 
@@ -62,12 +61,11 @@ namespace TLAPI {
 
     PVOID pCSoundBankDataInformation;
 
-    PVOID *tomyself;                // Cyclic ptr that points to this ptr
+    PVOID *tomyself;
     
-    // End?
 
 
-    static CMasterResourceManager* GetInstance() {
+    static CMasterResourceManager* getInstance() {
       return GetMasterResourceManager();
     }
   };

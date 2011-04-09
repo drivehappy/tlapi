@@ -22,17 +22,18 @@ namespace TLAPI
   TLFUNC(ResourceManagerCreateMonster,   CMonster*,   __thiscall, (CResourceManager*, u64, u32, bool));
   TLFUNC(ResourceManagerCreatePlayer,    CPlayer*,    __thiscall, (CResourceManager*, wchar_t*, u32));
 
+  // @510D49 - ret Func from using SceneManager
   // 
   struct CResourceManager : CRunicCore
   {
     u32 unk0;
 
-    PVOID         pOctreeSM;            // ptr to Octree scenemanager
-    CLevel       *pCLevel;              // ptr to CLevel
-    CHierarchy   *pCHierarchy;          // ptr to CHierarchy
-    CList<CGameClient*> *pCGameClient;  // CGameClient list
+    Ogre::SceneManager    *sceneManager;         // ptr to Octree scenemanager
+    CLevel                *pCLevel;              // ptr to CLevel
+    CHierarchy            *pCHierarchy;          // ptr to CHierarchy
+    CList<CGameClient*>   *pCGameClient;         // CGameClient list
 
-    u32 unk1[4];
+    u32                    unk1[4];
 
     // 
     // Function hooks

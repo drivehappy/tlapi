@@ -9,6 +9,8 @@ namespace TLAPI
 
 #pragma pack(1)
 
+  struct CResourceManager;
+
   struct CSceneNodeObject : CEditorBaseObject
   {
     PVOID pAnimationTrack;        // ptr to Ogre Animation Track
@@ -23,12 +25,11 @@ namespace TLAPI
 
     PVOID pSharedMaterialPtr;     // ptr to Ogre shared mat ptr
 
-    PVOID pOctreeNode0;
-    PVOID pUnk5;                  // NULL
-    PVOID pCResourceManager;
-    PVOID pOctreeNode1;
-
-    PVOID pOctreeSM;              // ptr to Octree SM
+    Ogre::Node            *pOctreeNode_Inventory;
+    Ogre::Entity          *pShadowCaster;                  // NULL
+    CResourceManager      *pCResourceManager;
+    Ogre::Node            *pOctreeNode_World;
+    Ogre::SceneManager    *pOctreeSM;              // ptr to Octree SM
 
 
     //
@@ -51,8 +52,6 @@ namespace TLAPI
       log("  pCEditorScene0: %p", pCEditorScene0);
       log("  pCEditorScene1: %p", pCEditorScene1);
       log("  pSharedMaterialPtr: %p", pSharedMaterialPtr);
-      log("  pOctreeNode0: %p", pOctreeNode0);
-      log("  pUnk5: %p", pUnk5);
       log("  pCResourceManager: %p", pCResourceManager);
       log("  pOctreeSM: %p", pOctreeSM);
     }
