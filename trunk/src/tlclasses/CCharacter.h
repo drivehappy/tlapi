@@ -61,16 +61,16 @@ namespace TLAPI
   // CBaseUnit Size = 0x190
   struct CCharacter : CBaseUnit
   {
-    PVOID vtableIInventoryListener;
-    PVOID vtableIMissle;
+    PVOID vtableIInventoryListener;   // @190h
+    PVOID vtableIMissle;              // @194h
 
     float unk0[3];      // -1.0, 0.0, -100.78487
 
     u32 unk1;           // 343C0001h
     u32 unk2;           // 0
 
-    CGenericModel     *pCGenericModel0;
-    CGenericModel     *pCGenericModel1;
+    CGenericModel     *pCGenericModel_World;      // @1ACh
+    CGenericModel     *pCGenericModel_Inventory;  // @1B0h
 
     float unk3[3];      // -25.59, 0.0727, 33.62, -25.59, 0.81, 33.62, 0
 

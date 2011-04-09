@@ -5,35 +5,48 @@
 #include "_CString.h"
 #include "_CList.h"
 #include "CPositionableObject.h"
+#include "CAnimationSet.h"
 
 namespace TLAPI
 {
 
 #pragma pack(1)
 
-  // Size: Unknown
-  // 
+  // Size: 238h
+  // Strict size = 238h - F0h = 148h
   struct CGenericModel : CPositionableObject
   {
-    PVOID     vtable_iRandomWeight;
-    PVOID     vtable_iHighlight;
-    PVOID     unk0;
+    PVOID         vtable_iRandomWeight;
+    PVOID         vtable_iHighlight;
 
-    CString   meshLocation; // "MEDIA/LEVELSETS/PROPS/MINE_PROPS/MINE_LATERN/MINE_LATERN.MESH"
+    wstring       meshLocation;         // "MEDIA/LEVELSETS/PROPS/MINE_PROPS/MINE_LATERN/MINE_LATERN.MESH"
+    wstring       unk0;
 
-    float unk1[6];    // 0.0,3 dup( 1.0),2 dup( 0.0)
-    u32 unk2;         // 7
-    float unk3;       // 1.0
-    u32 unk4[3];      // 345F6D67h  343534h   0h
-    float unk5;       // 1.0
-    u32 unk6[9];      //   7, 0Fh,0E8E8E0E0h,410000h,202020Ah,   0,0AAAAAAAAh,   0, 0Fh
+    u32           unk1[21];
 
-    PVOID         pSkeletonInstance;    // Ogre
+    Ogre::SkeletonInstance *skeleton;
+    //PVOID         pSkeletonInstance;    // Ogre
+    
     PVOID         unk7;
     PVOID         pOctreeSM0;           // Ogre
-    CList<PVOID>  AnimationStateList;   // Ogre animation state
+    //CList<PVOID>  AnimationStateList;   // Ogre animation state
+    CList<Ogre::AnimationState*>  animationStateList;
 
-    PVOID         *ptrtomyself;         // Cyclic ptr to myself
+    PVOID        *ptrtomyself;          // Cyclic ptr to myself
+
+    u32           unk8[19];
+
+    CAnimationSet *animationSet;        // @1D4h
+
+    u32           unk9[8];
+
+    vector<PVOID> unk10;
+
+    u32           unk11[3];
+
+    Ogre::ShadowCaster* shadowCaster;   // @21Ch
+
+
 
     // 
     // Function hooks

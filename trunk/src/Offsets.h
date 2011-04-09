@@ -76,7 +76,7 @@ namespace TLAPI {
 
   TLFUNC(CharacterStrike,                       PVOID,        __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
 
-  TLFUNC(PlayerSetAnimation,                    PVOID,        __thiscall, (CPlayer*, u32, bool, float, float, u32));
+  TLFUNC(CharacterSetAnimation,                 PVOID,        __thiscall, (CPlayer*, wstring*, float, float, float, CLevel*));
 
   TLFUNC(CharacterAttack,                       PVOID,        __thiscall, (CCharacter*));
 
