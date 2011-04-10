@@ -180,8 +180,8 @@ namespace TLAPI
       while (itr != NULL) {
         CTriggerUnit* triggerUnit = (CTriggerUnit*)itr->pCBaseUnit;
 
-        log(L"  Level TriggerUnit: (itr = %p) %p %s", itr, triggerUnit, triggerUnit->nameReal.c_str());
-        //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, character, character->characterName.c_str());
+        log(L"  Level TriggerUnit: (itr = %p) %p %s (%f, %f, %f)", itr, triggerUnit, triggerUnit->nameReal.c_str(),
+          triggerUnit->position.x, triggerUnit->position.y, triggerUnit->position.z);
 
         itr = itr->pNext;
       }
