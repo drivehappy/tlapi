@@ -253,7 +253,7 @@ namespace TLAPI {
 
   TLFUNC(Effect_Something0,                     void,     __thiscall, (CEffect*, u32));
 
-  TLFUNC(Equipment_UpdateTooltip,               void,     __thiscall, ());
+  TLFUNC(Equipment_UpdateTooltip,               void,     __thiscall, (CEquipment*));
 
   TLFUNC(Level_RemoveEquipment,                 void,     __thiscall, (CLevel*, CEquipment*));
 

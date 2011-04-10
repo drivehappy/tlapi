@@ -41,6 +41,7 @@ namespace TLAPI
   TLFUNC(Player_SwapWeapons,            void,  __thiscall, (CCharacter*));
   TLFUNC(CharacterGetAvailableSkillPoints, u32,__thiscall, (CCharacter*));
   TLFUNC(CharacterIsEffectPresent,      bool,  __thiscall, (CCharacter*, wstring*));
+  TLFUNC(CharacterStrike,              PVOID,  __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
 
   // 
   enum CharacterState {
@@ -483,6 +484,9 @@ namespace TLAPI
     }
     void AddMinion(CCharacter *minion) {
       CharacterAddMinion(this, minion);
+    }
+    void StrikeCharacter(CLevel* level, CCharacter* character, PVOID unk0, u32 unk1, float unk2, float unk3, u32 unk4) {
+      CharacterStrike(this, level, character, unk0, unk1, unk2, unk3, unk4);
     }
     vector<CCharacter*>* GetMinions() {
       vector<CCharacter*> *retval = new vector<CCharacter*>;

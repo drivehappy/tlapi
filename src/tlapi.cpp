@@ -140,7 +140,7 @@ TLFUNCPTR(Equipment_AddMagicModifier,             void,     __thiscall, (CEquipm
 TLFUNCPTR(Equipment_AddAffix,                     void,     __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float),   0x47F940);
 TLFUNCPTR(Equipment_UpdateRequirements,           void,     __thiscall, (CEquipment*),                                     0x4B3EA0);
 TLFUNCPTR(Equipment_UpdatePrice,                  void,     __thiscall, (CEquipment*),                                     0x4B3A10);
-TLFUNCPTR(Equipment_UpdateTooltip,                void,     __thiscall, (),                                                0x4CF410);
+TLFUNCPTR(Equipment_UpdateTooltip,                void,     __thiscall, (CEquipment*),                                     0x4CF410);
 TLFUNCPTR(EquipmentEnchant,                       u32,      __thiscall, (CEquipment*, u32, u32, u32),                      0x4BF560);
 TLFUNCPTR(EquipmentGetEnchantPrice,               u32,      __thiscall, (CEquipment*),                                     0x4B0230);
 TLFUNCPTR(Equipment_AddGem,                       void,     __thiscall, (CEquipment*, CEquipment*),                        0x4B6F80);
