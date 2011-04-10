@@ -44,10 +44,7 @@ namespace TLAPI
 
     CList<CSoundObject*>   listSoundObjects;
 
-    // Character Set Action
-    EVENT_DECL(CLayout, void, LayoutSetPosition,
-      (CLayout*, const Vector3),
-      ((CLayout*)e->_this, *(const Vector3*)&Pz[0]));
+    
 
   };
 

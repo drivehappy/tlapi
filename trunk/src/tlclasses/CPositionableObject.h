@@ -7,16 +7,40 @@ namespace TLAPI
 
 #pragma pack(1)
 
+  struct CPositionableObject;
+  TLFUNC(PositionableObjectSetPosition,         void,         __thiscall, (CPositionableObject*, const Vector3*));
+  TLFUNC(PositionableObjectGetPosition,         void,         __thiscall, (CPositionableObject*, Vector3&, bool));
+
   // CPositionableObject size = 0xF0
   struct CPositionableObject : CSceneNodeObject
   {
     u8 unkPositionable[4];
 
-    Vector3 position;             // @0xF4
+    Vector3 position;             // @0x70
     float unk2000[3];
-    float unk11[25];              // 5, 11, 17  -- 5 @9C
+    float unk11[25];              //
 
     PVOID pSharedPtrMaterial;     // ogre
+
+    // Set position
+    EVENT_DECL(CPositionableObject, void, PositionableObjectSetPosition,
+      (CPositionableObject*, const Vector3*),
+      ((CPositionableObject*)e->_this, (const Vector3*)&Pz[0]));
+
+    // Get position
+    EVENT_DECL(CPositionableObject, void, PositionableObjectGetPosition,
+      (CPositionableObject*, Vector3&, bool),
+      ((CPositionableObject*)e->_this, (Vector3&)Pz[0], (bool)Pz[1]));
+
+    void SetPosition(const Vector3* position) {
+      PositionableObjectSetPosition(this, position);
+    }
+    Vector3& GetPosition() {
+      Vector3 *position = new Vector3();
+      PositionableObjectGetPosition(this, *position, true);
+
+      return *position;
+    }
 
     //
     void dumpPosObj()

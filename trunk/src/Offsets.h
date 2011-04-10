@@ -50,10 +50,10 @@ namespace TLAPI {
   TLFUNC(ResourceManagerCreateCharacterByName,  CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
   TLFUNC(CharacterSetAlignment,                 void,         __thiscall, (CCharacter*, u32));
   TLFUNC(CharacterSetDestination,               void,         __thiscall, (CCharacter*, CLevel*, float, float));
-  TLFUNC(GenericModelGetPosition,               PVOID,        __thiscall, (CGenericModel*, Vector3, u32));
   TLFUNC(CharacterSetAction,                    PVOID,        __thiscall, (CCharacter*, u32));
   TLFUNC(CharacterUseSkill,                     PVOID,        __thiscall, (CCharacter*, u64));
-  TLFUNC(LayoutSetPosition,                     void,         __thiscall, (CLayout*, const Vector3));
+  TLFUNC(PositionableObjectSetPosition,         void,         __thiscall, (CPositionableObject*, const Vector3*));
+  TLFUNC(PositionableObjectGetPosition,         void,         __thiscall, (CPositionableObject*, Vector3&, bool));
   TLFUNC(CharacterAddMinion,                    void,         __thiscall, (CCharacter*, CCharacter*));
   TLFUNC(ResourceManagerCreateBaseUnit,         CBaseUnit*,   __thiscall, (CResourceManager*, u64, u32, u32, u32));
   TLFUNC(CharacterUpdateHealth,                 PVOID,        __thiscall, (CCharacter*, float));

@@ -46,15 +46,6 @@ namespace TLAPI
 
     Ogre::ShadowCaster* shadowCaster;   // @21Ch
 
-
-
-    // 
-    // Function hooks
-
-    // Character Initialization
-    EVENT_DECL(CGenericModel, void, GenericModelGetPosition,
-      (CGenericModel*, Vector3, u32),
-      ((CGenericModel*)e->_this, *(Vector3*)&Pz[0], Pz[1]));
   };
 
 #pragma pack()

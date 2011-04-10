@@ -18,7 +18,6 @@ TLFUNCPTR(LevelCharacterInitialize,               CCharacter*,  __thiscall, (CLe
 TLFUNCPTR(ResourceManagerCreateCharacterByName,   CCharacter*,  __thiscall, (CResourceManager*, const wchar_t*, const wchar_t*, u32, u32),  0x5FC600);     // CResourceManager, ...
 TLFUNCPTR(CharacterSetAlignment,                  void,         __thiscall, (CCharacter*, u32),                                             0x4839E0);     // CMonster, u32 alignment (2 = badguy, 0 = goodguy)
 TLFUNCPTR(CharacterSetDestination,                void,         __thiscall, (CCharacter*, CLevel*, float, float),                           0x492AD0);     // CPlayer, CLevel, u32 x, u32 y
-TLFUNCPTR(GenericModelGetPosition,                PVOID,        __thiscall, (CGenericModel*, Vector3, u32),                                 0x50E3F0);     // CGenericModel, vector3 &, unk
 TLFUNCPTR(CharacterSetAction,                     PVOID,        __thiscall, (CCharacter*, u32),                                             0x489E50);     // CCharacter, u32 action
 TLFUNCPTR(CharacterUseSkill,                      PVOID,        __thiscall, (CCharacter*, u64),                                             0x494E50);     // CCharacter, u64 skill
 TLFUNCPTR(CharacterUpdateHealth,                  PVOID,        __thiscall, (CCharacter*, float),                                           0x490880);     //
@@ -38,7 +37,9 @@ TLFUNCPTR(QuestManagerSetQuestCompleted,          void,         __thiscall, (CQu
 
 TLFUNCPTR(GameClientUpdateSkill,                  PVOID,        __thiscall, (CGameClient*, u64, u32, u32),                                  0x4145D0);     // CGameClient, u64 skill, u32 notFirstUse, u32
 
-TLFUNCPTR(LayoutSetPosition,                      void,         __thiscall, (CLayout*, const Vector3),                                      0x50E450);     // CLayout, 
+TLFUNCPTR(PositionableObjectSetPosition,          void,         __thiscall, (CPositionableObject*, const Vector3*),                         0x50E450);     // 
+TLFUNCPTR(PositionableObjectGetPosition,          void,         __thiscall, (CPositionableObject*, Vector3&, bool),                          0x50E3F0);     // 
+
 TLFUNCPTR(CharacterAddMinion,                     void,         __thiscall, (CCharacter*, CCharacter*),                                     0x4A9B20);     // CMonster, CMonster
 
 TLFUNCPTR(ResourceManagerCreateBaseUnit,          CBaseUnit*,   __thiscall, (CResourceManager*, u64, u32, u32, u32),                        0x5FC170);     // CResourceManager
@@ -400,7 +401,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CPlayer, PlayerLevelUp, 0);
 
   // Hook Layout
-  EVENT_INIT(CLayout, LayoutSetPosition, 1);
+  EVENT_INIT(CPositionableObject, PositionableObjectSetPosition, 1);
 
   log("Done hooking.");
 }

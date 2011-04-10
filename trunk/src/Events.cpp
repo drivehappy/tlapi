@@ -166,8 +166,6 @@ EVENT_DEF(CTriggerUnit, void, TriggerUnit_Ctor, (CTriggerUnit*, CLayout*, bool&)
 // Breakable
 EVENT_DEF(CBreakable, void, BreakableTriggered, (CBreakable*, CPlayer*, bool&));
 
-// GenericModel
-EVENT_DEF(CGenericModel, void, GenericModelGetPosition, (CGenericModel*, Vector3, u32));
-
-// Layout
-EVENT_DEF(CLayout, void, LayoutSetPosition, (CLayout*, const Vector3));
+// CPositionableObject
+EVENT_DEF(CPositionableObject, void, PositionableObjectGetPosition, (CPositionableObject*, Vector3&, bool));
+EVENT_DEF(CPositionableObject, void, PositionableObjectSetPosition, (CPositionableObject*, const Vector3*));
