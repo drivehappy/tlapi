@@ -28,6 +28,7 @@
 #include "CItemGold.h"
 #include "CQuestManager.h"
 #include "CInventoryMenu.h"
+#include "CParticleCache.h"
 
 namespace TLAPI {
 
@@ -128,12 +129,12 @@ namespace TLAPI {
   TLFUNC(GameClientProcessObjects,              void,     __thiscall, (CGameClient*, float, PVOID, PVOID));
 
   TLFUNC(MonsterProcessAI,                     PVOID,     __thiscall, (CMonster*, float, u32));
-  TLFUNC(MonsterProcessAI2,                     void,     __thiscall, (CMonster*, float, u32, u32));
+  TLFUNC(MonsterProcessAI2,                     void,     __thiscall, (CMonster*, float, CLevel*, u32));
   TLFUNC(MonsterProcessAI3,                     void,     __thiscall, (CMonster*, u32));
   TLFUNC(MonsterIdle,                           void,     __thiscall, (CMonster*, float));
   TLFUNC(MonsterOnHit,                          void,     __thiscall, (CMonster*, CMonster*));
 
-  TLFUNC(MonsterGetCharacterClose,              void,     __thiscall, (CMonster*, float, u32));
+  TLFUNC(MonsterGetCharacterClose,             PVOID,     __thiscall, (CMonster*, u32, float));
     
   TLFUNC(PlayerCtor,                            void,     __thiscall, ());
   TLFUNC(GameClientCtor,                        void,     __thiscall, ());
@@ -262,4 +263,9 @@ namespace TLAPI {
   TLFUNC(InventoryMenu_OpenClose,               void,     __thiscall, (CInventoryMenu*, bool));
   TLFUNC(InventoryMenu_MouseEvent,              void,     __thiscall, (CInventoryMenu*, const CEGUI::MouseEventArgs&));
 
+  TLFUNC(ParticleCache_Dtor2,                   void,     __thiscall, (CParticleCache*));
+
+  TLFUNC(PositionableObject_SetNearPlayer,      void,     __thiscall, (CPositionableObject*, bool));
+
+  TLFUNC(Level_CheckCharacterProximity,         void,     __thiscall, (CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32));
 };

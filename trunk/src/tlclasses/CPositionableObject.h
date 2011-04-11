@@ -14,7 +14,10 @@ namespace TLAPI
   // CPositionableObject size = 0xF0
   struct CPositionableObject : CSceneNodeObject
   {
-    u8 unkPositionable[4];
+    u8 unkPositionable0;
+    u8 playerProximity;           // @6D - Activates when close to player
+    u8 unkPositionable2;          // @6E - Can activate? used for player aggro
+    u8 unkPositionable3;
 
     Vector3 position;             // @0x70
     float unk2000[3];
@@ -31,6 +34,13 @@ namespace TLAPI
     EVENT_DECL(CPositionableObject, void, PositionableObjectGetPosition,
       (CPositionableObject*, Vector3&, bool),
       ((CPositionableObject*)e->_this, (Vector3&)Pz[0], (bool)Pz[1]));
+
+    // Set near player
+    EVENT_DECL(CPositionableObject, void, PositionableObject_SetNearPlayer,
+      (CPositionableObject*, bool&, bool&),
+      ((CPositionableObject*)e->_this, (bool&)Pz[0], e->calloriginal));
+
+
 
     void SetPosition(const Vector3* position) {
       PositionableObjectSetPosition(this, position);
@@ -49,8 +59,6 @@ namespace TLAPI
       log("  pSharedPtrMaterial: %p", pSharedPtrMaterial);
 
       log("  Position: %f, %f, %f", position.x, position.y, position.z);
-
-      log("  unkPositionable: %x", unkPositionable[0]);
 
       log("  unk2000:");
       for (u32 i = 0; i < 6; i++)

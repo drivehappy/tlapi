@@ -33,7 +33,7 @@ namespace TLAPI {
     PVOID unk1;                     // ptr to unknown structure
     PVOID pCGraphManager;           //
     PVOID pCDungeonManager;
-    CEffectGroupManager *pCEffectGroupManager;
+    CEffectGroupManager         *pCEffectGroupManager;
     PVOID pCMissilePreloader;
     PVOID pCResourceSettings;
     PVOID pCSkillParser;
@@ -56,7 +56,7 @@ namespace TLAPI {
 
     CRoomPieceDataInformation   *pCRoomPieceDataInformation;
 
-    PVOID pParticleSystemManager;   // ParticleUniverse
+    Ogre::ParticleSystemManager *pParticleSystemManager;   // ParticleUniverse
     PVOID pCParticlePreloader;
 
     PVOID pCSoundBankDataInformation;

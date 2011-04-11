@@ -27,8 +27,8 @@ namespace TLAPI
 
     // Monster Get Character Close
     EVENT_DECL(CMonster, void, MonsterGetCharacterClose,
-      (CCharacter*, CMonster*, float, u32, bool&),
-      ((CCharacter*)e->retval, (CMonster*)e->_this, *(float*)&Pz[0], Pz[1], e->calloriginal));
+      (CCharacter* &, CMonster*, u32, float, bool&),
+      ((CCharacter* &)e->retval, (CMonster*)e->_this, Pz[0], *(float*)&Pz[1], e->calloriginal));
 
     // Monster Process AI
     EVENT_DECL(CMonster, void, MonsterProcessAI,
@@ -37,8 +37,8 @@ namespace TLAPI
 
     // Monster Process AI
     EVENT_DECL(CMonster, void, MonsterProcessAI2,
-      (CMonster*, float, u32, u32, bool&),
-      ((CMonster*)e->_this, *(float*)&Pz[0], Pz[1], Pz[2], e->calloriginal));
+      (CMonster*, float, CLevel*, u32, bool&),
+      ((CMonster*)e->_this, *(float*)&Pz[0], (CLevel*)Pz[1], Pz[2], e->calloriginal));
 
     // Monster Process AI
     EVENT_DECL(CMonster, void, MonsterProcessAI3,

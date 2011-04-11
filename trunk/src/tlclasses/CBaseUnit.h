@@ -22,15 +22,7 @@ namespace TLAPI
     u32 visibility_test;  // @0x1a4  [3] = Visibility flag?
     u32 unk2[13];
 
-    u32 unk3[6];        // See below
-                      /*
-                        0FFFFFFFFh
-                        0FFFFFFFFh
-                        0FFFFFFFFh
-                        0FFFFFFFFh
-                        0FFFFFFFFh
-                        0FFFFFFFFh
-                      */
+    u32 unk3[6];          // See below
 
     u32 unk6;           
     u8 unk06[4];          // [1]
@@ -42,31 +34,20 @@ namespace TLAPI
 
     float unk7;           // 0.3
     
-    u8  unkFlags[4];           // Early out test for [3] in CharacterUpdate
+    u8  unkFlags0;          // Early out test for [3] in CharacterUpdate
+    u8  unkFlags_HasAggro;  // @161h - Used at 004FE080 for aggro check on player
+    u8  unkFlags2;
+    u8  unkFlags3;
 
     u8  visibility_test2; // @164h
     u8  unk10[3];
 
-    u64 GUID;        // 0F59522DA8B7A11DEh
+    u64 GUID;             // @168h
 
     u32 unk8;         
 
 
-    u32 type__;       // What is this? A type flag?
-      // 68h || 2ah || 1C
-      // 68h = Valeria
-      // AFh = Goldenrod
-      // 68h = Gar
-      // 68h = Horse
-      // 68h = Syl
-      // 1Ch = Server's Player - Drivehappy
-      // 57h = Server's Player's Pet
-      // 1Ch = Server created monster (player - Drivehappy)
-      // 2Dh = Ordrak's Wingblade
-      // 54h = Scale Haubergeon
-      // 50h = Scale Greaves
-      // 4Dh = Epic Leather Shoulders
-
+    u32 type__;       // @170h  See TorchED: unittypes.hie file   
 
     CDataGroup *pCDataGroup;
 

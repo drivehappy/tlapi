@@ -157,7 +157,7 @@ namespace TLAPI
       GameClient_LoadMap(this, unk0, unk1);
     }
     void ForceToTown() {
-      GameClient_ChangeLevel(this, L"TOWN", 0, 0, 0, L"", 0);
+      GameClient_ChangeLevel(this, L"TOWN", 0, 0, 1, L"", 0);
     }
     void ChangeLevel(wstring dungeonName, s32 relativeLevel, u32 unk0, u32 unk1, wstring unkString, u32 unk2) {
       GameClient_ChangeLevel(this, dungeonName, relativeLevel, unk0, unk1, unkString, unk2);
