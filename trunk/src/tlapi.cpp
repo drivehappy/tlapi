@@ -227,11 +227,18 @@ TLFUNCPTR(PositionableObject_SetNearPlayer,       void,     __thiscall, (CPositi
 
 TLFUNCPTR(Level_CheckCharacterProximity,          void,     __thiscall, (CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32),     0x4FDF60);
 
+TLFUNCPTR(Automap_AddBillboard,                   void,     __thiscall, (CAutomap*, u32, float*, Vector3*, u32, u32),      0x4E9460);
+
+
  
 // CCharacter_IsAlive(void) - 483980
 
 // CCharacter_RemoveSpell (wstring, bool) - 482F50
 // CCharacter_AddSpell    (wstring, bool) - 483110
+
+// CGenericModel_SetTransparency (float)  - 4C2260
+
+// CCharacter_SetVisibility (bool) -- 483F40
 
 
 void TLAPI::Initialize()
@@ -421,6 +428,9 @@ void TLAPI::HookFunctions()
 
   // Particle Cache
   EVENT_INIT(CParticleCache, ParticleCache_Dtor2, 0);
+
+  // Automap
+  EVENT_INIT(CAutomap, Automap_AddBillboard, 5);
   
 
   log("Done hooking.");

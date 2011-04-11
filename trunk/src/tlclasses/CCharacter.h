@@ -222,14 +222,30 @@ namespace TLAPI
 
     CWardrobe         *pCWardrobe;
     wstring           playerTextureBody;
-    wstring           playerTextureChest;
-    wstring           playerTextureFeet;
-    wstring           playerTextureHands;
-    wstring           playerTexture0;
+    wstring           playerTextureChest;   // @474h
+    wstring           playerTextureFeet;    // @490h
+    wstring           playerTextureHands;   // @4ACh
+    wstring           playerTextureHair;    // @4C8h
+    wstring           playerUnknown;        //
 
-    u32     unk33[29];
+    u32     unk3333;                        // @500h
 
-    PVOID   pOgreShadowCaster;  // @ 254. (*4)  (@3f8h)
+    float   unkTransparency0;               // @504h
+    float   unkTransparency1;               // @508h
+
+    u8      flagFadingIn;             // @50Ch
+    u8      unkTransparencyFlag1;
+    u8      unkTransparencyFlag2;
+    u8      unkTransparencyFlag3;
+
+    u8      flagHasBeenDisplayed;           // @510h
+    u8      unkTransparencyFlag5;
+    u8      unkTransparencyFlagUnused0;
+    u8      unkTransparencyFlagUnused1;
+
+    u32     unk33[17];
+
+    PVOID   pOgreShadowCaster;  //
 
     u32     unk34[9];
 
@@ -248,8 +264,9 @@ namespace TLAPI
 
     u32     unk35[21];
 
-    u8      unk37[2];
-    u8      weaponSetToggle;  // @65Ah
+    u8      unk37;
+    u8      flagFadingOut;  // @659h
+    u8      weaponSetToggle;            // @65Ah
     u8      unk38;
 
     // Cutoff here or before for Monster / Player

@@ -268,4 +268,6 @@ namespace TLAPI {
   TLFUNC(PositionableObject_SetNearPlayer,      void,     __thiscall, (CPositionableObject*, bool));
 
   TLFUNC(Level_CheckCharacterProximity,         void,     __thiscall, (CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32));
+
+  TLFUNC(Automap_AddBillboard,                  void,     __thiscall, (CAutomap*, u32, float*, Vector3*, u32, u32));
 };
