@@ -68,7 +68,7 @@ namespace TLAPI
     float unk20[22];
     u32  unk21[6];
 
-    PVOID   pOctreeSM;
+    Ogre::SceneManager *pOctreeSM;
     PVOID   pOgreStaticGeom[4];
 
     CLevelTemplateData* pCLevelTemplateData;
@@ -186,8 +186,8 @@ namespace TLAPI
       while (itr != NULL) {
         CTriggerUnit* triggerUnit = (CTriggerUnit*)itr->pCBaseUnit;
 
-        log(L"  Level TriggerUnit: (itr = %p) %p %s (%f, %f, %f)", itr, triggerUnit, triggerUnit->nameReal.c_str(),
-          triggerUnit->GetPosition().x, triggerUnit->GetPosition().y, triggerUnit->GetPosition().z);
+        log(L"  Level TriggerUnit: (itr = %p) %p %s (%f, %f, %f) Type: %x", itr, triggerUnit, triggerUnit->nameReal.c_str(),
+          triggerUnit->GetPosition().x, triggerUnit->GetPosition().y, triggerUnit->GetPosition().z, triggerUnit->type__);
 
         itr = itr->pNext;
       }

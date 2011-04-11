@@ -120,6 +120,9 @@ EVENT_DEF(CLevel, void, Level_Cleanup, (CLevel*, u32, u32, bool&));
 EVENT_DEF(CLevel, void, Level_RemoveEquipment, (CLevel*, CEquipment*, bool&));
 EVENT_DEF(CLevel, void, Level_CheckCharacterProximity, (CCharacter*, CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32, bool&));
 
+// Automap
+EVENT_DEF(CAutomap, void, Automap_AddBillboard, (CAutomap*, u32, float*, Vector3*, u32, u32, bool&));
+
 // Inventory
 EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u32, u32));
 EVENT_DEF(CInventory, void, InventoryRemoveEquipment, (CInventory*, CEquipment*));
