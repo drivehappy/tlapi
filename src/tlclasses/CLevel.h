@@ -29,6 +29,7 @@ namespace TLAPI
   TLFUNC(LevelCharacterInitialize,        CCharacter*,  __thiscall, (CLevel*, CCharacter*, Vector3*, u32));
   TLFUNC(Level_CharacterKilledCharacter,  void,         __thiscall, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32));
   TLFUNC(Level_RemoveEquipment,           void,         __thiscall, (CLevel*, CEquipment*));
+  TLFUNC(Level_CheckCharacterProximity,   void,         __thiscall, (CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32));
 
   //
   struct CLevel : CRunicCore
@@ -145,6 +146,11 @@ namespace TLAPI
       (CLevel*, CEquipment*, bool&),
       ((CLevel*)e->_this, (CEquipment*)Pz[0], e->calloriginal));
 
+    // Level Proximity Check
+    EVENT_DECL(CLevel, void, Level_CheckCharacterProximity,
+      (CCharacter*, CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32, bool&),
+      ((CCharacter*)e->retval, (CLevel*)e->_this, (Vector3*)Pz[0], Pz[1], *(float*)&Pz[2], *(float*)&Pz[3], *(float*)&Pz[4], Pz[5], (CCharacter*)Pz[6], Pz[7], e->calloriginal));
+
     // Character Killed
     void CharacterKill(CCharacter* attacker, CCharacter* killed, Vector3* position, u32 unk0) {
       Level_CharacterKilledCharacter(this, attacker, killed, position, unk0);
@@ -181,7 +187,7 @@ namespace TLAPI
         CTriggerUnit* triggerUnit = (CTriggerUnit*)itr->pCBaseUnit;
 
         log(L"  Level TriggerUnit: (itr = %p) %p %s (%f, %f, %f)", itr, triggerUnit, triggerUnit->nameReal.c_str(),
-          triggerUnit->position.x, triggerUnit->position.y, triggerUnit->position.z);
+          triggerUnit->GetPosition().x, triggerUnit->GetPosition().y, triggerUnit->GetPosition().z);
 
         itr = itr->pNext;
       }
@@ -228,8 +234,11 @@ namespace TLAPI
 
         CItem* item = (CItem*)itr->pCBaseUnit;
         
-        log(L"   itrNext: %p, Item: %p, Name: %s", itr->pNext, item, item->nameReal.c_str());
-        log(L"     vtable: %p dtor: %p", *(u32*)(itr->pCBaseUnit), **(u32**)(itr->pCBaseUnit));
+        log(L"   itrNext: %p, Item: %p, Name: %s (%f %f %f)", 
+          itr->pNext, item, item->nameReal.c_str(), 
+          item->GetPosition().x, item->GetPosition().y, item->GetPosition().z);
+
+        //log(L"     vtable: %p dtor: %p", *(u32*)(itr->pCBaseUnit), **(u32**)(itr->pCBaseUnit));
         //multiplayerLogger.WriteLine(Info, L"  Level Item: (itr = %p) %p %s", itr, item, item->nameReal.c_str());
 
         itr = itr->pNext;

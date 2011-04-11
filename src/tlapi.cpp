@@ -97,12 +97,12 @@ TLFUNCPTR(PlayerResurrect,                        void,     __thiscall, (CCharac
 TLFUNCPTR(GameClientProcessObjects,               void,     __thiscall, (CGameClient*, float, PVOID, PVOID),               0x41A790);     // 1.15  CGameClient
 
 TLFUNCPTR(MonsterProcessAI,                       PVOID,    __thiscall, (CMonster*, float, u32),                           0x4D36F0);     // 1.15  CMonster, float unk (0.005), CLevel
-TLFUNCPTR(MonsterProcessAI2,                      void,     __thiscall, (CMonster*, float, u32, u32),                      0x4D4450);     // 1.15  CMonster, float (0.002)
+TLFUNCPTR(MonsterProcessAI2,                      void,     __thiscall, (CMonster*, float, CLevel*, u32),                  0x4D4450);     // 1.15  CMonster, float (0.002)
 TLFUNCPTR(MonsterProcessAI3,                      void,     __thiscall, (CMonster*, u32),                                  0x498670);     // 1.15  CMonster, u32 unk (0)
 TLFUNCPTR(MonsterIdle,                            void,     __thiscall, (CMonster*, float),                                0x4D4950);     // 1.15  CMonster, float dtime (0.02)
 TLFUNCPTR(MonsterOnHit,                           void,     __thiscall, (CMonster*, CMonster*),                            0x4D29E0);     // 1.15  CMonster, CMonster
 
-TLFUNCPTR(MonsterGetCharacterClose,               void,     __thiscall, (CMonster*, float, u32),                           0x486FB0);
+TLFUNCPTR(MonsterGetCharacterClose,               PVOID,    __thiscall, (CMonster*, u32, float),                           0x486FB0);
   
 TLFUNCPTR(PlayerCtor,                             void,     __thiscall, (),                                                0x4DA160);     // 1.15
 TLFUNCPTR(GameClientCtor,                         void,     __thiscall, (),                                                0x40F7B0);     // 1.15
@@ -221,6 +221,18 @@ TLFUNCPTR(EffectManager_RemoveAffix,              bool,     __thiscall, (CEffect
 TLFUNCPTR(InventoryMenu_OpenClose,                void,     __thiscall, (CInventoryMenu*, bool),                           0x5788B0);
 TLFUNCPTR(InventoryMenu_MouseEvent,               void,     __thiscall, (CInventoryMenu*, const CEGUI::MouseEventArgs&),   0x578EF0);
 
+TLFUNCPTR(ParticleCache_Dtor2,                    void,     __thiscall, (CParticleCache*),                                 0x516430);
+
+TLFUNCPTR(PositionableObject_SetNearPlayer,       void,     __thiscall, (CPositionableObject*, bool),                      0x510880);
+
+TLFUNCPTR(Level_CheckCharacterProximity,          void,     __thiscall, (CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32),     0x4FDF60);
+
+ 
+// CCharacter_IsAlive(void) - 483980
+
+// CCharacter_RemoveSpell (wstring, bool) - 482F50
+// CCharacter_AddSpell    (wstring, bool) - 483110
+
 
 void TLAPI::Initialize()
 {
@@ -233,7 +245,7 @@ void TLAPI::Initialize()
 void TLAPI::PatchProcess()
 {
   // 
-  PatchJMP(EXEOFFSET(0x489F8D), EXEOFFSET(0x48A08B));   // v1.15
+  //PatchJMP(EXEOFFSET(0x489F8D), EXEOFFSET(0x48A08B));   // v1.15
 }
 
 void TLAPI::HookFunctions()
@@ -361,6 +373,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CLevel, Level_Update, 4);
   EVENT_INIT(CLevel, Level_Cleanup, 2);
   EVENT_INIT(CLevel, Level_RemoveEquipment, 1);
+  EVENT_INIT(CLevel, Level_CheckCharacterProximity, 8);
 
   // Hook 
   EVENT_INIT(CInventory, InventoryAddEquipment, 3);
@@ -402,6 +415,13 @@ void TLAPI::HookFunctions()
 
   // Hook Layout
   EVENT_INIT(CPositionableObject, PositionableObjectSetPosition, 1);
+
+  // Positionable Object
+  EVENT_INIT(CPositionableObject, PositionableObject_SetNearPlayer, 1);
+
+  // Particle Cache
+  EVENT_INIT(CParticleCache, ParticleCache_Dtor2, 0);
+  
 
   log("Done hooking.");
 }

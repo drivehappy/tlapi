@@ -771,7 +771,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\CParticlePreloader.h"
+				RelativePath="..\src\tlclasses\CParticleCache.h"
 				>
 			</File>
 			<File

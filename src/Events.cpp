@@ -51,10 +51,10 @@ EVENT_DEF(CCharacterSaveState, void, CharacterSaveState_LoadFromFile, (CCharacte
 
 // Monster
 EVENT_DEF(CMonster, void, MonsterProcessAI, (CMonster*, float, u32, bool&));
-EVENT_DEF(CMonster, void, MonsterProcessAI2, (CMonster*, float, u32, u32, bool&));
+EVENT_DEF(CMonster, void, MonsterProcessAI2, (CMonster*, float, CLevel*, u32, bool&));
 EVENT_DEF(CMonster, void, MonsterProcessAI3, (CMonster*, u32, bool&));
 EVENT_DEF(CMonster, void, MonsterIdle, (CMonster*, float, bool&));
-EVENT_DEF(CMonster, void, MonsterGetCharacterClose, (CCharacter*, CMonster*, float, u32, bool&));
+EVENT_DEF(CMonster, PVOID, MonsterGetCharacterClose, (CCharacter*, CMonster*, u32, u32, bool&));
 
 // Game
 EVENT_DEF(CGame, void, GameCtor, (CGame*));
@@ -118,6 +118,7 @@ EVENT_DEF(CLevel, void, Level_Ctor, (wstring name, CSettings*, CGameClient*, CRe
 EVENT_DEF(CLevel, void, Level_Update, (CLevel*, CVector3*, u32, float, bool&));
 EVENT_DEF(CLevel, void, Level_Cleanup, (CLevel*, u32, u32, bool&));
 EVENT_DEF(CLevel, void, Level_RemoveEquipment, (CLevel*, CEquipment*, bool&));
+EVENT_DEF(CLevel, void, Level_CheckCharacterProximity, (CCharacter*, CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32, bool&));
 
 // Inventory
 EVENT_DEF(CInventory, void, InventoryAddEquipment, (CInventory*, CEquipment*, u32, u32));
@@ -167,5 +168,9 @@ EVENT_DEF(CTriggerUnit, void, TriggerUnit_Ctor, (CTriggerUnit*, CLayout*, bool&)
 EVENT_DEF(CBreakable, void, BreakableTriggered, (CBreakable*, CPlayer*, bool&));
 
 // CPositionableObject
-EVENT_DEF(CPositionableObject, void, PositionableObjectGetPosition, (CPositionableObject*, Vector3&, bool));
-EVENT_DEF(CPositionableObject, void, PositionableObjectSetPosition, (CPositionableObject*, const Vector3*));
+EVENT_DEF(CPositionableObject, void, PositionableObjectGetPosition,     (CPositionableObject*, Vector3&, bool));
+EVENT_DEF(CPositionableObject, void, PositionableObjectSetPosition,     (CPositionableObject*, const Vector3*));
+EVENT_DEF(CPositionableObject, void, PositionableObject_SetNearPlayer,  (CPositionableObject*, bool&, bool&));
+
+// ParticleCache
+EVENT_DEF(CParticleCache, void, ParticleCache_Dtor2, (CParticleCache*));

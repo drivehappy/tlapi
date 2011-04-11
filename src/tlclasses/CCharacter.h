@@ -42,6 +42,7 @@ namespace TLAPI
   TLFUNC(CharacterGetAvailableSkillPoints, u32,__thiscall, (CCharacter*));
   TLFUNC(CharacterIsEffectPresent,      bool,  __thiscall, (CCharacter*, wstring*));
   TLFUNC(CharacterStrike,              PVOID,  __thiscall, (CCharacter*, CLevel*, CCharacter*, PVOID, u32, float, float, u32));
+  TLFUNC(Character_SetNearPlayer,       void,  __thiscall, (CCharacter*, bool));
 
   // 
   enum CharacterState {
@@ -147,13 +148,16 @@ namespace TLAPI
                             14h - Trading with NPC
                             0Eh - Casting spell attack
                             00h - Idle
-                            
+                            03h - Attacking
+                            04h - Aggro on player
+                            05h - Character dying
+                            06h - Character dead
                           */
 
-    u32 unk14;            
+    u32 stateAggroRadius; // Appears to be 4 when player has initially aggroed and will subsequently call sub_4D4140 for CMonsterGetCharacterClose and SetTarget
 
     u32 alignment;
-    CCharacter* target;
+    CCharacter* target;   // @290h
 
     u32 unk1500[2];       // 
 
@@ -170,17 +174,16 @@ namespace TLAPI
 
     u64     guidMonster[3]; // 6B03517E9E3311DEh, 0FFFFFFFFFFFFFFFFh, 0FFFFFFFFFFFFFFFFh
 
-    wstring  Skill1;    // "Heal All I"
-    wstring  Skill2;    // "TOWN PORTAL"
-    wstring  Skill3;    // "Summon Zombies III"
-    wstring  Skill4;    // "HEAL SELF IV"
+    wstring  Skill1;    // "Heal All I"           @2F8h
+    wstring  Skill2;    // "TOWN PORTAL"          @314h
+    wstring  Skill3;    // "Summon Zombies III"   @330h
+    wstring  Skill4;    // "HEAL SELF IV"         @34Ch
 
     u32      unk23[4];    // 1, 1, 1, 1
 
-    // @378h
-    vector<CAttackDescription*>  attackDescriptions;
+    vector<CAttackDescription*>  attackDescriptions; // @378h
 
-    u32      unk16[1];
+    u32      unk16;         // @390h
     float    healthCurrent; // @394h
     u32      healthMax;     //
     u32      healthMax2;    // 19h
@@ -429,7 +432,6 @@ namespace TLAPI
     EVENT_DECL(CCharacter, void, Player_SwapWeapons,
       (CCharacter*, bool&),
       ((CCharacter*)e->_this, e->calloriginal));
-
 
 
     //
