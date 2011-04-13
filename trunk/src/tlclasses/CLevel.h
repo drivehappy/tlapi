@@ -30,34 +30,35 @@ namespace TLAPI
   TLFUNC(Level_CharacterKilledCharacter,  void,         __thiscall, (CLevel*, CCharacter*, CCharacter*, Vector3*, u32));
   TLFUNC(Level_RemoveEquipment,           void,         __thiscall, (CLevel*, CEquipment*));
   TLFUNC(Level_CheckCharacterProximity,   void,         __thiscall, (CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32));
+  TLFUNC(Level_RemoveCharacter,           void,         __thiscall, (CLevel*, CCharacter*));
 
   //
   struct CLevel : CRunicCore
   {
-    u32 unk0;
+    u32                 unk0;
     
-    CList<CLayout*>    CLayoutsList;
+    CList<CLayout*>     CLayoutsList;
 
-    CList<float>        unkFloatList;
+    CList<float>        unkFloatList;     // @18h
 
-    u32 unk5[5];
+    u32                 unk5[5];
 
-    CQuadtree          *pCQuadTree;       // ptr to CQuadTree
-    CCollisionList     *pCCollisionList;  // ptr to CCollisionList
+    CQuadtree          *pCQuadTree;       // @3Ch
+    CCollisionList     *pCCollisionList;  // @40h
 
-    u32                 unk11[6];
+    u32                 unk11[6];         // @44h
 
-    LinkedListNode    **ppCCharacters1;  // LinkedList of Monsters
+    LinkedListNode    **charactersProximity;    // @5Ch
 
-    LinkedListNode    **ppCTriggerUnits;  // LinkedList of ??
+    LinkedListNode    **itemsProximity;         // @60h
     
-    LinkedListNode    **ppCCharacters2;  // LinkedList of Monsters
+    LinkedListNode    **charactersAll;          // @64h
 
-    LinkedListNode    **ppCItems;        // LinkedList of CItem
+    LinkedListNode    **itemsAll;         // @68h
 
-    CList<CParticle*>   particleList;
+    CList<CParticle*>   particleList;     // @6Ch
 
-    PVOID unk18[3];
+    PVOID               unk18[3];
 
     vector<u32>         vecUnk1;
 
@@ -65,35 +66,35 @@ namespace TLAPI
 
     vector<u32>         vecUnk2;
 
-    float unk20[22];
-    u32  unk21[6];
+    float               unk20[22];
+    u32                 unk21[6];
 
     Ogre::SceneManager *pOctreeSM;
-    PVOID   pOgreStaticGeom[4];
+    Ogre::StaticGeometry *pOgreStaticGeom[4];
 
     CLevelTemplateData* pCLevelTemplateData;
     CAutomap*           pCAutomap;
 
-    u32     unk22[3];
+    u32                 unk22[3];
 
-    CChunk**  ppCChunk;
+    CChunk            **ppCChunk;
 
-    u32     unk23[6];
+    u32                 unk23[6];
 
     CLevelLayout*       pCLevelLayout;
     CGameClient*        pCGameClient;
 
-    u32     unk24[2];
+    u32                 unk24[2];
 
-    float   unk25[4];
+    float               unk25[4];
 
-    u32     unk26[12];
+    u32                 unk26[12];
 
     CList<CLayout*>     layoutList;
 
-    float   unk27;      // 40.0
+    float               unk27;      // 40.0
 
-    wstring levelName;
+    wstring             levelName;
 
 
 
@@ -151,6 +152,12 @@ namespace TLAPI
       (CCharacter*, CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32, bool&),
       ((CCharacter*)e->retval, (CLevel*)e->_this, (Vector3*)Pz[0], Pz[1], *(float*)&Pz[2], *(float*)&Pz[3], *(float*)&Pz[4], Pz[5], (CCharacter*)Pz[6], Pz[7], e->calloriginal));
 
+    // Level Remove Character
+    EVENT_DECL(CLevel, void, Level_RemoveCharacter,
+      (CLevel*, CCharacter*, bool&),
+      ((CLevel*)e->_this, (CCharacter*)Pz[0], e->calloriginal));
+
+
     // Character Killed
     void CharacterKill(CCharacter* attacker, CCharacter* killed, Vector3* position, u32 unk0) {
       Level_CharacterKilledCharacter(this, attacker, killed, position, unk0);
@@ -165,6 +172,9 @@ namespace TLAPI
     }
     void CharacterInitialize(CCharacter* character, Vector3* position, u32 unk0) {
       LevelCharacterInitialize(this, character, position, unk0);
+    }
+    void RemoveCharacter(CCharacter* character) {
+      Level_RemoveCharacter(this, character);
     }
 
 
@@ -182,7 +192,7 @@ namespace TLAPI
     }
 
     void DumpTriggerUnits() {
-      LinkedListNode* itr = *ppCTriggerUnits;
+      LinkedListNode* itr = *itemsProximity;
       while (itr != NULL) {
         CTriggerUnit* triggerUnit = (CTriggerUnit*)itr->pCBaseUnit;
 
@@ -194,7 +204,7 @@ namespace TLAPI
     }
 
     void DumpCharacters2() {
-      LinkedListNode* itr = *ppCCharacters2;
+      LinkedListNode* itr = *charactersAll;
       while (itr != NULL) {
         CCharacter* character = (CCharacter*)itr->pCBaseUnit;
         logColor(B_GREEN, L"  Level Character2: (itr = %p) %p %s", itr, character, character->characterName.c_str());
@@ -206,7 +216,7 @@ namespace TLAPI
     vector<CCharacter*>& GetCharacters() {
       vector<CCharacter*>* retval = new vector<CCharacter*>();
 
-      LinkedListNode* itr = *ppCCharacters2;
+      LinkedListNode* itr = *charactersAll;
       while (itr != NULL) {
         CCharacter* character = (CCharacter*)itr->pCBaseUnit;
         retval->push_back(character);
@@ -219,7 +229,7 @@ namespace TLAPI
 
     int GetCharacterCount() {
       int count = 0;
-      LinkedListNode* itr = *ppCCharacters2;
+      LinkedListNode* itr = *charactersAll;
       while (itr != NULL) {
         count++;
         itr = itr->pNext;
@@ -228,9 +238,9 @@ namespace TLAPI
     }
 
     void DumpItems() {
-      LinkedListNode* itr = *ppCItems;
+      LinkedListNode* itr = *itemsAll;
       while (itr != NULL) {
-        log(L"  Level Item: itr = %p", itr);
+        //log(L"  Level Item: itr = %p", itr);
 
         CItem* item = (CItem*)itr->pCBaseUnit;
         
@@ -247,7 +257,7 @@ namespace TLAPI
     }
 
     bool containsItem(CItem* itemSearch) {
-      LinkedListNode* itr = *ppCItems;
+      LinkedListNode* itr = *itemsAll;
       while (itr != NULL) {
         CItem* item = (CItem*)itr->pCBaseUnit;
         if (item == itemSearch)

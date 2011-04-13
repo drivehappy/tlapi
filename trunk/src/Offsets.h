@@ -154,8 +154,8 @@ namespace TLAPI {
 
   TLFUNC(MonsterReadProp,                       void,     __thiscall, (CMonster*));
 
-  TLFUNC(EquipmentUse,                          void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*));
-  TLFUNC(EquipmentIdentify,                     void,     __thiscall, (CEquipment*, CPlayer*, CEquipment*));
+  //TLFUNC(EquipmentUse,                          void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*));
+  TLFUNC(EquipmentIdentify,                     void,     __thiscall, (CEquipment*, CCharacter*, CBaseUnit*));
 
   TLFUNC(CharacterSetTarget,                   PVOID,     __thiscall, (CCharacter*, CCharacter*));
 
@@ -270,4 +270,8 @@ namespace TLAPI {
   TLFUNC(Level_CheckCharacterProximity,         void,     __thiscall, (CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32));
 
   TLFUNC(Automap_AddBillboard,                  void,     __thiscall, (CAutomap*, u32, float*, Vector3*, u32, u32));
+
+  TLFUNC(Inventory_EquipmentAutoEquip,          void,     __thiscall, (CInventory*, CEquipment*));
+
+  TLFUNC(Level_RemoveCharacter,                 void,     __thiscall, (CLevel*, CCharacter*));
 };

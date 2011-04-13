@@ -135,8 +135,8 @@ TLFUNCPTR(EffectGroupManager_CreateAffix,         void,     __thiscall, (CEffect
 
 TLFUNCPTR(EquipmentInitialize,                    PVOID,    __thiscall, (CEquipment*, CItemSaveState*),                    0x4BE250);     // 1.15  CEquipment, CItemSaveState
 TLFUNCPTR(EquipmentDtor,                          void,     __thiscall, (),                                                0x4BA250);     // 1.15
-TLFUNCPTR(EquipmentUse,                           void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*),                 0x4B4FB0);     // 1.15  CEquipment, CPlayer, CPlayer
-TLFUNCPTR(EquipmentIdentify,                      void,     __thiscall, (CEquipment*, CPlayer*, CEquipment*),              0x4B4FB0);     // 1.15  CEquipment
+//TLFUNCPTR(EquipmentUse,                           void,     __thiscall, (CEquipment*, CPlayer*, CPlayer*),                 0x4B4FB0);     // 1.15  CEquipment, CPlayer, CPlayer
+TLFUNCPTR(EquipmentIdentify,                      void,     __thiscall, (CEquipment*, CCharacter*, CBaseUnit*),            0x4B4FB0);     // 1.15  This is really equipment use ^
 TLFUNCPTR(Equipment_AddMagicModifier,             void,     __thiscall, (CEquipment*, u32, u32),                           0x4BC7C0);
 TLFUNCPTR(Equipment_AddAffix,                     void,     __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float),   0x47F940);
 TLFUNCPTR(Equipment_UpdateRequirements,           void,     __thiscall, (CEquipment*),                                     0x4B3EA0);
@@ -229,6 +229,9 @@ TLFUNCPTR(Level_CheckCharacterProximity,          void,     __thiscall, (CLevel*
 
 TLFUNCPTR(Automap_AddBillboard,                   void,     __thiscall, (CAutomap*, u32, float*, Vector3*, u32, u32),      0x4E9460);
 
+TLFUNCPTR(Inventory_EquipmentAutoEquip,           void,     __thiscall, (CInventory*, CEquipment*),                        0x4E7950);
+
+TLFUNCPTR(Level_RemoveCharacter,                  void,     __thiscall, (CLevel*, CCharacter*),                            0x4F5AA0);
 
  
 // CCharacter_IsAlive(void) - 483980
@@ -236,9 +239,7 @@ TLFUNCPTR(Automap_AddBillboard,                   void,     __thiscall, (CAutoma
 // CCharacter_RemoveSpell (wstring, bool) - 482F50
 // CCharacter_AddSpell    (wstring, bool) - 483110
 
-// CGenericModel_SetTransparency (float)  - 4C2260
-
-// CCharacter_SetVisibility (bool) -- 483F40
+// CInventory_EquipmentAutoEquip (CEquipment *) -- 4E7950
 
 
 void TLAPI::Initialize()
@@ -381,13 +382,15 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CLevel, Level_Cleanup, 2);
   EVENT_INIT(CLevel, Level_RemoveEquipment, 1);
   EVENT_INIT(CLevel, Level_CheckCharacterProximity, 8);
+  EVENT_INIT(CLevel, Level_RemoveCharacter, 1);
 
-  // Hook 
+  // Inventory
   EVENT_INIT(CInventory, InventoryAddEquipment, 3);
   EVENT_INIT(CInventory, InventoryRemoveEquipment, 1);
   EVENT_INIT(CInventory, InventoryGetEquipmentFromSlot, 1);
   EVENT_INIT(CInventory, InventoryGetEquipmentRefFromSlot, 1);
   EVENT_INIT(CInventory, InventoryAddTabSize, 2);
+  EVENT_INIT(CInventory, Inventory_EquipmentAutoEquip, 1);
   
   // Hook MouseManager
   EVENT_INIT(CMouseManager, MouseManagerInput, 2);

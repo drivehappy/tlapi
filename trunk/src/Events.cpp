@@ -103,7 +103,7 @@ EVENT_DEF(CEnchantMenu, void, EnchantMenu_EnchantItem, (CEnchantMenu*, bool&));
 // ResourceManager
 EVENT_DEF(CResourceManager, void, ResourceManagerInitializePlayer,      (CResourceManager*, u32, u32));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreatePlayer,          (CPlayer*, CResourceManager*, wchar_t*, u32, bool&));
-EVENT_DEF(CResourceManager, void, ResourceManagerCreateMonster,         (CMonster*, CResourceManager*, u64, u32, bool, bool&));
+EVENT_DEF(CResourceManager, void, ResourceManagerCreateMonster,         (CMonster*&, CResourceManager*, u64, u32, bool, bool&));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateCharacterByName, (CCharacter*, CResourceManager*, const wchar_t*, const wchar_t*, u32, u32));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateBaseUnit,        (CResourceManager*, u64, u32, u32, u32));
 EVENT_DEF(CResourceManager, void, ResourceManagerCreateItem,            (CItem*, CResourceManager*, u64, u32, u32, u32));
@@ -119,6 +119,7 @@ EVENT_DEF(CLevel, void, Level_Update, (CLevel*, CVector3*, u32, float, bool&));
 EVENT_DEF(CLevel, void, Level_Cleanup, (CLevel*, u32, u32, bool&));
 EVENT_DEF(CLevel, void, Level_RemoveEquipment, (CLevel*, CEquipment*, bool&));
 EVENT_DEF(CLevel, void, Level_CheckCharacterProximity, (CCharacter*, CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32, bool&));
+EVENT_DEF(CLevel, void, Level_RemoveCharacter, (CLevel*, CCharacter*, bool&));
 
 // Automap
 EVENT_DEF(CAutomap, void, Automap_AddBillboard, (CAutomap*, u32, float*, Vector3*, u32, u32, bool&));
@@ -129,6 +130,7 @@ EVENT_DEF(CInventory, void, InventoryRemoveEquipment, (CInventory*, CEquipment*)
 EVENT_DEF(CInventory, void, InventoryGetEquipmentFromSlot, (CEquipment*, CInventory*, u32));
 EVENT_DEF(CInventory, void, InventoryGetEquipmentRefFromSlot, (CEquipmentRef*, CInventory*, u32));
 EVENT_DEF(CInventory, void, InventoryAddTabSize, (CInventory*, u32, u32));
+EVENT_DEF(CInventory, void, Inventory_EquipmentAutoEquip, (CInventory*, CEquipment*, bool&));
 
 // Character
 EVENT_DEF(CCharacter, void, CharacterDtor, (CCharacter*));

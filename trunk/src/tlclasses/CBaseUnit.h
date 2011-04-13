@@ -27,7 +27,7 @@ namespace TLAPI
     u32 unk6;           
     u8 unk06[4];          // [1]
 
-    u8 destroy;
+    u8 destroy;           // @158h
     u8 destroy1;
     u8 destroy2;
     u8 destroy3;

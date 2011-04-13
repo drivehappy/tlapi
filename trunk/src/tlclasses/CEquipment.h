@@ -25,7 +25,7 @@ namespace TLAPI
   TLFUNC(Equipment_AddMagicModifier, void, __thiscall, (CEquipment*, u32, u32));
   TLFUNC(Equipment_AddAffix,         void, __thiscall, (CEquipment*, CAffix*, u32, CEquipment*, float));
   TLFUNC(Equipment_AddGem,           void, __thiscall, (CEquipment*, CEquipment*));
-  TLFUNC(EquipmentIdentify,          void, __thiscall, (CEquipment*, CPlayer*, CEquipment*));
+  TLFUNC(EquipmentIdentify,          void, __thiscall, (CEquipment*, CCharacter*, CBaseUnit*));
   TLFUNC(Equipment_UpdateTooltip,    void, __thiscall, (CEquipment*));
 
   // Enchantment Types
@@ -114,8 +114,8 @@ namespace TLAPI
 
     // Equipment Identify
     EVENT_DECL(CEquipment, void, EquipmentIdentify,
-      (CEquipment*, CPlayer*, CEquipment*, bool&),
-      ((CEquipment*)e->_this, (CPlayer*)Pz[0], (CEquipment*)Pz[1], e->calloriginal));
+      (CEquipment*, CCharacter*, CBaseUnit*, bool&),
+      ((CEquipment*)e->_this, (CCharacter*)Pz[0], (CBaseUnit*)Pz[1], e->calloriginal));
 
     // Equipment Dtor
     EVENT_DECL(CEquipment, void, EquipmentDtor,
@@ -153,6 +153,9 @@ namespace TLAPI
       ((CEquipment*)e->_this, (CEquipment*)Pz[0], e->calloriginal));
 
 
+    void Use(CCharacter* sourcePlayer, CBaseUnit* target){
+      EquipmentIdentify(this, sourcePlayer, target);
+    }
     void UpdateTooltip() {
       Equipment_UpdateTooltip(this);
     }

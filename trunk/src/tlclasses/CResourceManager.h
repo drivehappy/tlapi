@@ -50,8 +50,8 @@ namespace TLAPI
 
     // Character Creation
     EVENT_DECL(CResourceManager, void, ResourceManagerCreateMonster,
-      (CMonster*, CResourceManager*, u64, u32, bool, bool&),
-      ((CMonster*)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], (bool)Pz[3], e->calloriginal));
+      (CMonster*&, CResourceManager*, u64, u32, bool, bool&),
+      ((CMonster*&)e->retval, (CResourceManager*)e->_this, *(u64*)&Pz[0], Pz[2], (bool)Pz[3], e->calloriginal));
 
     // Character Creation by Name
     EVENT_DECL(CResourceManager, void, ResourceManagerCreateCharacterByName,

@@ -304,29 +304,6 @@ namespace TLAPI
         dataCopy[i] = *ptr;
         ptr++;
       }
-
-      /*
-      logColor(B_GREEN, L"  Strength: %i", baseStrength);
-      logColor(B_GREEN, L"  Dexterity: %i", baseDexterity);
-      logColor(B_GREEN, L"  Defense: %i", baseDefense);
-      logColor(B_GREEN, L"  Magic: %i", baseMagic);
-      logColor(B_GREEN, L"  Health: %f / %i", healthCurrent, healthMax);
-      logColor(B_GREEN, L"  Mana: %f / %i", manaCurrent, manaMax);
-      logColor(B_GREEN, L"  Gold: %i", gold);
-      logColor(B_GREEN, L"  XP: %i", experienceCurrent);
-      logColor(B_GREEN, L"  Fame: %i", fameCurrent);
-      logColor(B_GREEN, L"  unk000016: %i", unk000016[0]);
-
-      logColor(B_GREEN, L"   unk16[1]: %i  (%f)", unk16[0], *(float*)&unk16[0]);
-      logColor(B_GREEN, L"   unk016: %i  (%f)", unk016, *(float*)&unk016);
-      logColor(B_GREEN, L"   unk0016: %i  (%f)", unk0016, *(float*)&unk0016);
-      logColor(B_GREEN, L"   unk00016: %i  (%f)", unk00016, *(float*)&unk00016);
-
-      logColor(B_GREEN, L"   unk17[13]:");
-      for (u32 i = 0; i < 13; i++) {
-        logColor(B_GREEN, L"    unk17[%i]: %i (%f)", i, unk17[i], *(float*)&unk17[i]);
-      }
-      */
     }
 
     // 
