@@ -44,6 +44,7 @@ namespace TLAPI
   TLFUNC(InventoryGetEquipmentFromSlot,     void,   __thiscall, (CEquipment*, CInventory*, u32));
   TLFUNC(InventoryGetEquipmentRefFromSlot,  void,   __thiscall, (CEquipmentRef*, CInventory*, u32));
   TLFUNC(InventoryAddTabSize,               void,   __thiscall, (CInventory*, u32, u32));
+  TLFUNC(Inventory_EquipmentAutoEquip,      void,   __thiscall, (CInventory*, CEquipment*));
 
 #pragma pack(1)
 
@@ -90,7 +91,13 @@ namespace TLAPI
       (CInventory*, u32, u32),
       ((CInventory*)e->_this, Pz[0], Pz[1]));
     
+    // Auto equip (right-click item in backpack to equip on character)
+    EVENT_DECL(CInventory, void, Inventory_EquipmentAutoEquip,
+      (CInventory*, CEquipment*, bool&),
+      ((CInventory*)e->_this, (CEquipment*)Pz[0], e->calloriginal));
     
+
+
     // Remove equipment from inventory
     void RemoveEquipment(CEquipment* equipment) {
       InventoryRemoveEquipment(this, equipment);
@@ -100,6 +107,9 @@ namespace TLAPI
     }
     void AddTabSize(u32 index, u32 size) {
       InventoryAddTabSize(this, index, size);
+    }
+    void AutoEquipEquipment(CEquipment* equipment) {
+      Inventory_EquipmentAutoEquip(this, equipment);
     }
 
     // Returns the slot number for the equipment in the inventory
