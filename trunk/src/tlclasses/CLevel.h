@@ -157,6 +157,10 @@ namespace TLAPI
       (CLevel*, CCharacter*, bool&),
       ((CLevel*)e->_this, (CCharacter*)Pz[0], e->calloriginal));
 
+    // Level
+    EVENT_DECL(CLevel, void, Level_RemoveItem,
+      (CLevel*, CItem*, bool&),
+      ((CLevel*)e->_this, (CItem*)Pz[0], e->calloriginal));
 
     // Character Killed
     void CharacterKill(CCharacter* attacker, CCharacter* killed, Vector3* position, u32 unk0) {
@@ -176,6 +180,7 @@ namespace TLAPI
     void RemoveCharacter(CCharacter* character) {
       Level_RemoveCharacter(this, character);
     }
+
 
 
 

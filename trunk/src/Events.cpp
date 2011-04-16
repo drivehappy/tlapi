@@ -120,6 +120,7 @@ EVENT_DEF(CLevel, void, Level_Cleanup, (CLevel*, u32, u32, bool&));
 EVENT_DEF(CLevel, void, Level_RemoveEquipment, (CLevel*, CEquipment*, bool&));
 EVENT_DEF(CLevel, void, Level_CheckCharacterProximity, (CCharacter*, CLevel*, Vector3*, u32, float, float, float, u32, CCharacter*, u32, bool&));
 EVENT_DEF(CLevel, void, Level_RemoveCharacter, (CLevel*, CCharacter*, bool&));
+EVENT_DEF(CLevel, void, Level_RemoveItem, (CLevel*, CItem*, bool&));
 
 // Automap
 EVENT_DEF(CAutomap, void, Automap_AddBillboard, (CAutomap*, u32, float*, Vector3*, u32, u32, bool&));
@@ -179,3 +180,6 @@ EVENT_DEF(CPositionableObject, void, PositionableObject_SetNearPlayer,  (CPositi
 
 // ParticleCache
 EVENT_DEF(CParticleCache, void, ParticleCache_Dtor2, (CParticleCache*));
+
+// GenericModel
+EVENT_DEF(CGenericModel, void, GenericModel_Dtor, (CGenericModel*, bool&));

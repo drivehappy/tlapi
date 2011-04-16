@@ -232,14 +232,16 @@ TLFUNCPTR(Automap_AddBillboard,                   void,     __thiscall, (CAutoma
 TLFUNCPTR(Inventory_EquipmentAutoEquip,           void,     __thiscall, (CInventory*, CEquipment*),                        0x4E7950);
 
 TLFUNCPTR(Level_RemoveCharacter,                  void,     __thiscall, (CLevel*, CCharacter*),                            0x4F5AA0);
+TLFUNCPTR(Level_RemoveItem,                       void,     __thiscall, (CLevel*, CItem*),                                 0x4F5B80);
 
+TLFUNCPTR(GenericModel_Dtor,                      void,     __thiscall, (CGenericModel*),                                  0x4CBF40);
  
 // CCharacter_IsAlive(void) - 483980
 
 // CCharacter_RemoveSpell (wstring, bool) - 482F50
 // CCharacter_AddSpell    (wstring, bool) - 483110
 
-// CInventory_EquipmentAutoEquip (CEquipment *) -- 4E7950
+// CGenericModel_Dtor     - 4CBF40
 
 
 void TLAPI::Initialize()
@@ -383,6 +385,7 @@ void TLAPI::HookFunctions()
   EVENT_INIT(CLevel, Level_RemoveEquipment, 1);
   EVENT_INIT(CLevel, Level_CheckCharacterProximity, 8);
   EVENT_INIT(CLevel, Level_RemoveCharacter, 1);
+  EVENT_INIT(CLevel, Level_RemoveItem, 1);
 
   // Inventory
   EVENT_INIT(CInventory, InventoryAddEquipment, 3);
@@ -434,6 +437,9 @@ void TLAPI::HookFunctions()
 
   // Automap
   EVENT_INIT(CAutomap, Automap_AddBillboard, 5);
+
+  // GenericMode
+  EVENT_INIT(CGenericModel, GenericModel_Dtor, 0);
   
 
   log("Done hooking.");
