@@ -20,7 +20,8 @@ namespace TLAPI {
   {
     CGenericModel   *pCGenericModel;
     CCollisionModel *pCCollisionModel;
-    u32              unk0[7];
+    CLayout         *pCLayout;
+    u32              unk0[6];
 
     wstring          name;
     CList<u32>       unkList0;
