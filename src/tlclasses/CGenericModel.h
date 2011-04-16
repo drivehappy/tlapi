@@ -46,6 +46,14 @@ namespace TLAPI
 
     Ogre::ShadowCaster* shadowCaster;   // @21Ch
 
+    // 
+    // Function hooks
+
+    // Equipment Identify
+    EVENT_DECL(CGenericModel, void, GenericModel_Dtor,
+      (CGenericModel*, bool&),
+      ((CGenericModel*)e->_this, e->calloriginal));
+
   };
 
 #pragma pack()

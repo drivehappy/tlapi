@@ -274,4 +274,8 @@ namespace TLAPI {
   TLFUNC(Inventory_EquipmentAutoEquip,          void,     __thiscall, (CInventory*, CEquipment*));
 
   TLFUNC(Level_RemoveCharacter,                 void,     __thiscall, (CLevel*, CCharacter*));
+  TLFUNC(Level_RemoveItem,                      void,     __thiscall, (CLevel*, CItem*));
+
+  TLFUNC(GenericModel_Dtor,                     void,     __thiscall, (CGenericModel*));
+
 };
