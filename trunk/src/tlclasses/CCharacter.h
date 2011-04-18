@@ -251,12 +251,13 @@ namespace TLAPI
 
     PVOID   unkPtrForType;      // Interesting code @: 4B6165  (esi + 5B4h)
 
-    u32     unk034[16];
+    u32     unk034[13];
 
     // TODO: Move these to vector<CCharacter*>
-    CCharacter      **pCMinionStart;
-    CCharacter      **pCMinionEnd;
-    CCharacter      **pCMinionEnd2;
+    //CCharacter      **pCMinionStart;    // 
+    //CCharacter      **pCMinionEnd;
+    //CCharacter      **pCMinionEnd2;
+    vector<CCharacter*> minionList;
 
     u32     unk36[12];
 
@@ -486,10 +487,9 @@ namespace TLAPI
     }
     vector<CCharacter*>* GetMinions() {
       vector<CCharacter*> *retval = new vector<CCharacter*>;
-      CCharacter **itr = pCMinionStart;
-      while (itr != pCMinionEnd) {
+      vector<CCharacter*>::iterator itr;
+      for (itr = minionList.begin(); itr != minionList.end(); ++itr) {
         retval->push_back((*itr));
-        itr++;
       }
       return retval;
     }

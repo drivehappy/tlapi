@@ -246,11 +246,18 @@ void TLAPI::HookDeactivate(HookFunctionDef* f)
 
 void TLAPI::PatchJMP(uint32_t addr, uint32_t to)
 {
-  //addr = EXEOFFSET(addr);
-
   uint8_t *p = (uint8_t*)addr;
   DWORD old;
   VirtualProtect(p, 5, PAGE_EXECUTE_READWRITE, &old);
   *p++ = 0xe9;
   *(uint32_t*)p = (uint8_t*)(to) - (p+4);
+}
+
+void TLAPI::PatchShortJMP(uint32_t addr, uint8_t to)
+{
+  uint8_t *p = (uint8_t*)addr;
+  DWORD old;
+  VirtualProtect(p, 2, PAGE_EXECUTE_READWRITE, &old);
+  *p++ = 0xeb;
+  *p++ = to;
 }
