@@ -256,6 +256,9 @@ void TLAPI::PatchProcess()
 {
   // 
   //PatchJMP(EXEOFFSET(0x489F8D), EXEOFFSET(0x48A08B));   // v1.15
+
+  // Fix a Runic bug if player has no pet so it won't crash when opening stash
+  PatchShortJMP(EXEOFFSET(0x5A7BE7), (uint8_t)0x27);
 }
 
 void TLAPI::HookFunctions()

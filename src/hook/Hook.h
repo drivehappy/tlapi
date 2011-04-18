@@ -90,5 +90,6 @@ namespace TLAPI {
 
   //
   void PatchJMP(uint32_t addr, uint32_t to);
+  void PatchShortJMP(uint32_t addr, uint8_t to);
 
 };
